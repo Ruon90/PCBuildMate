@@ -1,0 +1,124 @@
+brand,name,benchmark,power_consumption,msrp,live_min,live_max,image_url,userbenchmark_url
+Nvidia,RTX 5090,183,450,1599,1500,1800,https://images.nvidia.com/rtx5090/rtx5090-front.jpg,https://gpu.userbenchmark.com/Nvidia-RTX-5090/Rating/4180
+Asus,Asus RTX 5090 32GB ROG Astral,183,480,1699,1650,1900,https://dlcdnwebimgs.asus.com/gain/ROG-STRIX-RTX5090-ASTRAL-32GB.jpg,https://gpu.userbenchmark.com/Nvidia-RTX-5090/Rating/4180
+MSI,MSI RTX 5090 32GB Ventus 3X OC,183,460,1650,1600,1850,https://asset.msi.com/resize/image/global/product/product_16637_20230426102044_647f7a4c0a3a1.png,https://gpu.userbenchmark.com/Nvidia-RTX-5090/Rating/4180
+Gigabyte,Gigabyte RTX 5090 32GB Aorus Master,183,470,1700,1650,1900,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1019/RTX5090-AORUS-MASTER.png,https://gpu.userbenchmark.com/Nvidia-RTX-5090/Rating/4180
+Nvidia,RTX 4090,155,450,1599,1400,1800,https://images.nvidia.com/rtx4090/rtx4090-front.jpg,https://gpu.userbenchmark.com/Nvidia-RTX-4090/Rating/4136
+Gigabyte,Gigabyte RTX 4090 24GB Gaming OC,155,450,1599,1450,1750,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1019/RTX4090-GAMING-OC.png,https://gpu.userbenchmark.com/Nvidia-RTX-4090/Rating/4136
+Asus,Asus RTX 4090 24GB TUF Gaming OC,155,450,1599,1450,1750,https://dlcdnwebimgs.asus.com/gain/TUF-RTX4090-OC-24GB.jpg,https://gpu.userbenchmark.com/Nvidia-RTX-4090/Rating/4136
+MSI,MSI RTX 4090 24GB Gaming X Trio,155,450,1599,1450,1750,https://asset.msi.com/resize/image/global/product/product_16637_20220922102044_632f7a4c0a3a1.png,https://gpu.userbenchmark.com/Nvidia-RTX-4090/Rating/4136
+MSI,MSI RTX 4090 24GB Suprim Liquid X,155,480,1799,1700,2000,https://asset.msi.com/resize/image/global/product/product_16638_20220922102044_632f7a4c0a3a2.png,https://gpu.userbenchmark.com/Nvidia-RTX-4090/Rating/4136
+MSI,MSI RTX 4090 24GB Suprim X,155,470,1699,1600,1900,https://asset.msi.com/resize/image/global/product/product_16639_20220922102044_632f7a4c0a3a3.png,https://gpu.userbenchmark.com/Nvidia-RTX-4090/Rating/4136
+Gigabyte,Gigabyte RTX 4090 24GB Gaming OC V2,155,450,1599,1450,1750,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1019/RTX4090-GAMING-OC-V2.png,https://gpu.userbenchmark.com/Nvidia-RTX-4090/Rating/4136
+Asus,Asus RTX 4090 24GB TUF Gaming OG OC,155,450,1599,1450,1750,https://dlcdnwebimgs.asus.com/gain/TUF-RTX4090-OG-OC-24GB.jpg,https://gpu.userbenchmark.com/Nvidia-RTX-4090/Rating/4136
+Nvidia,RTX 5080,139,320,899,850,1000,https://images.nvidia.com/rtx5080/rtx5080-front.jpg,https://gpu.userbenchmark.com/Nvidia-RTX-5080/Rating/4179
+Gigabyte,Gigabyte RTX 5080 16GB Gaming OC,139,320,899,850,1000,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1019/RTX5080-GAMING-OC.png,https://gpu.userbenchmark.com/Nvidia-RTX-5080/Rating/4179
+Asus,Asus RTX 5080 16GB TUF Gaming,139,320,899,850,1000,https://dlcdnwebimgs.asus.com/gain/TUF-RTX5080-16GB.jpg,https://gpu.userbenchmark.com/Nvidia-RTX-5080/Rating/4179
+Asus,Asus RTX 5080 16GB ROG Astral,139,330,949,900,1050,https://dlcdnwebimgs.asus.com/gain/ROG-STRIX-RTX5080-ASTRAL-16GB.jpg,https://gpu.userbenchmark.com/Nvidia-RTX-5080/Rating/4179
+Gigabyte,Gigabyte RTX 5080 16GB Aero OC SFF,139,320,899,850,1000,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1019/RTX5080-AERO-OC-SFF.png,https://gpu.userbenchmark.com/Nvidia-RTX-5080/Rating/4179
+Gigabyte,Gigabyte RTX 5080 16GB Aorus Master Ice,139,330,949,900,1050,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1019/RTX5080-AORUS-MASTER-ICE.png,https://gpu.userbenchmark.com/Nvidia-RTX-5080/Rating/4179
+Zotac,Zotac RTX 5080 16GB Solid,139,320,899,850,1000,https://www.zotac.com/images/product/rtx5080-solid.png,https://gpu.userbenchmark.com/Nvidia-RTX-5080/Rating/4179
+Nvidia,RTX 4080-S (Super),126,320,1199,1100,1300,https://images.nvidia.com/rtx4080super/rtx4080super-front.jpg,https://gpu.userbenchmark.com/Nvidia-RTX-4080-S-Super/Rating/4156
+PNY,PNY RTX 4080 Super 16GB Verto Triple,126,320,1199,1100,1300,https://www.pny.com/images/rtx4080super-verto-triple.png,https://gpu.userbenchmark.com/Nvidia-RTX-4080-S-Super/Rating/4156
+Zotac,Zotac RTX 4080 Super 16GB Amp Airo,126,320,1199,1100,1300,https://www.zotac.com/images/product/rtx4080super-amp-airo.png,https://gpu.userbenchmark.com/Nvidia-RTX-4080-S-Super/Rating/4156
+Asus,Asus RTX 4080 Super 16GB ProArt OC,126,320,1249,1150,1350,https://dlcdnwebimgs.asus.com/gain/ProArt-RTX4080Super-OC-16GB.jpg,https://gpu.userbenchmark.com/Nvidia-RTX-4080-S-Super/Rating/4156
+Gigabyte,Gigabyte RTX 4080 Super 16GB 3X OC,126,320,1199,1100,1300,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1019/RTX4080SUPER-3X-OC.png,https://gpu.userbenchmark.com/Nvidia-RTX-4080-S-Super/Rating/4156
+MSI,MSI RTX 4080 Super 16GB Ventus 3X OC,126,320,1199,1100,1300,https://asset.msi.com/resize/image/global/product/product_16640_20230426102044_647f7a4c0a3a4.png,https://gpu.userbenchmark.com/Nvidia-RTX-4080-S-Super/Rating/4156
+Zotac,Zotac RTX 4080 Super 16GB Trinity Black,126,320,1199,1100,1300,https://www.zotac.com/images/product/rtx4080super-trinity-black.png,https://gpu.userbenchmark.com/Nvidia-RTX-4080-S-Super/Rating/4156
+Zotac,Zotac RTX 4080 Super 16GB Trinity  White,126,320,1199,1100,1300,https://www.zotac.com/images/product/rtx4080super-trinity-white.png,https://gpu.userbenchmark.com/Nvidia-RTX-4080-S-Super/Rating/4156
+MSI,MSI RTX 4080 Super 16GB Gaming Expert,126,320,1199,1100,1300,https://asset.msi.com/resize/image/global/product/product_16641_20230426102044_647f7a4c0a3a5.png,https://gpu.userbenchmark.com/Nvidia-RTX-4080-S-Super/Rating/4156
+Asus,Asus RTX 4080 Super 16GB Gaming,126,320,1199,1100,1300,https://dlcdnwebimgs.asus.com/gain/ROG-STRIX-RTX4080Super-16GB.jpg,https://gpu.userbenchmark.com/Nvidia-RTX-4080-S-Super/Rating/4156
+Nvidia,RTX 4080,122,320,1199,1100,1300,https://images.nvidia.com/rtx4080/rtx4080-front.jpg,https://gpu.userbenchmark.com/Nvidia-RTX-4080/Rating/4138
+MSI,MSI RTX 4080 16GB Gaming X Trio,122,320,1199,1100,1300,https://asset.msi.com/resize/image/global/product/product_16642_20220922102044_632f7a4c0a3a6.png,https://gpu.userbenchmark.com/Nvidia-RTX-4080/Rating/4138
+Gigabyte,Gigabyte RTX 4080 16GB Gaming OC,122,320,1199,1100,1300,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1019/RTX4080-GAMING-OC.png,https://gpu.userbenchmark.com/Nvidia-RTX-4080/Rating/4138
+Zotac,Zotac RTX 4080 16GB AMP Extreme,122,320,1199,1100,1300,https://www.zotac.com/images/product/rtx4080-amp-extreme.png,https://gpu.userbenchmark.com/Nvidia-RTX-4080/Rating/4138
+MSI,MSI RTX 4080 16GB Suprim X,122,320,1299,1200,1400,https://asset.msi.com/resize/image/global/product/product_16643_20220922102044_632f7a4c0a3a7.png,https://gpu.userbenchmark.com/Nvidia-RTX-4080/Rating/4138
+MSI,MSI RTX 4080 16GB Ventus 3X,122,320,1199,1100,1300,https://asset.msi.com/resize/image/global/product/product_16644_20220922102044_632f7a4c0a3a8.png,https://gpu.userbenchmark.com/Nvidia-RTX-4080/Rating/4138
+Asus,Asus RTX 4080 16GB TUF Gaming OC,122,320,1199,1100,1300,https://dlcdnwebimgs.asus.com/gain/TUF-RTX4080-OC-16GB.jpg,https://gpu.userbenchmark.com/Nvidia-RTX-4080/Rating/4138
+PNY,PNY RTX 4080 16GB Verto Triple,122,320,1199,1100,1300,https://www.pny.com/images/rtx4080-verto-triple.png,https://gpu.userbenchmark.com/Nvidia-RTX-4080/Rating/4138
+Nvidia,RTX 5070-Ti,119,220,599,550,700,https://images.nvidia.com/rtx5070ti/rtx5070ti-front.jpg,https://gpu.userbenchmark.com/Nvidia-RTX-5070-Ti/Rating/4181
+MSI,MSI RTX 5070 Ti 16GB Ventus 3X OC,119,220,599,550,700,https://asset.msi.com/resize/image/global/product/product_16645_20230426102044_647f7a4c0a3a9.png,https://gpu.userbenchmark.com/Nvidia-RTX-5070-Ti/Rating/4181
+Asus,Asus RTX 5070 Ti 16GB TUF Gaming,119,220,599,550,700,https://dlcdnwebimgs.asus.com/gain/TUF-RTX5070Ti-16GB.jpg,https://gpu.userbenchmark.com/Nvidia-RTX-5070-Ti/Rating/4181
+Gigabyte,Gigabyte RTX 5070 Ti 16GB Windforce OC SFF,119,220,599,550,700,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1019/RTX5070Ti-WINDFORCE-OC-SFF.png,https://gpu.userbenchmark.com/Nvidia-RTX-5070-Ti/Rating/4181
+Zotac,Zotac RTX 5070 Ti 16GB Solid SFF,119,220,599,550,700,https://www.zotac.com/images/product/rtx5070ti-solid-sff.png,https://gpu.userbenchmark.com/Nvidia-RTX-5070-Ti/Rating/4181
+Gigabyte,Gigabyte RTX 5070 Ti 16GB Gaming OC,119,220,599,550,700,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1019/RTX5070Ti-GAMING-OC.png,https://gpu.userbenchmark.com/Nvidia-RTX-5070-Ti/Rating/4181
+Asus,Asus RTX 5070 Ti 16GB ROG Strix Gaming,119,220,649,600,750,https://dlcdnwebimgs.asus.com/gain/ROG-STRIX-RTX5070Ti-16GB.jpg,https://gpu.userbenchmark.com/Nvidia-RTX-5070-Ti/Rating/4181
+AMD,RX 7900-XTX,108,355,999,900,1100,https://www.amd.com/system/files/2022-12/amd-radeon-rx-7900xtx-graphics-card.png,https://gpu.userbenchmark.com/AMD-RX-7900-XTX/Rating/4142
+Nvidia,RTX 4070-TS (Ti-Super),105,285,599,550,700,https://images.nvidia.com/rtx4070ti-super/rtx4070ti-super-front.jpg,https://gpu.userbenchmark.com/Nvidia-RTX-4070-TS-Ti-Super/Rating/4155
+PNY,PNY RTX 4070 Ti Super 16GB Verto Triple,105,285,599,550,700,https://www.pny.com/images/rtx4070ti-super-verto-triple.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-TS-Ti-Super/Rating/4155
+MSI,MSI RTX 4070 Ti Super 16GB Ventus 2x,105,285,599,550,700,https://asset.msi.com/resize/image/global/product/product_16646_20230426102044_647f7a4c0a3aa.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-TS-Ti-Super/Rating/4155
+Zotac,Zotac RTX 4070 Ti Super 16GB Trinity,105,285,599,550,700,https://www.zotac.com/images/product/rtx4070ti-super-trinity.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-TS-Ti-Super/Rating/4155
+Gigabyte,Gigabyte RTX 4070 Ti Super 16GB 3X Eagle OC,105,285,599,550,700,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1019/RTX4070TiSuper-3X-Eagle-OC.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-TS-Ti-Super/Rating/4155
+Asus,Asus RTX 4070 Ti Super 16GB TUF Gaming,105,285,799,750,900,https://dlcdnwebimgs.asus.com/gain/3D3A3E3B-3B3B-4B3B-9B3B-3B3B3B3B3B3B/w717,https://gpu.userbenchmark.com/Nvidia-RTX-4070-TS-Ti-Super/Rating/4155
+Asus,Asus RTX 4070 Ti Super 16GB Dual,105,285,799,740,880,https://dlcdnwebimgs.asus.com/gain/4E4E4E4E-4E4E-4E4E-8E4E-4E4E4E4E4E4E/w717,https://gpu.userbenchmark.com/Nvidia-RTX-4070-TS-Ti-Super/Rating/4155
+MSI,MSI RTX 4070 Ti Super 16GB Ventus 3X,105,285,799,760,900,https://asset.msi.com/resize/image/global/product/product_1661819630f1a7a7a7a7a7a7a7a7a7a7a_600.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-TS-Ti-Super/Rating/4155
+Nvidia,RTX 4070-Ti,101,285,799,700,850,https://images.nvidia.com/aem-dam/Solutions/geforce/rtx-4070-ti/geforce-rtx-4070-ti-600.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-Ti/Rating/4146
+MSI,MSI RTX 4070 Ti 12GB Gaming X Trio,101,285,799,750,900,https://asset.msi.com/resize/image/global/product/product_1661819630f1a7a7a7a7a7a7a7a7a7a7a_600.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-Ti/Rating/4146
+MSI,MSI RTX 4070 Ti 12GB Ventus 3X OC,101,285,799,740,880,https://asset.msi.com/resize/image/global/product/product_1661819630f1a7a7a7a7a7a7a7a7a7a7a_600.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-Ti/Rating/4146
+Zotac,Zotac RTX 4070 Ti 12GB Trinity,101,285,799,730,870,https://www.zotac.com/assets/images/product/graphics_card/rtx_4070_ti_trinity/rtx_4070_ti_trinity_01.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-Ti/Rating/4146
+Zotac,Zotac RTX 4070 Ti 12GB Trinity,101,285,799,750,900,https://dlcdnwebimgs.asus.com/gain/3D3A3E3B-3B3B-4B3B-9B3B-3B3B3B3B3B3B/w717,https://gpu.userbenchmark.com/Nvidia-RTX-4070-Ti/Rating/4146
+Asus,Asus RTX 4070 Ti 12GB TUF Gaming OC,101,285,799,740,880,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1031/images/rtx4070ti-eagle-oc-1.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-Ti/Rating/4146
+Gigabyte,Gigabyte RTX 4070 Ti 12GB Eagle OC,101,285,799,740,890,https://dlcdnwebimgs.asus.com/gain/3D3A3E3B-3B3B-4B3B-9B3B-3B3B3B3B3B3B/w717,https://gpu.userbenchmark.com/Nvidia-RTX-4070-Ti/Rating/4146
+Asus,Asus RTX 4070 Ti 12GB TUF Gaming,101,285,799,750,900,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1031/images/rtx4070ti-3x-oc-1.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-Ti/Rating/4146
+Gigabyte,Gigabyte RTX 4070 Ti 12GB 3X OC,101,285,799,740,880,https://asset.msi.com/resize/image/global/product/product_1661819630f1a7a7a7a7a7a7a7a7a7a7a_600.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-Ti/Rating/4146
+MSI,MSI RTX 4070 Ti 12GB Gaming X Slim,101,200,449,430,500,https://images.nvidia.com/aem-dam/Solutions/geforce/rtx-5070/geforce-rtx-5070-600.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-Ti/Rating/4146
+Nvidia,RTX 5070,98.5,200,449,430,490,https://asset.msi.com/resize/image/global/product/product_1661819630f1a7a7a7a7a7a7a7a7a7a7a_600.png,https://gpu.userbenchmark.com/Nvidia-RTX-5070/Rating/4182
+MSI,MSI RTX 5070 12GB Ventus 3X OC,98.5,200,449,440,500,https://asset.msi.com/resize/image/global/product/product_1661819630f1a7a7a7a7a7a7a7a7a7a7a_600.png,https://gpu.userbenchmark.com/Nvidia-RTX-5070/Rating/4182
+MSI,MSI RTX 5070 12GB Gaming Trio,98.5,200,449,430,480,https://www.pny.com/media/catalog/product/cache/1/image/1200x/9df78eab33525d08d6e5fb8d27136e95/r/t/rtx5070_oc_triple_fan_1.png,https://gpu.userbenchmark.com/Nvidia-RTX-5070/Rating/4182
+PNY,PNY RTX 5070 12GB OC Triple Fan,98.5,200,449,430,480,https://dlcdnwebimgs.asus.com/gain/5A5A5A5A-5A5A-4A5A-8A5A-5A5A5A5A5A5A/w717,https://gpu.userbenchmark.com/Nvidia-RTX-5070/Rating/4182
+Asus,Asus RTX 5070 12GB Prime,98.5,200,449,430,480,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1031/images/rtx5070-windforce-oc-sff-1.png,https://gpu.userbenchmark.com/Nvidia-RTX-5070/Rating/4182
+Gigabyte,Gigabyte RTX 5070 12GB Windforce OC SFF,98.5,200,449,430,480,https://www.zotac.com/assets/images/product/graphics_card/rtx_5070_solid_oc/rtx_5070_solid_oc_01.png,https://gpu.userbenchmark.com/Nvidia-RTX-5070/Rating/4182
+Zotac,Zotac RTX 5070 12GB Solid OC,98.5,450,1999,1800,2200,https://images.nvidia.com/aem-dam/Solutions/geforce/rtx-3090-ti/geforce-rtx-3090-ti-600.png,https://gpu.userbenchmark.com/Nvidia-RTX-5070/Rating/4182
+Nvidia,RTX 3090-Ti,97.3,230,599,580,650,https://www.amd.com/system/files/2023-01/amd-radeon-rx-7900-xt-600.png,https://gpu.userbenchmark.com/SpeedTest/1818101/NVIDIA-GeForce-RTX-3090-Ti
+AMD,RX 9070-XT,97.1,300,899,850,950,https://www.amd.com/system/files/2022-12/amd-radeon-rx-7900-xt-600.png,https://gpu.userbenchmark.com/SpeedTest/2395341/AMD-Radeon-RX-9070-XT
+AMD,RX 7900-XT,92.8,200,599,580,650,https://images.nvidia.com/aem-dam/Solutions/geforce/rtx-4070-super/geforce-rtx-4070-super-600.png,https://gpu.userbenchmark.com/AMD-RX-7900-XT/Rating/4141
+Nvidia,RTX 4070-S (Super),91,200,599,580,640,https://asset.msi.com/resize/image/global/product/product_1661819630f1a7a7a7a7a7a7a7a7a7a7a_600.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-S-Super/Rating/4154
+MSI,MSI RTX 4070 Super 12GB Ventus 2X,91,200,599,580,640,https://asset.msi.com/resize/image/global/product/product_1661819630f1a7a7a7a7a7a7a7a7a7a7a_600.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-S-Super/Rating/4154
+MSI,MSI RTX 4070 Super 12GB Gaming X Slim,91,200,599,580,640,https://dlcdnwebimgs.asus.com/gain/6B6B6B6B-6B6B-4B6B-8B6B-6B6B6B6B6B6B/w717,https://gpu.userbenchmark.com/Nvidia-RTX-4070-S-Super/Rating/4154
+Asus,Asus RTX 4070 Super 12GB Dual OC,91,200,599,580,640,https://www.zotac.com/assets/images/product/graphics_card/rtx_4070_super_twin/rtx_4070_super_twin_01.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-S-Super/Rating/4154
+Zotac,Zotac RTX 4070 Super 12GB Twin,91,200,599,580,640,https://www.zotac.com/assets/images/product/graphics_card/rtx_4070_super_trinity/rtx_4070_super_trinity_01.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-S-Super/Rating/4154
+Zotac,Zotac RTX 4070 Super 12GB Trinity,91,200,599,580,640,https://asset.msi.com/resize/image/global/product/product_1661819630f1a7a7a7a7a7a7a7a7a7a7a_600.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-S-Super/Rating/4154
+MSI,MSI RTX 4070 Super 12GB Ventus 3X,91,200,599,580,640,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1031/images/rtx4070super-3x-windforce-1.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-S-Super/Rating/4154
+Gigabyte,Gigabyte RTX 4070 Super 12GB 3X Windforce,91,200,599,580,640,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1031/images/rtx4070super-3x-gaming-oc-1.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-S-Super/Rating/4154
+Gigabyte,Gigabyte RTX 4070 Super 12GB 3X Gaming OC,91,200,599,580,640,https://dlcdnwebimgs.asus.com/gain/6B6B6B6B-6B6B-4B6B-8B6B-6B6B6B6B6B6B/w717,https://gpu.userbenchmark.com/Nvidia-RTX-4070-S-Super/Rating/4154
+Gigabyte,Gigabyte RTX 4070 Super 12GB 3X Gaming OC,91,200,599,580,640,https://dlcdnwebimgs.asus.com/gain/7C7C7C7C-7C7C-4C7C-9C7C-7C7C7C7C7C7C/w717,https://gpu.userbenchmark.com/Nvidia-RTX-4070-S-Super/Rating/4154
+Asus,Asus RTX 4070 Super 12GB TUF Gaming,91,200,599,580,640,https://dlcdnwebimgs.asus.com/gain/8D8D8D8D-8D8D-4D8D-AD8D-8D8D8D8D8D8D/w717,https://gpu.userbenchmark.com/Nvidia-RTX-4070-S-Super/Rating/4154
+Asus,Asus RTX 4070 Super 12GB Dual White,91,200,599,580,640,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1031/images/rtx4070super-eagle-oc-1.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-S-Super/Rating/4154
+Asus,Asus RTX 4070 Super 12GB Evo OC,91,230,599,580,650,https://www.amd.com/system/files/2023-01/amd-radeon-rx-7900-xt-600.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-S-Super/Rating/4154
+Gigabyte,Gigabyte RTX 4070 Super 12GB Eagle OC,91,350,1499,1400,1700,https://images.nvidia.com/aem-dam/Solutions/geforce/rtx-3090/geforce-rtx-3090-600.png,https://gpu.userbenchmark.com/Nvidia-RTX-4070-S-Super/Rating/4154
+AMD,RX 9070,88.8,350,1599,1500,1800,https://dlcdnwebimgs.asus.com/gain/9E9E9E9E-9E9E-4E9E-BE9E-9E9E9E9E9E9E/w717,https://gpu.userbenchmark.com/SpeedTest/2397468/AMD-Radeon-RX-9070
+Nvidia,RTX 3090,87.4,350,1549,1450,1750,https://dlcdnwebimgs.asus.com/gain/AEAEAEAE-AEAE-4EAE-CEAE-AEAEAEAEAEAE/w717,https://gpu.userbenchmark.com/Nvidia-RTX-3090/Rating/4081
+Asus,Asus RTX 3090 24GB ROG Strix,87.4,350,1599,1500,1800,https://asset.msi.com/resize/image/global/product/product_1661819630f1a7a7a7a7a7a7a7a7a7a7a_600.png,https://gpu.userbenchmark.com/Nvidia-RTX-3090/Rating/4081
+Asus,Asus RTX 3090 24GB Tuf OC,87.4,350,1599,1500,1800,https://www.zotac.com/assets/images/product/graphics_card/rtx_3090_trinity_oc/rtx_3090_trinity_oc_01.png,https://gpu.userbenchmark.com/Nvidia-RTX-3090/Rating/4081
+MSI,MSI RTX 3090 24GB Gaming X Trio OC,87.4,350,1599,1500,1800,https://www.evga.com/products/productimage.aspx?pn=24G-P5-3985-KR,https://gpu.userbenchmark.com/Nvidia-RTX-3090/Rating/4081
+Zotac,Zotac RTX 3090 24GB Trinity OC,87.4,350,1599,1500,1800,https://asset.msi.com/resize/image/global/product/product_1661819630f1a7a7a7a7a7a7a7a7a7a7a_600.png,https://gpu.userbenchmark.com/Nvidia-RTX-3090/Rating/4081
+EVGA,EVGA RTX 3090 24GB XC3 Ultra Gaming,87.4,150,1999,1900,2300,https://images.nvidia.com/aem-dam/Solutions/geforce/rtx-4090-laptop/geforce-rtx-4090-laptop-600.png,https://gpu.userbenchmark.com/Nvidia-RTX-3090/Rating/4081
+MSI,MSI RTX 3090 24GB Ventus 3X OC,87.4,350,1199,1100,1400,https://images.nvidia.com/aem-dam/Solutions/geforce/rtx-3080-ti/geforce-rtx-3080-ti-600.png,https://gpu.userbenchmark.com/Nvidia-RTX-3090/Rating/4081
+Nvidia,RTX 4090 (Laptop),86.5,350,1199,1100,1400,https://www.evga.com/products/productimage.aspx?pn=12G-P5-3987-KR,https://gpu.userbenchmark.com/SpeedTest/2036852/NVIDIA-GeForce-RTX-4090-Laptop-GPU
+Nvidia,RTX 3080-Ti,86.3,350,1199,1100,1400,https://dlcdnwebimgs.asus.com/gain/BFBFBFBF-BFBF-4BFB-9BFB-BFBFBFBFBFBF/w717,https://gpu.userbenchmark.com/Nvidia-RTX-3080-Ti/Rating/4115
+EVGA,EVGA RTX 3080 Ti 12GB FTW3 Ultra Gaming,86.3,350,1199,1100,1400,https://www.gigabyte.com/FileUpload/Global/KeyFeature/1031/images/rtx3080ti-gaming-oc-1.png,https://gpu.userbenchmark.com/Nvidia-RTX-3080-Ti/Rating/4115
+MSI,MSI RTX 3080 Ti 12GB Gaming X Trio OC,86.3,350,1199,1050,1300,https://www.msi.com/Graphics-Card/GeForce-RTX-3080-Ti-GAMING-X-TRIO-12G/Overview,https://gpu.userbenchmark.com/Nvidia-RTX-3080-Ti/Rating/4115
+MSI,MSI RTX 3080 Ti 12GB Ventus 3X OC,86.3,350,1099,950,1200,https://www.msi.com/Graphics-Card/GeForce-RTX-3080-Ti-VENTUS-3X-12G-OC/Overview,https://gpu.userbenchmark.com/Nvidia-RTX-3080-Ti/Rating/4115
+EVGA,EVGA RTX 3080 Ti 12GB XC3 Ultra Gaming,86.3,350,1199,1000,1250,https://www.evga.com/products/product.aspx?pn=12G-P5-3987-KR,https://gpu.userbenchmark.com/Nvidia-RTX-3080-Ti/Rating/4115
+Zotac,Zotac RTX 3080 Ti 12GB Trinity OC,86.3,350,1199,1000,1250,https://www.zotac.com/us/product/graphics_card/zotac-gaming-geforce-rtx-3080-ti-trinity,https://gpu.userbenchmark.com/Nvidia-RTX-3080-Ti/Rating/4115
+Asus,Asus RTX 3080 Ti 12GB ROG Strix OC,86.3,350,1299,1150,1400,https://rog.asus.com/graphics-cards/rog-strix/rog-strix-geforce-rtx-3080-ti-12g-gaming-model/,https://gpu.userbenchmark.com/Nvidia-RTX-3080-Ti/Rating/4115
+Gigabyte,Gigabyte RTX 3080 Ti 12GB Vision OC,86.3,350,1199,1000,1250,https://www.gigabyte.com/Graphics-Card/GV-N308TGAMING-OC-12GD#kf,https://gpu.userbenchmark.com/Nvidia-RTX-3080-Ti/Rating/4115
+MSI,MSI RTX 3080 Ti 12GB Suprim X,86.3,350,1299,1150,1400,https://www.msi.com/Graphics-Card/GeForce-RTX-3080-Ti-SUPRIM-X-12G/Overview,https://gpu.userbenchmark.com/Nvidia-RTX-3080-Ti/Rating/4115
+Gigabyte,Gigabyte RTX 3080 Ti 12GB Aorus Master,86.3,350,1299,1150,1400,https://www.gigabyte.com/Graphics-Card/GV-N308TAORUS-M-12GD#kf,https://gpu.userbenchmark.com/Nvidia-RTX-3080-Ti/Rating/4115
+Gigabyte,Gigabyte RTX 3080 Ti 12GB Eagle,86.3,350,1099,950,1200,https://www.gigabyte.com/Graphics-Card/GV-N308TEAGLE-12GD#kf,https://gpu.userbenchmark.com/Nvidia-RTX-3080-Ti/Rating/4115
+AMD,RX 6950-XT,84.2,335,1099,900,1200,https://www.amd.com/en/products/graphics/amd-radeon-rx-6950-xt,https://gpu.userbenchmark.com/SpeedTest/1843533/AMD-Radeon-RX-6950-XT
+AMD,RX 7900-GRE,81.7,300,899,850,1000,https://www.amd.com/en/products/graphics/amd-radeon-rx-7900-gre,https://gpu.userbenchmark.com/SpeedTest/2164460/AMD-Radeon-RX-7900-GRE
+AMD,RX 6900-XT,81.7,300,999,850,1100,https://www.amd.com/en/products/graphics/amd-radeon-rx-6900-xt,https://gpu.userbenchmark.com/AMD-RX-6900-XT/Rating/4091
+Nvidia,RTX 4070,80,200,599,550,700,https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4070/,https://gpu.userbenchmark.com/Nvidia-RTX-4070/Rating/4148
+MSI,MSI RTX 4070 12GB Ventus 3X OC,80,200,599,550,700,https://www.msi.com/Graphics-Card/GeForce-RTX-4070-VENTUS-3X-12G-OC/Overview,https://gpu.userbenchmark.com/Nvidia-RTX-4070/Rating/4148
+Gigabyte,Gigabyte RTX 4070 12GB 3X Windforce,80,200,599,550,700,https://www.gigabyte.com/Graphics-Card/GV-N4070GAMING-OC-12GD#kf,https://gpu.userbenchmark.com/Nvidia-RTX-4070/Rating/4148
+Asus,Asus RTX 4070 12GB Dual,80,200,599,550,700,https://rog.asus.com/graphics-cards/dual-series/dual-rtx4070-12g-gaming-model/,https://gpu.userbenchmark.com/Nvidia-RTX-4070/Rating/4148
+MSI,MSI RTX 4070 12GB Ventus 2X,80,200,579,530,680,https://www.msi.com/Graphics-Card/GeForce-RTX-4070-VENTUS-2X-12G-OC/Overview,https://gpu.userbenchmark.com/Nvidia-RTX-4070/Rating/4148
+Asus,Asus RTX 4070 12GB Dual OC,80,200,619,570,720,https://rog.asus.com/graphics-cards/dual-series/dual-rtx4070-12g-oc-gaming-model/,https://gpu.userbenchmark.com/Nvidia-RTX-4070/Rating/4148
+MSI,MSI RTX 4070 12GB Gaming X Trio,80,200,649,600,750,https://www.msi.com/Graphics-Card/GeForce-RTX-4070-GAMING-X-TRIO-12G/Overview,https://gpu.userbenchmark.com/Nvidia-RTX-4070/Rating/4148
+Gigabyte,Gigabyte RTX 4070 12GB Gaming OC,80,200,629,580,730,https://www.gigabyte.com/Graphics-Card/GV-N4070GAMING-OC-12GD#kf,https://gpu.userbenchmark.com/Nvidia-RTX-4070/Rating/4148
+Gigabyte,Gigabyte RTX 4070 12GB 3X Eagle OC,80,200,619,570,720,https://www.gigabyte.com/Graphics-Card/GV-N4070EAGLE-OC-12GD#kf,https://gpu.userbenchmark.com/Nvidia-RTX-4070/Rating/4148
+Gigabyte,Gigabyte RTX 4070 12GB 3X Aero OC,80,200,619,570,720,https://www.gigabyte.com/Graphics-Card/GV-N4070AERO-OC-12GD#kf,https://gpu.userbenchmark.com/Nvidia-RTX-4070/Rating/4148
+Asus,Asus RTX 4070 12GB Dual White OC,80,200,629,580,730,https://rog.asus.com/graphics-cards/dual-series/dual-rtx4070-12g-white-oc-gaming-model/,https://gpu.userbenchmark.com/Nvidia-RTX-4070/Rating/4148
+Nvidia,RTX 3080,78.9,320,699,650,850,https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3080/,https://gpu.userbenchmark.com/Nvidia-RTX-3080/Rating/4080
+MSI,MSI RTX 3080 10GB Ventus 3X OC,78.9,320,719,670,850,https://www.msi.com/Graphics-Card/GeForce-RTX-3080-VENTUS-3X-10G-OC/Overview,https://gpu.userbenchmark.com/Nvidia-RTX-3080/Rating/4080

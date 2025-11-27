@@ -1,0 +1,20 @@
+Brand,Model,Socket,Chipset,PCIe,DDRType,DDRFrequency,Price,Score,BIOSUpdateNeeded
+ASUS,Prime H310M-E R2.0,LGA1151,H310,PCIe3,DDR4,2666,70,1,Yes (for 9th Gen CPUs)
+Gigabyte,B360M DS3H,LGA1151,B360,PCIe3,DDR4,2666,95,2,Yes (for 9th Gen CPUs)
+MSI,Z390 Gaming Pro Carbon,LGA1151,Z390,PCIe3,DDR4,4266,220,3,No (ships ready for 9th Gen)
+
+ASRock,H410M-HDV,LGA1200,H410,PCIe3,DDR4,2933,80,1,Yes (for 11th Gen CPUs)
+Gigabyte,B460M DS3H,LGA1200,B460,PCIe3,DDR4,2933,110,2,Yes (for 11th Gen CPUs)
+ASUS,ROG Strix Z590-E,LGA1200,Z590,PCIe4,DDR4,5333,280,3,No (ships ready for 11th Gen)
+
+MSI,B660M-A WiFi,LGA1700,B660,PCIe4,DDR4,4800,130,1,Yes (for 13th/14th Gen CPUs)
+Gigabyte,Z690 Aorus Elite AX,LGA1700,Z690,PCIe5,DDR5,6000,220,2,Yes (for 13th/14th Gen CPUs)
+ASUS,ROG Maximus Z790 Hero,LGA1700,Z790,PCIe5,DDR5,6400,350,3,No (ships ready for 13th/14th Gen)
+
+ASRock,A320M-HDV R4.0,AM4,A320,PCIe3,DDR4,3200,70,1,Yes (for Ryzen 3000/5000 support)
+MSI,B450 Tomahawk Max,AM4,B450,PCIe3,DDR4,3466,110,2,Yes (for Ryzen 3000/5000 support)
+ASUS,ROG Crosshair VIII Hero,AM4,X570,PCIe4,DDR4,4800,280,3,No (ships ready for Ryzen 3000/5000)
+
+Gigabyte,A620M Gaming X,AM5,A620,PCIe4,DDR5,6000,140,1,Yes (for Ryzen 9000 support)
+MSI,B650 Tomahawk WiFi,AM5,B650,PCIe5,DDR5,6400,220,2,Yes (for Ryzen 9000 support)
+ASUS,ROG Crosshair X670E Hero,AM5,X670E,PCIe5,DDR5,6600,380,3,No (ships ready for Ryzen 7000/9000)
