@@ -15,10 +15,11 @@ TARGET_FIELDS = [
     "userbenchmark_score",
     "userbenchmark_url",
     "blender_score",
-    "price"
+    "price",
+    "slug"
 ]
 
-# Tokens and endpoints (explicit mapping)
+# Tokens and endpoints
 GITHUB_TOKEN_MINI = os.getenv("GITHUB_TOKEN_MINI") or os.getenv("GITHUB_TOKEN")
 GITHUB_TOKEN_FULL = os.getenv("GITHUB_TOKEN_FULL") or os.getenv("GITHUB_TOKEN")
 
@@ -37,7 +38,7 @@ def get_endpoint(model: str) -> str:
     return ep
 
 # -----------------------------
-# Slug builder (shared convention)
+# Slug builder
 # -----------------------------
 def build_slug(name: str) -> str:
     if not isinstance(name, str):
@@ -71,7 +72,7 @@ List:
         "Content-Type": "application/json"
     }
     payload = {
-        "model": model,  # Azure requires model in body
+        "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0
     }
@@ -116,7 +117,7 @@ List:
     return []
 
 # -----------------------------
-# Benchmark attachment (uses cleaned files)
+# Benchmark attachment
 # -----------------------------
 def add_gpu_benchmarks(output_file: Path, debug=False):
     df = pd.read_csv(output_file)
@@ -131,29 +132,27 @@ def add_gpu_benchmarks(output_file: Path, debug=False):
     df_ub = pd.read_csv(ub_file, encoding="utf-8-sig")
     df_blender = pd.read_csv(blender_file, encoding="utf-8-sig")
 
-    def find_userbenchmark(gpu_name: str):
-        slug = build_slug(gpu_name)
+    def find_userbenchmark(slug: str):
         matches = df_ub[df_ub["Slug"] == slug]
         if not matches.empty:
             return matches.iloc[0]["Benchmark"], matches.iloc[0]["URL"]
         return None, None
 
-    def find_blender(gpu_name: str):
-        slug = build_slug(gpu_name)
+    def find_blender(slug: str):
         matches = df_blender[df_blender["Slug"] == slug]
         if not matches.empty:
             return matches.iloc[0]["Median Score"]
         return None
 
-    df[["userbenchmark_score", "userbenchmark_url"]] = df.apply(
-        lambda row: pd.Series(find_userbenchmark(row.get("GpuName"))),
-        axis=1
+    # ✅ Use slug column directly
+    df[["userbenchmark_score", "userbenchmark_url"]] = df["slug"].apply(
+        lambda s: pd.Series(find_userbenchmark(s))
     )
-    df["blender_score"] = df["GpuName"].apply(find_blender)
+    df["blender_score"] = df["slug"].apply(find_blender)
 
     if debug:
         print("[DEBUG] Sample matches (first 30 rows):")
-        print(df[["GpuName","userbenchmark_score","blender_score"]].head(30))
+        print(df[["GpuName","slug","userbenchmark_score","blender_score"]].head(30))
 
     before = len(df)
     df = df.dropna(subset=["userbenchmark_score", "blender_score"], how="all")
@@ -166,7 +165,7 @@ def add_gpu_benchmarks(output_file: Path, debug=False):
     print(f"GPU benchmarks attached and pruned -> {output_file}")
 
 # -----------------------------
-# Two-pass MSRP enrichment (mini, then full)
+# Two-pass MSRP enrichment
 # -----------------------------
 def enrich_gpu_price(output_file: Path, debug=False, batch_size=50):
     df = pd.read_csv(output_file)
@@ -222,6 +221,10 @@ def gpu_enrich(input_file, output_file, debug=False, benchmark_only=False):
     dst = Path(output_file)
 
     df = pd.read_csv(src)
+
+    # ✅ Create slug column once
+    df["slug"] = df["GpuName"].apply(build_slug)
+
     df.to_csv(dst, index=False)
 
     add_gpu_benchmarks(dst, debug=debug)
