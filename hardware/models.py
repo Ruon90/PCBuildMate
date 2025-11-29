@@ -1,95 +1,137 @@
 from django.db import models
-from django.contrib.auth.models import User
-
-# Core component models
-class CPU(models.Model):
-    name = models.CharField(max_length=100)
-    brand = models.CharField(max_length=50)
-    socket = models.CharField(max_length=50)
-    tdp = models.IntegerField(null=True, blank=True)  # watts
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True) 
-
-class GPU(models.Model):
-    name = models.CharField(max_length=100)
-    brand = models.CharField(max_length=50)
-    vram_gb = models.IntegerField(null=True, blank=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True) 
-
-class Motherboard(models.Model):
-    name = models.CharField(max_length=100)
-    brand = models.CharField(max_length=50)
-    socket = models.CharField(max_length=50)
-    chipset = models.CharField(max_length=50)
-    form_factor = models.CharField(max_length=50)
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True) 
-
-class RAM(models.Model):
-    name = models.CharField(max_length=100)
-    capacity_gb = models.IntegerField()
-    speed_mhz = models.IntegerField()
-    type = models.CharField(max_length=20)
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True) 
-
-class Storage(models.Model):
-    name = models.CharField(max_length=100)
-    capacity_gb = models.IntegerField()
-    type = models.CharField(max_length=20)  # SSD/HDD/NVMe
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True) 
 
 class PSU(models.Model):
-    name = models.CharField(max_length=100)
-    wattage = models.IntegerField()
-    efficiency_rating = models.CharField(max_length=20, null=True, blank=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True) 
+    brand = models.CharField(max_length=100, blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
+    psu_type = models.CharField(max_length=50, blank=True, null=True)  # avoid reserved 'type'
+    efficiency = models.CharField(max_length=50, blank=True, null=True)
+    wattage = models.CharField(max_length=20, blank=True, null=True)
+    modular = models.CharField(max_length=20, blank=True, null=True)
+    color = models.CharField(max_length=50, blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
 
-class Cooler(models.Model):
-    name = models.CharField(max_length=100)
-    type = models.CharField(max_length=50)  # Air/Liquid
-    socket_support = models.CharField(max_length=100)
-    max_wattage = models.IntegerField(null=True, blank=True)  # AI-enriched
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True) 
+
+class CPU(models.Model):
+    brand = models.CharField(max_length=100, blank=True, null=True)
+    model = models.CharField(max_length=100, blank=True, null=True)
+    socket = models.CharField(max_length=50, blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    core_count = models.IntegerField(blank=True, null=True)
+    core_clock = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    boost_clock = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    microarchitecture = models.CharField(max_length=100, blank=True, null=True)
+    tdp = models.IntegerField(blank=True, null=True)
+    graphics = models.CharField(max_length=100, blank=True, null=True)
+    thread_count = models.IntegerField(blank=True, null=True)
+    userbenchmark_score = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    blender_score = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    power_consumption_overclocked = models.IntegerField(blank=True, null=True)
+
+
+class GPU(models.Model):
+    brand = models.CharField(max_length=100, blank=True, null=True)
+    model = models.CharField(max_length=100, blank=True, null=True)
+    gpu_name = models.CharField(max_length=100, blank=True, null=True)
+    userbenchmark_score = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    userbenchmark_url = models.URLField(blank=True, null=True)
+    blender_score = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
+    generation = models.CharField(max_length=50, blank=True, null=True)
+    base_clock = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    boost_clock = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    architecture = models.CharField(max_length=50, blank=True, null=True)
+    process_size = models.IntegerField(blank=True, null=True)
+    release_date = models.DateField(blank=True, null=True)
+    bus_interface = models.CharField(max_length=50, blank=True, null=True)
+    memory_clock = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    memory_size_gb = models.IntegerField(blank=True, null=True)
+    memory_type = models.CharField(max_length=50, blank=True, null=True)
+    shading_units = models.IntegerField(blank=True, null=True)
+    tmus = models.IntegerField(blank=True, null=True)
+    rops = models.IntegerField(blank=True, null=True)
+    sms = models.IntegerField(blank=True, null=True)
+    tensor_cores = models.IntegerField(blank=True, null=True)
+    rt_cores = models.IntegerField(blank=True, null=True)
+    l1_cache_kb = models.IntegerField(blank=True, null=True)
+    l2_cache_mb = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    tdp = models.IntegerField(blank=True, null=True)
+    board_length = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    board_width = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    slot_width = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
+    suggested_psu = models.CharField(max_length=50, blank=True, null=True)
+    power_connectors = models.CharField(max_length=100, blank=True, null=True)
+    display_connectors = models.CharField(max_length=200, blank=True, null=True)
+
+
+class Motherboard(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    socket = models.CharField(max_length=50, blank=True, null=True)
+    form_factor = models.CharField(max_length=50, blank=True, null=True)
+    max_memory = models.IntegerField(blank=True, null=True)
+    memory_slots = models.IntegerField(blank=True, null=True)
+    color = models.CharField(max_length=50, blank=True, null=True)
+    ddr_version = models.CharField(max_length=10, blank=True, null=True)
+    ddr_max_speed = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    nvme_support = models.CharField(max_length=50, blank=True, null=True)
+    bios_update_required = models.BooleanField(blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
+
+
+class RAM(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    modules = models.IntegerField(blank=True, null=True)
+    color = models.CharField(max_length=50, blank=True, null=True)
+    first_word_latency = models.IntegerField(blank=True, null=True)
+    cas_latency = models.IntegerField(blank=True, null=True)
+    ddr_generation = models.CharField(max_length=10, blank=True, null=True)
+    frequency_mhz = models.IntegerField(blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
+    capacity_gb = models.IntegerField(blank=True, null=True)
+    benchmark = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+
+
+class Storage(models.Model):
+    brand = models.CharField(max_length=100, blank=True, null=True)
+    model = models.CharField(max_length=100, blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    capacity = models.IntegerField(blank=True, null=True)
+    storage_type = models.CharField(max_length=50, blank=True, null=True)  # avoid reserved 'type'
+    cache = models.IntegerField(blank=True, null=True)
+    form_factor = models.CharField(max_length=50, blank=True, null=True)
+    interface = models.CharField(max_length=50, blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
+
+class CPUCooler(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    rpm = models.IntegerField(blank=True, null=True)
+    noise_level = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    color = models.CharField(max_length=50, blank=True, null=True)
+    size = models.CharField(max_length=50, blank=True, null=True)
+    liquid = models.BooleanField(blank=True, null=True)
+    power_throughput = models.IntegerField(blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
+
 
 class Case(models.Model):
-    name = models.CharField(max_length=100)
-    form_factor = models.CharField(max_length=50)
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True) 
+    name = models.CharField(max_length=100, blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    case_type = models.CharField(max_length=50, blank=True, null=True)  # avoid reserved 'type'
+    color = models.CharField(max_length=50, blank=True, null=True)
+    psu = models.CharField(max_length=50, blank=True, null=True)
+    side_panel = models.CharField(max_length=50, blank=True, null=True)
+    external_volume = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    internal_35_bays = models.IntegerField(blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
 
-# Extended details for modal display
-class ComponentDetail(models.Model):
-    component_type = models.CharField(max_length=20)  # CPU/GPU/etc
-    component_id = models.IntegerField()
-    field_name = models.CharField(max_length=100)
-    field_value = models.TextField()
 
-# Benchmarks (CPU/GPU: Blender + UserBenchmark, RAM/Storage: UserBenchmark only)
-class Benchmark(models.Model):
-    component_type = models.CharField(
-        max_length=20,
-        choices=[
-            ('CPU','CPU'),
-            ('GPU','GPU'),
-            ('RAM','RAM'),
-            ('Storage','Storage'),
-        ]
-    )
-    component_id = models.IntegerField()
-    source = models.CharField(max_length=50)  # 'UserBenchmark' or 'Blender'
-    score = models.FloatField()
-
-# User builds
-class UserBuild(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    cpu = models.ForeignKey(CPU, on_delete=models.SET_NULL, null=True)
-    gpu = models.ForeignKey(GPU, on_delete=models.SET_NULL, null=True)
-    motherboard = models.ForeignKey(Motherboard, on_delete=models.SET_NULL, null=True)
-    ram = models.ForeignKey(RAM, on_delete=models.SET_NULL, null=True)
-    storage = models.ForeignKey(Storage, on_delete=models.SET_NULL, null=True)
-    psu = models.ForeignKey(PSU, on_delete=models.SET_NULL, null=True)
-    cooler = models.ForeignKey(Cooler, on_delete=models.SET_NULL, null=True)
-    case = models.ForeignKey(Case, on_delete=models.SET_NULL, null=True)
-    budget = models.DecimalField(max_digits=10, decimal_places=2)
-    mode = models.CharField(
-        max_length=20,
-        choices=[('gaming','Gaming'),('workstation','Workstation')]
-    )
-    created_at = models.DateTimeField(auto_now_add=True)
+class ThermalPaste(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    amount = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)  # in grams or ml

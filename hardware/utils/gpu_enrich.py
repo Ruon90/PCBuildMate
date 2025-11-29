@@ -144,7 +144,7 @@ def add_gpu_benchmarks(output_file: Path, debug=False):
             return matches.iloc[0]["Median Score"]
         return None
 
-    # ✅ Use slug column directly
+    #  Use slug column directly
     df[["userbenchmark_score", "userbenchmark_url"]] = df["slug"].apply(
         lambda s: pd.Series(find_userbenchmark(s))
     )
@@ -222,7 +222,7 @@ def gpu_enrich(input_file, output_file, debug=False, benchmark_only=False):
 
     df = pd.read_csv(src)
 
-    # ✅ Create slug column once
+    #  Create slug column once
     df["slug"] = df["GpuName"].apply(build_slug)
 
     df.to_csv(dst, index=False)

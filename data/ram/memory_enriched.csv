@@ -1,401 +1,401 @@
 name,price,modules,price_per_gb,color,first_word_latency,cas_latency,ddr_generation,frequency_mhz,slug,capacity_gb,Benchmark
-Corsair Vengeance RGB Pro 16 GB,85.0,2,5.3125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,88.5
-Corsair Vengeance RGB Pro 16 GB,85.0,2,5.3125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,80.5
-Corsair Vengeance RGB Pro 16 GB,85.0,2,5.3125,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,88.5
-Corsair Vengeance RGB Pro 16 GB,85.0,2,5.3125,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,80.5
-Corsair Vengeance RGB Pro 32 GB,85.0,2,2.65625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
-Corsair Vengeance RGB Pro 32 GB,85.0,2,2.65625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
-Corsair Vengeance RGB Pro 32 GB,85.0,2,2.65625,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
-Corsair Vengeance RGB Pro 32 GB,85.0,2,2.65625,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
-G.Skill Trident Z RGB 32 GB,80.0,2,2.5,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
-G.Skill Trident Z RGB 16 GB,80.0,2,5.0,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,16,84.3
-Corsair Vengeance RGB Pro 32 GB,85.0,4,2.65625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
-Corsair Vengeance RGB Pro 32 GB,85.0,4,2.65625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
-G.Skill Trident Z RGB 32 GB,80.0,4,2.5,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
-Corsair Vengeance RGB Pro 64 GB,85.0,4,1.328125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,88.5
-Corsair Vengeance RGB Pro 64 GB,85.0,4,1.328125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,80.5
-Corsair Vengeance RGB Pro 64 GB,85.0,2,1.328125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,88.5
-Corsair Vengeance RGB Pro 64 GB,85.0,2,1.328125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,80.5
-Corsair Vengeance RGB Pro 32 GB,85.0,2,2.65625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
-Corsair Vengeance RGB Pro 32 GB,85.0,2,2.65625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
-Corsair Vengeance RGB Pro 32 GB,85.0,4,2.65625,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
-Corsair Vengeance RGB Pro 32 GB,85.0,4,2.65625,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
-G.Skill Trident Z RGB 32 GB,80.0,2,2.5,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
-Corsair Vengeance RGB Pro 8 GB,85.0,1,10.625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,8,88.5
-Corsair Vengeance RGB Pro 8 GB,85.0,1,10.625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,8,80.5
-Corsair Vengeance RGB Pro 256 GB,85.0,8,0.33203125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,256,88.5
-Corsair Vengeance RGB Pro 256 GB,85.0,8,0.33203125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,256,80.5
-G.Skill Trident Z RGB 16 GB,75.0,2,4.6875,Black,10.667,16.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,16,80.8
-Corsair Vengeance RGB Pro 128 GB,85.0,4,0.6640625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,128,88.5
-Corsair Vengeance RGB Pro 128 GB,85.0,4,0.6640625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,128,80.5
-Corsair Vengeance RGB Pro 32 GB,85.0,2,2.65625,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
-Corsair Vengeance RGB Pro 32 GB,85.0,2,2.65625,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
-G.Skill Trident Z RGB 8 GB,80.0,1,10.0,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,8,84.3
-G.Skill Trident Z RGB 32 GB,80.0,2,2.5,Black,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
-G.Skill Trident Z RGB 256 GB,80.0,8,0.3125,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,256,84.3
-G.Skill Trident Z RGB 64 GB,80.0,2,1.25,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,64,84.3
-G.Skill Trident Z RGB 32 GB,75.0,2,2.34375,Black,10.667,16.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,32,80.8
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-G.Skill Trident Z RGB 64 GB,80.0,4,1.25,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,64,84.3
-Corsair Vengeance RGB Pro 8 GB,85.0,1,10.625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,8,88.5
-Corsair Vengeance RGB Pro 8 GB,85.0,1,10.625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,8,80.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,43.1
-Crucial Ballistix Sport LT 8 GB,48.0,1,6.0,,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Crucial Ballistix Sport LT 8 GB,48.0,1,6.0,,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Crucial Ballistix Sport LT 8 GB,48.0,1,6.0,,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-G.Skill Trident Z RGB 16 GB,80.0,2,5.0,Black,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,16,84.3
-G.Skill Trident Z RGB 64 GB,80.0,2,1.25,,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,64,84.3
-Crucial Ballistix Sport LT 32 GB,45.0,2,1.40625,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,2,1.40625,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,2,1.40625,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,2,1.40625,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,2,1.40625,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,2,1.40625,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,2,1.40625,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,43.1
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,43.1
-Corsair Vengeance RGB Pro 256 GB,85.0,8,0.33203125,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,256,88.5
-Corsair Vengeance RGB Pro 256 GB,85.0,8,0.33203125,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,256,80.5
-G.Skill Trident Z RGB 16 GB,75.0,2,4.6875,Black,10.0,15.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,16,80.8
-G.Skill Trident Z RGB 16 GB,80.0,2,5.0,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,16,84.3
-Corsair Vengeance RGB Pro 64 GB,85.0,4,1.328125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,88.5
-Corsair Vengeance RGB Pro 64 GB,85.0,4,1.328125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,80.5
-Corsair Vengeance RGB Pro 16 GB,85.0,2,5.3125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,88.5
-Corsair Vengeance RGB Pro 16 GB,85.0,2,5.3125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,80.5
-Corsair Vengeance RGB Pro 32 GB,85.0,4,2.65625,Black,8.75,14.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
-Corsair Vengeance RGB Pro 32 GB,85.0,4,2.65625,Black,8.75,14.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
-Corsair Vengeance RGB Pro 16 GB,85.0,2,5.3125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,88.5
-Corsair Vengeance RGB Pro 16 GB,85.0,2,5.3125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,80.5
-G.Skill Trident Z RGB 128 GB,80.0,4,0.625,,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,128,84.3
-Corsair Vengeance RGB Pro 16 GB,85.0,1,5.3125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,88.5
-Corsair Vengeance RGB Pro 16 GB,85.0,1,5.3125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,80.5
-G.Skill Trident Z RGB 8 GB,75.0,1,9.375,,10.667,16.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,8,80.8
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
-Corsair Vengeance RGB Pro 64 GB,85.0,4,1.328125,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,88.5
-Corsair Vengeance RGB Pro 64 GB,85.0,4,1.328125,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,80.5
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-G.Skill Trident Z RGB 16 GB,80.0,2,5.0,Black,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,16,84.3
-Corsair Vengeance RGB Pro 16 GB,85.0,2,5.3125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,88.5
-Corsair Vengeance RGB Pro 16 GB,85.0,2,5.3125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,80.5
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,43.1
-Crucial Ballistix Sport LT 16 GB,48.0,1,3.0,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,1,3.0,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,1,3.0,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-G.Skill Trident Z RGB 128 GB,80.0,4,0.625,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,128,84.3
-G.Skill Trident Z RGB 64 GB,75.0,4,1.171875,Black,10.667,16.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,64,80.8
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Black / Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Black / Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Black / Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Black / Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Black / Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Black / Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Black / Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
-G.Skill Trident Z RGB 32 GB,75.0,4,2.34375,Black,10.667,16.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,32,80.8
-Crucial Ballistix Sport LT 8 GB,48.0,2,6.0,White / Silver,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Crucial Ballistix Sport LT 8 GB,48.0,2,6.0,White / Silver,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Crucial Ballistix Sport LT 8 GB,48.0,2,6.0,White / Silver,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,43.1
-Crucial Ballistix Sport LT 32 GB,45.0,2,1.40625,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,2,1.40625,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,2,1.40625,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,2,1.40625,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,2,1.40625,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,2,1.40625,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,2,1.40625,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,43.1
-Crucial Ballistix Sport LT 16 GB,45.0,4,2.8125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,4,2.8125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,4,2.8125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,4,2.8125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,4,2.8125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,4,2.8125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,4,2.8125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
-Crucial Ballistix Sport LT 16 GB,45.0,1,2.8125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,1,2.8125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,1,2.8125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,1,2.8125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,1,2.8125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,1,2.8125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,1,2.8125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
-Crucial Ballistix Sport LT 8 GB,48.0,1,6.0,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Crucial Ballistix Sport LT 8 GB,48.0,1,6.0,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Crucial Ballistix Sport LT 8 GB,48.0,1,6.0,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Corsair Vengeance RGB Pro 32 GB,85.0,2,2.65625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
-Corsair Vengeance RGB Pro 32 GB,85.0,2,2.65625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
-Crucial Ballistix Sport LT 16 GB,45.0,4,2.8125,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,4,2.8125,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,4,2.8125,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,4,2.8125,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,4,2.8125,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,4,2.8125,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,4,2.8125,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
-G.Skill Trident Z RGB 16 GB,75.0,2,4.6875,Black,9.333,14.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,16,80.8
-Crucial Ballistix Sport LT 16 GB,45.0,1,2.8125,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,1,2.8125,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,1,2.8125,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,1,2.8125,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,1,2.8125,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,1,2.8125,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,1,2.8125,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
-Corsair Vengeance RGB Pro 16 GB,85.0,2,5.3125,Black,8.75,14.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,88.5
-Corsair Vengeance RGB Pro 16 GB,85.0,2,5.3125,Black,8.75,14.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,80.5
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,1,5.625,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,43.1
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,43.1
-G.Skill Trident Z RGB 32 GB,80.0,4,2.5,Black,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
-Corsair Vengeance RGB Pro 32 GB,85.0,4,2.65625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
-Corsair Vengeance RGB Pro 32 GB,85.0,4,2.65625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
-Crucial Ballistix Sport LT 16 GB,48.0,1,3.0,White / Camo,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,1,3.0,White / Camo,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,1,3.0,White / Camo,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,White / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,White / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,White / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,White / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,White / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,White / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,White / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,43.1
-G.Skill Trident Z RGB 32 GB,75.0,4,2.34375,Black,10.0,15.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,32,80.8
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
-Crucial Ballistix Sport LT 8 GB,45.0,2,5.625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,43.1
-Crucial Ballistix Sport LT 4 GB,45.0,1,11.25,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,79.5
-Crucial Ballistix Sport LT 4 GB,45.0,1,11.25,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,79.5
-Crucial Ballistix Sport LT 4 GB,45.0,1,11.25,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,79.5
-Crucial Ballistix Sport LT 4 GB,45.0,1,11.25,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,76.9
-Crucial Ballistix Sport LT 4 GB,45.0,1,11.25,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,76.9
-Crucial Ballistix Sport LT 4 GB,45.0,1,11.25,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,76.9
-Crucial Ballistix Sport LT 4 GB,45.0,1,11.25,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,43.1
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,Red / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,Red / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,Red / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,Red / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,Red / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,Red / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,Red / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,43.1
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,43.1
-G.Skill Trident Z RGB 32 GB,75.0,4,2.34375,Black,9.333,14.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,32,80.8
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,1,3.0,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,1,3.0,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,1,3.0,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 32 GB,48.0,4,1.5,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
-Crucial Ballistix Sport LT 32 GB,48.0,4,1.5,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
-Crucial Ballistix Sport LT 32 GB,48.0,4,1.5,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
-Crucial Ballistix Sport LT 4 GB,48.0,1,12.0,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,4,46.7
-Crucial Ballistix Sport LT 4 GB,48.0,1,12.0,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,4,46.7
-Crucial Ballistix Sport LT 4 GB,48.0,1,12.0,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,4,46.7
-G.Skill Trident Z RGB 32 GB,80.0,4,2.5,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
-Crucial Ballistix Sport LT 8 GB,48.0,1,6.0,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Crucial Ballistix Sport LT 8 GB,48.0,1,6.0,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Crucial Ballistix Sport LT 8 GB,48.0,1,6.0,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Crucial Ballistix Sport LT 8 GB,48.0,2,6.0,Silver / Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Crucial Ballistix Sport LT 8 GB,48.0,2,6.0,Silver / Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Crucial Ballistix Sport LT 8 GB,48.0,2,6.0,Silver / Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Corsair Vengeance RGB Pro 32 GB,85.0,4,2.65625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
-Corsair Vengeance RGB Pro 32 GB,85.0,4,2.65625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
-G.Skill Trident Z RGB 64 GB,80.0,4,1.25,,9.375,15.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,64,84.3
-G.Skill Trident Z RGB 32 GB,75.0,2,2.34375,Black,9.333,14.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,32,80.8
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,White / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,White / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,White / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,White / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,White / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,White / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,White / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
-Crucial Ballistix Sport LT 64 GB,45.0,4,0.703125,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,43.1
-G.Skill Trident Z RGB 64 GB,80.0,4,1.25,Black,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,64,84.3
-G.Skill Trident Z RGB 32 GB,80.0,2,2.5,Black,9.375,15.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
-Crucial Ballistix Sport LT 32 GB,48.0,4,1.5,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
-Crucial Ballistix Sport LT 32 GB,48.0,4,1.5,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
-Crucial Ballistix Sport LT 32 GB,48.0,4,1.5,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Black / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Black / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Black / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Black / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Black / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Black / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Black / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
-Corsair Vengeance RGB Pro 128 GB,85.0,8,0.6640625,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,128,88.5
-Corsair Vengeance RGB Pro 128 GB,85.0,8,0.6640625,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,128,80.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
-Crucial Ballistix Sport LT 8 GB,48.0,2,6.0,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Crucial Ballistix Sport LT 8 GB,48.0,2,6.0,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Crucial Ballistix Sport LT 8 GB,48.0,2,6.0,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Corsair Vengeance RGB Pro 128 GB,85.0,4,0.6640625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,128,88.5
-Corsair Vengeance RGB Pro 128 GB,85.0,4,0.6640625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,128,80.5
-G.Skill Trident Z RGB 32 GB,80.0,2,2.5,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
-G.Skill Trident Z RGB 16 GB,80.0,2,5.0,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,16,84.3
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,43.1
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 64 GB,48.0,4,0.75,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,64,46.7
-Crucial Ballistix Sport LT 64 GB,48.0,4,0.75,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,64,46.7
-Crucial Ballistix Sport LT 64 GB,48.0,4,0.75,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,64,46.7
-Crucial Ballistix Sport LT 32 GB,48.0,4,1.5,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
-Crucial Ballistix Sport LT 32 GB,48.0,4,1.5,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
-Crucial Ballistix Sport LT 32 GB,48.0,4,1.5,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
-Crucial Ballistix Sport LT 32 GB,48.0,4,1.5,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
-Crucial Ballistix Sport LT 32 GB,48.0,4,1.5,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
-Crucial Ballistix Sport LT 32 GB,48.0,4,1.5,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,43.1
-Crucial Ballistix Sport LT 4 GB,45.0,1,11.25,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,79.5
-Crucial Ballistix Sport LT 4 GB,45.0,1,11.25,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,79.5
-Crucial Ballistix Sport LT 4 GB,45.0,1,11.25,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,79.5
-Crucial Ballistix Sport LT 4 GB,45.0,1,11.25,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,76.9
-Crucial Ballistix Sport LT 4 GB,45.0,1,11.25,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,76.9
-Crucial Ballistix Sport LT 4 GB,45.0,1,11.25,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,76.9
-Crucial Ballistix Sport LT 4 GB,45.0,1,11.25,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,43.1
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-G.Skill Trident Z RGB 32 GB,80.0,4,2.5,Black,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,43.1
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,White / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,White / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,White / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,White / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,White / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,White / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,White / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,43.1
-Corsair Vengeance RGB Pro 64 GB,85.0,8,1.328125,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,88.5
-Corsair Vengeance RGB Pro 64 GB,85.0,8,1.328125,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,80.5
-Corsair Vengeance RGB Pro 64 GB,85.0,8,1.328125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,88.5
-Corsair Vengeance RGB Pro 64 GB,85.0,8,1.328125,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,80.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
-Crucial Ballistix Sport LT 16 GB,45.0,2,2.8125,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
-G.Skill Trident Z RGB 64 GB,80.0,8,1.25,Black,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,64,84.3
-Crucial Ballistix Sport LT 8 GB,48.0,1,6.0,Black / Silver,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Crucial Ballistix Sport LT 8 GB,48.0,1,6.0,Black / Silver,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-Crucial Ballistix Sport LT 8 GB,48.0,1,6.0,Black / Silver,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
-G.Skill Trident Z RGB 64 GB,80.0,8,1.25,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,64,84.3
-G.Skill Trident Z RGB 128 GB,75.0,8,0.5859375,Black,9.333,14.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,128,80.8
-Corsair Vengeance RGB Pro 128 GB,85.0,8,0.6640625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,128,88.5
-Corsair Vengeance RGB Pro 128 GB,85.0,8,0.6640625,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,128,80.5
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,Silver / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,Silver / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 16 GB,48.0,2,3.0,Silver / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
-Crucial Ballistix Sport LT 32 GB,45.0,4,1.40625,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,43.1
-G.Skill Trident Z RGB 128 GB,80.0,8,0.625,,9.375,15.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,128,84.3
-G.Skill Trident Z RGB 64 GB,80.0,8,1.25,,9.375,15.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,64,84.3
+Corsair Vengeance RGB Pro 16 GB,54.99,2,3.437,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,88.5
+Corsair Vengeance RGB Pro 16 GB,54.99,2,3.437,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,80.5
+Corsair Vengeance RGB Pro 16 GB,97.91,2,6.119,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,88.5
+Corsair Vengeance RGB Pro 16 GB,97.91,2,6.119,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,80.5
+Corsair Vengeance RGB Pro 32 GB,82.99,2,2.593,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
+Corsair Vengeance RGB Pro 32 GB,82.99,2,2.593,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
+Corsair Vengeance RGB Pro 32 GB,142.99,2,4.468,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
+Corsair Vengeance RGB Pro 32 GB,142.99,2,4.468,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
+G.Skill Trident Z RGB 32 GB,105.53,2,3.298,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
+G.Skill Trident Z RGB 16 GB,54.99,2,3.437,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,16,84.3
+Corsair Vengeance RGB Pro 32 GB,128.99,4,4.031,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
+Corsair Vengeance RGB Pro 32 GB,128.99,4,4.031,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
+G.Skill Trident Z RGB 32 GB,79.0,4,2.469,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
+Corsair Vengeance RGB Pro 64 GB,985.37,4,15.396,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,88.5
+Corsair Vengeance RGB Pro 64 GB,985.37,4,15.396,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,80.5
+Corsair Vengeance RGB Pro 64 GB,511.0,2,7.984,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,88.5
+Corsair Vengeance RGB Pro 64 GB,511.0,2,7.984,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,80.5
+Corsair Vengeance RGB Pro 32 GB,109.0,2,3.406,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
+Corsair Vengeance RGB Pro 32 GB,109.0,2,3.406,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
+Corsair Vengeance RGB Pro 32 GB,119.99,4,3.75,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
+Corsair Vengeance RGB Pro 32 GB,119.99,4,3.75,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
+G.Skill Trident Z RGB 32 GB,82.99,2,2.593,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
+Corsair Vengeance RGB Pro 8 GB,52.98,1,6.622,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,8,88.5
+Corsair Vengeance RGB Pro 8 GB,52.98,1,6.622,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,8,80.5
+Corsair Vengeance RGB Pro 256 GB,660.29,8,,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,256,88.5
+Corsair Vengeance RGB Pro 256 GB,660.29,8,,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,256,80.5
+G.Skill Trident Z RGB 16 GB,56.99,2,3.562,Black,10.667,16.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,16,80.8
+Corsair Vengeance RGB Pro 128 GB,381.81,4,2.983,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,128,88.5
+Corsair Vengeance RGB Pro 128 GB,381.81,4,2.983,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,128,80.5
+Corsair Vengeance RGB Pro 32 GB,228.0,2,7.125,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
+Corsair Vengeance RGB Pro 32 GB,228.0,2,7.125,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
+G.Skill Trident Z RGB 8 GB,,1,,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,8,84.3
+G.Skill Trident Z RGB 32 GB,,2,,Black,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
+G.Skill Trident Z RGB 256 GB,579.99,8,2.266,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,256,84.3
+G.Skill Trident Z RGB 64 GB,159.99,2,2.5,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,64,84.3
+G.Skill Trident Z RGB 32 GB,,2,,Black,10.667,16.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,32,80.8
+Crucial Ballistix Sport LT 16 GB,,2,,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,2,,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,2,,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+G.Skill Trident Z RGB 64 GB,455.03,4,7.11,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,64,84.3
+Corsair Vengeance RGB Pro 8 GB,52.99,1,6.624,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,8,88.5
+Corsair Vengeance RGB Pro 8 GB,52.99,1,6.624,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,8,80.5
+Crucial Ballistix Sport LT 16 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
+Crucial Ballistix Sport LT 8 GB,,1,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,1,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,1,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,1,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,1,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,1,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,1,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,43.1
+Crucial Ballistix Sport LT 8 GB,,1,,,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,,1,,,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,,1,,,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+G.Skill Trident Z RGB 16 GB,,2,,Black,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,16,84.3
+G.Skill Trident Z RGB 64 GB,,2,,,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,64,84.3
+Crucial Ballistix Sport LT 32 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,43.1
+Crucial Ballistix Sport LT 8 GB,,2,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,2,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,2,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,2,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,2,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,2,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,2,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,43.1
+Corsair Vengeance RGB Pro 256 GB,,8,,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,256,88.5
+Corsair Vengeance RGB Pro 256 GB,,8,,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,256,80.5
+G.Skill Trident Z RGB 16 GB,,2,,Black,10.0,15.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,16,80.8
+G.Skill Trident Z RGB 16 GB,48.18,2,3.011,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,16,84.3
+Corsair Vengeance RGB Pro 64 GB,285.99,4,4.469,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,88.5
+Corsair Vengeance RGB Pro 64 GB,285.99,4,4.469,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,80.5
+Corsair Vengeance RGB Pro 16 GB,62.14,2,3.884,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,88.5
+Corsair Vengeance RGB Pro 16 GB,62.14,2,3.884,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,80.5
+Corsair Vengeance RGB Pro 32 GB,628.8,4,19.65,Black,8.75,14.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
+Corsair Vengeance RGB Pro 32 GB,628.8,4,19.65,Black,8.75,14.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
+Corsair Vengeance RGB Pro 16 GB,105.99,2,6.624,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,88.5
+Corsair Vengeance RGB Pro 16 GB,105.99,2,6.624,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,80.5
+G.Skill Trident Z RGB 128 GB,,4,,,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,128,84.3
+Corsair Vengeance RGB Pro 16 GB,,1,,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,88.5
+Corsair Vengeance RGB Pro 16 GB,,1,,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,80.5
+G.Skill Trident Z RGB 8 GB,,1,,,10.667,16.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,8,80.8
+Crucial Ballistix Sport LT 16 GB,,2,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
+Corsair Vengeance RGB Pro 64 GB,,4,,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,88.5
+Corsair Vengeance RGB Pro 64 GB,,4,,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,80.5
+Crucial Ballistix Sport LT 16 GB,,2,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,2,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,2,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+G.Skill Trident Z RGB 16 GB,294.79,2,18.424,Black,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,16,84.3
+Corsair Vengeance RGB Pro 16 GB,59.99,2,3.749,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,88.5
+Corsair Vengeance RGB Pro 16 GB,59.99,2,3.749,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,80.5
+Crucial Ballistix Sport LT 8 GB,,2,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,2,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,2,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,2,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,2,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,2,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,2,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,43.1
+Crucial Ballistix Sport LT 16 GB,,1,,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,1,,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,1,,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+G.Skill Trident Z RGB 128 GB,324.99,4,2.539,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,128,84.3
+G.Skill Trident Z RGB 64 GB,,4,,Black,10.667,16.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,64,80.8
+Crucial Ballistix Sport LT 16 GB,,2,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
+Crucial Ballistix Sport LT 16 GB,,2,,Black / Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Black / Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Black / Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Black / Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Black / Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Black / Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Black / Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
+G.Skill Trident Z RGB 32 GB,,4,,Black,10.667,16.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,32,80.8
+Crucial Ballistix Sport LT 8 GB,,2,,White / Silver,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,,2,,White / Silver,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,,2,,White / Silver,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 16 GB,,2,,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,2,,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,2,,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 8 GB,,1,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,1,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,1,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,1,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,1,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,1,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,1,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,43.1
+Crucial Ballistix Sport LT 32 GB,,2,,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,2,,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,2,,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,2,,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,2,,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,2,,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,2,,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,43.1
+Crucial Ballistix Sport LT 16 GB,,4,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,4,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,4,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,4,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,4,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,4,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,4,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
+Crucial Ballistix Sport LT 16 GB,,1,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,1,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,1,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,1,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,1,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,1,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,1,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
+Crucial Ballistix Sport LT 8 GB,,1,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,,1,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,,1,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Corsair Vengeance RGB Pro 32 GB,,2,,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
+Corsair Vengeance RGB Pro 32 GB,,2,,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
+Crucial Ballistix Sport LT 16 GB,,4,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,4,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,4,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,4,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,4,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,4,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,4,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
+G.Skill Trident Z RGB 16 GB,,2,,Black,9.333,14.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,16,80.8
+Crucial Ballistix Sport LT 16 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
+Corsair Vengeance RGB Pro 16 GB,,2,,Black,8.75,14.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,88.5
+Corsair Vengeance RGB Pro 16 GB,,2,,Black,8.75,14.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,16,80.5
+Crucial Ballistix Sport LT 8 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,43.1
+Crucial Ballistix Sport LT 8 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,2,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,43.1
+G.Skill Trident Z RGB 32 GB,,4,,Black,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
+Corsair Vengeance RGB Pro 32 GB,,4,,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
+Corsair Vengeance RGB Pro 32 GB,,4,,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
+Crucial Ballistix Sport LT 16 GB,,1,,White / Camo,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,1,,White / Camo,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,1,,White / Camo,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 32 GB,,4,,White / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,White / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,White / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,White / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,White / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,White / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,White / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,43.1
+G.Skill Trident Z RGB 32 GB,,4,,Black,10.0,15.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,32,80.8
+Crucial Ballistix Sport LT 8 GB,,2,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,2,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,2,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,79.5
+Crucial Ballistix Sport LT 8 GB,,2,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,2,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,2,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,76.9
+Crucial Ballistix Sport LT 8 GB,,2,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,8,43.1
+Crucial Ballistix Sport LT 4 GB,,1,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,79.5
+Crucial Ballistix Sport LT 4 GB,,1,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,79.5
+Crucial Ballistix Sport LT 4 GB,,1,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,79.5
+Crucial Ballistix Sport LT 4 GB,,1,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,76.9
+Crucial Ballistix Sport LT 4 GB,,1,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,76.9
+Crucial Ballistix Sport LT 4 GB,,1,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,76.9
+Crucial Ballistix Sport LT 4 GB,,1,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,43.1
+Crucial Ballistix Sport LT 64 GB,,4,,Red / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
+Crucial Ballistix Sport LT 64 GB,,4,,Red / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
+Crucial Ballistix Sport LT 64 GB,,4,,Red / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
+Crucial Ballistix Sport LT 64 GB,,4,,Red / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
+Crucial Ballistix Sport LT 64 GB,,4,,Red / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
+Crucial Ballistix Sport LT 64 GB,,4,,Red / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
+Crucial Ballistix Sport LT 64 GB,,4,,Red / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,43.1
+Crucial Ballistix Sport LT 64 GB,,4,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
+Crucial Ballistix Sport LT 64 GB,,4,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
+Crucial Ballistix Sport LT 64 GB,,4,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
+Crucial Ballistix Sport LT 64 GB,,4,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
+Crucial Ballistix Sport LT 64 GB,,4,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
+Crucial Ballistix Sport LT 64 GB,,4,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
+Crucial Ballistix Sport LT 64 GB,,4,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,43.1
+G.Skill Trident Z RGB 32 GB,,4,,Black,9.333,14.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,32,80.8
+Crucial Ballistix Sport LT 16 GB,,2,,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,2,,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,2,,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,1,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,1,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,1,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 32 GB,,4,,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
+Crucial Ballistix Sport LT 32 GB,,4,,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
+Crucial Ballistix Sport LT 32 GB,,4,,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
+Crucial Ballistix Sport LT 4 GB,,1,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,4,46.7
+Crucial Ballistix Sport LT 4 GB,,1,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,4,46.7
+Crucial Ballistix Sport LT 4 GB,,1,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,4,46.7
+G.Skill Trident Z RGB 32 GB,,4,,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
+Crucial Ballistix Sport LT 8 GB,,1,,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,,1,,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,,1,,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,,2,,Silver / Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,,2,,Silver / Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,,2,,Silver / Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Corsair Vengeance RGB Pro 32 GB,,4,,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,88.5
+Corsair Vengeance RGB Pro 32 GB,,4,,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,32,80.5
+G.Skill Trident Z RGB 64 GB,,4,,,9.375,15.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,64,84.3
+G.Skill Trident Z RGB 32 GB,,2,,Black,9.333,14.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,32,80.8
+Crucial Ballistix Sport LT 16 GB,,2,,White / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,White / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,White / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,White / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,White / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,White / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,White / Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
+Crucial Ballistix Sport LT 64 GB,,4,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
+Crucial Ballistix Sport LT 64 GB,,4,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
+Crucial Ballistix Sport LT 64 GB,,4,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,79.5
+Crucial Ballistix Sport LT 64 GB,,4,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
+Crucial Ballistix Sport LT 64 GB,,4,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
+Crucial Ballistix Sport LT 64 GB,,4,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,76.9
+Crucial Ballistix Sport LT 64 GB,,4,,White,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,64,43.1
+G.Skill Trident Z RGB 64 GB,,4,,Black,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,64,84.3
+G.Skill Trident Z RGB 32 GB,,2,,Black,9.375,15.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
+Crucial Ballistix Sport LT 32 GB,,4,,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
+Crucial Ballistix Sport LT 32 GB,,4,,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
+Crucial Ballistix Sport LT 32 GB,,4,,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
+Crucial Ballistix Sport LT 16 GB,,2,,Black / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Black / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Black / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Black / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Black / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Black / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Black / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
+Corsair Vengeance RGB Pro 128 GB,,8,,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,128,88.5
+Corsair Vengeance RGB Pro 128 GB,,8,,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,128,80.5
+Crucial Ballistix Sport LT 16 GB,,2,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
+Crucial Ballistix Sport LT 8 GB,,2,,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,,2,,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,,2,,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Corsair Vengeance RGB Pro 128 GB,,4,,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,128,88.5
+Corsair Vengeance RGB Pro 128 GB,,4,,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,128,80.5
+G.Skill Trident Z RGB 32 GB,,2,,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
+G.Skill Trident Z RGB 16 GB,,2,,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,16,84.3
+Crucial Ballistix Sport LT 32 GB,,4,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,Silver,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,43.1
+Crucial Ballistix Sport LT 16 GB,,2,,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,2,,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,2,,Red,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 64 GB,,4,,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,64,46.7
+Crucial Ballistix Sport LT 64 GB,,4,,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,64,46.7
+Crucial Ballistix Sport LT 64 GB,,4,,Red / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,64,46.7
+Crucial Ballistix Sport LT 32 GB,,4,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
+Crucial Ballistix Sport LT 32 GB,,4,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
+Crucial Ballistix Sport LT 32 GB,,4,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
+Crucial Ballistix Sport LT 32 GB,,4,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
+Crucial Ballistix Sport LT 32 GB,,4,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
+Crucial Ballistix Sport LT 32 GB,,4,,Gray,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,32,46.7
+Crucial Ballistix Sport LT 32 GB,,4,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,43.1
+Crucial Ballistix Sport LT 4 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,79.5
+Crucial Ballistix Sport LT 4 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,79.5
+Crucial Ballistix Sport LT 4 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,79.5
+Crucial Ballistix Sport LT 4 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,76.9
+Crucial Ballistix Sport LT 4 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,76.9
+Crucial Ballistix Sport LT 4 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,76.9
+Crucial Ballistix Sport LT 4 GB,,1,,Red,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,4,43.1
+Crucial Ballistix Sport LT 16 GB,,2,,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,2,,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,2,,White,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+G.Skill Trident Z RGB 32 GB,,4,,Black,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,32,84.3
+Crucial Ballistix Sport LT 16 GB,,2,,Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
+Crucial Ballistix Sport LT 32 GB,,4,,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,Silver / Gray,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,43.1
+Crucial Ballistix Sport LT 32 GB,,4,,White / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,White / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,White / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,White / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,White / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,White / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,White / Camo,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,43.1
+Corsair Vengeance RGB Pro 64 GB,,8,,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,88.5
+Corsair Vengeance RGB Pro 64 GB,,8,,White,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,80.5
+Corsair Vengeance RGB Pro 64 GB,,8,,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,88.5
+Corsair Vengeance RGB Pro 64 GB,,8,,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,64,80.5
+Crucial Ballistix Sport LT 16 GB,,2,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,79.5
+Crucial Ballistix Sport LT 16 GB,,2,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,,2,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,16,43.1
+G.Skill Trident Z RGB 64 GB,,8,,Black,8.75,14.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,64,84.3
+Crucial Ballistix Sport LT 8 GB,,1,,Black / Silver,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,,1,,Black / Silver,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,,1,,Black / Silver,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,8,46.7
+G.Skill Trident Z RGB 64 GB,,8,,Black,10.0,16.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,64,84.3
+G.Skill Trident Z RGB 128 GB,,8,,Black,9.333,14.0,DDR4,3000,g-skill-trident-z-rgb-ddr4-3000,128,80.8
+Corsair Vengeance RGB Pro 128 GB,,8,,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,128,88.5
+Corsair Vengeance RGB Pro 128 GB,,8,,Black,10.0,16.0,DDR4,3200,corsair-vengeance-rgb-pro-ddr4-3200,128,80.5
+Crucial Ballistix Sport LT 16 GB,,2,,Silver / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,2,,Silver / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 16 GB,,2,,Silver / Black,12.003,16.0,DDR4,2666,crucial-ballistix-sport-lt-ddr4-2666,16,46.7
+Crucial Ballistix Sport LT 32 GB,,4,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,,4,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,76.9
+Crucial Ballistix Sport LT 32 GB,,4,,Red / Black,13.333,16.0,DDR4,2400,crucial-ballistix-sport-lt-ddr4-2400,32,43.1
+G.Skill Trident Z RGB 128 GB,,8,,,9.375,15.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,128,84.3
+G.Skill Trident Z RGB 64 GB,,8,,,9.375,15.0,DDR4,3200,g-skill-trident-z-rgb-ddr4-3200,64,84.3

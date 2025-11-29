@@ -153,6 +153,7 @@ def run_pipeline(memory_file, benchmark_file, output_file, debug=False):
 
         time.sleep(1)
 
+    df_enriched.to_csv(output_file, index=False)
 
     pct = (after / before * 100) if before else 0
     print("\n=== RAM Enrichment Summary ===")
