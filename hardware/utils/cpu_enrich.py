@@ -36,7 +36,7 @@ TARGET_FIELDS = [
     "core_count", "core_clock", "boost_clock", "microarchitecture",
     "tdp", "graphics", "thread_count",
     "userbenchmark_score", "blender_score",
-    "power_consumption_overclocked"
+    "power_consumption_overclocked", "slug"
 ]
 
 # -----------------------------
@@ -127,73 +127,95 @@ def fallback_oc_power(cpu_row):
 def normalize(s: str) -> str:
     if not s:
         return ""
-    return re.sub(r"[^a-z0-9]", "", s.lower())
+    s = s.lower()
+    # remove brand words
+    s = re.sub(r"\b(intel|amd|ryzen|core|processor|cpu)\b", "", s)
+    # remove non-alphanumeric
+    s = re.sub(r"[^a-z0-9]", "", s)
+    return s.strip()
+
+def build_cpu_slug(name: str) -> str:
+    if not isinstance(name, str):
+        return ""
+    s = name.upper()
+
+    # Remove vendor noise
+    s = re.sub(r"\b(INTEL|AMD|PROCESSOR|CPU)\b", "", s)
+    s = re.sub(r"\b(CORE|RYZEN)\b", "", s)
+
+    # Normalize whitespace
+    s = re.sub(r"\s+", " ", s).strip()
+
+    # Intel tokens: i3/i5/i7/i9 + gen-number + optional suffixes
+    m_intel = re.search(r"\b(I[3579])[-\s]*(\d{4,5})(?:[-\s]*(KF|KS|K|F|T))?\b", s)
+    if m_intel:
+        series, num, suf = m_intel.groups()
+        slug = f"{series.lower()}-{num.lower()}"
+        if suf:
+            slug += f"-{suf.lower()}"
+        return slug
+
+    # AMD Ryzen tokens: 3/5/7/9 + model + optional X/X3D/XT/GE/G/GT/F
+    m_amd = re.search(r"\b([3579])\b.*?\b(\d{4}x3d|\d{4}xt|\d{4}ge|\d{4}gt|\d{4}g|\d{4}f|\d{4}x|\d{4})\b", s)
+    if m_amd:
+        family, model = m_amd.groups()
+        # strip spaces/dashes inside model
+        model = re.sub(r"[-\s]", "", model.lower())
+        return f"{model}"
+
+    # EPYC / Xeon: take main numeric block (best‑effort)
+    m_server = re.search(r"\b(EPYC|XEON)\b.*?\b(\d{4,5}[A-Z]{0,2})\b", s)
+    if m_server:
+        return re.sub(r"[-\s]", "", m_server.group(2).lower())
+
+    # Fallback: compact alphanumerics
+    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
+
+def make_slug_for_cpu(name: str) -> str:
+    # Reuse same logic as build_cpu_slug to ensure identical keys in output
+    return build_cpu_slug(name)
 
 def add_benchmarks_inplace(output_file: Path, debug=False):
-    # Tolerant read because earlier steps may produce quoted fields with commas
     try:
         df = pd.read_csv(output_file)
     except Exception:
         df = pd.read_csv(output_file, engine="python", on_bad_lines="warn")
 
-    # Ensure model exists
     if "model" not in df.columns:
         df["model"] = df["name"].fillna("").astype(str)
 
     base = Path(__file__).resolve().parent
-    # Adjust to your repo structure if needed
-    ub_file = base.parent.parent / "data/benchmark/CPU_UserBenchmarks.csv"
-    blender_file = base.parent.parent / "data/benchmark/Blender - Open Data - CPU.csv"
+    ub_file = base.parent.parent / "data/benchmark/CPU_UserBenchmarks_clean.csv"
+    blender_file = base.parent.parent / "data/benchmark/Blender_CPU_clean.csv"
 
     if debug:
-        print(f"Loading benchmarks:\n- {ub_file}\n- {blender_file}")
+        print(f"Loading cleaned benchmarks:\n- {ub_file}\n- {blender_file}")
 
     df_ub = pd.read_csv(ub_file, encoding="utf-8-sig")
     df_blender = pd.read_csv(blender_file, encoding="utf-8-sig")
 
-    df["norm_model"] = df["model"].apply(normalize)
+    # --- Slug generation for CPUs ---
+    df["slug"] = df["model"].astype(str).map(build_cpu_slug)  # <-- keep slug column in output
 
-    # UserBenchmarks
-    ub_cols = {c.lower(): c for c in df_ub.columns}
-    col_model_ub = ub_cols.get("model")
-    col_bench_ub = ub_cols.get("benchmark")
-    if not (col_model_ub and col_bench_ub):
-        raise ValueError("CPU_UserBenchmarks.csv must contain 'Model' and 'Benchmark' columns.")
-    df_ub["norm_model"] = df_ub[col_model_ub].apply(normalize)
-    ub_lookup = dict(zip(df_ub["norm_model"], df_ub[col_bench_ub]))
-    df["userbenchmark_score"] = df["norm_model"].map(ub_lookup)
+    # Build lookups
+    ub_lookup = dict(zip(df_ub["Slug"].astype(str), df_ub["Benchmark"]))
+    bl_lookup = dict(zip(df_blender["Slug"].astype(str), df_blender["Median Score"]))
 
-    # Blender
-    blender_cols = {c.lower(): c for c in df_blender.columns}
-    col_device_bl = blender_cols.get("device name")
-    col_median_bl = blender_cols.get("median score")
-    if not (col_device_bl and col_median_bl):
-        raise ValueError("Blender - Open Data - CPU.csv must contain 'Device Name' and 'Median Score' columns.")
-    df_blender["norm_device"] = df_blender[col_device_bl].apply(normalize)
+    # Map scores by slug
+    df["userbenchmark_score"] = df["slug"].map(ub_lookup)
+    df["blender_score"] = df["slug"].map(bl_lookup)
 
-    def find_blender_score(norm_model):
-        hits = df_blender[df_blender["norm_device"].str.contains(norm_model, na=False)]
-        if not hits.empty:
-            return hits[col_median_bl].astype(float, errors="ignore").iloc[0]
-        return None
-
-    df["blender_score"] = df["norm_model"].apply(find_blender_score)
-
-    # Finalize
-    df = df.drop(columns=["norm_model"])
-
-    # Ensure expected columns exist and are ordered exactly as TARGET_FIELDS to avoid
-    # accidental extra/missing columns when writing CSV.
-    for col in TARGET_FIELDS:
+    # Keep slug column visible for debugging
+    cols_with_slug = TARGET_FIELDS + ["slug"]
+    for col in cols_with_slug:
         if col not in df.columns:
             df[col] = ""
-    df = df[TARGET_FIELDS]
+    df = df[cols_with_slug]
 
-    # Write with QUOTE_MINIMAL so only fields that need quoting are quoted.
-    # This removes "" around every header/value while still protecting embedded commas/newlines.
     import csv as _csv
     df.to_csv(output_file, index=False, quoting=_csv.QUOTE_MINIMAL)
-    print(f"Benchmarks added to {output_file}")
+    print(f"Benchmarks + slug added to {output_file}")
+
 
 # -----------------------------
 # Enrichment pipeline

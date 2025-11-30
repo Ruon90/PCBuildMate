@@ -3,7 +3,10 @@ from pathlib import Path
 import io
 import re
 
-EXPECTED_HEADERS = {"name","price","core_count","core_clock","boost_clock","microarchitecture","tdp","graphics"}
+EXPECTED_HEADERS = {
+    "name", "price", "core_count", "core_clock", "boost_clock",
+    "microarchitecture", "tdp", "graphics"
+}
 
 def sniff_sep(sample: str) -> str:
     counts = {",": sample.count(","), ";": sample.count(";"), "\t": sample.count("\t")}
@@ -12,12 +15,38 @@ def sniff_sep(sample: str) -> str:
 def extract_brand_and_model(name: str):
     if name is None or pd.isna(name):
         return ("Unknown", None)
-    s = str(name)
-    brand = "AMD" if s.lower().startswith("amd") else ("Intel" if s.lower().startswith("intel") else "Other")
+    s = str(name).strip()
+    s_lower = s.lower()
+    brand = "AMD" if s_lower.startswith("amd") else ("Intel" if s_lower.startswith("intel") else "Other")
     # Model: last alphanumeric token with digits
     m = re.findall(r"[A-Za-z0-9\-+]+", s)
     model = next((t for t in reversed(m) if re.search(r"\d", t)), s)
     return (brand, model)
+
+# --- New: CPU slug builder ---
+def build_cpu_slug(name: str) -> str:
+    if not isinstance(name, str):
+        return ""
+    s = name.upper()
+    s = re.sub(r"\b(INTEL|AMD|RYZEN|CORE|PROCESSOR|CPU)\b", "", s)
+    s = re.sub(r"\s+", " ", s).strip()
+
+    # AMD Ryzen: family + model
+    m_amd = re.search(r"\b([3579])\b.*?\b(\d{4}(?:X3D|XT|X)?)\b", s)
+    if m_amd:
+        family, model = m_amd.groups()
+        return f"{family}-{model.lower()}"
+
+    # Intel: i3/i5/i7/i9 + number + suffix
+    m_intel = re.search(r"\b(I[3579])[-\s]*(\d{4,5})([A-Z]{0,3})?\b", s)
+    if m_intel:
+        series, num, suf = m_intel.groups()
+        slug = f"{series.lower()}-{num.lower()}"
+        if suf:
+            slug += f"-{suf.lower()}"
+        return slug
+
+    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
 def clean_cpu(file_path: Path, output_path: Path, filter_arch: bool = True, enrich_threads: bool = True):
     if not file_path.exists():
@@ -48,6 +77,10 @@ def clean_cpu(file_path: Path, output_path: Path, filter_arch: bool = True, enri
     # brand + model
     df[["brand","model"]] = df["name"].apply(lambda x: pd.Series(extract_brand_and_model(x)))
 
+    # --- New: slug column from model (or name if model missing) ---
+    # Prefer precise slugs derived from the model token we extracted above
+    df["slug"] = df["model"].fillna(df["name"]).astype(str).map(build_cpu_slug)
+
     # Filter by microarchitecture
     if filter_arch:
         def keep_row(row):
@@ -71,8 +104,8 @@ def clean_cpu(file_path: Path, output_path: Path, filter_arch: bool = True, enri
     # Enrich: ReleaseDate placeholder (to be populated later)
     df["release_date"] = pd.NaT
 
-    # Reorder brand, model first
-    cols = ["brand","model"] + [c for c in df.columns if c not in ["brand","model"]]
+    # Reorder: brand, model, slug first
+    cols = ["brand", "model", "slug"] + [c for c in df.columns if c not in ["brand", "model", "slug"]]
     df = df[cols]
 
     # Drop fully empty rows/columns
