@@ -44,10 +44,21 @@ def build_slug(name: str) -> str:
     if not isinstance(name, str):
         return ""
     s = name.upper()
+    # remove vendor tokens
     s = re.sub(r"\b(GEFORCE|RADEON|NVIDIA|AMD|INTEL)\b", "", s)
     s = re.sub(r"\s+", " ", s).strip()
+
+    # capture main tokens
     tokens = re.findall(r"(RTX|RX|\d{3,4}|TI|SUPER|XT|XTX)", s)
-    return "-".join(tok.lower() for tok in tokens)
+    slug = "-".join(tok.lower() for tok in tokens)
+
+    # detect mobile variants
+    if re.search(r"\b(MOBILE|LAPTOP)\b", s) or re.search(r"\bM\b", s):
+        # only append if not already ending with -m
+        if not slug.endswith("-m"):
+            slug = slug + "-m"
+
+    return slug
 
 # -----------------------------
 # AI MSRP enrichment
@@ -251,7 +262,7 @@ def main():
     args = parser.parse_args()
 
     input_path = Path(args.file)
-    output_path = input_path.with_name(input_path.stem + "_enriched.csv")
+    output_path = input_path.with_name(input_path.stem + "_enriched2.csv")
 
     gpu_enrich(
         input_file=str(input_path),

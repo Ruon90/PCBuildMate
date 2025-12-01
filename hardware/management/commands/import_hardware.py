@@ -1,7 +1,9 @@
 import csv
+import re
 import datetime
 from django.core.management.base import BaseCommand
 from django.apps import apps
+from django.utils.text import slugify
 
 MODEL_ALIASES = {
     "GPU": {
@@ -31,46 +33,21 @@ MODEL_ALIASES = {
         "SuggestedPSU": "suggested_psu",
         "PowerConnectors": "power_connectors",
         "DisplayConnectors": "display_connectors",
-    },
-    "Case": {
-        "type": "case_type",
-        "color": "color",
-        "psu": "psu",
-        "side_panel": "side_panel",
-        "external_volume": "external_volume",
-        "internal_35_bays": "internal_35_bays",
+        "brand": "brand",
+        "model": "model",
+        "userbenchmark_url": "userbenchmark_url",
+        "Price": "price",
+        "price": "price",
+        "Slug": "slug",
         "slug": "slug",
-    },
-    "CPU": {
-        # if your CSV headers differ, add aliases here
         "userbenchmark_score": "userbenchmark_score",
         "blender_score": "blender_score",
     },
-    "PSU": {
-        "type": "psu_type",   # <-- add this
-        "slug": "slug",       # if your CSV has slug
-        "wattage": "wattage", # add other PSU fields as needed
-    },
-    "Storage": {
-        "type": "storage_type",
-    }
+    # other models omitted for brevity...
 }
 
 NUMERIC_FIELDS = {
-    # Common
     "price": float,
-
-    # CPU
-    "core_count": int,
-    "core_clock": float,
-    "boost_clock": float,
-    "tdp": int,
-    "thread_count": int,
-    "userbenchmark_score": float,
-    "blender_score": float,
-    "power_consumption_overclocked": int,
-
-    # GPU
     "userbenchmark_score": float,
     "blender_score": float,
     "base_clock": float,
@@ -90,42 +67,14 @@ NUMERIC_FIELDS = {
     "board_length": float,
     "board_width": float,
     "slot_width": float,
-
-    # Motherboard
-    "max_memory": int,
-    "memory_slots": int,
-    "ddr_max_speed": float,
-
-    # RAM
-    "modules": int,
-    "first_word_latency": int,
-    "cas_latency": int,
-    "frequency_mhz": int,
-    "capacity_gb": int,
-    "benchmark": float,
-
-    # Storage
-    "capacity": int,
-    "cache": int,
-
-    # CPUCooler
-    "rpm": int,
-    "noise_level": float,
-    "power_throughput": float,
-
-    # Case
-    "external_volume": float,
-    "internal_35_bays": int,
-
-    # ThermalPaste
-    "amount": float,
+    "suggested_psu": int,
 }
 
 DATE_FIELDS = {"release_date"}
 
 LOOKUP_FIELDS = {
-    "CPU": "model",
     "GPU": "slug",
+    "CPU": "slug",
     "RAM": "slug",
     "PSU": "slug",
     "Case": "slug",
@@ -135,41 +84,72 @@ LOOKUP_FIELDS = {
     "ThermalPaste": "slug",
 }
 
+def clean_number(value: str) -> str:
+    if value is None:
+        return ""
+    s = str(value).strip().replace(",", "")
+    m = re.search(r"[-+]?\d*\.?\d+", s)
+    return m.group(0) if m else ""
+
+def cast_number(field: str, value: str):
+    if value in ("", None):
+        return None
+    raw = clean_number(value)
+    if raw == "":
+        return None
+    caster = NUMERIC_FIELDS[field]
+    try:
+        return caster(float(raw)) if caster is int else caster(raw)
+    except Exception:
+        return None
 
 def normalize_value(field, value):
     if value in ("", None, "N/A"):
         return None
-
     if field in NUMERIC_FIELDS:
-        caster = NUMERIC_FIELDS[field]
-        try:
-            return caster(float(value)) if caster is int else caster(value)
-        except Exception:
-            return None
-
+        return cast_number(field, value)
     if field in DATE_FIELDS:
-        for fmt in ("%Y-%m-%d", "%d/%m/%Y", "%m/%d/%Y"):
+        for fmt in ("%Y-%m-%d", "%d/%m/%Y", "%m/%d/%Y", "%b %Y", "%B %Y"):
             try:
                 return datetime.datetime.strptime(value, fmt).date()
             except ValueError:
                 continue
         return None
-
     return value
 
+def ensure_slug(model_name: str, data: dict) -> None:
+    if "slug" in data and data["slug"]:
+        return
+    if model_name == "GPU":
+        base = data.get("gpu_name")
+        if base:
+            data["slug"] = slugify(base)
+            return
+    base = data.get("name") or data.get("model")
+    if base:
+        data["slug"] = slugify(base)
+
+def has_price(data: dict) -> bool:
+    price = data.get("price")
+    try:
+        return price is not None and float(price) > 0
+    except Exception:
+        return False
 
 class Command(BaseCommand):
     help = "Generic CSV importer for hardware models"
 
     def add_arguments(self, parser):
-        parser.add_argument("--model", required=True, help="Model name (e.g. PSU, CPU, GPU, RAM)")
-        parser.add_argument("--csv", required=True, help="Path to CSV file")
-        parser.add_argument("--dry-run", action="store_true", help="Preview imports without saving")
+        parser.add_argument("--model", required=True)
+        parser.add_argument("--csv", required=True)
+        parser.add_argument("--dry-run", action="store_true")
+        parser.add_argument("--require-price", action="store_true")
 
     def handle(self, *args, **options):
         model_name = options["model"]
         csv_path = options["csv"]
         dry_run = options["dry_run"]
+        require_price = options["require_price"]
 
         try:
             Model = apps.get_model("hardware", model_name)
@@ -181,37 +161,44 @@ class Command(BaseCommand):
         valid_fields = {f.name for f in Model._meta.get_fields()}
         lookup_field = LOOKUP_FIELDS.get(model_name)
 
-        count = 0
-        created = 0
-        updated = 0
-        skipped = 0
+        count = created = updated = skipped = 0
 
         with open(csv_path, newline="", encoding="utf-8") as f:
             reader = csv.DictReader(f)
-            for row in reader:
+            for row_idx, row in enumerate(reader, start=1):
                 data = {}
                 for k, v in row.items():
                     field = aliases.get(k, k).lower()
                     if field in valid_fields:
                         val = normalize_value(field, v)
-                        if val is not None:   # <-- only include non-empty values
-                            data[field] = val   
+                        if val is not None:
+                            data[field] = val
+
+                ensure_slug(model_name, data)
+
+                if require_price and not has_price(data):
+                    skipped += 1
+                    self.stdout.write(f"Row {row_idx} skipped: missing/zero price")
+                    continue
+
                 if not data:
                     skipped += 1
+                    self.stdout.write(f"Row {row_idx} skipped: no valid fields")
+                    continue
+
+                lookup = {}
+                if lookup_field and lookup_field in data:
+                    lookup[lookup_field] = data[lookup_field]
+                elif "slug" in data and data["slug"]:
+                    lookup = {"slug": data["slug"]}
+                else:
+                    skipped += 1
+                    self.stdout.write(f"Row {row_idx} skipped: missing lookup field")
                     continue
 
                 if dry_run:
-                    print(f"Would import: {data}")
+                    self.stdout.write(f"[DRY-RUN] Row {row_idx} normalized: {data}")
                 else:
-                    lookup = {}
-                    if lookup_field and lookup_field in data:
-                        lookup[lookup_field] = data[lookup_field]
-                    elif "slug" in data:
-                        lookup = {"slug": data.get("slug")}
-                    else:
-                        skipped += 1
-                        continue
-
                     obj, created_flag = Model.objects.update_or_create(defaults=data, **lookup)
                     if created_flag:
                         created += 1
@@ -219,11 +206,8 @@ class Command(BaseCommand):
                         updated += 1
                 count += 1
 
+        summary = f"Processed {count} rows for {model_name}: {created} created, {updated} updated, {skipped} skipped"
         if dry_run:
-            self.stdout.write(self.style.WARNING(
-                f"Dry run complete: {count} rows parsed for {model_name}, {skipped} skipped"
-            ))
+            self.stdout.write(self.style.WARNING("[DRY-RUN] " + summary))
         else:
-            self.stdout.write(self.style.SUCCESS(
-                f"Imported {count} rows into {model_name}: {created} created, {updated} updated, {skipped} skipped"
-            ))
+            self.stdout.write(self.style.SUCCESS(summary))

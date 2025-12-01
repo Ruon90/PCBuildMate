@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card p-3 shadow-sm">
+        <form id="buildForm" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-primary w-100 mt-2" type="submit">Calculate</button>
+        </form>
+    </div>
+
+    <!-- Progress area -->
+    <div id="progressArea" class="mt-4"></div>
+
+    <!-- Loading bar -->
+    <div class="progress mt-3" style="height: 25px; display:none;" id="loadingBar">
+        <div id="loadingBarFill" class="progress-bar progress-bar-striped progress-bar-animated"
+             role="progressbar" style="width: 0%">0%</div>
+    </div>
+</div>
+
+<script>
+document.getElementById("buildForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+
+    // Show loading bar
+    const loadingBar = document.getElementById("loadingBar");
+    const loadingBarFill = document.getElementById("loadingBarFill");
+    loadingBar.style.display = "block";
+    loadingBarFill.style.width = "10%";
+    loadingBarFill.textContent = "Starting...";
+
+    fetch("{% url 'calculate_build' %}", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        const progressArea = document.getElementById("progressArea");
+        progressArea.innerHTML = "";
+
+        if (data.progress) {
+            let stepPercent = Math.floor(90 / data.progress.length);
+            let currentPercent = 10;
+            const ul = document.createElement("ul");
+
+            data.progress.forEach(msg => {
+                const li = document.createElement("li");
+                li.textContent = msg;
+                ul.appendChild(li);
+
+                currentPercent += stepPercent;
+                loadingBarFill.style.width = currentPercent + "%";
+                loadingBarFill.textContent = currentPercent + "%";
+            });
+            progressArea.appendChild(ul);
+        }
+
+        if (data.redirect) {
+            loadingBarFill.style.width = "100%";
+            loadingBarFill.textContent = "Done!";
+            setTimeout(() => {
+                window.location.href = data.redirect;
+            }, 1000);
+        } else if (data.error) {
+            loadingBarFill.classList.remove("progress-bar-animated");
+            loadingBarFill.classList.add("bg-danger");
+            loadingBarFill.textContent = "Error";
+            progressArea.innerHTML = "<div class='alert alert-danger'>" + data.error + "</div>";
+        }
+    });
+});
+</script>
+{% endblock %}

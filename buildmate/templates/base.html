@@ -13,7 +13,7 @@
     <!-- Header / Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'index' %}">
+            <a class="navbar-brand" href="{% url 'home' %}">
                 <img src="{% static 'images/PCBO-header.png' %}" alt="PCBuildMate Logo" height="30">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -21,9 +21,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'build' %}">Build Calculator</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Saved Builds</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'build_preview' %}">Build Calculator</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'saved_builds' %}">Saved Builds</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
                 </ul>
             </div>

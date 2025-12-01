@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">My Saved Builds</h2>
+
+    {% if builds %}
+        <div class="row">
+            {% for build in builds %}
+                <div class="col-md-6">
+                    <div class="card mb-3 shadow-sm">
+                        <div class="card-header bg-dark text-white">
+                            Build #{{ forloop.counter }}
+                        </div>
+                        <div class="card-body">
+                            <p><strong>CPU:</strong> {{ build.cpu.name }}</p>
+                            <p><strong>GPU:</strong> {{ build.gpu.gpu_name }}</p>
+                            <p><strong>Motherboard:</strong> {{ build.motherboard.name }}</p>
+                            <p><strong>RAM:</strong> {{ build.ram.name }}</p>
+                            <p><strong>Storage:</strong> {{ build.storage.name }}</p>
+                            <p><strong>PSU:</strong> {{ build.psu.name }}</p>
+                            <p><strong>Cooler:</strong> {{ build.cooler.name }}</p>
+                            <p><strong>Case:</strong> {{ build.case.name }}</p>
+                            <hr>
+                            <p><strong>Budget:</strong> £{{ build.budget }}</p>
+                            <p><strong>Mode:</strong> {{ build.mode }}</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between">
+                            <a href="{% url 'build_preview' %}" class="btn btn-primary btn-sm">View</a>
+                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            You don’t have any saved builds yet. Go back to the <a href="{% url 'home' %}">calculator</a> to create one.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

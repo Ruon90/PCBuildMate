@@ -8,13 +8,44 @@ import os
 import env
 
 # -----------------------------
-# Slug helpers
+# Case type normalization
+# -----------------------------
+def normalize_case_type(raw: str) -> str:
+    if not isinstance(raw, str):
+        return ""
+    t = raw.strip().lower()
+
+    # common mappings
+    if "mini" in t and "itx" in t:
+        return "Mini-ITX"
+    if "micro" in t and "atx" in t:
+        return "MicroATX"
+    if "mid" in t and "tower" in t:
+        return "ATX Mid Tower"
+    if "full" in t and "tower" in t:
+        return "ATX Full Tower"
+    if "tower" in t:  # generic tower
+        return "ATX Tower"
+    if "htpc" in t or "slim" in t:
+        return "HTPC/Slim"
+    if "cube" in t or "sff" in t or "small form" in t:
+        return "SFF"
+    # fallback
+    return raw.strip()
+
+# -----------------------------
+# Slug helpers (updated)
 # -----------------------------
 def slugify(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", str(text).lower()).strip("-")
 
+
 def slugify_case(name: str, case_type: str) -> str:
-    return f"{slugify(name)}-{slugify(case_type)}"
+    norm_type = normalize_case_type(case_type)
+    return f"{slugify(name)}-{slugify(norm_type)}"
+
+
+
 
 # -----------------------------
 # Fallback convention mapping with volume thresholds
@@ -131,11 +162,20 @@ Cases:
 def run_pipeline(case_file: str, output_file: str, debug=False):
     df = pd.read_csv(case_file)
 
+    # ensure psu column exists and is string dtype
+    if "psu" not in df.columns:
+        df["psu"] = ""
+    df["psu"] = df["psu"].astype(str)
+
     # Filter out rows without price
     before = len(df)
     df = df.dropna(subset=["price"])
     df = df[df["price"].astype(str).str.strip() != ""]
     after_price_filter = len(df)
+
+    # Normalize case types before slugging
+    df["type"] = df["type"].apply(normalize_case_type)
+    df["slug"] = df.apply(lambda r: slugify_case(r["name"], r["type"]), axis=1)
 
     # Build slug
     df["slug"] = df.apply(lambda r: slugify_case(r["name"], r["type"]), axis=1)

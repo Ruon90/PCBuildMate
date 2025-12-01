@@ -28,6 +28,7 @@ class CPU(models.Model):
     userbenchmark_score = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     blender_score = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     power_consumption_overclocked = models.IntegerField(blank=True, null=True)
+    slug = models.SlugField(max_length=100, unique=True, blank=True, null=True)
 
 
 class GPU(models.Model):
