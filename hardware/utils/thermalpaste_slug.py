@@ -14,7 +14,6 @@ def add_slugs_to_thermal_paste(input_file, output_file):
     df.to_csv(output_file, index=False)
     print(f"Thermal paste file with slugs written to {output_file}")
 
-# Example usage
 if __name__ == "__main__":
     add_slugs_to_thermal_paste(
         "data/cooler/thermal-paste.csv",
