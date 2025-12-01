@@ -1,0 +1,1119 @@
+name,price,modules,price_per_gb,color,first_word_latency,cas_latency,ddr_generation,frequency_mhz,slug,capacity_gb,Benchmark
+Corsair Vengeance RGB 32 GB,320.0,2,2.968,Black,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,2.968,Black,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+Corsair Vengeance LPX 16 GB,75.0,2,2.874,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,2.874,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,2.874,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+Corsair Vengeance 32 GB,129.99,2,4.062,Black / Gray,10.0,30.0,DDR5,6000.0,corsair-vengeance-32-gb-ddr5-6000,32,172.0
+Corsair Vengeance LPX 32 GB,150.0,2,2.437,Black / Yellow,10.0,18.0,DDR4,3600.0,corsair-vengeance-lpx-32-gb-ddr4-3600,32,95.4
+Corsair Vengeance RGB 32 GB,320.0,2,3.0,White / Silver,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,3.0,White / Silver,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+Corsair Vengeance LPX 32 GB,120.0,2,2.249,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,87.5
+Corsair Vengeance LPX 32 GB,120.0,2,2.249,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,84.9
+Corsair Vengeance RGB Pro 16 GB,95.0,2,3.437,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-pro-16-gb-ddr4-3200,16,80.5
+Corsair Vengeance RGB 32 GB,320.0,2,3.906,Gray,10.0,30.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,3.906,Gray,10.0,30.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+G.Skill Ripjaws V 64 GB,280.0,4,21.123,Black,8.75,14.0,DDR4,3200.0,g-skill-ripjaws-v-64-gb-ddr4-3200,64,94.5
+G.Skill Ripjaws V 16 GB,75.0,2,2.874,Black,10.0,16.0,DDR4,3200.0,g-skill-ripjaws-v-16-gb-ddr4-3200,16,84.0
+Corsair Vengeance RGB 32 GB,94.99,2,2.968,Black,11.25,36.0,DDR5,6400.0,corsair-vengeance-rgb-32-gb-ddr5-6400,32,185.0
+Corsair Vengeance 32 GB,109.99,2,3.437,Black,12.0,36.0,DDR5,6000.0,corsair-vengeance-32-gb-ddr5-6000,32,172.0
+Corsair Vengeance 32 GB,114.99,2,3.593,Black / Silver,10.0,30.0,DDR5,6000.0,corsair-vengeance-32-gb-ddr5-6000,32,172.0
+Crucial Pro 32 GB,81.99,2,2.562,Black,11.875,38.0,DDR5,6400.0,crucial-pro-32-gb-ddr5-6400,32,210.0
+Crucial Pro 32 GB,81.99,2,2.562,Black,11.875,38.0,DDR5,6400.0,crucial-pro-32-gb-ddr5-6400,32,210.0
+Corsair Vengeance 32 GB,86.99,2,2.718,Black,12.0,36.0,DDR5,6000.0,corsair-vengeance-32-gb-ddr5-6000,32,172.0
+Corsair Vengeance RGB 32 GB,320.0,2,4.625,Black,9.333,28.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,4.625,Black,9.333,28.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+Corsair Vengeance LPX 16 GB,90.0,2,5.749,Black,10.0,18.0,DDR4,3600.0,corsair-vengeance-lpx-16-gb-ddr4-3600,16,89.4
+Corsair Vengeance RGB Pro 16 GB,95.0,2,6.119,White,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-pro-16-gb-ddr4-3200,16,80.5
+Corsair Vengeance RGB 32 GB,320.0,2,4.531,White / Silver,10.0,30.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,4.531,White / Silver,10.0,30.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+Corsair Vengeance RGB Pro 32 GB,150.0,2,2.593,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-pro-32-gb-ddr4-3200,32,88.5
+Corsair Vengeance LPX 8 GB,35.0,1,4.624,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,76.5
+Corsair Vengeance LPX 8 GB,35.0,1,4.624,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,71.1
+Corsair Vengeance LPX 8 GB,35.0,1,4.624,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,1,4.624,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,1,4.624,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,38.7
+Corsair Vengeance RGB Pro 32 GB,150.0,2,4.468,White,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-pro-32-gb-ddr4-3200,32,88.5
+Corsair Vengeance LPX 32 GB,150.0,2,5.031,Black / Yellow,10.0,18.0,DDR4,3600.0,corsair-vengeance-lpx-32-gb-ddr4-3600,32,95.4
+Corsair Vengeance RGB 32 GB,320.0,2,4.531,Black / Gray,10.0,30.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,4.531,Black / Gray,10.0,30.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+Corsair Vengeance RGB 64 GB,244.99,2,3.828,Black / Gray,10.0,32.0,DDR5,6400.0,corsair-vengeance-rgb-64-gb-ddr5-6400,64,207.0
+Corsair Vengeance LPX 32 GB,150.0,2,2.684,Black / Yellow,8.889,16.0,DDR4,3600.0,corsair-vengeance-lpx-32-gb-ddr4-3600,32,95.4
+Crucial Pro 32 GB,94.99,2,2.968,White,11.875,38.0,DDR5,6400.0,crucial-pro-32-gb-ddr5-6400,32,210.0
+Crucial Pro 32 GB,94.99,2,2.968,White,11.875,38.0,DDR5,6400.0,crucial-pro-32-gb-ddr5-6400,32,210.0
+Corsair Vengeance RGB 32 GB,320.0,2,3.812,White,13.333,40.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,3.812,White,13.333,40.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+Corsair Vengeance LPX 16 GB,60.0,2,5.374,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,5.374,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,5.374,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,5.374,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,5.374,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,5.374,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,5.374,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,5.374,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,5.374,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,5.374,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,5.374,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance RGB 32 GB,117.99,2,3.687,Black / Gray,10.0,32.0,DDR5,6400.0,corsair-vengeance-rgb-32-gb-ddr5-6400,32,185.0
+Corsair Vengeance 32 GB,135.99,2,4.25,Black,9.333,28.0,DDR5,6000.0,corsair-vengeance-32-gb-ddr5-6000,32,172.0
+Corsair Vengeance RGB 64 GB,277.99,2,4.344,White,10.0,32.0,DDR5,6400.0,corsair-vengeance-rgb-64-gb-ddr5-6400,64,207.0
+G.Skill Trident Z RGB 16 GB,90.0,2,3.437,Black,10.0,16.0,DDR4,3200.0,g-skill-trident-z-rgb-16-gb-ddr4-3200,16,84.3
+Corsair Vengeance RGB Pro 32 GB,150.0,4,4.031,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-pro-32-gb-ddr4-3200,32,88.5
+Corsair Vengeance LPX 16 GB,90.0,2,3.062,Black / Yellow,8.889,16.0,DDR4,3600.0,corsair-vengeance-lpx-16-gb-ddr4-3600,16,89.4
+Corsair Vengeance RGB 32 GB,320.0,2,2.968,Black / Gray,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,2.968,Black / Gray,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+Corsair Vengeance 32 GB,180.0,2,2.812,Black / Gray,14.286,40.0,DDR5,5600.0,corsair-vengeance-32-gb-ddr5-5600,32,162.0
+Corsair Vengeance LPX 32 GB,120.0,2,2.53,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,87.5
+Corsair Vengeance LPX 32 GB,120.0,2,2.53,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,84.9
+Corsair Vengeance LPX 16 GB,75.0,2,2.874,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,2.874,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,2.874,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+Corsair Vengeance LPX 16 GB,44.0,2,2.999,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,2,2.999,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,2,2.999,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,2,2.999,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance LPX 16 GB,44.0,2,2.999,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance RGB 32 GB,119.99,2,3.75,White / Black,11.25,36.0,DDR5,6400.0,corsair-vengeance-rgb-32-gb-ddr5-6400,32,185.0
+G.Skill Ripjaws V 8 GB,35.0,1,8.748,Red,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-8-gb-ddr4-2400,8,72.1
+Corsair Vengeance LPX 16 GB,75.0,2,5.624,White,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,5.624,White,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,5.624,White,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+Corsair Vengeance 32 GB,180.0,2,,Black,12.857,36.0,DDR5,5600.0,corsair-vengeance-32-gb-ddr5-5600,32,162.0
+Corsair Vengeance RGB 32 GB,320.0,2,,White,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,,White,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+Corsair Vengeance LPX 32 GB,150.0,4,3.437,Black / Yellow,10.0,18.0,DDR4,3600.0,corsair-vengeance-lpx-32-gb-ddr4-3600,32,95.4
+Corsair Vengeance LPX 16 GB,40.0,2,4.4,Black / Yellow,12.189,13.0,DDR4,2133.0,corsair-vengeance-lpx-16-gb-ddr4-2133,16,69.2
+Corsair Vengeance LPX 16 GB,40.0,2,4.4,Black / Yellow,12.189,13.0,DDR4,2133.0,corsair-vengeance-lpx-16-gb-ddr4-2133,16,69.2
+G.Skill Ripjaws V 16 GB,75.0,1,2.687,Black,10.0,16.0,DDR4,3200.0,g-skill-ripjaws-v-16-gb-ddr4-3200,16,84.0
+G.Skill Ripjaws V 64 GB,280.0,4,2.5,Black,10.0,16.0,DDR4,3200.0,g-skill-ripjaws-v-64-gb-ddr4-3200,64,94.5
+Corsair Vengeance LPX 16 GB,42.0,2,4.624,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,4.624,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,4.624,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,4.624,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,80.9
+Corsair Vengeance LPX 16 GB,42.0,2,4.624,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,75.8
+Corsair Vengeance LPX 16 GB,42.0,2,4.624,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance LPX 16 GB,42.0,2,4.624,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance 32 GB,110.99,2,3.468,White,12.0,36.0,DDR5,6000.0,corsair-vengeance-32-gb-ddr5-6000,32,172.0
+Corsair Vengeance LPX 32 GB,120.0,4,3.136,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,87.5
+Corsair Vengeance LPX 32 GB,120.0,4,3.136,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,84.9
+Corsair Vengeance 32 GB,114.99,2,3.593,Gray,12.0,36.0,DDR5,6000.0,corsair-vengeance-32-gb-ddr5-6000,32,172.0
+Corsair Vengeance RGB Pro 32 GB,150.0,2,3.406,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-pro-32-gb-ddr4-3200,32,88.5
+G.Skill Ripjaws V 16 GB,75.0,2,2.499,Red,10.0,16.0,DDR4,3200.0,g-skill-ripjaws-v-16-gb-ddr4-3200,16,84.0
+Corsair Vengeance LPX 16 GB,60.0,1,4.061,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,1,4.061,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,1,4.061,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,1,4.061,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,1,4.061,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,1,4.061,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,1,4.061,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,1,4.061,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,1,4.061,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,1,4.061,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,1,4.061,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance RGB Pro 32 GB,150.0,4,3.75,White,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-pro-32-gb-ddr4-3200,32,88.5
+Corsair Vengeance LPX 8 GB,35.0,2,4.374,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,76.5
+Corsair Vengeance LPX 8 GB,35.0,2,4.374,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,71.1
+Corsair Vengeance LPX 8 GB,35.0,2,4.374,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,2,4.374,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,2,4.374,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,38.7
+Corsair Vengeance LPX 16 GB,75.0,2,5.749,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,5.749,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,5.749,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+Corsair Vengeance LPX 32 GB,110.0,2,3.906,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,95.5
+Corsair Vengeance LPX 32 GB,110.0,2,3.906,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,2,3.906,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,2,3.906,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,2,3.906,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,75.8
+Corsair Vengeance RGB 32 GB,155.99,2,4.875,White / Silver,10.0,32.0,DDR5,6400.0,corsair-vengeance-rgb-32-gb-ddr5-6400,32,185.0
+G.Skill Ripjaws V 16 GB,65.0,2,,Black / Red,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,2,,Black / Red,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,2,,Black / Red,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,2,,Black / Red,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,2,,Black / Red,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+Corsair Vengeance LPX 16 GB,90.0,2,5.749,Black / Yellow,10.0,18.0,DDR4,3600.0,corsair-vengeance-lpx-16-gb-ddr4-3600,16,89.4
+Corsair Vengeance LPX 32 GB,120.0,2,2.59,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,2,2.59,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,2,2.59,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,2,2.59,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,85.1
+Corsair Vengeance LPX 32 GB,120.0,2,2.59,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,76.7
+Corsair Vengeance LPX 16 GB,90.0,1,5.061,Black,10.0,18.0,DDR4,3600.0,corsair-vengeance-lpx-16-gb-ddr4-3600,16,89.4
+Corsair Vengeance LPX 32 GB,130.0,2,4.031,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-32-gb-ddr4-3000,32,84.4
+Corsair Vengeance LPX 16 GB,60.0,2,4.624,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,4.624,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,4.624,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,4.624,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,4.624,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,4.624,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,4.624,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,4.624,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,4.624,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,4.624,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,4.624,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+G.Skill Ripjaws V 32 GB,130.0,2,2.187,Red,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-32-gb-ddr4-2400,32,76.1
+Corsair Vengeance LPX 8 GB,40.0,1,4.624,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-8-gb-ddr4-3000,8,81.1
+G.Skill Ripjaws V 64 GB,280.0,2,2.422,Black,10.0,16.0,DDR4,3200.0,g-skill-ripjaws-v-64-gb-ddr4-3200,64,94.5
+Corsair Vengeance 32 GB,109.99,2,3.437,White / Gray,12.0,36.0,DDR5,6000.0,corsair-vengeance-32-gb-ddr5-6000,32,172.0
+Corsair Vengeance LPX 16 GB,75.0,2,4.499,White,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,4.499,White,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,4.499,White,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+Corsair Vengeance RGB 32 GB,99.99,2,3.125,Black / Gray,11.25,36.0,DDR5,6400.0,corsair-vengeance-rgb-32-gb-ddr5-6400,32,185.0
+Corsair Vengeance 32 GB,124.49,2,3.89,Black,12.0,36.0,DDR5,6000.0,corsair-vengeance-32-gb-ddr5-6000,32,172.0
+Corsair Vengeance RGB 32 GB,320.0,2,3.75,White / Silver,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,3.75,White / Silver,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+Corsair Vengeance 8 GB,35.0,2,7.622,Black / Silver,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,2,7.622,Black / Silver,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+Corsair Vengeance LPX 16 GB,42.0,1,2.362,Black,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,1,2.362,Black,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,1,2.362,Black,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,1,2.362,Black,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,80.9
+Corsair Vengeance LPX 16 GB,42.0,1,2.362,Black,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,75.8
+Corsair Vengeance LPX 16 GB,42.0,1,2.362,Black,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance LPX 16 GB,42.0,1,2.362,Black,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance LPX 16 GB,75.0,1,4.561,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,1,4.561,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,1,4.561,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+G.Skill Trident Z RGB 16 GB,90.0,2,3.562,Black,10.667,16.0,DDR4,3000.0,g-skill-trident-z-rgb-16-gb-ddr4-3000,16,80.8
+Corsair Vengeance LPX 32 GB,120.0,2,,White,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,87.5
+Corsair Vengeance LPX 32 GB,120.0,2,,White,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,84.9
+Corsair Vengeance LPX 32 GB,120.0,2,3.906,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,2,3.906,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,2,3.906,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,2,3.906,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,85.1
+Corsair Vengeance LPX 32 GB,120.0,2,3.906,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,76.7
+Corsair Vengeance 32 GB,180.0,1,3.093,Black / Gray,14.286,40.0,DDR5,5600.0,corsair-vengeance-32-gb-ddr5-5600,32,162.0
+Corsair Vengeance LPX 8 GB,40.0,2,4.366,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-8-gb-ddr4-2666,8,76.3
+Corsair Vengeance 32 GB,110.73,2,3.46,Black,13.333,40.0,DDR5,6000.0,corsair-vengeance-32-gb-ddr5-6000,32,172.0
+Corsair Vengeance LPX 32 GB,130.0,1,2.58,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-32-gb-ddr4-3000,32,84.4
+Corsair Vengeance RGB 32 GB,320.0,2,4.312,Black / Silver,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,4.312,Black / Silver,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+Corsair Vengeance 32 GB,180.0,2,3.437,Gray,12.857,36.0,DDR5,5600.0,corsair-vengeance-32-gb-ddr5-5600,32,162.0
+Corsair Vengeance RGB Pro 32 GB,150.0,2,7.125,White,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-pro-32-gb-ddr4-3200,32,88.5
+Corsair Vengeance RGB 32 GB,320.0,2,3.812,Black,13.333,40.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,3.812,Black,13.333,40.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+Corsair Vengeance RGB 32 GB,320.0,2,4.312,White / Silver,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,4.312,White / Silver,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+G.Skill Flare X 16 GB,80.0,2,,Black,8.75,14.0,DDR4,3200.0,g-skill-flare-x-16-gb-ddr4-3200,16,97.8
+Corsair Vengeance RGB 32 GB,320.0,2,,Black,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,,Black,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+G.Skill Ripjaws V 8 GB,35.0,2,,Black / Red,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-8-gb-ddr4-2400,8,72.1
+Corsair Vengeance LPX 32 GB,150.0,4,3.437,Black / Yellow,8.889,16.0,DDR4,3600.0,corsair-vengeance-lpx-32-gb-ddr4-3600,32,95.4
+Corsair Vengeance RGB 32 GB,320.0,2,,Black,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,,Black,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+Corsair Vengeance LPX 16 GB,44.0,1,3.937,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,1,3.937,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,1,3.937,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,1,3.937,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance LPX 16 GB,44.0,1,3.937,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+G.Skill Ripjaws V 16 GB,75.0,2,,Black,10.0,16.0,DDR4,3200.0,g-skill-ripjaws-v-16-gb-ddr4-3200,16,84.0
+Corsair Vengeance LPX 16 GB,75.0,2,,Red,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,,Red,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,,Red,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+Corsair Vengeance LPX 8 GB,35.0,1,4.624,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,76.5
+Corsair Vengeance LPX 8 GB,35.0,1,4.624,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,71.1
+Corsair Vengeance LPX 8 GB,35.0,1,4.624,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,1,4.624,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,1,4.624,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,38.7
+G.Skill Ripjaws V 16 GB,50.0,2,,Black / Red,14.065,15.0,DDR4,2133.0,g-skill-ripjaws-v-16-gb-ddr4-2133,16,67.9
+Corsair Vengeance RGB 64 GB,319.99,4,5.0,Black / Gray,10.0,32.0,DDR5,6400.0,corsair-vengeance-rgb-64-gb-ddr5-6400,64,207.0
+Corsair Vengeance LPX 8 GB,40.0,1,4.624,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-8-gb-ddr4-2666,8,76.3
+Corsair Vengeance LPX 16 GB,44.0,2,4.624,Black,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,2,4.624,Black,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,2,4.624,Black,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,2,4.624,Black,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance LPX 16 GB,44.0,2,4.624,Black,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance 32 GB,180.0,2,3.468,White / Gray,14.286,40.0,DDR5,5600.0,corsair-vengeance-32-gb-ddr5-5600,32,162.0
+Crucial Ballistix Sport 8 GB,30.0,1,4.875,Gray / Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-8-gb-ddr4-2400,8,68.0
+G.Skill Flare X 32 GB,150.0,2,2.985,Black,10.0,16.0,DDR4,3200.0,g-skill-flare-x-32-gb-ddr4-3200,32,106.0
+Corsair Vengeance LPX 16 GB,44.0,2,2.999,White,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,2,2.999,White,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,2,2.999,White,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,2,2.999,White,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance LPX 16 GB,44.0,2,2.999,White,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance LPX 16 GB,90.0,2,,Black / Yellow,10.0,18.0,DDR4,3600.0,corsair-vengeance-lpx-16-gb-ddr4-3600,16,89.4
+Corsair Vengeance LPX 16 GB,42.0,2,4.624,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,4.624,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,4.624,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,4.624,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,80.9
+Corsair Vengeance LPX 16 GB,42.0,2,4.624,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,75.8
+Corsair Vengeance LPX 16 GB,42.0,2,4.624,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance LPX 16 GB,42.0,2,4.624,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance 8 GB,35.0,2,10.594,Black / Blue,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,2,10.594,Black / Blue,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+Corsair Vengeance LPX 32 GB,110.0,1,2.555,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,95.5
+Corsair Vengeance LPX 32 GB,110.0,1,2.555,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,1,2.555,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,1,2.555,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,1,2.555,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,75.8
+Kingston FURY 32 GB,102.42,1,3.201,White,14.286,40.0,DDR5,5600.0,kingston-fury-32-gb-ddr5-5600,32,161.0
+Kingston FURY 32 GB,102.42,1,3.201,White,14.286,40.0,DDR5,5600.0,kingston-fury-32-gb-ddr5-5600,32,161.0
+Corsair Vengeance LPX 32 GB,110.0,4,4.625,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,95.5
+Corsair Vengeance LPX 32 GB,110.0,4,4.625,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,4,4.625,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,4,4.625,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,4,4.625,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,75.8
+Corsair Vengeance 32 GB,180.0,2,,White,12.857,36.0,DDR5,5600.0,corsair-vengeance-32-gb-ddr5-5600,32,162.0
+Crucial Ballistix Sport LT 16 GB,65.0,2,,White,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,White,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,White,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Corsair Vengeance 32 GB,180.0,2,3.349,Black / Gray,14.286,40.0,DDR5,5600.0,corsair-vengeance-32-gb-ddr5-5600,32,162.0
+Kingston FURY 32 GB,121.99,2,3.812,White,14.286,40.0,DDR5,5600.0,kingston-fury-32-gb-ddr5-5600,32,161.0
+Kingston FURY 32 GB,121.99,2,3.812,White,14.286,40.0,DDR5,5600.0,kingston-fury-32-gb-ddr5-5600,32,161.0
+Crucial Ballistix Sport LT 8 GB,35.0,1,,Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-8-gb-ddr4-2400,8,43.1
+Crucial Ballistix Sport LT 8 GB,38.0,1,,,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,38.0,1,,,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,38.0,1,,,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+G.Skill Ripjaws V 16 GB,75.0,2,6.871,Black,10.0,16.0,DDR4,3200.0,g-skill-ripjaws-v-16-gb-ddr4-3200,16,84.0
+G.Skill Trident Z 16 GB,75.0,2,,Silver / White,8.75,14.0,DDR4,3200.0,g-skill-trident-z-16-gb-ddr4-3200,16,85.4
+Corsair Vengeance LPX 4 GB,20.0,1,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-4-gb-ddr4-2400,4,38.7
+G.Skill Trident Z 16 GB,75.0,2,4.334,Red / Silver,10.0,16.0,DDR4,3200.0,g-skill-trident-z-16-gb-ddr4-3200,16,85.4
+Corsair Vengeance LPX 32 GB,130.0,4,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-32-gb-ddr4-3000,32,84.4
+Corsair Vengeance RGB 32 GB,320.0,2,3.875,Black / Gray,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,3.875,Black / Gray,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+G.Skill Ripjaws V 16 GB,65.0,2,2.312,Red,14.167,17.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,2,2.312,Red,14.167,17.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,2,2.312,Red,14.167,17.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,2,2.312,Red,14.167,17.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,2,2.312,Red,14.167,17.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Flare X 16 GB,80.0,2,,Black,10.0,16.0,DDR4,3200.0,g-skill-flare-x-16-gb-ddr4-3200,16,97.8
+Corsair Vengeance 32 GB,119.99,2,3.75,Black,12.0,36.0,DDR5,6000.0,corsair-vengeance-32-gb-ddr5-6000,32,172.0
+G.Skill Trident Z 16 GB,75.0,2,8.471,Black / White,10.0,16.0,DDR4,3200.0,g-skill-trident-z-16-gb-ddr4-3200,16,85.4
+Crucial Ballistix Sport 8 GB,30.0,1,7.464,Black / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Crucial Ballistix Sport 8 GB,30.0,1,7.464,Black / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+G.Skill Trident Z RGB 16 GB,90.0,2,,Black,8.75,14.0,DDR4,3200.0,g-skill-trident-z-rgb-16-gb-ddr4-3200,16,84.3
+Corsair Vengeance RGB 32 GB,129.99,2,4.062,Black,11.875,38.0,DDR5,6400.0,corsair-vengeance-rgb-32-gb-ddr5-6400,32,185.0
+Crucial Ballistix Sport LT 32 GB,130.0,2,,White,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,130.0,2,,White,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,130.0,2,,White,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 8 GB,35.0,2,,Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-8-gb-ddr4-2400,8,43.1
+Corsair Vengeance LPX 8 GB,40.0,2,,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-8-gb-ddr4-3000,8,81.1
+Corsair Vengeance 8 GB,35.0,1,4.999,Black / Silver,12.5,10.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,1,4.999,Black / Silver,12.5,10.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+G.Skill Trident Z RGB 16 GB,90.0,2,,Black,10.0,15.0,DDR4,3000.0,g-skill-trident-z-rgb-16-gb-ddr4-3000,16,80.8
+Corsair Vengeance LPX 32 GB,150.0,2,,Black / Yellow,8.889,16.0,DDR4,3600.0,corsair-vengeance-lpx-32-gb-ddr4-3600,32,95.4
+Corsair Vengeance LPX 32 GB,130.0,2,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-32-gb-ddr4-3000,32,84.4
+Corsair Vengeance LPX 32 GB,150.0,2,,Black,10.0,18.0,DDR4,3600.0,corsair-vengeance-lpx-32-gb-ddr4-3600,32,95.4
+G.Skill Trident Z RGB 16 GB,90.0,2,3.011,Black,10.0,16.0,DDR4,3200.0,g-skill-trident-z-rgb-16-gb-ddr4-3200,16,84.3
+Corsair Vengeance LPX 16 GB,44.0,4,,Black / Yellow,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,4,,Black / Yellow,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,4,,Black / Yellow,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,4,,Black / Yellow,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance LPX 16 GB,44.0,4,,Black / Yellow,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance LPX 16 GB,42.0,2,,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,80.9
+Corsair Vengeance LPX 16 GB,42.0,2,,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,75.8
+Corsair Vengeance LPX 16 GB,42.0,2,,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance LPX 16 GB,42.0,2,,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance RGB 16 GB,95.0,2,3.436,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-16-gb-ddr4-3200,16,85.0
+Corsair Vengeance RGB Pro 16 GB,95.0,2,3.884,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-pro-16-gb-ddr4-3200,16,80.5
+Corsair Vengeance LPX 16 GB,60.0,2,,Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LED 16 GB,80.0,2,,Black / White,10.0,15.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black / White,10.0,15.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black / White,10.0,15.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance RGB Pro 32 GB,150.0,4,19.65,Black,8.75,14.0,DDR4,3200.0,corsair-vengeance-rgb-pro-32-gb-ddr4-3200,32,88.5
+Corsair Vengeance RGB 16 GB,90.0,2,,White,10.667,16.0,DDR4,3000.0,corsair-vengeance-rgb-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance RGB 16 GB,90.0,2,,White,10.667,16.0,DDR4,3000.0,corsair-vengeance-rgb-16-gb-ddr4-3000,16,81.5
+Corsair Vengeance LPX 32 GB,120.0,4,,White,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,87.5
+Corsair Vengeance LPX 32 GB,120.0,4,,White,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,84.9
+Corsair Vengeance LPX 8 GB,40.0,2,4.235,Red,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-8-gb-ddr4-2666,8,76.3
+Kingston FURY 16 GB,60.78,1,3.799,White,14.286,40.0,DDR5,5600.0,kingston-fury-16-gb-ddr5-5600,16,141.0
+Kingston FURY 16 GB,60.78,1,3.799,White,14.286,40.0,DDR5,5600.0,kingston-fury-16-gb-ddr5-5600,16,141.0
+Corsair Vengeance LPX 16 GB,60.0,2,,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance RGB 32 GB,320.0,2,,Black / Gray,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,,Black / Gray,12.0,36.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+G.Skill Ripjaws V 32 GB,120.0,2,,Red,14.065,15.0,DDR4,2133.0,g-skill-ripjaws-v-32-gb-ddr4-2133,32,70.7
+Corsair Vengeance RGB 32 GB,320.0,2,4.531,White,10.0,30.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,4.531,White,10.0,30.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+Corsair Vengeance LPX 8 GB,35.0,2,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,76.5
+Corsair Vengeance LPX 8 GB,35.0,2,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,71.1
+Corsair Vengeance LPX 8 GB,35.0,2,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,2,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,2,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,38.7
+G.Skill Ripjaws 4 16 GB,48.0,2,,Black,10.0,15.0,DDR4,3000.0,g-skill-ripjaws-4-16-gb-ddr4-3000,16,92.1
+G.Skill Ripjaws 4 16 GB,48.0,2,,Black,10.0,15.0,DDR4,3000.0,g-skill-ripjaws-4-16-gb-ddr4-3000,16,92.1
+G.Skill Ripjaws 4 16 GB,48.0,2,,Black,10.0,15.0,DDR4,3000.0,g-skill-ripjaws-4-16-gb-ddr4-3000,16,92.1
+Corsair Vengeance LPX 16 GB,60.0,2,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,85.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,76.7
+Corsair Vengeance LPX 32 GB,150.0,2,,Black,10.556,19.0,DDR4,3600.0,corsair-vengeance-lpx-32-gb-ddr4-3600,32,95.4
+Corsair Vengeance LPX 32 GB,120.0,2,9.119,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,87.5
+Corsair Vengeance LPX 32 GB,120.0,2,9.119,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,84.9
+G.Skill Ripjaws V 16 GB,65.0,2,,Blue,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,2,,Blue,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,2,,Blue,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,2,,Blue,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,2,,Blue,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+Corsair Vengeance RGB Pro 16 GB,95.0,2,6.624,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-pro-16-gb-ddr4-3200,16,80.5
+Corsair Vengeance 32 GB,120.5,2,3.766,White / Gray,12.0,36.0,DDR5,6000.0,corsair-vengeance-32-gb-ddr5-6000,32,172.0
+Corsair Vengeance LPX 8 GB,35.0,1,5.952,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,76.5
+Corsair Vengeance LPX 8 GB,35.0,1,5.952,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,71.1
+Corsair Vengeance LPX 8 GB,35.0,1,5.952,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,1,5.952,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,1,5.952,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,38.7
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,White,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Crucial Ballistix Elite 32 GB,130.0,4,,Black,8.889,16.0,DDR4,3600.0,crucial-ballistix-elite-32-gb-ddr4-3600,32,108.0
+Corsair Vengeance RGB Pro 16 GB,95.0,1,,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-pro-16-gb-ddr4-3200,16,80.5
+Corsair Vengeance 8 GB,35.0,2,6.374,Black / Yellow,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,2,6.374,Black / Yellow,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+G.Skill Ripjaws 4 16 GB,48.0,2,,Blue,10.0,15.0,DDR4,3000.0,g-skill-ripjaws-4-16-gb-ddr4-3000,16,92.1
+G.Skill Ripjaws 4 16 GB,48.0,2,,Blue,10.0,15.0,DDR4,3000.0,g-skill-ripjaws-4-16-gb-ddr4-3000,16,92.1
+G.Skill Ripjaws 4 16 GB,48.0,2,,Blue,10.0,15.0,DDR4,3000.0,g-skill-ripjaws-4-16-gb-ddr4-3000,16,92.1
+Corsair Vengeance LPX 32 GB,130.0,2,,White,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-32-gb-ddr4-3000,32,84.4
+Corsair Vengeance LED 16 GB,85.0,2,,Black / White,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+Corsair Vengeance LED 16 GB,85.0,2,,Black / White,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+Corsair Vengeance LED 16 GB,85.0,2,,Black / White,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Corsair Vengeance LPX 16 GB,75.0,2,7.812,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,7.812,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,7.812,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+Corsair Vengeance Pro 16 GB,75.0,2,,Black / Red,9.167,11.0,DDR3,2400.0,corsair-vengeance-pro-16-gb-ddr3-2400,16,58.1
+Crucial Ballistix Sport 8 GB,30.0,2,,Black / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Crucial Ballistix Sport 8 GB,30.0,2,,Black / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Corsair Vengeance LPX 16 GB,45.0,2,,Red,10.714,15.0,DDR4,2800.0,corsair-vengeance-lpx-16-gb-ddr4-2800,16,88.5
+Corsair Vengeance LPX 16 GB,45.0,2,,Red,10.714,15.0,DDR4,2800.0,corsair-vengeance-lpx-16-gb-ddr4-2800,16,88.5
+Corsair Vengeance LPX 16 GB,45.0,2,,Red,10.714,15.0,DDR4,2800.0,corsair-vengeance-lpx-16-gb-ddr4-2800,16,88.5
+G.Skill Ripjaws V 16 GB,75.0,2,,Black,8.75,14.0,DDR4,3200.0,g-skill-ripjaws-v-16-gb-ddr4-3200,16,84.0
+G.Skill Flare X 32 GB,150.0,2,,Black,8.75,14.0,DDR4,3200.0,g-skill-flare-x-32-gb-ddr4-3200,32,106.0
+Corsair Vengeance RGB 32 GB,320.0,2,,Gray,10.0,30.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,206.0
+Corsair Vengeance RGB 32 GB,320.0,2,,Gray,10.0,30.0,DDR5,6000.0,corsair-vengeance-rgb-32-gb-ddr5-6000,32,178.0
+Corsair Vengeance LPX 32 GB,120.0,4,5.406,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,87.5
+Corsair Vengeance LPX 32 GB,120.0,4,5.406,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,84.9
+G.Skill Ripjaws 4 16 GB,42.0,2,,Red,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-4-16-gb-ddr4-2400,16,70.6
+Crucial Ballistix Sport 8 GB,30.0,2,4.737,Black / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Crucial Ballistix Sport 8 GB,30.0,2,4.737,Black / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Corsair Vengeance RGB 16 GB,90.0,2,,Black,10.0,15.0,DDR4,3000.0,corsair-vengeance-rgb-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance RGB 16 GB,90.0,2,,Black,10.0,15.0,DDR4,3000.0,corsair-vengeance-rgb-16-gb-ddr4-3000,16,81.5
+Corsair Vengeance RGB 16 GB,90.0,2,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-rgb-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance RGB 16 GB,90.0,2,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-rgb-16-gb-ddr4-3000,16,81.5
+G.Skill Trident Z RGB 16 GB,90.0,2,18.424,Black,8.75,14.0,DDR4,3200.0,g-skill-trident-z-rgb-16-gb-ddr4-3200,16,84.3
+Corsair Vengeance LPX 16 GB,90.0,2,,Black / Yellow,7.778,14.0,DDR4,3600.0,corsair-vengeance-lpx-16-gb-ddr4-3600,16,89.4
+Corsair Vengeance RGB Pro 16 GB,95.0,2,3.749,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-pro-16-gb-ddr4-3200,16,80.5
+G.Skill Trident Z 16 GB,80.0,2,,Red / Silver,10.0,15.0,DDR4,3000.0,g-skill-trident-z-16-gb-ddr4-3000,16,84.3
+G.Skill Ripjaws V 16 GB,65.0,2,,Silver,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,2,,Silver,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,2,,Silver,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,2,,Silver,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,2,,Silver,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black / Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black / Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black / Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Crucial Ballistix Sport LT 8 GB,35.0,2,,Red,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-8-gb-ddr4-2400,8,43.1
+Corsair Vengeance LPX 16 GB,42.0,2,,Red,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,,Red,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,,Red,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,,Red,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,80.9
+Corsair Vengeance LPX 16 GB,42.0,2,,Red,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,75.8
+Corsair Vengeance LPX 16 GB,42.0,2,,Red,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance LPX 16 GB,42.0,2,,Red,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+G.Skill Ripjaws V 8 GB,30.0,2,,Black / Red,14.065,15.0,DDR4,2133.0,g-skill-ripjaws-v-8-gb-ddr4-2133,8,68.5
+Corsair Vengeance LPX 32 GB,110.0,2,,Red,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,95.5
+Corsair Vengeance LPX 32 GB,110.0,2,,Red,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,2,,Red,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,2,,Red,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,2,,Red,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,75.8
+Corsair Vengeance LPX 16 GB,60.0,1,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,1,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,1,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,1,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,1,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,1,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,1,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,1,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,1,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,1,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,1,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 4 GB,20.0,1,7.758,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-4-gb-ddr4-2400,4,38.7
+Corsair Vengeance LPX 8 GB,40.0,1,,Red,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-8-gb-ddr4-2666,8,76.3
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Corsair Vengeance LPX 32 GB,130.0,4,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-32-gb-ddr4-3000,32,84.4
+Corsair Vengeance LPX 8 GB,40.0,2,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-8-gb-ddr4-3000,8,81.1
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Black / Red,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Black / Red,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Black / Red,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Corsair Vengeance RGB 32 GB,160.0,4,9.414,Black,10.0,15.0,DDR4,3000.0,corsair-vengeance-rgb-32-gb-ddr4-3000,32,87.0
+Crucial Ballistix Sport LT 8 GB,38.0,2,,White / Silver,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,38.0,2,,White / Silver,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,38.0,2,,White / Silver,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+Corsair Vengeance LPX 16 GB,90.0,2,5.598,Black / Yellow,11.111,20.0,DDR4,3600.0,corsair-vengeance-lpx-16-gb-ddr4-3600,16,89.4
+Corsair Vengeance LED 16 GB,170.0,2,10.625,Black / White,13.333,16.0,DDR4,2400.0,corsair-vengeance-led-16-gb-ddr4-2400,16,73.1
+Corsair Vengeance LED 16 GB,170.0,2,10.625,Black / White,13.333,16.0,DDR4,2400.0,corsair-vengeance-led-16-gb-ddr4-2400,16,73.1
+Corsair Vengeance LED 16 GB,170.0,2,10.625,Black / White,13.333,16.0,DDR4,2400.0,corsair-vengeance-led-16-gb-ddr4-2400,16,73.1
+G.Skill Flare X 32 GB,150.0,4,,Black,10.0,16.0,DDR4,3200.0,g-skill-flare-x-32-gb-ddr4-3200,32,106.0
+Corsair Vengeance 8 GB,35.0,1,5.124,Black / Silver,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,1,5.124,Black / Silver,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+Corsair Vengeance LPX 16 GB,42.0,4,,Black,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,4,,Black,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,4,,Black,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,4,,Black,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,80.9
+Corsair Vengeance LPX 16 GB,42.0,4,,Black,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,75.8
+Corsair Vengeance LPX 16 GB,42.0,4,,Black,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance LPX 16 GB,42.0,4,,Black,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+G.Skill Trident Z 16 GB,75.0,2,,Red / Silver,8.75,14.0,DDR4,3200.0,g-skill-trident-z-16-gb-ddr4-3200,16,85.4
+Corsair Vengeance RGB 16 GB,95.0,2,,White,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-16-gb-ddr4-3200,16,85.0
+Crucial Ballistix Sport LT 8 GB,35.0,1,,Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-8-gb-ddr4-2400,8,43.1
+Corsair Vengeance LPX 16 GB,60.0,1,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,1,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,1,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,1,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,1,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,1,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,1,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,1,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,1,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,1,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,1,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 32 GB,120.0,2,,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,87.5
+Corsair Vengeance LPX 32 GB,120.0,2,,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,84.9
+G.Skill Trident Z 16 GB,110.0,1,,Black,10.0,18.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,97.8
+G.Skill Trident Z 16 GB,110.0,1,,Black,10.0,18.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,96.2
+Corsair Vengeance LPX 16 GB,60.0,4,7.719,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,4,7.719,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,4,7.719,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,4,7.719,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,4,7.719,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,4,7.719,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,4,7.719,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,4,7.719,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,4,7.719,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,4,7.719,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,4,7.719,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+G.Skill Trident Z 16 GB,75.0,2,6.812,Black / White,9.375,15.0,DDR4,3200.0,g-skill-trident-z-16-gb-ddr4-3200,16,85.4
+G.Skill Ripjaws 4 GB,18.0,2,6.272,Black / Red,11.25,9.0,DDR3,1600.0,g-skill-ripjaws-4-gb-ddr3-1600,4,29.0
+Corsair Vengeance Pro 16 GB,75.0,2,,Black / Gold,9.167,11.0,DDR3,2400.0,corsair-vengeance-pro-16-gb-ddr3-2400,16,58.1
+Corsair Vengeance LPX 16 GB,44.0,2,,Red,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,2,,Red,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,2,,Red,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,2,,Red,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance LPX 16 GB,44.0,2,,Red,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+G.Skill Ripjaws V 32 GB,130.0,4,,Black / Red,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-32-gb-ddr4-2400,32,76.1
+Crucial Ballistix Sport LT 32 GB,130.0,2,,Silver / Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,130.0,2,,Silver / Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,130.0,2,,Silver / Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Corsair Vengeance LPX 16 GB,42.0,2,,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,80.9
+Corsair Vengeance LPX 16 GB,42.0,2,,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,75.8
+Corsair Vengeance LPX 16 GB,42.0,2,,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance LPX 16 GB,42.0,2,,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+G.Skill Trident Z 64 GB,320.0,8,13.705,Black / Yellow,10.0,16.0,DDR4,3200.0,g-skill-trident-z-64-gb-ddr4-3200,64,116.0
+G.Skill Trident Z 64 GB,320.0,8,13.705,Black / Yellow,10.0,16.0,DDR4,3200.0,g-skill-trident-z-64-gb-ddr4-3200,64,103.0
+Corsair Vengeance RGB 32 GB,160.0,2,,Black,10.0,15.0,DDR4,3000.0,corsair-vengeance-rgb-32-gb-ddr4-3000,32,87.0
+G.Skill Trident Z 16 GB,75.0,2,3.533,Silver / Black,10.0,16.0,DDR4,3200.0,g-skill-trident-z-16-gb-ddr4-3200,16,85.4
+Corsair Vengeance LPX 16 GB,75.0,1,,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,1,,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,1,,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+G.Skill Ripjaws V 64 GB,280.0,2,,Red,8.75,14.0,DDR4,3200.0,g-skill-ripjaws-v-64-gb-ddr4-3200,64,94.5
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair ValueSelect 4 GB,19.86,1,4.965,Black / Yellow,14.065,15.0,DDR4,2133.0,corsair-valueselect-4-gb-ddr4-2133,4,37.3
+Corsair Vengeance LPX 16 GB,45.0,4,,Black / Yellow,10.714,15.0,DDR4,2800.0,corsair-vengeance-lpx-16-gb-ddr4-2800,16,88.5
+Corsair Vengeance LPX 16 GB,45.0,4,,Black / Yellow,10.714,15.0,DDR4,2800.0,corsair-vengeance-lpx-16-gb-ddr4-2800,16,88.5
+Corsair Vengeance LPX 16 GB,45.0,4,,Black / Yellow,10.714,15.0,DDR4,2800.0,corsair-vengeance-lpx-16-gb-ddr4-2800,16,88.5
+G.Skill Ripjaws V 32 GB,130.0,2,,Black,11.667,14.0,DDR4,2400.0,g-skill-ripjaws-v-32-gb-ddr4-2400,32,76.1
+Crucial Ballistix Sport LT 16 GB,65.0,4,,White,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,4,,White,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,4,,White,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Corsair Vengeance LPX 32 GB,130.0,2,,Black / Yellow,10.667,16.0,DDR4,3000.0,corsair-vengeance-lpx-32-gb-ddr4-3000,32,84.4
+Crucial Ballistix Sport LT 16 GB,65.0,1,,Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,1,,Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,1,,Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 8 GB,38.0,1,,Gray,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,38.0,1,,Gray,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,38.0,1,,Gray,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+Corsair Vengeance RGB Pro 32 GB,150.0,2,,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-pro-32-gb-ddr4-3200,32,88.5
+Corsair Vengeance LPX 32 GB,150.0,2,,Red,10.0,18.0,DDR4,3600.0,corsair-vengeance-lpx-32-gb-ddr4-3600,32,95.4
+G.Skill Ripjaws V 16 GB,75.0,2,8.062,Black,10.0,16.0,DDR4,3200.0,g-skill-ripjaws-v-16-gb-ddr4-3200,16,84.0
+Corsair XMS3 8 GB,30.0,2,,Black / Silver,11.25,9.0,DDR3,1600.0,corsair-xms3-8-gb-ddr3-1600,8,49.6
+Crucial Ballistix Sport 16 GB,50.0,4,,Gray / Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-16-gb-ddr4-2400,16,97.4
+Crucial Ballistix Sport 16 GB,50.0,4,,Gray / Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-16-gb-ddr4-2400,16,77.0
+Crucial Ballistix Sport LT 16 GB,65.0,4,,Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,4,,Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,4,,Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Corsair Vengeance LPX 16 GB,40.0,2,,Red,12.189,13.0,DDR4,2133.0,corsair-vengeance-lpx-16-gb-ddr4-2133,16,69.2
+Corsair Vengeance LPX 16 GB,40.0,2,,Red,12.189,13.0,DDR4,2133.0,corsair-vengeance-lpx-16-gb-ddr4-2133,16,69.2
+Corsair Vengeance LPX 16 GB,75.0,4,,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,4,,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,4,,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+Corsair Vengeance LPX 32 GB,120.0,2,,Red,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,87.5
+Corsair Vengeance LPX 32 GB,120.0,2,,Red,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,84.9
+Corsair Vengeance LED 16 GB,85.0,2,,Black / Red,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+Corsair Vengeance LED 16 GB,85.0,2,,Black / Red,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+Corsair Vengeance LED 16 GB,85.0,2,,Black / Red,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+Corsair Vengeance LED 16 GB,75.0,2,,Black / White,12.003,16.0,DDR4,2666.0,corsair-vengeance-led-16-gb-ddr4-2666,16,74.0
+Corsair Vengeance LED 16 GB,75.0,2,,Black / White,12.003,16.0,DDR4,2666.0,corsair-vengeance-led-16-gb-ddr4-2666,16,74.0
+Corsair Vengeance LED 16 GB,75.0,2,,Black / White,12.003,16.0,DDR4,2666.0,corsair-vengeance-led-16-gb-ddr4-2666,16,74.0
+G.Skill Trident Z RGB 16 GB,90.0,2,,Black,9.333,14.0,DDR4,3000.0,g-skill-trident-z-rgb-16-gb-ddr4-3000,16,80.8
+Crucial Ballistix Sport LT 16 GB,65.0,1,,Red,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,1,,Red,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,1,,Red,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Corsair Vengeance RGB 16 GB,95.0,2,8.516,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-16-gb-ddr4-3200,16,85.0
+Corsair Vengeance RGB Pro 16 GB,95.0,2,,Black,8.75,14.0,DDR4,3200.0,corsair-vengeance-rgb-pro-16-gb-ddr4-3200,16,80.5
+Kingston FURY 16 GB,114.55,1,7.159,White,14.286,40.0,DDR5,5600.0,kingston-fury-16-gb-ddr5-5600,16,141.0
+Kingston FURY 16 GB,114.55,1,7.159,White,14.286,40.0,DDR5,5600.0,kingston-fury-16-gb-ddr5-5600,16,141.0
+Crucial Ballistix Sport LT 8 GB,35.0,1,,Red,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-8-gb-ddr4-2400,8,43.1
+Corsair Vengeance 8 GB,35.0,2,,Black / Red,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,2,,Black / Red,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+Crucial Ballistix Sport 32 GB,110.0,4,,Gray / Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-32-gb-ddr4-2400,32,110.0
+Corsair Vengeance LPX 16 GB,44.0,4,,Red,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,4,,Red,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,4,,Red,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,4,,Red,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance LPX 16 GB,44.0,4,,Red,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance LPX 4 GB,20.0,1,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-4-gb-ddr4-2400,4,38.7
+G.Skill Ripjaws 4 128 GB,700.0,8,,Black,11.667,14.0,DDR4,2400.0,g-skill-ripjaws-4-128-gb-ddr4-2400,128,121.0
+Crucial Ballistix Sport LT 8 GB,35.0,2,,White,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-8-gb-ddr4-2400,8,43.1
+G.Skill Trident Z 16 GB,110.0,2,,Silver / Red,8.333,15.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,97.8
+G.Skill Trident Z 16 GB,110.0,2,,Silver / Red,8.333,15.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,96.2
+Corsair Vengeance RGB 16 GB,75.0,2,,Black,12.003,16.0,DDR4,2666.0,corsair-vengeance-rgb-16-gb-ddr4-2666,16,75.7
+Corsair Vengeance RGB 16 GB,90.0,2,,White,10.0,18.0,DDR4,3600.0,corsair-vengeance-rgb-16-gb-ddr4-3600,16,89.0
+Corsair Vengeance LPX 32 GB,130.0,4,,Red / Black,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-32-gb-ddr4-3000,32,84.4
+Corsair Vengeance RGB Pro 32 GB,150.0,4,,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-pro-32-gb-ddr4-3200,32,88.5
+Corsair Vengeance LPX 32 GB,150.0,2,,Black / Yellow,11.111,20.0,DDR4,3600.0,corsair-vengeance-lpx-32-gb-ddr4-3600,32,95.4
+Corsair Vengeance LPX 16 GB,75.0,2,,Black,11.25,18.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,,Black,11.25,18.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,,Black,11.25,18.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+Corsair Vengeance LPX 16 GB,90.0,2,,Black / Yellow,10.556,19.0,DDR4,3600.0,corsair-vengeance-lpx-16-gb-ddr4-3600,16,89.4
+Corsair Vengeance 8 GB,35.0,2,,Black / Red,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,2,,Black / Red,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+Corsair XMS3 8 GB,30.0,2,,Black / White,11.25,9.0,DDR3,1600.0,corsair-xms3-8-gb-ddr3-1600,8,49.6
+Corsair Vengeance LPX 32 GB,120.0,4,,Black,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Black,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Black,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Black,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,85.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Black,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,76.7
+Corsair Vengeance LPX 16 GB,40.0,4,,Black,14.065,15.0,DDR4,2133.0,corsair-vengeance-lpx-16-gb-ddr4-2133,16,69.2
+Corsair Vengeance LPX 16 GB,40.0,4,,Black,14.065,15.0,DDR4,2133.0,corsair-vengeance-lpx-16-gb-ddr4-2133,16,69.2
+Crucial Ballistix Sport 8 GB,30.0,2,,Black / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Crucial Ballistix Sport 8 GB,30.0,2,,Black / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+G.Skill Trident Z 16 GB,75.0,4,,Red / Silver,10.0,16.0,DDR4,3200.0,g-skill-trident-z-16-gb-ddr4-3200,16,85.4
+G.Skill Trident Z 8 GB,55.0,2,,Red / Silver,9.444,17.0,DDR4,3600.0,g-skill-trident-z-8-gb-ddr4-3600,8,91.4
+Corsair Vengeance LPX 32 GB,120.0,4,,Black / Yellow,10.0,12.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Black / Yellow,10.0,12.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Black / Yellow,10.0,12.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Black / Yellow,10.0,12.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,85.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Black / Yellow,10.0,12.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,76.7
+Corsair Vengeance LPX 32 GB,110.0,2,,White,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,95.5
+Corsair Vengeance LPX 32 GB,110.0,2,,White,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,2,,White,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,2,,White,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,2,,White,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,75.8
+G.Skill Trident Z 16 GB,110.0,2,,Black / White,8.889,16.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,97.8
+G.Skill Trident Z 16 GB,110.0,2,,Black / White,8.889,16.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,96.2
+Corsair Vengeance RGB 32 GB,160.0,2,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-rgb-32-gb-ddr4-3000,32,87.0
+Crucial Ballistix Elite 16 GB,85.0,2,,Black,8.889,16.0,DDR4,3600.0,crucial-ballistix-elite-16-gb-ddr4-3600,16,95.2
+Corsair Vengeance LPX 32 GB,120.0,1,,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,1,,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,1,,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,1,,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,85.1
+Corsair Vengeance LPX 32 GB,120.0,1,,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,76.7
+Corsair Vengeance LPX 16 GB,90.0,2,,Black / Yellow,11.111,20.0,DDR4,3600.0,corsair-vengeance-lpx-16-gb-ddr4-3600,16,89.4
+Corsair Vengeance 8 GB,35.0,2,,Black / Silver,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,2,,Black / Silver,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+G.Skill Ripjaws 4 GB,18.0,1,5.025,Black / Red,11.25,9.0,DDR3,1600.0,g-skill-ripjaws-4-gb-ddr3-1600,4,29.0
+Corsair Vengeance 8 GB,35.0,2,,Black / Blue,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,2,,Black / Blue,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+Crucial Ballistix Sport 8 GB,30.0,2,,Gray / Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-8-gb-ddr4-2400,8,68.0
+Corsair Vengeance LPX 32 GB,110.0,4,,Blue,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,95.5
+Corsair Vengeance LPX 32 GB,110.0,4,,Blue,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,4,,Blue,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,4,,Blue,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,4,,Blue,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,75.8
+Corsair Vengeance Pro 16 GB,75.0,2,,Black / Red,9.167,11.0,DDR3,2400.0,corsair-vengeance-pro-16-gb-ddr3-2400,16,58.1
+Corsair Vengeance LPX 16 GB,75.0,4,,Black / White,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,4,,Black / White,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,4,,Black / White,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+Corsair Vengeance LPX 8 GB,35.0,1,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,76.5
+Corsair Vengeance LPX 8 GB,35.0,1,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,71.1
+Corsair Vengeance LPX 8 GB,35.0,1,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,1,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,1,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,38.7
+Corsair Vengeance LPX 16 GB,75.0,4,,Black / Yellow,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,4,,Black / Yellow,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,4,,Black / Yellow,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+G.Skill Ripjaws V 32 GB,120.0,4,,Black / Red,14.065,15.0,DDR4,2133.0,g-skill-ripjaws-v-32-gb-ddr4-2133,32,70.7
+G.Skill Ripjaws V 16 GB,65.0,4,,Black / Red,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,4,,Black / Red,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,4,,Black / Red,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,4,,Black / Red,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,65.0,4,,Black / Red,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-v-16-gb-ddr4-2400,16,71.5
+G.Skill Ripjaws V 16 GB,75.0,2,,Black,9.375,15.0,DDR4,3200.0,g-skill-ripjaws-v-16-gb-ddr4-3200,16,84.0
+G.Skill Ripjaws V 64 GB,280.0,4,,Black,9.375,15.0,DDR4,3200.0,g-skill-ripjaws-v-64-gb-ddr4-3200,64,94.5
+G.Skill Ripjaws V 16 GB,75.0,2,,Red,9.375,15.0,DDR4,3200.0,g-skill-ripjaws-v-16-gb-ddr4-3200,16,84.0
+Crucial Ballistix Sport LT 32 GB,130.0,4,,White / Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,130.0,4,,White / Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,130.0,4,,White / Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+G.Skill Trident Z 16 GB,75.0,2,,Black / White,8.75,14.0,DDR4,3200.0,g-skill-trident-z-16-gb-ddr4-3200,16,85.4
+Corsair Vengeance LED 16 GB,80.0,2,,Black / Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black / Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black / Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance RGB 16 GB,95.0,2,,Black,9.233,16.0,DDR4,3466.0,corsair-vengeance-rgb-16-gb-ddr4-3466,16,91.3
+Corsair Vengeance RGB 32 GB,160.0,4,,White,10.667,16.0,DDR4,3000.0,corsair-vengeance-rgb-32-gb-ddr4-3000,32,87.0
+Corsair Vengeance LPX 32 GB,150.0,4,,Black / Yellow,8.889,16.0,DDR4,3600.0,corsair-vengeance-lpx-32-gb-ddr4-3600,32,95.4
+G.Skill Ripjaws V 16 GB,75.0,2,,Red,10.0,16.0,DDR4,3200.0,g-skill-ripjaws-v-16-gb-ddr4-3200,16,84.0
+Corsair Vengeance LPX 32 GB,120.0,4,,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,87.5
+Corsair Vengeance LPX 32 GB,120.0,4,,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,84.9
+G.Skill Ripjaws 4 GB,18.0,1,,Black / Red,11.25,9.0,DDR3,1600.0,g-skill-ripjaws-4-gb-ddr3-1600,4,29.0
+Corsair Vengeance 8 GB,35.0,4,,Black / Red,10.0,8.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,4,,Black / Red,10.0,8.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+Corsair Vengeance Pro 16 GB,75.0,2,,Black / Red,8.333,10.0,DDR3,2400.0,corsair-vengeance-pro-16-gb-ddr3-2400,16,58.1
+Crucial Ballistix Sport LT 8 GB,35.0,2,,Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-8-gb-ddr4-2400,8,43.1
+Corsair Vengeance LPX 32 GB,130.0,4,,Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-32-gb-ddr4-3000,32,84.4
+Corsair Vengeance LPX 8 GB,35.0,2,,Red,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,76.5
+Corsair Vengeance LPX 8 GB,35.0,2,,Red,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,71.1
+Corsair Vengeance LPX 8 GB,35.0,2,,Red,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,2,,Red,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,2,,Red,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,38.7
+Corsair Vengeance LPX 8 GB,40.0,2,,Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-8-gb-ddr4-3000,8,81.1
+Corsair Vengeance LPX 16 GB,42.0,4,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,4,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,4,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,4,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,80.9
+Corsair Vengeance LPX 16 GB,42.0,4,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,75.8
+Corsair Vengeance LPX 16 GB,42.0,4,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance LPX 16 GB,42.0,4,,Black / Yellow,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+G.Skill Ripjaws V 16 GB,75.0,2,,Silver,10.0,16.0,DDR4,3200.0,g-skill-ripjaws-v-16-gb-ddr4-3200,16,84.0
+G.Skill Ripjaws V 16 GB,75.0,2,,Red,8.75,14.0,DDR4,3200.0,g-skill-ripjaws-v-16-gb-ddr4-3200,16,84.0
+G.Skill Ripjaws V 64 GB,280.0,8,,Red,9.375,15.0,DDR4,3200.0,g-skill-ripjaws-v-64-gb-ddr4-3200,64,94.5
+Corsair Vengeance LED 16 GB,75.0,2,,Black / Red,12.003,16.0,DDR4,2666.0,corsair-vengeance-led-16-gb-ddr4-2666,16,74.0
+Corsair Vengeance LED 16 GB,75.0,2,,Black / Red,12.003,16.0,DDR4,2666.0,corsair-vengeance-led-16-gb-ddr4-2666,16,74.0
+Corsair Vengeance LED 16 GB,75.0,2,,Black / Red,12.003,16.0,DDR4,2666.0,corsair-vengeance-led-16-gb-ddr4-2666,16,74.0
+G.Skill Trident Z 16 GB,75.0,2,,Silver / White,8.75,14.0,DDR4,3200.0,g-skill-trident-z-16-gb-ddr4-3200,16,85.4
+Corsair Vengeance RGB 16 GB,90.0,2,,Black,10.0,18.0,DDR4,3600.0,corsair-vengeance-rgb-16-gb-ddr4-3600,16,89.0
+Corsair Vengeance LED 16 GB,85.0,2,,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+Corsair Vengeance LED 16 GB,85.0,2,,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+Corsair Vengeance LED 16 GB,85.0,2,,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+Corsair Vengeance LPX 16 GB,75.0,2,,Red / Black,8.75,14.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,,Red / Black,8.75,14.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,,Red / Black,8.75,14.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+Corsair Vengeance RGB 32 GB,160.0,4,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-rgb-32-gb-ddr4-3000,32,87.0
+Corsair Vengeance LPX 16 GB,42.0,2,,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,2,,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,80.9
+Corsair Vengeance LPX 16 GB,42.0,2,,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,75.8
+Corsair Vengeance LPX 16 GB,42.0,2,,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance LPX 16 GB,42.0,2,,Black / Yellow,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+G.Skill Flare X 32 GB,150.0,4,,Black,8.75,14.0,DDR4,3200.0,g-skill-flare-x-32-gb-ddr4-3200,32,106.0
+Crucial Ballistix Sport LT 8 GB,38.0,1,,Red / Black,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,38.0,1,,Red / Black,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,38.0,1,,Red / Black,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,38.0,2,,Silver / Gray,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,38.0,2,,Silver / Gray,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,38.0,2,,Silver / Gray,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+G.Skill Trident Z 16 GB,110.0,2,,Silver / White,8.889,16.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,97.8
+G.Skill Trident Z 16 GB,110.0,2,,Silver / White,8.889,16.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,96.2
+Corsair Vengeance LPX 32 GB,130.0,4,,Black / Yellow,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-32-gb-ddr4-3000,32,84.4
+Corsair Vengeance LPX 16 GB,75.0,2,,Gray,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,,Gray,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,,Gray,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+Corsair Vengeance LPX 16 GB,60.0,2,,Gray,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Gray,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Gray,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Gray,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Gray,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Gray,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Gray,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,2,,Gray,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,Gray,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,Gray,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,2,,Gray,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance RGB Pro 32 GB,150.0,4,,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-rgb-pro-32-gb-ddr4-3200,32,88.5
+G.Skill Ripjaws V 8 GB,35.0,1,,Red,14.167,17.0,DDR4,2400.0,g-skill-ripjaws-v-8-gb-ddr4-2400,8,72.1
+Corsair Vengeance 8 GB,35.0,2,,Black / White,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,2,,Black / White,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+Corsair Vengeance 64 GB,250.0,8,,Black / Silver,11.25,9.0,DDR3,1600.0,corsair-vengeance-64-gb-ddr3-1600,64,82.1
+Corsair Vengeance LPX 16 GB,44.0,4,,Black / Yellow,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,4,,Black / Yellow,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,4,,Black / Yellow,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,4,,Black / Yellow,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance LPX 16 GB,44.0,4,,Black / Yellow,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Crucial Ballistix Sport 16 GB,50.0,2,,Gray / Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-16-gb-ddr4-2400,16,97.4
+Crucial Ballistix Sport 16 GB,50.0,2,,Gray / Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-16-gb-ddr4-2400,16,77.0
+G.Skill Ripjaws 4 16 GB,65.0,4,,Black,11.429,16.0,DDR4,2800.0,g-skill-ripjaws-4-16-gb-ddr4-2800,16,91.9
+G.Skill Ripjaws 4 16 GB,65.0,4,,Black,11.429,16.0,DDR4,2800.0,g-skill-ripjaws-4-16-gb-ddr4-2800,16,91.9
+G.Skill Ripjaws 4 16 GB,65.0,4,,Black,11.429,16.0,DDR4,2800.0,g-skill-ripjaws-4-16-gb-ddr4-2800,16,91.9
+G.Skill Ripjaws 4 16 GB,48.0,4,,Black,10.0,15.0,DDR4,3000.0,g-skill-ripjaws-4-16-gb-ddr4-3000,16,92.1
+G.Skill Ripjaws 4 16 GB,48.0,4,,Black,10.0,15.0,DDR4,3000.0,g-skill-ripjaws-4-16-gb-ddr4-3000,16,92.1
+G.Skill Ripjaws 4 16 GB,48.0,4,,Black,10.0,15.0,DDR4,3000.0,g-skill-ripjaws-4-16-gb-ddr4-3000,16,92.1
+Corsair Vengeance LPX 32 GB,110.0,4,,Black,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,95.5
+Corsair Vengeance LPX 32 GB,110.0,4,,Black,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,4,,Black,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,4,,Black,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,4,,Black,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,75.8
+Corsair Vengeance LPX 32 GB,120.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,85.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,76.7
+Corsair Vengeance LPX 32 GB,110.0,4,,Red,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,95.5
+Corsair Vengeance LPX 32 GB,110.0,4,,Red,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,4,,Red,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,4,,Red,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,4,,Red,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,75.8
+G.Skill Ripjaws 4 16 GB,42.0,4,,Black,11.667,14.0,DDR4,2400.0,g-skill-ripjaws-4-16-gb-ddr4-2400,16,70.6
+Corsair Vengeance LPX 16 GB,75.0,4,,Red,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,4,,Red,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,4,,Red,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+Corsair Vengeance LPX 32 GB,120.0,4,,Blue,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Blue,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Blue,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Blue,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,85.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Blue,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,76.7
+Corsair Vengeance LPX 16 GB,75.0,4,,Black / Yellow,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,4,,Black / Yellow,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,4,,Black / Yellow,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+Crucial Ballistix Sport LT 16 GB,65.0,2,,White / Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,White / Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,White / Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport 8 GB,30.0,2,,Black / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Crucial Ballistix Sport 8 GB,30.0,2,,Black / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+G.Skill Trident Z 16 GB,80.0,2,,Red / Silver,10.0,15.0,DDR4,3000.0,g-skill-trident-z-16-gb-ddr4-3000,16,84.3
+G.Skill Trident Z 16 GB,75.0,2,,Red / Silver,10.0,16.0,DDR4,3200.0,g-skill-trident-z-16-gb-ddr4-3200,16,85.4
+G.Skill Ripjaws V 16 GB,75.0,4,,Red,10.0,16.0,DDR4,3200.0,g-skill-ripjaws-v-16-gb-ddr4-3200,16,84.0
+G.Skill Trident Z 16 GB,110.0,2,,Red / Silver,9.444,17.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,97.8
+G.Skill Trident Z 16 GB,110.0,2,,Red / Silver,9.444,17.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,96.2
+G.Skill Trident Z 16 GB,110.0,2,,Red / Silver,8.889,16.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,97.8
+G.Skill Trident Z 16 GB,110.0,2,,Red / Silver,8.889,16.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,96.2
+G.Skill Ripjaws V 64 GB,280.0,4,,Red,9.375,15.0,DDR4,3200.0,g-skill-ripjaws-v-64-gb-ddr4-3200,64,94.5
+Corsair Vengeance LPX 32 GB,150.0,4,,Black / Yellow,10.0,18.0,DDR4,3600.0,corsair-vengeance-lpx-32-gb-ddr4-3600,32,95.4
+Corsair Vengeance LPX 4 GB,20.0,1,,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-4-gb-ddr4-2400,4,38.7
+Corsair Vengeance LPX 32 GB,130.0,2,,Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-32-gb-ddr4-3000,32,84.4
+G.Skill Ripjaws V 64 GB,280.0,8,,Black,8.75,14.0,DDR4,3200.0,g-skill-ripjaws-v-64-gb-ddr4-3200,64,94.5
+Corsair Vengeance LPX 32 GB,110.0,4,,White,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,95.5
+Corsair Vengeance LPX 32 GB,110.0,4,,White,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,4,,White,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,4,,White,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,84.7
+Corsair Vengeance LPX 32 GB,110.0,4,,White,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-32-gb-ddr4-2666,32,75.8
+G.Skill Trident Z 16 GB,75.0,2,,Black / Orange,8.75,14.0,DDR4,3200.0,g-skill-trident-z-16-gb-ddr4-3200,16,85.4
+G.Skill Trident Z 64 GB,320.0,4,,Silver / White,8.75,14.0,DDR4,3200.0,g-skill-trident-z-64-gb-ddr4-3200,64,116.0
+G.Skill Trident Z 64 GB,320.0,4,,Silver / White,8.75,14.0,DDR4,3200.0,g-skill-trident-z-64-gb-ddr4-3200,64,103.0
+Corsair Vengeance LED 16 GB,85.0,2,,Black / Blue,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+Corsair Vengeance LED 16 GB,85.0,2,,Black / Blue,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+Corsair Vengeance LED 16 GB,85.0,2,,Black / Blue,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+Corsair Vengeance LPX 16 GB,44.0,2,,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,2,,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,2,,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,2,,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance LPX 16 GB,44.0,2,,Black / Yellow,12.003,16.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance LPX 32 GB,120.0,2,,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,87.5
+Corsair Vengeance LPX 32 GB,120.0,2,,Black / Yellow,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-32-gb-ddr4-3200,32,84.9
+Corsair Vengeance LPX 8 GB,35.0,1,,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,76.5
+Corsair Vengeance LPX 8 GB,35.0,1,,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,71.1
+Corsair Vengeance LPX 8 GB,35.0,1,,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,1,,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,1,,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,38.7
+Corsair Vengeance LED 16 GB,80.0,2,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,85.0,2,,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+Corsair Vengeance LED 16 GB,85.0,2,,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+Corsair Vengeance LED 16 GB,85.0,2,,Black,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+Corsair Vengeance LED 16 GB,80.0,2,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+G.Skill Trident Z 16 GB,110.0,2,,,9.444,17.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,97.8
+G.Skill Trident Z 16 GB,110.0,2,,,9.444,17.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,96.2
+Corsair Vengeance LED 16 GB,75.0,2,,Black,12.003,16.0,DDR4,2666.0,corsair-vengeance-led-16-gb-ddr4-2666,16,74.0
+Corsair Vengeance LED 16 GB,75.0,2,,Black,12.003,16.0,DDR4,2666.0,corsair-vengeance-led-16-gb-ddr4-2666,16,74.0
+Corsair Vengeance LED 16 GB,75.0,2,,Black,12.003,16.0,DDR4,2666.0,corsair-vengeance-led-16-gb-ddr4-2666,16,74.0
+Corsair Vengeance LED 16 GB,80.0,2,,Black / White,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black / White,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black / White,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black / Blue,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black / Blue,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black / Blue,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LPX 8 GB,35.0,2,,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,76.5
+Corsair Vengeance LPX 8 GB,35.0,2,,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,71.1
+Corsair Vengeance LPX 8 GB,35.0,2,,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,2,,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,2,,Black / Yellow,11.667,14.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,38.7
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Black / Camo,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Black / Camo,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Black / Camo,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Red / Black,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Red / Black,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Red / Black,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+G.Skill Ripjaws V 8 GB,35.0,2,,Red / Black,14.167,17.0,DDR4,2400.0,g-skill-ripjaws-v-8-gb-ddr4-2400,8,72.1
+Crucial Ballistix Sport LT 8 GB,38.0,2,,Red / Black,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,38.0,2,,Red / Black,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,38.0,2,,Red / Black,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+G.Skill Trident Z RGB 16 GB,90.0,2,,Black,10.0,16.0,DDR4,3200.0,g-skill-trident-z-rgb-16-gb-ddr4-3200,16,84.3
+Corsair Vengeance LPX 16 GB,75.0,2,,Red,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,,Red,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,2,,Red,10.0,16.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+Kingston FURY 32 GB,138.99,1,4.343,White,14.286,40.0,DDR5,5600.0,kingston-fury-32-gb-ddr5-5600,32,161.0
+Kingston FURY 32 GB,138.99,1,4.343,White,14.286,40.0,DDR5,5600.0,kingston-fury-32-gb-ddr5-5600,32,161.0
+G.Skill Ripjaws 4 GB,18.0,2,,Black / Blue,10.0,8.0,DDR3,1600.0,g-skill-ripjaws-4-gb-ddr3-1600,4,29.0
+Corsair XMS3 8 GB,30.0,4,,Black / Blue,11.25,9.0,DDR3,1600.0,corsair-xms3-8-gb-ddr3-1600,8,49.6
+G.Skill Ripjaws 4 GB,18.0,2,,Black / Blue,8.75,7.0,DDR3,1600.0,g-skill-ripjaws-4-gb-ddr3-1600,4,29.0
+Crucial Ballistix Sport 8 GB,30.0,2,,Black / Silver,12.5,10.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Crucial Ballistix Sport 8 GB,30.0,2,,Black / Silver,12.5,10.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Corsair XMS3 8 GB,30.0,2,,Black / White,11.25,9.0,DDR3,1600.0,corsair-xms3-8-gb-ddr3-1600,8,49.6
+Corsair Vengeance 8 GB,35.0,2,,Black / Red,8.75,7.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,2,,Black / Red,8.75,7.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+Corsair Vengeance 8 GB,35.0,4,,Black / Silver,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,4,,Black / Silver,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+Corsair Vengeance 8 GB,35.0,2,,Black / Gold,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,2,,Black / Gold,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+Corsair Vengeance 8 GB,35.0,4,,Black / Gold,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,4,,Black / Gold,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+Corsair Vengeance 8 GB,35.0,2,,Black / Red,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,2,,Black / Red,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+Corsair Vengeance 8 GB,35.0,2,,Black / Blue,10.0,8.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,2,,Black / Blue,10.0,8.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+Corsair Vengeance 8 GB,35.0,2,,Black / Gold,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,2,,Black / Gold,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+Corsair Vengeance 8 GB,35.0,1,,Black / Gold,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,1,,Black / Gold,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+Corsair Vengeance 8 GB,35.0,1,,Black / Blue,12.5,10.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,1,,Black / Blue,12.5,10.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+Crucial Ballistix Sport 8 GB,30.0,1,,Black / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Crucial Ballistix Sport 8 GB,30.0,1,,Black / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Crucial Ballistix Sport 8 GB,30.0,2,,Black / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Crucial Ballistix Sport 8 GB,30.0,2,,Black / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Crucial Ballistix Sport 8 GB,30.0,2,7.487,,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Crucial Ballistix Sport 8 GB,30.0,2,7.487,,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Crucial Ballistix Sport 8 GB,30.0,1,,Black / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Crucial Ballistix Sport 8 GB,30.0,1,,Black / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Corsair Vengeance 8 GB,35.0,2,,Black / Gold,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,48.4
+Corsair Vengeance 8 GB,35.0,2,,Black / Gold,11.25,9.0,DDR3,1600.0,corsair-vengeance-8-gb-ddr3-1600,8,30.8
+G.Skill Ripjaws 4 GB,18.0,1,3.78,,13.75,11.0,DDR3,1600.0,g-skill-ripjaws-4-gb-ddr3-1600,4,29.0
+Corsair Vengeance LPX 16 GB,44.0,4,,Black / Red,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,4,,Black / Red,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,4,,Black / Red,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,4,,Black / Red,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance LPX 16 GB,44.0,4,,Black / Red,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance LPX 16 GB,45.0,4,,Black / Red,10.714,15.0,DDR4,2800.0,corsair-vengeance-lpx-16-gb-ddr4-2800,16,88.5
+Corsair Vengeance LPX 16 GB,45.0,4,,Black / Red,10.714,15.0,DDR4,2800.0,corsair-vengeance-lpx-16-gb-ddr4-2800,16,88.5
+Corsair Vengeance LPX 16 GB,45.0,4,,Black / Red,10.714,15.0,DDR4,2800.0,corsair-vengeance-lpx-16-gb-ddr4-2800,16,88.5
+Corsair Vengeance LPX 16 GB,45.0,4,,Black / Blue,10.714,15.0,DDR4,2800.0,corsair-vengeance-lpx-16-gb-ddr4-2800,16,88.5
+Corsair Vengeance LPX 16 GB,45.0,4,,Black / Blue,10.714,15.0,DDR4,2800.0,corsair-vengeance-lpx-16-gb-ddr4-2800,16,88.5
+Corsair Vengeance LPX 16 GB,45.0,4,,Black / Blue,10.714,15.0,DDR4,2800.0,corsair-vengeance-lpx-16-gb-ddr4-2800,16,88.5
+G.Skill Ripjaws 4 16 GB,42.0,4,,Black / Red,12.5,15.0,DDR4,2400.0,g-skill-ripjaws-4-16-gb-ddr4-2400,16,70.6
+G.Skill Ripjaws 4 GB,18.0,2,,Black / Red,8.75,7.0,DDR3,1600.0,g-skill-ripjaws-4-gb-ddr3-1600,4,29.0
+G.Skill Ripjaws 4 16 GB,48.0,4,,Black / Blue,10.0,15.0,DDR4,3000.0,g-skill-ripjaws-4-16-gb-ddr4-3000,16,92.1
+G.Skill Ripjaws 4 16 GB,48.0,4,,Black / Blue,10.0,15.0,DDR4,3000.0,g-skill-ripjaws-4-16-gb-ddr4-3000,16,92.1
+G.Skill Ripjaws 4 16 GB,48.0,4,,Black / Blue,10.0,15.0,DDR4,3000.0,g-skill-ripjaws-4-16-gb-ddr4-3000,16,92.1
+Corsair Vengeance LPX 16 GB,42.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,80.9
+Corsair Vengeance LPX 16 GB,42.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,75.8
+Corsair Vengeance LPX 16 GB,42.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance LPX 16 GB,42.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance LPX 16 GB,44.0,4,,Blue,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,4,,Blue,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,4,,Blue,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,87.9
+Corsair Vengeance LPX 16 GB,44.0,4,,Blue,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance LPX 16 GB,44.0,4,,Blue,11.253,15.0,DDR4,2666.0,corsair-vengeance-lpx-16-gb-ddr4-2666,16,76.7
+Corsair Vengeance LPX 16 GB,40.0,4,,Black / Blue,14.065,15.0,DDR4,2133.0,corsair-vengeance-lpx-16-gb-ddr4-2133,16,69.2
+Corsair Vengeance LPX 16 GB,40.0,4,,Black / Blue,14.065,15.0,DDR4,2133.0,corsair-vengeance-lpx-16-gb-ddr4-2133,16,69.2
+Corsair Vengeance LPX 16 GB,40.0,4,,Black / Red,14.065,15.0,DDR4,2133.0,corsair-vengeance-lpx-16-gb-ddr4-2133,16,69.2
+Corsair Vengeance LPX 16 GB,40.0,4,,Black / Red,14.065,15.0,DDR4,2133.0,corsair-vengeance-lpx-16-gb-ddr4-2133,16,69.2
+Corsair Vengeance Pro 16 GB,75.0,4,,Black / Red,7.5,9.0,DDR3,2400.0,corsair-vengeance-pro-16-gb-ddr3-2400,16,58.1
+Corsair Vengeance LPX 16 GB,40.0,4,,Black,14.065,15.0,DDR4,2133.0,corsair-vengeance-lpx-16-gb-ddr4-2133,16,69.2
+Corsair Vengeance LPX 16 GB,40.0,4,,Black,14.065,15.0,DDR4,2133.0,corsair-vengeance-lpx-16-gb-ddr4-2133,16,69.2
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,4,,Black / Red,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Crucial Ballistix Sport LT 32 GB,130.0,4,,Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,130.0,4,,Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,130.0,4,,Silver,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Corsair Vengeance LPX 16 GB,42.0,4,,Blue,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,4,,Blue,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,4,,Blue,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,4,,Blue,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,80.9
+Corsair Vengeance LPX 16 GB,42.0,4,,Blue,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,75.8
+Corsair Vengeance LPX 16 GB,42.0,4,,Blue,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance LPX 16 GB,42.0,4,,Blue,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+G.Skill Ripjaws 4 16 GB,65.0,2,,Red,11.429,16.0,DDR4,2800.0,g-skill-ripjaws-4-16-gb-ddr4-2800,16,91.9
+G.Skill Ripjaws 4 16 GB,65.0,2,,Red,11.429,16.0,DDR4,2800.0,g-skill-ripjaws-4-16-gb-ddr4-2800,16,91.9
+G.Skill Ripjaws 4 16 GB,65.0,2,,Red,11.429,16.0,DDR4,2800.0,g-skill-ripjaws-4-16-gb-ddr4-2800,16,91.9
+G.Skill Ripjaws V 16 GB,50.0,4,,Black / Red,14.065,15.0,DDR4,2133.0,g-skill-ripjaws-v-16-gb-ddr4-2133,16,67.9
+G.Skill Ripjaws V 16 GB,75.0,4,,Black,10.0,16.0,DDR4,3200.0,g-skill-ripjaws-v-16-gb-ddr4-3200,16,84.0
+Corsair Vengeance LPX 32 GB,120.0,2,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,2,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,2,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,2,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,85.1
+Corsair Vengeance LPX 32 GB,120.0,2,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,76.7
+Crucial Ballistix Sport 8 GB,30.0,2,,Blue / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+Crucial Ballistix Sport 8 GB,30.0,2,,Blue / Silver,11.25,9.0,DDR3,1600.0,crucial-ballistix-sport-8-gb-ddr3-1600,8,56.0
+G.Skill Ripjaws V 16 GB,75.0,4,,Black,10.0,16.0,DDR4,3200.0,g-skill-ripjaws-v-16-gb-ddr4-3200,16,84.0
+Corsair Vengeance LPX 16 GB,60.0,4,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,90.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,81.9
+Corsair Vengeance LPX 16 GB,60.0,4,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,4,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,4,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+Corsair Vengeance LPX 16 GB,60.0,4,,Blue,10.0,15.0,DDR4,3000.0,corsair-vengeance-lpx-16-gb-ddr4-3000,16,80.1
+G.Skill Trident Z 16 GB,110.0,4,,Red / Silver,9.444,17.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,97.8
+G.Skill Trident Z 16 GB,110.0,4,,Red / Silver,9.444,17.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,96.2
+G.Skill Trident Z 16 GB,75.0,4,,Red / Silver,10.0,16.0,DDR4,3200.0,g-skill-trident-z-16-gb-ddr4-3200,16,85.4
+Corsair Vengeance LPX 16 GB,75.0,4,,Red,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,4,,Red,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,4,,Red,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+Corsair Vengeance LPX 8 GB,35.0,2,,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,76.5
+Corsair Vengeance LPX 8 GB,35.0,2,,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,71.1
+Corsair Vengeance LPX 8 GB,35.0,2,,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,2,,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,41.6
+Corsair Vengeance LPX 8 GB,35.0,2,,Red,13.333,16.0,DDR4,2400.0,corsair-vengeance-lpx-8-gb-ddr4-2400,8,38.7
+G.Skill Trident Z 16 GB,80.0,2,,Red / Silver,9.333,14.0,DDR4,3000.0,g-skill-trident-z-16-gb-ddr4-3000,16,84.3
+G.Skill Trident Z 64 GB,320.0,4,,Red / Silver,8.75,14.0,DDR4,3200.0,g-skill-trident-z-64-gb-ddr4-3200,64,116.0
+G.Skill Trident Z 64 GB,320.0,4,,Red / Silver,8.75,14.0,DDR4,3200.0,g-skill-trident-z-64-gb-ddr4-3200,64,103.0
+G.Skill Trident Z 16 GB,75.0,2,,Red / Silver,9.375,15.0,DDR4,3200.0,g-skill-trident-z-16-gb-ddr4-3200,16,85.4
+G.Skill Trident Z 64 GB,320.0,4,,Red / Silver,9.375,15.0,DDR4,3200.0,g-skill-trident-z-64-gb-ddr4-3200,64,116.0
+G.Skill Trident Z 64 GB,320.0,4,,Red / Silver,9.375,15.0,DDR4,3200.0,g-skill-trident-z-64-gb-ddr4-3200,64,103.0
+Corsair Vengeance LPX 16 GB,42.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,83.3
+Corsair Vengeance LPX 16 GB,42.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,80.9
+Corsair Vengeance LPX 16 GB,42.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,75.8
+Corsair Vengeance LPX 16 GB,42.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance LPX 16 GB,42.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-16-gb-ddr4-2400,16,72.6
+Corsair Vengeance LPX 32 GB,120.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,87.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,85.1
+Corsair Vengeance LPX 32 GB,120.0,4,,Red,12.5,15.0,DDR4,2400.0,corsair-vengeance-lpx-32-gb-ddr4-2400,32,76.7
+G.Skill Ripjaws V 64 GB,280.0,4,,Red,8.75,14.0,DDR4,3200.0,g-skill-ripjaws-v-64-gb-ddr4-3200,64,94.5
+Corsair Vengeance LPX 16 GB,90.0,2,,Red,10.0,18.0,DDR4,3600.0,corsair-vengeance-lpx-16-gb-ddr4-3600,16,89.4
+Corsair Vengeance LPX 32 GB,150.0,4,,Red,10.0,18.0,DDR4,3600.0,corsair-vengeance-lpx-32-gb-ddr4-3600,32,95.4
+Corsair Vengeance LPX 16 GB,75.0,4,,Black / Yellow,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,4,,Black / Yellow,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,85.1
+Corsair Vengeance LPX 16 GB,75.0,4,,Black / Yellow,9.375,15.0,DDR4,3200.0,corsair-vengeance-lpx-16-gb-ddr4-3200,16,84.5
+G.Skill Trident Z 64 GB,320.0,8,,Red / Silver,8.75,14.0,DDR4,3200.0,g-skill-trident-z-64-gb-ddr4-3200,64,116.0
+G.Skill Trident Z 64 GB,320.0,8,,Red / Silver,8.75,14.0,DDR4,3200.0,g-skill-trident-z-64-gb-ddr4-3200,64,103.0
+G.Skill Ripjaws V 64 GB,280.0,8,,Red,10.0,16.0,DDR4,3200.0,g-skill-ripjaws-v-64-gb-ddr4-3200,64,94.5
+Corsair Vengeance LPX 32 GB,150.0,4,,Red,8.889,16.0,DDR4,3600.0,corsair-vengeance-lpx-32-gb-ddr4-3600,32,95.4
+G.Skill Trident Z 16 GB,75.0,2,,Silver / Black,9.375,15.0,DDR4,3200.0,g-skill-trident-z-16-gb-ddr4-3200,16,85.4
+G.Skill Trident Z 16 GB,75.0,2,,Black / Yellow,8.75,14.0,DDR4,3200.0,g-skill-trident-z-16-gb-ddr4-3200,16,85.4
+G.Skill Trident Z 64 GB,320.0,8,7.469,Silver / White,8.75,14.0,DDR4,3200.0,g-skill-trident-z-64-gb-ddr4-3200,64,116.0
+G.Skill Trident Z 64 GB,320.0,8,7.469,Silver / White,8.75,14.0,DDR4,3200.0,g-skill-trident-z-64-gb-ddr4-3200,64,103.0
+G.Skill Trident Z 16 GB,75.0,2,,Silver / White,10.0,16.0,DDR4,3200.0,g-skill-trident-z-16-gb-ddr4-3200,16,85.4
+Corsair Vengeance RGB 16 GB,90.0,2,,White,10.0,15.0,DDR4,3000.0,corsair-vengeance-rgb-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance RGB 16 GB,90.0,2,,White,10.0,15.0,DDR4,3000.0,corsair-vengeance-rgb-16-gb-ddr4-3000,16,81.5
+Corsair Vengeance RGB 32 GB,160.0,4,,White,10.0,15.0,DDR4,3000.0,corsair-vengeance-rgb-32-gb-ddr4-3000,32,87.0
+Corsair Vengeance RGB 16 GB,90.0,2,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-rgb-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance RGB 16 GB,90.0,2,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-rgb-16-gb-ddr4-3000,16,81.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance RGB 32 GB,160.0,4,,Black,10.667,16.0,DDR4,3000.0,corsair-vengeance-rgb-32-gb-ddr4-3000,32,87.0
+Corsair Vengeance LED 16 GB,85.0,2,,Black / Red,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+Corsair Vengeance LED 16 GB,85.0,2,,Black / Red,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+Corsair Vengeance LED 16 GB,85.0,2,,Black / Red,10.0,16.0,DDR4,3200.0,corsair-vengeance-led-16-gb-ddr4-3200,16,84.8
+G.Skill Trident Z 64 GB,320.0,8,,Silver / White,9.375,15.0,DDR4,3200.0,g-skill-trident-z-64-gb-ddr4-3200,64,116.0
+G.Skill Trident Z 64 GB,320.0,8,,Silver / White,9.375,15.0,DDR4,3200.0,g-skill-trident-z-64-gb-ddr4-3200,64,103.0
+G.Skill Trident Z 64 GB,320.0,8,,Silver / Red,9.375,15.0,DDR4,3200.0,g-skill-trident-z-64-gb-ddr4-3200,64,116.0
+G.Skill Trident Z 64 GB,320.0,8,,Silver / Red,9.375,15.0,DDR4,3200.0,g-skill-trident-z-64-gb-ddr4-3200,64,103.0
+Crucial Ballistix Sport LT 32 GB,130.0,4,,Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,130.0,4,,Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,130.0,4,,Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black / Red,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black / Red,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Corsair Vengeance LED 16 GB,80.0,2,,Black / Red,10.667,16.0,DDR4,3000.0,corsair-vengeance-led-16-gb-ddr4-3000,16,82.5
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Camo,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Camo,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Camo,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 32 GB,130.0,4,,Silver / Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,130.0,4,,Silver / Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,130.0,4,,Silver / Gray,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,130.0,4,,White / Camo,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,130.0,4,,White / Camo,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,130.0,4,,White / Camo,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Red / Black,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Red / Black,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+Crucial Ballistix Sport LT 16 GB,65.0,2,,Red / Black,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-16-gb-ddr4-2400,16,76.9
+G.Skill Trident Z 16 GB,75.0,2,,Silver / White,9.375,15.0,DDR4,3200.0,g-skill-trident-z-16-gb-ddr4-3200,16,85.4
+Crucial Ballistix Sport LT 8 GB,38.0,1,,Black / Silver,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,38.0,1,,Black / Silver,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+Crucial Ballistix Sport LT 8 GB,38.0,1,,Black / Silver,12.003,16.0,DDR4,2666.0,crucial-ballistix-sport-lt-8-gb-ddr4-2666,8,46.7
+G.Skill Trident Z 16 GB,110.0,2,,Silver / White,9.444,17.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,97.8
+G.Skill Trident Z 16 GB,110.0,2,,Silver / White,9.444,17.0,DDR4,3600.0,g-skill-trident-z-16-gb-ddr4-3600,16,96.2
+Crucial Ballistix Sport LT 32 GB,130.0,4,,Red / Black,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,130.0,4,,Red / Black,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+Crucial Ballistix Sport LT 32 GB,130.0,4,,Red / Black,13.333,16.0,DDR4,2400.0,crucial-ballistix-sport-lt-32-gb-ddr4-2400,32,79.5
+G.Skill Ripjaws 4 16 GB,48.0,2,,Red,10.667,16.0,DDR4,3000.0,g-skill-ripjaws-4-16-gb-ddr4-3000,16,92.1
+G.Skill Ripjaws 4 16 GB,48.0,2,,Red,10.667,16.0,DDR4,3000.0,g-skill-ripjaws-4-16-gb-ddr4-3000,16,92.1
+G.Skill Ripjaws 4 16 GB,48.0,2,,Red,10.667,16.0,DDR4,3000.0,g-skill-ripjaws-4-16-gb-ddr4-3000,16,92.1

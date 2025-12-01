@@ -5,7 +5,7 @@ import re
 
 EXPECTED_HEADERS = {
     "name", "price", "core_count", "core_clock", "boost_clock",
-    "microarchitecture", "tdp", "graphics"
+    "microarchitecture", "tdp", "graphics",
 }
 
 def sniff_sep(sample: str) -> str:
@@ -23,29 +23,28 @@ def extract_brand_and_model(name: str):
     model = next((t for t in reversed(m) if re.search(r"\d", t)), s)
     return (brand, model)
 
-# --- New: CPU slug builder ---
+
+# --- New: CPU slug builder (drop family prefixes) ---
 def build_cpu_slug(name: str) -> str:
     if not isinstance(name, str):
         return ""
-    s = name.upper()
-    s = re.sub(r"\b(INTEL|AMD|RYZEN|CORE|PROCESSOR|CPU)\b", "", s)
+    s = name.upper().strip()
+
+    # Remove vendor noise and family words
+    s = re.sub(r"\b(INTEL|AMD|RYZEN|CORE|PROCESSOR|CPU|I3|I5|I7|I9)\b", "", s)
     s = re.sub(r"\s+", " ", s).strip()
 
-    # AMD Ryzen: family + model
-    m_amd = re.search(r"\b([3579])\b.*?\b(\d{4}(?:X3D|XT|X)?)\b", s)
-    if m_amd:
-        family, model = m_amd.groups()
-        return f"{family}-{model.lower()}"
+    # Capture the 4–5 digit model + optional suffix
+    m = re.search(r"\b(\d{4,5}(?:X3D|XT|X|G|GT|GE|F|K|KF|KS|T)?)\b", s)
+    if m:
+        return m.group(1).lower()
 
-    # Intel: i3/i5/i7/i9 + number + suffix
-    m_intel = re.search(r"\b(I[3579])[-\s]*(\d{4,5})([A-Z]{0,3})?\b", s)
-    if m_intel:
-        series, num, suf = m_intel.groups()
-        slug = f"{series.lower()}-{num.lower()}"
-        if suf:
-            slug += f"-{suf.lower()}"
-        return slug
+    # Server parts (EPYC / XEON): extract main numeric block
+    m_server = re.search(r"\b(\d{4,5}[A-Z]{0,2})\b", s)
+    if m_server:
+        return m_server.group(1).lower()
 
+    # Fallback: compact alphanumerics
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
 def clean_cpu(file_path: Path, output_path: Path, filter_arch: bool = True, enrich_threads: bool = True):

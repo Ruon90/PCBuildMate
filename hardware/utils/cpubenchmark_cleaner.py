@@ -2,31 +2,22 @@ import re
 import pandas as pd
 from pathlib import Path
 
-# Slug builder for CPUs (drop family prefix)
+# Slug builder for CPUs (drop family prefixes like i5/i7, Ryzen 7/9)
 def build_cpu_slug(name: str) -> str:
     if not isinstance(name, str):
         return ""
     s = name.upper().strip()
 
-    # Remove vendor noise
-    s = re.sub(r"\b(INTEL|AMD|RYZEN|CORE|PROCESSOR|CPU)\b", "", s)
+    # Remove vendor noise and family words
+    s = re.sub(r"\b(INTEL|AMD|RYZEN|CORE|PROCESSOR|CPU|I3|I5|I7|I9)\b", "", s)
     s = re.sub(r"\s+", " ", s).strip()
 
-    # Intel: i3/i5/i7/i9 + number + suffix
-    m_intel = re.search(r"\b(I[3579])[-\s]*(\d{4,5})([A-Z]{0,3})?\b", s)
-    if m_intel:
-        series, num, suf = m_intel.groups()
-        slug = f"{series.upper()}-{num}"
-        if suf:
-            slug += f"{suf.upper()}"
-        return slug.lower()
+    # AMD/Intel: capture the 4–5 digit model + optional suffix
+    m = re.search(r"\b(\d{4,5}(?:X3D|XT|X|G|GT|GE|F|K|KF|KS|T)?)\b", s)
+    if m:
+        return m.group(1).lower()
 
-    # AMD Ryzen: just the 4-digit model + suffix (no family prefix)
-    m_amd = re.search(r"\b(\d{4}(?:X3D|XT|X|G|GT|GE|F)?)\b", s)
-    if m_amd:
-        return m_amd.group(1).lower()
-
-    # EPYC / Xeon: main numeric block
+    # Server parts (EPYC / XEON): extract main numeric block
     m_server = re.search(r"\b(\d{4,5}[A-Z]{0,2})\b", s)
     if m_server:
         return m_server.group(1).lower()

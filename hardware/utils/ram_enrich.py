@@ -6,6 +6,7 @@ import json
 import time
 import os
 import env
+
 # -----------------------------
 # Slug helpers
 # -----------------------------
@@ -34,12 +35,9 @@ TOKENS = {
 def call_ai_batch(slugs, model="gpt-4.1-mini", debug=False):
     prompt = f"""
 You are enriching RAM hardware data.
-Return ONLY valid JSON (array). Each element must have:
-- slug (string, match input exactly)
-- price (USD float, MSRP estimate)
+Return ONLY valid JSON: a dictionary mapping each slug to its price (USD float).
 
 Rules:
-- Slug format: brand-model-ddrX-frequency.
 - Estimate MSRP based on typical market value.
 - If unknown, return null.
 
@@ -60,7 +58,12 @@ Slugs:
         content = r.json()["choices"][0]["message"]["content"].strip()
         cleaned = re.sub(r"^```[a-zA-Z]*\s*|\s*```$", "", content, flags=re.MULTILINE).strip()
         data = json.loads(cleaned)
-        return {d["slug"]: d.get("price") for d in data if isinstance(d, dict)}
+        if isinstance(data, dict):
+            return data
+        else:
+            if debug:
+                print(f"[{model}] Unexpected format: {type(data)}")
+            return {}
     except Exception as e:
         if debug:
             print(f"[{model}] error: {e}")
@@ -70,13 +73,17 @@ Slugs:
 # Memory slugging + modules parsing
 # -----------------------------
 def slug_memory(df_mem: pd.DataFrame) -> pd.DataFrame:
-    ddr = df_mem["speed"].str.split(",").str[0].apply(lambda x: f"DDR{x.strip()}")
-    freq = df_mem["speed"].str.split(",").str[1].str.strip()
+    # Expect slug already present in input CSV
+    if "slug" not in df_mem.columns:
+        raise ValueError("Input memory CSV must contain a slug column")
 
-    df_mem["ddr_generation"] = ddr
-    df_mem["frequency_mhz"] = freq
-
-    df_mem["slug"] = df_mem["name"].apply(clean_name_for_slug) + "-" + df_mem["ddr_generation"].str.lower() + "-" + df_mem["frequency_mhz"]
+    # Parse DDR/frequency from speed column if present
+    if "speed" in df_mem.columns:
+        ddr = df_mem["speed"].str.split(",").str[0].apply(lambda x: f"DDR{x.strip()}")
+        freq = df_mem["speed"].str.split(",").str[1].str.strip()
+        df_mem["ddr_generation"] = ddr
+        df_mem["frequency_mhz"] = freq
+        df_mem = df_mem.drop(columns=["speed"])
 
     # Parse modules like "2,8"
     def parse_modules(val):
@@ -87,30 +94,18 @@ def slug_memory(df_mem: pd.DataFrame) -> pd.DataFrame:
         except:
             return None, None
 
-    df_mem[["modules","capacity_gb"]] = df_mem["modules"].apply(lambda x: pd.Series(parse_modules(str(x))))
+    if "modules" in df_mem.columns:
+        df_mem[["modules","capacity_gb"]] = df_mem["modules"].apply(lambda x: pd.Series(parse_modules(str(x))))
 
-    # Drop old speed column
-    df_mem = df_mem.drop(columns=["speed"])
     return df_mem
 
 # -----------------------------
 # Benchmark slugging
 # -----------------------------
 def slug_benchmarks(df_bench: pd.DataFrame) -> pd.DataFrame:
-    slugs = []
-    for _, row in df_bench.iterrows():
-        brand = slugify(row["Brand"])
-        model = slugify(row["Model"])
-        ddr_match = re.search(r"(ddr\d+)", model)
-        ddr = ddr_match.group(1) if ddr_match else ""
-        freq_match = re.search(r"(\d{4,5})", model)
-        freq = freq_match.group(1) if freq_match else ""
-        tokens = model.split("-")
-        core_tokens = tokens[:3]
-        slug_parts = [brand] + core_tokens + [ddr, freq]
-        slug = "-".join([p for p in slug_parts if p])
-        slugs.append(slug)
-    df_bench["slug"] = slugs
+    # Expect slug already present in benchmark CSV
+    if "slug" not in df_bench.columns:
+        raise ValueError("Benchmark CSV must contain a slug column")
     return df_bench[["slug","Benchmark"]]
 
 # -----------------------------
@@ -147,7 +142,7 @@ def run_pipeline(memory_file, benchmark_file, output_file, debug=False):
 
         # Update dataframe
         for slug, price in results_mini.items():
-            if price:
+            if price is not None:  # skip nulls
                 df_enriched.loc[df_enriched["slug"]==slug, "price"] = price
                 filled_count += 1
 

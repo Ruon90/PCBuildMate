@@ -6,7 +6,7 @@ class PSU(models.Model):
     psu_type = models.CharField(max_length=100, blank=True, null=True)
     efficiency = models.CharField(max_length=100, blank=True, null=True)
     wattage = models.IntegerField(blank=True, null=True)
-    modular = models.CharField(max_length=50, blank=True, null=True)
+    modular = models.CharField(max_length=100, blank=True, null=True)
     color = models.CharField(max_length=100, blank=True, null=True)
     price = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
@@ -101,11 +101,11 @@ class Storage(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     price = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
     capacity = models.IntegerField(blank=True, null=True)
-    storage_type = models.CharField(max_length=50, blank=True, null=True)
+    storage_type = models.CharField(max_length=100, blank=True, null=True)
     cache = models.IntegerField(blank=True, null=True)
-    form_factor = models.CharField(max_length=50, blank=True, null=True)
-    interface = models.CharField(max_length=50, blank=True, null=True)
-    slug = models.SlugField(unique=True, blank=True, null=True)
+    form_factor = models.CharField(max_length=100, blank=True, null=True)
+    interface = models.CharField(max_length=100, blank=True, null=True)
+    slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
 
 
 class CPUCooler(models.Model):
@@ -136,4 +136,4 @@ class ThermalPaste(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     price = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
     amount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)  # grams or ml
-    slug = models.SlugField(unique=True, blank=True, null=True)
+    slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)

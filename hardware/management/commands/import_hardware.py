@@ -45,6 +45,14 @@ MODEL_ALIASES = {
         # if your CSV headers differ, add aliases here
         "userbenchmark_score": "userbenchmark_score",
         "blender_score": "blender_score",
+    },
+    "PSU": {
+        "type": "psu_type",   # <-- add this
+        "slug": "slug",       # if your CSV has slug
+        "wattage": "wattage", # add other PSU fields as needed
+    },
+    "Storage": {
+        "type": "storage_type",
     }
 }
 

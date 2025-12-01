@@ -11,7 +11,7 @@
     "microarchitecture": "Zen 5",
     "tdp": "120",
     "graphics": "Radeon",
-    "thread_count": "",
+    "thread_count": 16,
     "release_date": "",
     "power_consumption_overclocked": "155"
   },
@@ -27,9 +27,9 @@
     "microarchitecture": "Zen 4",
     "tdp": "120",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "155"
+    "thread_count": 16,
+    "release_date": "2023-04-06",
+    "power_consumption_overclocked": "130"
   },
   "AMD Ryzen 5 7600X": {
     "brand": "AMD",
@@ -43,9 +43,9 @@
     "microarchitecture": "Zen 4",
     "tdp": "105",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 12,
+    "release_date": "2022-09-27",
+    "power_consumption_overclocked": "125"
   },
   "AMD Ryzen 5 9600X": {
     "brand": "AMD",
@@ -59,7 +59,7 @@
     "microarchitecture": "Zen 5",
     "tdp": "65",
     "graphics": "Radeon",
-    "thread_count": "",
+    "thread_count": 12,
     "release_date": "",
     "power_consumption_overclocked": "100"
   },
@@ -75,9 +75,9 @@
     "microarchitecture": "Zen 4",
     "tdp": "105",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 16,
+    "release_date": "2022-09-27",
+    "power_consumption_overclocked": "130"
   },
   "AMD Ryzen 9 9950X3D": {
     "brand": "AMD",
@@ -91,7 +91,7 @@
     "microarchitecture": "Zen 5",
     "tdp": "170",
     "graphics": "Radeon",
-    "thread_count": "",
+    "thread_count": 32,
     "release_date": "",
     "power_consumption_overclocked": "205"
   },
@@ -107,9 +107,9 @@
     "microarchitecture": "Zen 3",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 12,
+    "release_date": "2022-04-04",
+    "power_consumption_overclocked": "95"
   },
   "AMD Ryzen 7 9700X": {
     "brand": "AMD",
@@ -123,7 +123,7 @@
     "microarchitecture": "Zen 5",
     "tdp": "65",
     "graphics": "Radeon",
-    "thread_count": "",
+    "thread_count": 16,
     "release_date": "",
     "power_consumption_overclocked": "100"
   },
@@ -139,9 +139,9 @@
     "microarchitecture": "Zen 3",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 12,
+    "release_date": "2020-11-05",
+    "power_consumption_overclocked": "95"
   },
   "AMD Ryzen 5 5600": {
     "brand": "AMD",
@@ -155,9 +155,9 @@
     "microarchitecture": "Zen 3",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 12,
+    "release_date": "2022-04-04",
+    "power_consumption_overclocked": "95"
   },
   "AMD Ryzen 7 5800X": {
     "brand": "AMD",
@@ -171,14 +171,14 @@
     "microarchitecture": "Zen 3",
     "tdp": "105",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
+    "thread_count": 16,
+    "release_date": "2020-11-05",
     "power_consumption_overclocked": "140"
   },
   "Intel Core i7-14700K": {
     "brand": "Intel",
     "model": "i7-14700K",
-    "slug": "i7-14700-k",
+    "slug": "14700k",
     "name": "Intel Core i7-14700K",
     "price": "297.17",
     "core_count": "20",
@@ -187,14 +187,14 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "125",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "200"
+    "thread_count": 20,
+    "release_date": "2023-10-17",
+    "power_consumption_overclocked": "253"
   },
   "Intel Core i9-14900K": {
     "brand": "Intel",
     "model": "i9-14900K",
-    "slug": "i9-14900-k",
+    "slug": "14900k",
     "name": "Intel Core i9-14900K",
     "price": "439.0",
     "core_count": "24",
@@ -203,9 +203,9 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "125",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "200"
+    "thread_count": 32,
+    "release_date": "2023-10-17",
+    "power_consumption_overclocked": "253"
   },
   "AMD Ryzen 5 7600": {
     "brand": "AMD",
@@ -219,9 +219,9 @@
     "microarchitecture": "Zen 4",
     "tdp": "65",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 12,
+    "release_date": "2023-01-10",
+    "power_consumption_overclocked": "95"
   },
   "AMD Ryzen 7 5700X": {
     "brand": "AMD",
@@ -235,9 +235,9 @@
     "microarchitecture": "Zen 3",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 16,
+    "release_date": "2022-04-04",
+    "power_consumption_overclocked": "105"
   },
   "AMD Ryzen 9 7900X": {
     "brand": "AMD",
@@ -251,9 +251,9 @@
     "microarchitecture": "Zen 4",
     "tdp": "170",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "205"
+    "thread_count": 24,
+    "release_date": "2022-09-27",
+    "power_consumption_overclocked": "170"
   },
   "AMD Ryzen 9 9900X": {
     "brand": "AMD",
@@ -267,14 +267,14 @@
     "microarchitecture": "Zen 5",
     "tdp": "120",
     "graphics": "Radeon",
-    "thread_count": "",
+    "thread_count": 24,
     "release_date": "",
     "power_consumption_overclocked": "155"
   },
   "Intel Core i5-14600K": {
     "brand": "Intel",
     "model": "i5-14600K",
-    "slug": "i5-14600-k",
+    "slug": "14600k",
     "name": "Intel Core i5-14600K",
     "price": "189.99",
     "core_count": "14",
@@ -283,9 +283,9 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "125",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "200"
+    "thread_count": 14,
+    "release_date": "2023-10-17",
+    "power_consumption_overclocked": "181"
   },
   "Intel Core Ultra 7 265K": {
     "brand": "Intel",
@@ -299,7 +299,7 @@
     "microarchitecture": "Arrow Lake",
     "tdp": "125",
     "graphics": "Intel Xe",
-    "thread_count": "",
+    "thread_count": 16,
     "release_date": "",
     "power_consumption_overclocked": "200"
   },
@@ -315,14 +315,14 @@
     "microarchitecture": "Zen 3",
     "tdp": "105",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 16,
+    "release_date": "2024-01-31",
+    "power_consumption_overclocked": "105"
   },
   "Intel Core i5-14400F": {
     "brand": "Intel",
     "model": "i5-14400F",
-    "slug": "i5-14400-f",
+    "slug": "14400f",
     "name": "Intel Core i5-14400F",
     "price": "125.99",
     "core_count": "10",
@@ -331,9 +331,9 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 10,
+    "release_date": "2024-01-08",
+    "power_consumption_overclocked": "125"
   },
   "AMD Ryzen 9 9950X": {
     "brand": "AMD",
@@ -347,7 +347,7 @@
     "microarchitecture": "Zen 5",
     "tdp": "170",
     "graphics": "Radeon",
-    "thread_count": "",
+    "thread_count": 32,
     "release_date": "",
     "power_consumption_overclocked": "205"
   },
@@ -363,9 +363,9 @@
     "microarchitecture": "Zen 4",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 12,
+    "release_date": "2023-07-24",
+    "power_consumption_overclocked": "95"
   },
   "AMD Ryzen 7 5800XT": {
     "brand": "AMD",
@@ -379,7 +379,7 @@
     "microarchitecture": "Zen 3",
     "tdp": "105",
     "graphics": "",
-    "thread_count": "",
+    "thread_count": 16,
     "release_date": "",
     "power_consumption_overclocked": "140"
   },
@@ -395,7 +395,7 @@
     "microarchitecture": "Arrow Lake",
     "tdp": "125",
     "graphics": "Intel Xe",
-    "thread_count": "",
+    "thread_count": 24,
     "release_date": "",
     "power_consumption_overclocked": "200"
   },
@@ -411,7 +411,7 @@
     "microarchitecture": "Zen 4",
     "tdp": "65",
     "graphics": "Radeon",
-    "thread_count": "",
+    "thread_count": 12,
     "release_date": "",
     "power_consumption_overclocked": "100"
   },
@@ -427,9 +427,9 @@
     "microarchitecture": "Zen 3",
     "tdp": "65",
     "graphics": "Radeon Vega 7",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 12,
+    "release_date": "2021-04-13",
+    "power_consumption_overclocked": "95"
   },
   "AMD Ryzen 7 7700": {
     "brand": "AMD",
@@ -443,14 +443,14 @@
     "microarchitecture": "Zen 4",
     "tdp": "65",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 16,
+    "release_date": "2023-01-10",
+    "power_consumption_overclocked": "105"
   },
   "Intel Core i5-13400F": {
     "brand": "Intel",
     "model": "i5-13400F",
-    "slug": "i5-13400-f",
+    "slug": "13400f",
     "name": "Intel Core i5-13400F",
     "price": "151.47",
     "core_count": "10",
@@ -459,9 +459,9 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 10,
+    "release_date": "2023-01-03",
+    "power_consumption_overclocked": "148"
   },
   "AMD Ryzen 9 5900X": {
     "brand": "AMD",
@@ -475,9 +475,9 @@
     "microarchitecture": "Zen 3",
     "tdp": "105",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 24,
+    "release_date": "2020-11-05",
+    "power_consumption_overclocked": "170"
   },
   "AMD Ryzen 5 8400F": {
     "brand": "AMD",
@@ -491,9 +491,9 @@
     "microarchitecture": "Zen 4",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 12,
+    "release_date": "2024-04-19",
+    "power_consumption_overclocked": "95"
   },
   "AMD Ryzen 5 8500G": {
     "brand": "AMD",
@@ -507,9 +507,9 @@
     "microarchitecture": "Zen 4",
     "tdp": "65",
     "graphics": "Radeon 740M",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 12,
+    "release_date": "2024-01-31",
+    "power_consumption_overclocked": "95"
   },
   "AMD Ryzen 7 5700G": {
     "brand": "AMD",
@@ -523,9 +523,9 @@
     "microarchitecture": "Zen 3",
     "tdp": "65",
     "graphics": "Radeon Vega 8",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 16,
+    "release_date": "2021-04-13",
+    "power_consumption_overclocked": "105"
   },
   "AMD Ryzen 9 5950X": {
     "brand": "AMD",
@@ -539,9 +539,9 @@
     "microarchitecture": "Zen 3",
     "tdp": "105",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 32,
+    "release_date": "2020-11-05",
+    "power_consumption_overclocked": "170"
   },
   "AMD Ryzen 7 5800X3D": {
     "brand": "AMD",
@@ -555,9 +555,9 @@
     "microarchitecture": "Zen 3",
     "tdp": "105",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 16,
+    "release_date": "2022-04-20",
+    "power_consumption_overclocked": "130"
   },
   "AMD Ryzen 9 7950X": {
     "brand": "AMD",
@@ -571,14 +571,14 @@
     "microarchitecture": "Zen 4",
     "tdp": "170",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "205"
+    "thread_count": 32,
+    "release_date": "2022-09-27",
+    "power_consumption_overclocked": "230"
   },
   "Intel Core i5-14600KF": {
     "brand": "Intel",
     "model": "i5-14600KF",
-    "slug": "i5-14600-kf",
+    "slug": "14600kf",
     "name": "Intel Core i5-14600KF",
     "price": "197.98",
     "core_count": "14",
@@ -587,9 +587,9 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "125",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "200"
+    "thread_count": 14,
+    "release_date": "2023-10-17",
+    "power_consumption_overclocked": "181"
   },
   "AMD Ryzen 5 8600G": {
     "brand": "AMD",
@@ -603,9 +603,9 @@
     "microarchitecture": "Zen 4",
     "tdp": "65",
     "graphics": "Radeon 760M",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 12,
+    "release_date": "2024-01-31",
+    "power_consumption_overclocked": "95"
   },
   "AMD Ryzen 7 5700": {
     "brand": "AMD",
@@ -619,14 +619,14 @@
     "microarchitecture": "Zen 3",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 16,
+    "release_date": "2024-04-19",
+    "power_consumption_overclocked": "105"
   },
   "Intel Core i7-14700KF": {
     "brand": "Intel",
     "model": "i7-14700KF",
-    "slug": "i7-14700-kf",
+    "slug": "14700kf",
     "name": "Intel Core i7-14700KF",
     "price": "313.95",
     "core_count": "20",
@@ -635,9 +635,9 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "125",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "200"
+    "thread_count": 20,
+    "release_date": "2023-10-17",
+    "power_consumption_overclocked": "253"
   },
   "Intel Core Ultra 7 265KF": {
     "brand": "Intel",
@@ -651,7 +651,7 @@
     "microarchitecture": "Arrow Lake",
     "tdp": "125",
     "graphics": "",
-    "thread_count": "",
+    "thread_count": 16,
     "release_date": "",
     "power_consumption_overclocked": "200"
   },
@@ -667,7 +667,7 @@
     "microarchitecture": "Zen 5",
     "tdp": "120",
     "graphics": "Radeon",
-    "thread_count": "",
+    "thread_count": 24,
     "release_date": "",
     "power_consumption_overclocked": "155"
   },
@@ -683,9 +683,9 @@
     "microarchitecture": "Zen 4",
     "tdp": "120",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "155"
+    "thread_count": 32,
+    "release_date": "2023-02-28",
+    "power_consumption_overclocked": "230"
   },
   "AMD Ryzen 7 8700G": {
     "brand": "AMD",
@@ -699,14 +699,14 @@
     "microarchitecture": "Zen 4",
     "tdp": "65",
     "graphics": "Radeon 780M",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 16,
+    "release_date": "2024-01-31",
+    "power_consumption_overclocked": "105"
   },
   "Intel Core i9-14900KF": {
     "brand": "Intel",
     "model": "i9-14900KF",
-    "slug": "i9-14900-kf",
+    "slug": "14900kf",
     "name": "Intel Core i9-14900KF",
     "price": "419.97",
     "core_count": "24",
@@ -715,14 +715,14 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "125",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "200"
+    "thread_count": 32,
+    "release_date": "2023-10-17",
+    "power_consumption_overclocked": "253"
   },
   "Intel Core i7-13700K": {
     "brand": "Intel",
     "model": "i7-13700K",
-    "slug": "i7-13700-k",
+    "slug": "13700k",
     "name": "Intel Core i7-13700K",
     "price": "390.33",
     "core_count": "16",
@@ -731,9 +731,9 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "125",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "200"
+    "thread_count": 20,
+    "release_date": "2022-10-20",
+    "power_consumption_overclocked": "253"
   },
   "AMD Ryzen 7 8700F": {
     "brand": "AMD",
@@ -747,14 +747,14 @@
     "microarchitecture": "Zen 4",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 16,
+    "release_date": "2024-04-19",
+    "power_consumption_overclocked": "105"
   },
   "Intel Core i9-14900KS": {
     "brand": "Intel",
     "model": "i9-14900KS",
-    "slug": "i9-14900-ks",
+    "slug": "14900ks",
     "name": "Intel Core i9-14900KS",
     "price": "639.97",
     "core_count": "24",
@@ -763,9 +763,9 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "150",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "225"
+    "thread_count": 32,
+    "release_date": "2024-03-14",
+    "power_consumption_overclocked": "320"
   },
   "AMD Ryzen 5 5600GT": {
     "brand": "AMD",
@@ -779,14 +779,14 @@
     "microarchitecture": "Zen 3",
     "tdp": "65",
     "graphics": "Radeon Vega 7",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 12,
+    "release_date": "2024-01-31",
+    "power_consumption_overclocked": "95"
   },
   "Intel Core i5-13600KF": {
     "brand": "Intel",
     "model": "i5-13600KF",
-    "slug": "i5-13600-kf",
+    "slug": "13600kf",
     "name": "Intel Core i5-13600KF",
     "price": "195.9",
     "core_count": "14",
@@ -795,9 +795,9 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "125",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "200"
+    "thread_count": 14,
+    "release_date": "2022-10-20",
+    "power_consumption_overclocked": "181"
   },
   "AMD Ryzen 9 5900XT": {
     "brand": "AMD",
@@ -811,14 +811,14 @@
     "microarchitecture": "Zen 3",
     "tdp": "105",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 24,
+    "release_date": "2024-01-31",
+    "power_consumption_overclocked": "170"
   },
   "Intel Core i7-14700F": {
     "brand": "Intel",
     "model": "i7-14700F",
-    "slug": "i7-14700-f",
+    "slug": "14700f",
     "name": "Intel Core i7-14700F",
     "price": "294.58",
     "core_count": "20",
@@ -827,9 +827,9 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 20,
+    "release_date": "2024-01-08",
+    "power_consumption_overclocked": "219"
   },
   "AMD Ryzen 9 7900": {
     "brand": "AMD",
@@ -843,14 +843,14 @@
     "microarchitecture": "Zen 4",
     "tdp": "65",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 24,
+    "release_date": "2023-01-10",
+    "power_consumption_overclocked": "120"
   },
   "Intel Core i9-13900K": {
     "brand": "Intel",
     "model": "i9-13900K",
-    "slug": "i9-13900-k",
+    "slug": "13900k",
     "name": "Intel Core i9-13900K",
     "price": "434.0",
     "core_count": "24",
@@ -859,14 +859,14 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "125",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "200"
+    "thread_count": 32,
+    "release_date": "2022-10-20",
+    "power_consumption_overclocked": "253"
   },
   "Intel Core i3-14100F": {
     "brand": "Intel",
     "model": "i3-14100F",
-    "slug": "i3-14100-f",
+    "slug": "14100f",
     "name": "Intel Core i3-14100F",
     "price": "90.05",
     "core_count": "4",
@@ -875,9 +875,9 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "58",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "133"
+    "thread_count": 8,
+    "release_date": "2024-01-08",
+    "power_consumption_overclocked": "89"
   },
   "AMD Ryzen 5 5600XT": {
     "brand": "AMD",
@@ -891,14 +891,14 @@
     "microarchitecture": "Zen 3",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 12,
+    "release_date": "2024-01-31",
+    "power_consumption_overclocked": "95"
   },
   "Intel Core i5-13600K": {
     "brand": "Intel",
     "model": "i5-13600K",
-    "slug": "i5-13600-k",
+    "slug": "13600k",
     "name": "Intel Core i5-13600K",
     "price": "299.99",
     "core_count": "14",
@@ -907,9 +907,9 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "125",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "200"
+    "thread_count": 14,
+    "release_date": "2022-10-20",
+    "power_consumption_overclocked": "181"
   },
   "Intel Core Ultra 5 245K": {
     "brand": "Intel",
@@ -923,14 +923,14 @@
     "microarchitecture": "Arrow Lake",
     "tdp": "125",
     "graphics": "Intel Xe",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "200"
+    "thread_count": 14,
+    "release_date": "2024-06-01",
+    "power_consumption_overclocked": "115"
   },
   "Intel Core i7-13700KF": {
     "brand": "Intel",
     "model": "i7-13700KF",
-    "slug": "i7-13700-kf",
+    "slug": "13700kf",
     "name": "Intel Core i7-13700KF",
     "price": "299.0",
     "core_count": "16",
@@ -939,14 +939,14 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "125",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "200"
+    "thread_count": 16,
+    "release_date": "2022-10-20",
+    "power_consumption_overclocked": "253"
   },
   "Intel Core i5-14400": {
     "brand": "Intel",
     "model": "i5-14400",
-    "slug": "i5-14400",
+    "slug": "14400",
     "name": "Intel Core i5-14400",
     "price": "175.98",
     "core_count": "10",
@@ -955,9 +955,9 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "65",
     "graphics": "Intel UHD Graphics 730",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 16,
+    "release_date": "2024-01-08",
+    "power_consumption_overclocked": "148"
   },
   "AMD Ryzen 9 7900X3D": {
     "brand": "AMD",
@@ -971,9 +971,9 @@
     "microarchitecture": "Zen 4",
     "tdp": "120",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "155"
+    "thread_count": 24,
+    "release_date": "2023-02-28",
+    "power_consumption_overclocked": "162"
   },
   "Intel Core Ultra 5 225F": {
     "brand": "Intel",
@@ -987,14 +987,14 @@
     "microarchitecture": "Arrow Lake",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 12,
+    "release_date": "2024-01-01",
+    "power_consumption_overclocked": "90"
   },
   "Intel Core i3-14100": {
     "brand": "Intel",
     "model": "i3-14100",
-    "slug": "i3-14100",
+    "slug": "14100",
     "name": "Intel Core i3-14100",
     "price": "119.95",
     "core_count": "4",
@@ -1003,14 +1003,14 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "60",
     "graphics": "Intel UHD Graphics 730",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "135"
+    "thread_count": 8,
+    "release_date": "2024-01-08",
+    "power_consumption_overclocked": "89"
   },
   "Intel Core i3-13100F": {
     "brand": "Intel",
     "model": "i3-13100F",
-    "slug": "i3-13100-f",
+    "slug": "13100f",
     "name": "Intel Core i3-13100F",
     "price": "85.34",
     "core_count": "4",
@@ -1019,14 +1019,14 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "58",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "133"
+    "thread_count": 8,
+    "release_date": "2023-01-03",
+    "power_consumption_overclocked": "89"
   },
   "Intel Core i5-13400": {
     "brand": "Intel",
     "model": "i5-13400",
-    "slug": "i5-13400",
+    "slug": "13400",
     "name": "Intel Core i5-13400",
     "price": "164.05",
     "core_count": "10",
@@ -1035,14 +1035,14 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "65",
     "graphics": "Intel UHD Graphics 730",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 16,
+    "release_date": "2023-01-03",
+    "power_consumption_overclocked": "148"
   },
   "Intel Core i7-13700F": {
     "brand": "Intel",
     "model": "i7-13700F",
-    "slug": "i7-13700-f",
+    "slug": "13700f",
     "name": "Intel Core i7-13700F",
     "price": "255.0",
     "core_count": "16",
@@ -1051,9 +1051,9 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 16,
+    "release_date": "2022-10-20",
+    "power_consumption_overclocked": "219"
   },
   "AMD Ryzen 5 5500GT": {
     "brand": "AMD",
@@ -1067,14 +1067,14 @@
     "microarchitecture": "Zen 3",
     "tdp": "65",
     "graphics": "Radeon Vega 7",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 12,
+    "release_date": "2024-01-31",
+    "power_consumption_overclocked": "95"
   },
   "Intel Core i9-13900KF": {
     "brand": "Intel",
     "model": "i9-13900KF",
-    "slug": "i9-13900-kf",
+    "slug": "13900kf",
     "name": "Intel Core i9-13900KF",
     "price": "435.0",
     "core_count": "24",
@@ -1083,9 +1083,9 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "125",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "200"
+    "thread_count": 32,
+    "release_date": "2022-10-20",
+    "power_consumption_overclocked": "253"
   },
   "AMD Ryzen 5 9600": {
     "brand": "AMD",
@@ -1099,9 +1099,9 @@
     "microarchitecture": "Zen 5",
     "tdp": "65",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 12,
+    "release_date": "2024-07-01",
+    "power_consumption_overclocked": "95"
   },
   "Intel Core Ultra 5 235": {
     "brand": "Intel",
@@ -1115,9 +1115,9 @@
     "microarchitecture": "Arrow Lake",
     "tdp": "65",
     "graphics": "Intel Xe",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 12,
+    "release_date": "2024-01-01",
+    "power_consumption_overclocked": "90"
   },
   "Intel Core Ultra 5 225": {
     "brand": "Intel",
@@ -1131,14 +1131,14 @@
     "microarchitecture": "Arrow Lake",
     "tdp": "65",
     "graphics": "Intel Xe",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 12,
+    "release_date": "2024-01-01",
+    "power_consumption_overclocked": "90"
   },
   "Intel Core i7-14700": {
     "brand": "Intel",
     "model": "i7-14700",
-    "slug": "i7-14700",
+    "slug": "14700",
     "name": "Intel Core i7-14700",
     "price": "306.55",
     "core_count": "20",
@@ -1147,14 +1147,14 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "65",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 20,
+    "release_date": "2024-01-08",
+    "power_consumption_overclocked": "219"
   },
   "Intel Core i5-13500": {
     "brand": "Intel",
     "model": "i5-13500",
-    "slug": "i5-13500",
+    "slug": "13500",
     "name": "Intel Core i5-13500",
     "price": "234.99",
     "core_count": "14",
@@ -1163,9 +1163,9 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "65",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 14,
+    "release_date": "2023-01-03",
+    "power_consumption_overclocked": "154"
   },
   "Intel Core Ultra 9 285": {
     "brand": "Intel",
@@ -1179,14 +1179,14 @@
     "microarchitecture": "Arrow Lake",
     "tdp": "65",
     "graphics": "Intel Xe",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 16,
+    "release_date": "2024-06-01",
+    "power_consumption_overclocked": "125"
   },
   "Intel Core i5-14500": {
     "brand": "Intel",
     "model": "i5-14500",
-    "slug": "i5-14500",
+    "slug": "14500",
     "name": "Intel Core i5-14500",
     "price": "238.09",
     "core_count": "14",
@@ -1195,9 +1195,9 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "65",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 14,
+    "release_date": "2024-01-08",
+    "power_consumption_overclocked": "154"
   },
   "Intel Core Ultra 7 265": {
     "brand": "Intel",
@@ -1211,14 +1211,14 @@
     "microarchitecture": "Arrow Lake",
     "tdp": "65",
     "graphics": "Intel Xe",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 14,
+    "release_date": "2024-06-01",
+    "power_consumption_overclocked": "115"
   },
   "Intel Core i9-13900KS": {
     "brand": "Intel",
     "model": "i9-13900KS",
-    "slug": "i9-13900-ks",
+    "slug": "13900ks",
     "name": "Intel Core i9-13900KS",
     "price": "429.0",
     "core_count": "24",
@@ -1227,9 +1227,9 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "150",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "225"
+    "thread_count": 32,
+    "release_date": "2023-01-12",
+    "power_consumption_overclocked": "320"
   },
   "Intel Core Ultra 7 265F": {
     "brand": "Intel",
@@ -1243,9 +1243,9 @@
     "microarchitecture": "Arrow Lake",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 14,
+    "release_date": "2024-06-01",
+    "power_consumption_overclocked": "115"
   },
   "AMD EPYC 4564P": {
     "brand": "AMD",
@@ -1259,9 +1259,9 @@
     "microarchitecture": "Zen 4",
     "tdp": "170",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "205"
+    "thread_count": 64,
+    "release_date": "2024-03-19",
+    "power_consumption_overclocked": "290"
   },
   "AMD Ryzen 5 5600X3D": {
     "brand": "AMD",
@@ -1275,9 +1275,9 @@
     "microarchitecture": "Zen 3",
     "tdp": "105",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 12,
+    "release_date": "2023-07-07",
+    "power_consumption_overclocked": "95"
   },
   "Intel Core Ultra 5 245KF": {
     "brand": "Intel",
@@ -1291,14 +1291,14 @@
     "microarchitecture": "Arrow Lake",
     "tdp": "125",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "200"
+    "thread_count": 14,
+    "release_date": "2024-06-01",
+    "power_consumption_overclocked": "115"
   },
   "Intel Core i3-13100": {
     "brand": "Intel",
     "model": "i3-13100",
-    "slug": "i3-13100",
+    "slug": "13100",
     "name": "Intel Core i3-13100",
     "price": "125.25",
     "core_count": "4",
@@ -1307,14 +1307,14 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "60",
     "graphics": "Intel UHD Graphics 730",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "135"
+    "thread_count": 8,
+    "release_date": "2023-01-03",
+    "power_consumption_overclocked": "89"
   },
   "Intel Core i7-13700": {
     "brand": "Intel",
     "model": "i7-13700",
-    "slug": "i7-13700",
+    "slug": "13700",
     "name": "Intel Core i7-13700",
     "price": "319.93",
     "core_count": "16",
@@ -1323,14 +1323,14 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "65",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 16,
+    "release_date": "2022-10-20",
+    "power_consumption_overclocked": "219"
   },
   "Intel Core i9-14900F": {
     "brand": "Intel",
     "model": "i9-14900F",
-    "slug": "i9-14900-f",
+    "slug": "14900f",
     "name": "Intel Core i9-14900F",
     "price": "499.0",
     "core_count": "24",
@@ -1339,9 +1339,9 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 32,
+    "release_date": "2023-10-17",
+    "power_consumption_overclocked": "253"
   },
   "AMD Ryzen 5 5600T": {
     "brand": "AMD",
@@ -1355,14 +1355,14 @@
     "microarchitecture": "Zen 3",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 12,
+    "release_date": "2024-01-31",
+    "power_consumption_overclocked": "95"
   },
   "Intel Core i9-14900": {
     "brand": "Intel",
     "model": "i9-14900",
-    "slug": "i9-14900",
+    "slug": "14900",
     "name": "Intel Core i9-14900",
     "price": "571.86",
     "core_count": "24",
@@ -1371,9 +1371,9 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "65",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 32,
+    "release_date": "2023-10-17",
+    "power_consumption_overclocked": "253"
   },
   "AMD Ryzen 9 PRO 7945": {
     "brand": "AMD",
@@ -1387,9 +1387,9 @@
     "microarchitecture": "Zen 4",
     "tdp": "65",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 24,
+    "release_date": "2023-09-05",
+    "power_consumption_overclocked": "170"
   },
   "AMD EPYC 4244P": {
     "brand": "AMD",
@@ -1403,14 +1403,14 @@
     "microarchitecture": "Zen 4",
     "tdp": "65",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 24,
+    "release_date": "2024-03-19",
+    "power_consumption_overclocked": "200"
   },
   "Intel Core i9-13900": {
     "brand": "Intel",
     "model": "i9-13900",
-    "slug": "i9-13900",
+    "slug": "13900",
     "name": "Intel Core i9-13900",
     "price": "414.99",
     "core_count": "24",
@@ -1419,14 +1419,14 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "65",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 32,
+    "release_date": "2022-10-20",
+    "power_consumption_overclocked": "219"
   },
   "Intel Core i5-13500T": {
     "brand": "Intel",
     "model": "i5-13500T",
-    "slug": "i5-13500-t",
+    "slug": "13500t",
     "name": "Intel Core i5-13500T",
     "price": "",
     "core_count": "14",
@@ -1435,14 +1435,14 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "35",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "110"
+    "thread_count": 14,
+    "release_date": "2023-01-03",
+    "power_consumption_overclocked": "106"
   },
   "Intel Core i9-13900F": {
     "brand": "Intel",
     "model": "i9-13900F",
-    "slug": "i9-13900-f",
+    "slug": "13900f",
     "name": "Intel Core i9-13900F",
     "price": "516.43",
     "core_count": "24",
@@ -1451,9 +1451,9 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "65",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 32,
+    "release_date": "2022-10-20",
+    "power_consumption_overclocked": "219"
   },
   "AMD EPYC 4464P": {
     "brand": "AMD",
@@ -1467,14 +1467,14 @@
     "microarchitecture": "Zen 4",
     "tdp": "65",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 48,
+    "release_date": "2024-03-19",
+    "power_consumption_overclocked": "240"
   },
   "Intel Core i5-14500T": {
     "brand": "Intel",
     "model": "i5-14500T",
-    "slug": "i5-14500-t",
+    "slug": "14500t",
     "name": "Intel Core i5-14500T",
     "price": "",
     "core_count": "14",
@@ -1483,14 +1483,14 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "35",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "110"
+    "thread_count": 14,
+    "release_date": "2024-01-08",
+    "power_consumption_overclocked": "106"
   },
   "Intel Core i9-13900T": {
     "brand": "Intel",
     "model": "i9-13900T",
-    "slug": "i9-13900-t",
+    "slug": "13900t",
     "name": "Intel Core i9-13900T",
     "price": "",
     "core_count": "24",
@@ -1499,9 +1499,9 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "35",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "110"
+    "thread_count": 32,
+    "release_date": "2022-10-20",
+    "power_consumption_overclocked": "106"
   },
   "Intel 300": {
     "brand": "Intel",
@@ -1515,7 +1515,7 @@
     "microarchitecture": "Raptor Lake Refresh",
     "tdp": "46",
     "graphics": "Intel UHD Graphics 710",
-    "thread_count": "",
+    "thread_count": null,
     "release_date": "",
     "power_consumption_overclocked": "121"
   },
@@ -1531,14 +1531,14 @@
     "microarchitecture": "Zen 4",
     "tdp": "65",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 16,
+    "release_date": "2024-03-19",
+    "power_consumption_overclocked": "155"
   },
   "Intel Core i7-13700T": {
     "brand": "Intel",
     "model": "i7-13700T",
-    "slug": "i7-13700-t",
+    "slug": "13700t",
     "name": "Intel Core i7-13700T",
     "price": "",
     "core_count": "16",
@@ -1547,9 +1547,9 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "35",
     "graphics": "",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "110"
+    "thread_count": 16,
+    "release_date": "2022-10-20",
+    "power_consumption_overclocked": "106"
   },
   "AMD EPYC 4364P": {
     "brand": "AMD",
@@ -1563,9 +1563,9 @@
     "microarchitecture": "Zen 4",
     "tdp": "105",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 128,
+    "release_date": "2024-03-19",
+    "power_consumption_overclocked": "350"
   },
   "AMD Ryzen 5 PRO 7645": {
     "brand": "AMD",
@@ -1579,14 +1579,14 @@
     "microarchitecture": "Zen 4",
     "tdp": "65",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 12,
+    "release_date": "2023-04-28",
+    "power_consumption_overclocked": "105"
   },
   "Intel Core i5-13600": {
     "brand": "Intel",
     "model": "i5-13600",
-    "slug": "i5-13600",
+    "slug": "13600",
     "name": "Intel Core i5-13600",
     "price": "",
     "core_count": "14",
@@ -1595,9 +1595,9 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "65",
     "graphics": "Intel UHD Graphics 770",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "140"
+    "thread_count": 14,
+    "release_date": "2023-01-03",
+    "power_consumption_overclocked": "154"
   },
   "AMD EPYC 4584PX": {
     "brand": "AMD",
@@ -1611,9 +1611,9 @@
     "microarchitecture": "Zen 4",
     "tdp": "120",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "155"
+    "thread_count": 128,
+    "release_date": "2024-03-19",
+    "power_consumption_overclocked": "350"
   },
   "AMD Ryzen 7 PRO 7745": {
     "brand": "AMD",
@@ -1627,14 +1627,14 @@
     "microarchitecture": "Zen 4",
     "tdp": "65",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "100"
+    "thread_count": 16,
+    "release_date": "2023-04-28",
+    "power_consumption_overclocked": "120"
   },
   "Intel Core i3-13100T": {
     "brand": "Intel",
     "model": "i3-13100T",
-    "slug": "i3-13100-t",
+    "slug": "13100t",
     "name": "Intel Core i3-13100T",
     "price": "",
     "core_count": "4",
@@ -1643,9 +1643,9 @@
     "microarchitecture": "Raptor Lake",
     "tdp": "35",
     "graphics": "Intel UHD Graphics 730",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "110"
+    "thread_count": 8,
+    "release_date": "2023-01-03",
+    "power_consumption_overclocked": "74"
   },
   "AMD EPYC 4484PX": {
     "brand": "AMD",
@@ -1659,8 +1659,8 @@
     "microarchitecture": "Zen 4",
     "tdp": "120",
     "graphics": "Radeon",
-    "thread_count": "",
-    "release_date": "",
-    "power_consumption_overclocked": "155"
+    "thread_count": 96,
+    "release_date": "2024-03-19",
+    "power_consumption_overclocked": "300"
   }
 }

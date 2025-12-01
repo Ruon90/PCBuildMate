@@ -17,12 +17,31 @@ def build_psu_slug(brand: str, model: str, wattage: str, efficiency: str) -> str
     eff = slugify(str(efficiency)) if efficiency else ""
     parts = [p for p in [base, watt, eff] if p]
     return "-".join(parts)
+# -----------------------------
+# Normalization helpers
+# -----------------------------
+def normalize_modular(value: str) -> str:
+    if not isinstance(value, str):
+        return ""
+    v = value.strip().lower()
+    if "full" in v:
+        return "Full"
+    if "semi" in v:
+        return "Semi"
+    if v in ("false", "no", "none", "non-modular"):
+        return "Non-modular"
+    return value[:50]  # guarantee <=50 chars
+
 
 # -----------------------------
 # Pipeline
 # -----------------------------
 def run_pipeline(psu_file: str, output_file: str, debug=False):
     df = pd.read_csv(psu_file)
+
+    # Normalize modular column
+    if "modular" in df.columns:
+        df["modular"] = df["modular"].apply(normalize_modular)
 
     # Filter out rows without price
     before = len(df)

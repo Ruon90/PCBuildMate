@@ -1,38 +1,38 @@
 name,price,type,efficiency,wattage,modular,color,brand,slug
 MAG A750GL PCIE5,109.99,ATX,gold,750,Full,Black,MSI,msi-mag-a750gl-pcie5-750-gold
 MAG A850GL PCIE5,121.99,ATX,gold,850,Full,Black,MSI,msi-mag-a850gl-pcie5-850-gold
-MAG A650BN,74.98,ATX,bronze,650,false,Black,MSI,msi-mag-a650bn-650-bronze
+MAG A650BN,74.98,ATX,bronze,650,Non-modular,Black,MSI,msi-mag-a650bn-650-bronze
 RM1000e (2023),179.99,ATX,gold,1000,Full,Black,Corsair,corsair-rm1000e-2023-1000-gold
 RM750e (2025),99.99,ATX,,750,Full,Black,Corsair,corsair-rm750e-2025-750-nan
 RM850e (2025),119.99,ATX,,850,Full,Black,Corsair,corsair-rm850e-2025-850-nan
-MAG A550BN,54.99,ATX,bronze,550,false,Black,MSI,msi-mag-a550bn-550-bronze
+MAG A550BN,54.99,ATX,bronze,550,Non-modular,Black,MSI,msi-mag-a550bn-550-bronze
 RM850x (2024),144.99,ATX,,850,Full,Black,Corsair,corsair-rm850x-2024-850-nan
 SF1000 (2024),239.99,SFX,platinum,1000,Full,Black,Corsair,corsair-sf1000-2024-1000-platinum
 MAG A650GL,129.94,ATX,gold,650,Full,Black,MSI,msi-mag-a650gl-650-gold
 Master MWE Gold 850 - V2,89.99,ATX,gold,850,Full,Black,Cooler,cooler-master-mwe-gold-850-v2-850-gold
-Smart,39.95,ATX,plus,500,false,,Thermaltake,thermaltake-smart-500-plus
+Smart,39.95,ATX,plus,500,Non-modular,,Thermaltake,thermaltake-smart-500-plus
 SF750 (2024),179.99,SFX,platinum,750,Full,Black,Corsair,corsair-sf750-2024-750-platinum
 CENTURY II,89.9,ATX,gold,850,Full,Black,Montech,montech-century-ii-850-gold
 RM1000x (2024),209.95,ATX,,1000,Full,Black,Corsair,corsair-rm1000x-2024-1000-nan
-CX (2023),69.98,ATX,bronze,650,false,Black,Corsair,corsair-cx-2023-650-bronze
+CX (2023),69.98,ATX,bronze,650,Non-modular,Black,Corsair,corsair-cx-2023-650-bronze
 ROG THOR 1600T Gaming,986.98,ATX,titanium,1600,Full,Silver / Black,Asus,asus-rog-thor-1600t-gaming-1600-titanium
 quiet! Pure Power 12 M,124.9,ATX,gold,850,Full,Black,be,be-quiet-pure-power-12-m-850-gold
 MAG A850GL PCIE5,132.99,ATX,gold,850,Full,White,MSI,msi-mag-a850gl-pcie5-850-gold
 RM850,124.99,ATX,gold,850,Full,White / Black,Corsair,corsair-rm850-850-gold
-Smart,44.99,ATX,plus,600,false,,Thermaltake,thermaltake-smart-600-plus
+Smart,44.99,ATX,plus,600,Non-modular,,Thermaltake,thermaltake-smart-600-plus
 SF850 (2024),194.99,SFX,platinum,850,Full,Black,Corsair,corsair-sf850-2024-850-platinum
 RM1000e (2025),159.99,ATX,,1000,Full,Black,Corsair,corsair-rm1000e-2025-1000-nan
 RM650e (2025),104.99,ATX,,650,Full,Black,Corsair,corsair-rm650e-2025-650-nan
 quiet! Pure Power 12 M,98.9,ATX,gold,750,Full,Black,be,be-quiet-pure-power-12-m-750-gold
-Toughpower GX2,69.98,ATX,gold,600,false,Black,Thermaltake,thermaltake-toughpower-gx2-600-gold
+Toughpower GX2,69.98,ATX,gold,600,Non-modular,Black,Thermaltake,thermaltake-toughpower-gx2-600-gold
 Li EDGE,182.28,ATX,platinum,1000,Full,White,Lian,lian-li-edge-1000-platinum
 Galaxy,54.99,ATX,gold,650,Semi,Black,Apevia,apevia-galaxy-650-gold
 Toughpower GF1 (2024),103.99,ATX,gold,850,Full,Black,Thermaltake,thermaltake-toughpower-gf1-2024-850-gold
-MAG A750BN PCIE5,74.98,ATX,bronze,750,false,Black,MSI,msi-mag-a750bn-pcie5-750-bronze
+MAG A750BN PCIE5,74.98,ATX,bronze,750,Non-modular,Black,MSI,msi-mag-a750bn-pcie5-750-bronze
 Li SP,127.99,SFX,gold,750,Full,Black,Lian,lian-li-sp-750-gold
 Master V850 SFX GOLD,149.99,SFX,gold,850,Full,Black,Cooler,cooler-master-v850-sfx-gold-850-gold
 AX1600i,609.99,ATX,titanium,1600,Full,,Corsair,corsair-ax1600i-1600-titanium
-CX (2023),64.98,ATX,bronze,550,false,Black,Corsair,corsair-cx-2023-550-bronze
+CX (2023),64.98,ATX,bronze,550,Non-modular,Black,Corsair,corsair-cx-2023-550-bronze
 quiet! Dark Power 13,267.36,ATX,titanium,1000,Full,Black,be,be-quiet-dark-power-13-1000-titanium
 RM750e (2025),109.99,ATX,,750,Full,White,Corsair,corsair-rm750e-2025-750-nan
 HX1500i (2023),258.99,ATX,platinum,1500,Full,Black,Corsair,corsair-hx1500i-2023-1500-platinum
@@ -47,22 +47,22 @@ Li SP750,115.99,SFX,gold,750,Full,White,Lian,lian-li-sp750-750-gold
 HX1200i,219.99,ATX,platinum,1200,Full,Black,Corsair,corsair-hx1200i-1200-platinum
 RM850x (2021),198.98,ATX,gold,850,Full,Black,Corsair,corsair-rm850x-2021-850-gold
 RM1000e (2025),199.99,ATX,,1000,Full,White,Corsair,corsair-rm1000e-2025-1000-nan
-P650G,69.99,ATX,gold,650,false,Black,Gigabyte,gigabyte-p650g-650-gold
-Prestige,51.99,ATX,gold,600,false,Black,Apevia,apevia-prestige-600-gold
-Smart,54.99,ATX,plus,700,false,,Thermaltake,thermaltake-smart-700-plus
+P650G,69.99,ATX,gold,650,Non-modular,Black,Gigabyte,gigabyte-p650g-650-gold
+Prestige,51.99,ATX,gold,600,Non-modular,Black,Apevia,apevia-prestige-600-gold
+Smart,54.99,ATX,plus,700,Non-modular,,Thermaltake,thermaltake-smart-700-plus
 Li EDGE,159.99,ATX,platinum,1000,Full,Black,Lian,lian-li-edge-1000-platinum
 quiet! Pure Power 12 M,139.9,ATX,gold,1000,Full,Black,be,be-quiet-pure-power-12-m-1000-gold
 TUF Gaming 1000G,166.92,ATX,gold,1000,Full,Black,Asus,asus-tuf-gaming-1000g-1000-gold
 C850 (2024),124.99,ATX,gold,850,Full,Black,NZXT,nzxt-c850-2024-850-gold
-GN,59.99,ATX,gold,650,false,Black,Segotep,segotep-gn-650-gold
+GN,59.99,ATX,gold,650,Non-modular,Black,Segotep,segotep-gn-650-gold
 Li EDGE,227.44,ATX,platinum,1300,Full,White,Lian,lian-li-edge-1300-platinum
-RM750x SHIFT,154.99,ATX,gold,750,Full / Side,Black,Corsair,corsair-rm750x-shift-750-gold
-CX (2023),89.99,ATX,bronze,750,false,Black,Corsair,corsair-cx-2023-750-bronze
+RM750x SHIFT,154.99,ATX,gold,750,Full,Black,Corsair,corsair-rm750x-shift-750-gold
+CX (2023),89.99,ATX,bronze,750,Non-modular,Black,Corsair,corsair-cx-2023-750-bronze
 UD850GM,100.0,ATX,gold,850,Full,Black,Gigabyte,gigabyte-ud850gm-850-gold
 Focus GX V4 ATX 3 (2024),159.99,ATX,gold,850,Full,Black,SeaSonic,seasonic-focus-gx-v4-atx-3-2024-850-gold
 CX750M (2021),99.99,ATX,bronze,750,Semi,Black,Corsair,corsair-cx750m-2021-750-bronze
 Li EDGE GOLD,120.99,ATX,gold,850,Full,White,Lian,lian-li-edge-gold-850-gold
-CAPTAIN,31.99,ATX,,550,false,Black,Apevia,apevia-captain-550-nan
+CAPTAIN,31.99,ATX,,550,Non-modular,Black,Apevia,apevia-captain-550-nan
 GT,64.99,ATX,gold,650,Full,White,SAMA,sama-gt-650-gold
 A1000G PCIE5,191.0,ATX,gold,1000,Full,Black,MSI,msi-a1000g-pcie5-1000-gold
 HELA,540.99,ATX,,2050,Full,Black / White,Silverstone,silverstone-hela-2050-nan
@@ -80,7 +80,7 @@ Master V750 SFX GOLD,139.99,SFX,gold,750,Full,Black,Cooler,cooler-master-v750-sf
 Galaxy,69.98,ATX,gold,850,Semi,Black,Apevia,apevia-galaxy-850-gold
 GT,74.99,ATX,gold,750,Full,White,SAMA,sama-gt-750-gold
 MAG A1000GL PCIE5,179.69,ATX,gold,1000,Full,Black,MSI,msi-mag-a1000gl-pcie5-1000-gold
-400 N1,46.25,ATX,,400,false,,EVGA,evga-400-n1-400-nan
+400 N1,46.25,ATX,,400,Non-modular,,EVGA,evga-400-n1-400-nan
 50315153244479,89.99,ATX,gold,850,Full,Black,Vetroo,vetroo-50315153244479-850-gold
 Toughpower GF A3 Snow,129.99,ATX,gold,850,Full,White,Thermaltake,thermaltake-toughpower-gf-a3-snow-850-gold
 HX1500i (2025),348.99,ATX,platinum,1500,Full,Black,Corsair,corsair-hx1500i-2025-1500-platinum
@@ -91,26 +91,26 @@ C1200 (2024),199.99,ATX,gold,1200,Full,Black,NZXT,nzxt-c1200-2024-1200-gold
 Smart BM3,69.98,ATX,bronze,650,Semi,Black,Thermaltake,thermaltake-smart-bm3-650-bronze
 quiet! Power Zone 2,163.41,ATX,platinum,850,Full,Black,be,be-quiet-power-zone-2-850-platinum
 quiet! Pure Power 12 M,94.9,ATX,gold,650,Full,Black,be,be-quiet-pure-power-12-m-650-gold
-quiet! Pure Power 11,136.76,ATX,gold,400,false,Black,be,be-quiet-pure-power-11-400-gold
+quiet! Pure Power 11,136.76,ATX,gold,400,Non-modular,Black,be,be-quiet-pure-power-11-400-gold
 Li SP850,138.99,SFX,gold,850,Full,Black,Lian,lian-li-sp850-850-gold
-Challenger CL-750G,69.99,ATX,gold,750,false,Black,ASRock,asrock-challenger-cl-750g-750-gold
+Challenger CL-750G,69.99,ATX,gold,750,Non-modular,Black,ASRock,asrock-challenger-cl-750g-750-gold
 ROG Strix,229.99,ATX,platinum,1000,Full,Black,Asus,asus-rog-strix-1000-platinum
 PRIME TX-1600 ATX 3.1,550.99,ATX,titanium,1600,Full,Black / Silver,SeaSonic,seasonic-prime-tx-1600-atx-3-1-1600-titanium
 MEG Ai1300P PCIE5,386.99,ATX,platinum,1300,Full,Black / Copper,MSI,msi-meg-ai1300p-pcie5-1300-platinum
 SuperNOVA 1000 P5,175.41,ATX,platinum,1000,Full,Blue / Black,EVGA,evga-supernova-1000-p5-1000-platinum
 quiet! Straight Power 12,199.9,ATX,platinum,1000,Full,Black,be,be-quiet-straight-power-12-1000-platinum
-APX,49.8,ATX,plus,650,false,Black,Montech,montech-apx-650-plus
-Prestige,66.98,ATX,gold,800,false,Black,Apevia,apevia-prestige-800-gold
-750 N1,69.98,ATX,,750,false,,EVGA,evga-750-n1-750-nan
+APX,49.8,ATX,plus,650,Non-modular,Black,Montech,montech-apx-650-plus
+Prestige,66.98,ATX,gold,800,Non-modular,Black,Apevia,apevia-prestige-800-gold
+750 N1,69.98,ATX,,750,Non-modular,,EVGA,evga-750-n1-750-nan
 HX1000i (2023),259.99,ATX,platinum,1000,Full,Black,Corsair,corsair-hx1000i-2023-1000-platinum
-RM1200x SHIFT,229.99,ATX,gold,1200,Full / Side,Black,Corsair,corsair-rm1200x-shift-1200-gold
+RM1200x SHIFT,229.99,ATX,gold,1200,Full,Black,Corsair,corsair-rm1200x-shift-1200-gold
 Master MWE Gold 750 V3,99.99,ATX,gold,750,Full,Black,Cooler,cooler-master-mwe-gold-750-v3-750-gold
 Flower Leadex Titanium,849.99,ATX,titanium,2800,Full,Black,Super,super-flower-leadex-titanium-2800-titanium
 SuperNOVA 850 GT,129.98,ATX,gold,850,Full,Black,EVGA,evga-supernova-850-gt-850-gold
 HX1200i (2025),344.99,ATX,platinum,1200,Full,Black,Corsair,corsair-hx1200i-2025-1200-platinum
 Master MWE Gold 850 V3,107.5,ATX,gold,850,Full,Black,Cooler,cooler-master-mwe-gold-850-v3-850-gold
 TUF Gaming 750G,126.49,ATX,gold,750,Full,Black,Asus,asus-tuf-gaming-750g-750-gold
-500 W1,72.0,ATX,plus,500,false,,EVGA,evga-500-w1-500-plus
+500 W1,72.0,ATX,plus,500,Non-modular,,EVGA,evga-500-w1-500-plus
 MEG Ai-T PCIE5,687.99,ATX,titanium,1600,Full,Black / Gold,MSI,msi-meg-ai-t-pcie5-1600-titanium
 1000 GQ,128.94,ATX,gold,1000,Semi,,EVGA,evga-1000-gq-1000-gold
 Smart BM3,79.98,ATX,bronze,750,Semi,Black,Thermaltake,thermaltake-smart-bm3-750-bronze
@@ -120,19 +120,19 @@ RM1200e,199.99,ATX,gold,1200,Full,Black,Corsair,corsair-rm1200e-1200-gold
 quiet! Straight Power 12,226.21,ATX,platinum,1200,Full,Black,be,be-quiet-straight-power-12-1200-platinum
 RM750x (2018),183.88,ATX,gold,750,Full,Black,Corsair,corsair-rm750x-2018-750-gold
 Premier,54.99,ATX,gold,650,Semi,Black,Apevia,apevia-premier-650-gold
-RM1000x SHIFT,199.99,ATX,gold,1000,Full / Side,White,Corsair,corsair-rm1000x-shift-1000-gold
+RM1000x SHIFT,199.99,ATX,gold,1000,Full,White,Corsair,corsair-rm1000x-shift-1000-gold
 PRIME TX-1600 Noctua Edition,654.0,ATX,titanium,1600,Full,Brown / Black,SeaSonic,seasonic-prime-tx-1600-noctua-edition-1600-titanium
 Prime AP-750G,119.99,ATX,gold,750,Full,White / Black,Asus,asus-prime-ap-750g-750-gold
-RM850x SHIFT,179.99,ATX,gold,850,Full / Side,Black,Corsair,corsair-rm850x-shift-850-gold
+RM850x SHIFT,179.99,ATX,gold,850,Full,Black,Corsair,corsair-rm850x-shift-850-gold
 quiet! Pure Power 12 M,169.9,ATX,gold,1200,Full,Black,be,be-quiet-pure-power-12-m-1200-gold
 Toughpower GF1 (2024),99.99,ATX,gold,750,Full,Black,Thermaltake,thermaltake-toughpower-gf1-2024-750-gold
 RM1000x,248.97,ATX,gold,1000,Full,,Corsair,corsair-rm1000x-1000-gold
 Steel Legend SL-750G,89.99,ATX,gold,750,Full,Black,ASRock,asrock-steel-legend-sl-750g-750-gold
-RM850x SHIFT,169.99,ATX,gold,850,Full / Side,White,Corsair,corsair-rm850x-shift-850-gold
+RM850x SHIFT,169.99,ATX,gold,850,Full,White,Corsair,corsair-rm850x-shift-850-gold
 Master V SFX Platinum,207.49,SFX,platinum,1100,Full,Black,Cooler,cooler-master-v-sfx-platinum-1100-platinum
 GM,94.99,ATX,gold,850,Full,Black,Segotep,segotep-gm-850-gold
 SFX,127.25,SFX,gold,500,Full,Black,Silverstone,silverstone-sfx-500-gold
-V-400,24.99,ATX,,400,false,,CoolMax,coolmax-v-400-400-nan
+V-400,24.99,ATX,,400,Non-modular,,CoolMax,coolmax-v-400-400-nan
 AORUS ELITE P850,164.99,ATX,platinum,850,Full,Black,Gigabyte,gigabyte-aorus-elite-p850-850-platinum
 Prime AP-850G,139.99,ATX,gold,850,Full,White / Black,Asus,asus-prime-ap-850g-850-gold
 Li SP850,144.99,SFX,gold,850,Full,White,Lian,lian-li-sp850-850-gold
@@ -143,15 +143,15 @@ quiet! Dark Power Pro 13,399.9,ATX,titanium,1300,Full,Black,be,be-quiet-dark-pow
 UD-GM PG5,146.72,ATX,gold,750,Full,Black,Gigabyte,gigabyte-ud-gm-pg5-750-gold
 VERTEX GX-1000,199.99,ATX,gold,1000,Full,Black / Silver,SeaSonic,seasonic-vertex-gx-1000-1000-gold
 RM650 (2019),229.99,ATX,gold,650,Full,Black,Corsair,corsair-rm650-2019-650-gold
-I-500,26.14,ATX,,500,false,,CoolMax,coolmax-i-500-500-nan
-APX,54.9,ATX,plus,750,false,Black,Montech,montech-apx-750-plus
+I-500,26.14,ATX,,500,Non-modular,,CoolMax,coolmax-i-500-500-nan
+APX,54.9,ATX,plus,750,Non-modular,Black,Montech,montech-apx-750-plus
 CORE GX ATX 3 (2024),99.98,ATX,gold,650,Full,Black,SeaSonic,seasonic-core-gx-atx-3-2024-650-gold
 VERTEX PX-1200,319.99,ATX,platinum,1200,Full,Black / Silver,SeaSonic,seasonic-vertex-px-1200-1200-platinum
 Toughpower GF A3 - TT Premium Edition,136.72,ATX,gold,1050,Full,Black,Thermaltake,thermaltake-toughpower-gf-a3-tt-premium-edition-1050-gold
 ROG LOKI,239.99,SFX,platinum,850,Full,White / Silver,Asus,asus-rog-loki-850-platinum
 Li EDGE GOLD,475.18,ATX,gold,1000,Full,White,Lian,lian-li-edge-gold-1000-gold
-700 BR,94.46,ATX,bronze,700,false,,EVGA,evga-700-br-700-bronze
-RM1000x SHIFT,214.99,ATX,gold,1000,Full / Side,Black,Corsair,corsair-rm1000x-shift-1000-gold
+700 BR,94.46,ATX,bronze,700,Non-modular,,EVGA,evga-700-br-700-bronze
+RM1000x SHIFT,214.99,ATX,gold,1000,Full,Black,Corsair,corsair-rm1000x-shift-1000-gold
 Galaxy,79.98,ATX,gold,1000,Semi,Black,Apevia,apevia-galaxy-1000-gold
 quiet! SFX L Power,142.05,SFX,gold,500,Full,Black,be,be-quiet-sfx-l-power-500-gold
 quiet! Pure Power 13 M,134.9,ATX,gold,850,Full,Black,be,be-quiet-pure-power-13-m-850-gold
@@ -167,11 +167,11 @@ FOCUS GX,175.26,ATX,gold,750,Full,Black,SeaSonic,seasonic-focus-gx-750-gold
 XPG CYBERCORE,129.99,ATX,platinum,1000,Full,Black / Silver,ADATA,adata-xpg-cybercore-1000-platinum
 Steel Legend SL-850G,99.99,ATX,gold,850,Full,Black,ASRock,asrock-steel-legend-sl-850g-850-gold
 ATX-ES700-RGB,48.99,ATX,,700,Semi,Black,Apevia,apevia-atx-es700-rgb-700-nan
-XPG PYLON,81.93,ATX,bronze,650,false,Black,ADATA,adata-xpg-pylon-650-bronze
-quiet! SFX Power 3 450,124.41,SFX,bronze,450,false,Black,be,be-quiet-sfx-power-3-450-450-bronze
+XPG PYLON,81.93,ATX,bronze,650,Non-modular,Black,ADATA,adata-xpg-pylon-650-bronze
+quiet! SFX Power 3 450,124.41,SFX,bronze,450,Non-modular,Black,be,be-quiet-sfx-power-3-450-450-bronze
 RM850,115.98,ATX,gold,850,Full,Black,Corsair,corsair-rm850-850-gold
-RM1200x SHIFT,269.99,ATX,gold,1200,Full / Side,White,Corsair,corsair-rm1200x-shift-1200-gold
-quiet! Pure Power 12,139.9,ATX,gold,1000,false,Black,be,be-quiet-pure-power-12-1000-gold
+RM1200x SHIFT,269.99,ATX,gold,1200,Full,White,Corsair,corsair-rm1200x-shift-1200-gold
+quiet! Pure Power 12,139.9,ATX,gold,1000,Non-modular,Black,be,be-quiet-pure-power-12-1000-gold
 RM850x (2018),209.5,ATX,gold,850,Full,Black,Corsair,corsair-rm850x-2018-850-gold
 VERTEX GX-1200,247.99,ATX,gold,1200,Full,Black / Silver,SeaSonic,seasonic-vertex-gx-1200-1200-gold
 ROG LOKI,264.99,SFX,platinum,1000,Full,Silver / Black,Asus,asus-rog-loki-1000-platinum
@@ -180,11 +180,11 @@ MAG A750GL PCIE5 II,115.0,ATX,gold,750,Full,Black,MSI,msi-mag-a750gl-pcie5-ii-75
 850 GQ,84.99,ATX,gold,850,Semi,,EVGA,evga-850-gq-850-gold
 Li EDGE GOLD,481.17,ATX,gold,1000,Full,Black,Lian,lian-li-edge-gold-1000-gold
 TUF Gaming 1000G,194.99,ATX,gold,1000,Full,White,Asus,asus-tuf-gaming-1000g-1000-gold
-Toughpower GX3,91.99,ATX,gold,850,false,Black,Thermaltake,thermaltake-toughpower-gx3-850-gold
+Toughpower GX3,91.99,ATX,gold,850,Non-modular,Black,Thermaltake,thermaltake-toughpower-gx3-850-gold
 ROG THOR P2 Gaming,359.99,ATX,platinum,1000,Full,Silver / Black,Asus,asus-rog-thor-p2-gaming-1000-platinum
 Toughpower GF3 TT Premium,185.99,ATX,gold,1200,Full,Black,Thermaltake,thermaltake-toughpower-gf3-tt-premium-1200-gold
 Toughpower GF A3 - TT Premium Edition,100.09,ATX,gold,850,Full,Black,Thermaltake,thermaltake-toughpower-gf-a3-tt-premium-edition-850-gold
-CX650 (2017),147.24,ATX,bronze,650,false,,Corsair,corsair-cx650-2017-650-bronze
+CX650 (2017),147.24,ATX,bronze,650,Non-modular,,Corsair,corsair-cx650-2017-650-bronze
 Master V SFX Gold ATX 3.0,139.99,SFX,gold,850,Full,Black,Cooler,cooler-master-v-sfx-gold-atx-3-0-850-gold
 TUF Gaming 1200G,217.99,ATX,gold,1200,Full,Black,Asus,asus-tuf-gaming-1200g-1200-gold
 DA850R-GMA,173.99,ATX,gold,850,Full,Black,Silverstone,silverstone-da850r-gma-850-gold
@@ -193,30 +193,30 @@ HX1200 Platinum,405.0,ATX,platinum,1200,Full,,Corsair,corsair-hx1200-platinum-12
 quiet! Pure Power 13 M,109.9,ATX,gold,750,Full,Black,be,be-quiet-pure-power-13-m-750-gold
 FOCUS Plus 650 Gold,150.8,ATX,gold,650,Full,,SeaSonic,seasonic-focus-plus-650-gold-650-gold
 UD750GM-A,89.99,ATX,gold,750,Full,Black,Gigabyte,gigabyte-ud750gm-a-750-gold
-Extreme 500 Bronze,106.64,SFX,bronze,500,false,Black / White,Silverstone,silverstone-extreme-500-bronze-500-bronze
-quiet! Pure Power 12,107.98,ATX,gold,750,false,Black,be,be-quiet-pure-power-12-750-gold
-XPG PYLON,102.51,ATX,bronze,550,false,Black,ADATA,adata-xpg-pylon-550-bronze
+Extreme 500 Bronze,106.64,SFX,bronze,500,Non-modular,Black / White,Silverstone,silverstone-extreme-500-bronze-500-bronze
+quiet! Pure Power 12,107.98,ATX,gold,750,Non-modular,Black,be,be-quiet-pure-power-12-750-gold
+XPG PYLON,102.51,ATX,bronze,550,Non-modular,Black,ADATA,adata-xpg-pylon-550-bronze
 C1200,259.99,ATX,gold,1200,Full,Black,NZXT,nzxt-c1200-1200-gold
 Li EDGE GOLD,539.37,ATX,gold,1200,Full,White,Lian,lian-li-edge-gold-1200-gold
 MAG A850GL PCIE5 II,129.99,ATX,gold,850,Full,Black,MSI,msi-mag-a850gl-pcie5-ii-850-gold
-650 N1,64.98,ATX,,650,false,,EVGA,evga-650-n1-650-nan
+650 N1,64.98,ATX,,650,Non-modular,,EVGA,evga-650-n1-650-nan
 Master V850 SFX GOLD,169.99,SFX,gold,850,Full,White,Cooler,cooler-master-v850-sfx-gold-850-gold
 quiet! SFX L Power,203.42,SFX,gold,600,Full,Black,be,be-quiet-sfx-l-power-600-gold
 HX1000 Platinum,405.0,ATX,platinum,1000,Full,,Corsair,corsair-hx1000-platinum-1000-platinum
 Li EDGE GOLD,534.05,ATX,gold,1200,Full,Black,Lian,lian-li-edge-gold-1200-gold
 Focus GX V4 ATX 3 (2024),207.99,ATX,gold,1000,Full,White,SeaSonic,seasonic-focus-gx-v4-atx-3-2024-1000-gold
-FX500-G,157.08,Flex ATX,gold,500,false,Black,Silverstone,silverstone-fx500-g-500-gold
+FX500-G,157.08,Flex ATX,gold,500,Non-modular,Black,Silverstone,silverstone-fx500-g-500-gold
 GV1000,129.99,ATX,gold,1000,Full,White,Vetroo,vetroo-gv1000-1000-gold
 ROG Strix,169.99,ATX,gold,850,Full,White,Asus,asus-rog-strix-850-gold
 SuperNOVA 1300 G+,239.99,ATX,gold,1300,Full,Black,EVGA,evga-supernova-1300-g-1300-gold
-APX,54.99,ATX,plus,550,false,Black,Montech,montech-apx-550-plus
+APX,54.99,ATX,plus,550,Non-modular,Black,Montech,montech-apx-550-plus
 650 GQ,146.03,ATX,gold,650,Semi,,EVGA,evga-650-gq-650-gold
 SFX,232.63,SFX,titanium,800,Full,Black,Silverstone,silverstone-sfx-800-titanium
 quiet! Straight Power 12,169.9,ATX,platinum,850,Full,Black,be,be-quiet-straight-power-12-850-platinum
 quiet! Pure Power 13 M,159.9,ATX,gold,1000,Full,Black,be,be-quiet-pure-power-13-m-1000-gold
 ROG LOKI,189.99,SFX,platinum,750,Full,Black / Silver,Asus,asus-rog-loki-750-platinum
 UD1000GM PG5 (rev. 2.0),147.97,ATX,gold,1000,Full,Black,Gigabyte,gigabyte-ud1000gm-pg5-rev-2-0-1000-gold
-quiet! Pure Power 12,163.81,ATX,gold,650,false,Black,be,be-quiet-pure-power-12-650-gold
+quiet! Pure Power 12,163.81,ATX,gold,650,Non-modular,Black,be,be-quiet-pure-power-12-650-gold
 C1500,369.99,ATX,platinum,1500,Full,Black,NZXT,nzxt-c1500-1500-platinum
 VERTEX PX-1000,269.99,ATX,platinum,1000,Full,Black / Silver,SeaSonic,seasonic-vertex-px-1000-1000-platinum
 "Group Hydro Ti PRO,Gen 5",269.99,ATX,titanium,1000,Full,Black,FSP,fsp-group-hydro-ti-pro-gen-5-1000-titanium
@@ -224,8 +224,8 @@ Toughpower GF3 Snow,185.99,ATX,gold,1200,Full,White,Thermaltake,thermaltake-toug
 Smart BM3,99.99,ATX,bronze,850,Semi,Black,Thermaltake,thermaltake-smart-bm3-850-bronze
 ROG LOKI,219.99,SFX,platinum,850,Full,Black / Silver,Asus,asus-rog-loki-850-platinum
 ROG Strix,122.5,ATX,gold,750,Full,Black / Red,Asus,asus-rog-strix-750-gold
-S12III,88.0,ATX,bronze,650,false,Black,SeaSonic,seasonic-s12iii-650-bronze
-FX600 Platinum,210.78,Flex ATX,,600,false,Black,Silverstone,silverstone-fx600-platinum-600-nan
+S12III,88.0,ATX,bronze,650,Non-modular,Black,SeaSonic,seasonic-s12iii-650-bronze
+FX600 Platinum,210.78,Flex ATX,,600,Non-modular,Black,Silverstone,silverstone-fx600-platinum-600-nan
 Focus GX V4 ATX 3 (2024),168.99,ATX,gold,850,Full,White,SeaSonic,seasonic-focus-gx-v4-atx-3-2024-850-gold
 SuperNOVA 650 G3,182.49,ATX,gold,650,Full,,EVGA,evga-supernova-650-g3-650-gold
 GV1000,129.99,ATX,gold,1000,Full,Black,Vetroo,vetroo-gv1000-1000-gold
@@ -233,12 +233,12 @@ ROG-STRIX-850G,179.6,ATX,gold,850,Full,Black,Asus,asus-rog-strix-850g-850-gold
 RM750x,188.86,ATX,gold,750,Full,,Corsair,corsair-rm750x-750-gold
 quiet! Dark Power 13,211.14,ATX,titanium,750,Full,Black,be,be-quiet-dark-power-13-750-titanium
 Master V Platinum V2,309.99,ATX,platinum,1600,Full,Black / Purple,Cooler,cooler-master-v-platinum-v2-1600-platinum
-Smart BX1 650,63.43,ATX,bronze,650,false,Black,Thermaltake,thermaltake-smart-bx1-650-650-bronze
+Smart BX1 650,63.43,ATX,bronze,650,Non-modular,Black,Thermaltake,thermaltake-smart-bx1-650-650-bronze
 SuperNOVA 1600 T2,699.99,ATX,titanium,1600,Full,,EVGA,evga-supernova-1600-t2-1600-titanium
 CORE GX ATX 3 (2024),111.91,ATX,gold,850,Full,Black,SeaSonic,seasonic-core-gx-atx-3-2024-850-gold
 GT,74.99,ATX,gold,750,Full,Black,SAMA,sama-gt-750-gold
 RM850x,201.88,ATX,gold,850,Full,,Corsair,corsair-rm850x-850-gold
-500 BR,165.0,ATX,bronze,500,false,,EVGA,evga-500-br-500-bronze
+500 BR,165.0,ATX,bronze,500,Non-modular,,EVGA,evga-500-br-500-bronze
 Toughpower SFX,194.99,SFX,platinum,1000,Full,Black,Thermaltake,thermaltake-toughpower-sfx-1000-platinum
 Group Dagger Pro,137.43,SFX,gold,650,Full,Black,FSP,fsp-group-dagger-pro-650-gold
 Flower Leadex III Gold UP,129.99,ATX,gold,850,Full,Black,Super,super-flower-leadex-iii-gold-up-850-gold
@@ -246,10 +246,10 @@ GT,79.99,ATX,gold,850,Full,Black,SAMA,sama-gt-850-gold
 MPG A1250GS PCIE5,229.99,ATX,gold,1250,Full,Black,MSI,msi-mpg-a1250gs-pcie5-1250-gold
 Li EDGE GOLD,99.99,ATX,gold,750,Full,Black,Lian,lian-li-edge-gold-750-gold
 GT,79.99,ATX,gold,850,Full,White,SAMA,sama-gt-850-gold
-quiet! Pure Power 12,119.9,ATX,gold,850,false,Black,be,be-quiet-pure-power-12-850-gold
+quiet! Pure Power 12,119.9,ATX,gold,850,Non-modular,Black,be,be-quiet-pure-power-12-850-gold
 Flower LEADEX VII Platinum PRO,199.99,ATX,platinum,1000,Full,Black,Super,super-flower-leadex-vii-platinum-pro-1000-platinum
 C1200 (2024),196.99,ATX,gold,1200,Full,White,NZXT,nzxt-c1200-2024-1200-gold
-SFX,87.31,SFX,bronze,300,false,Black,Silverstone,silverstone-sfx-300-bronze
+SFX,87.31,SFX,bronze,300,Non-modular,Black,Silverstone,silverstone-sfx-300-bronze
 ROG THOR P2 Gaming,209.12,ATX,platinum,850,Full,Black / Silver,Asus,asus-rog-thor-p2-gaming-850-platinum
 ROG STRIX 1000G,290.95,ATX,gold,1000,Full,Black,Asus,asus-rog-strix-1000g-1000-gold
 HX1000i,429.99,ATX,platinum,1000,Full,,Corsair,corsair-hx1000i-1000-platinum
@@ -260,48 +260,48 @@ CMG1000G5,99.99,ATX,gold,1000,Full,Black,Rosewill,rosewill-cmg1000g5-1000-gold
 quiet! Pure Power 9 CM,249.62,ATX,bronze,600,Semi,Black,be,be-quiet-pure-power-9-cm-600-bronze
 Toughpower SFX,159.99,SFX,platinum,850,Full,Black,Thermaltake,thermaltake-toughpower-sfx-850-platinum
 P850GM,174.9,ATX,gold,850,Full,Black,Gigabyte,gigabyte-p850gm-850-gold
-RM750x SHIFT,139.99,ATX,gold,750,Full / Side,White,Corsair,corsair-rm750x-shift-750-gold
+RM750x SHIFT,139.99,ATX,gold,750,Full,White,Corsair,corsair-rm750x-shift-750-gold
 Flower LEADEX VII XG,159.99,ATX,gold,850,Full,Black,Super,super-flower-leadex-vii-xg-850-gold
-MAG A850GN PCIE5,104.99,ATX,gold,850,false,Black,MSI,msi-mag-a850gn-pcie5-850-gold
+MAG A850GN PCIE5,104.99,ATX,gold,850,Non-modular,Black,MSI,msi-mag-a850gn-pcie5-850-gold
 HELA 1200R,320.72,ATX,platinum,1200,Full,Black,Silverstone,silverstone-hela-1200r-1200-platinum
 Flower LEADEX VII Platinum PRO,239.99,ATX,platinum,1200,Full,Black,Super,super-flower-leadex-vii-platinum-pro-1200-platinum
-700 GD,89.0,ATX,gold,700,false,Black,EVGA,evga-700-gd-700-gold
+700 GD,89.0,ATX,gold,700,Non-modular,Black,EVGA,evga-700-gd-700-gold
 AORUS ELITE P1000,221.13,ATX,platinum,1000,Full,Black,Gigabyte,gigabyte-aorus-elite-p1000-1000-platinum
 SuperNOVA 1300 P+,209.43,ATX,platinum,1300,Full,Black,EVGA,evga-supernova-1300-p-1300-platinum
 Flower Leadex III Gold UP,159.99,ATX,gold,1000,Full,Black,Super,super-flower-leadex-iii-gold-up-1000-gold
 GV1000,129.99,ATX,gold,1000,Full,Pink,Vetroo,vetroo-gv1000-1000-gold
-quiet! System Power 10,205.0,ATX,bronze,550,false,Black,be,be-quiet-system-power-10-550-bronze
+quiet! System Power 10,205.0,ATX,bronze,550,Non-modular,Black,be,be-quiet-system-power-10-550-bronze
 Steel Legend SL-850GW,134.99,ATX,gold,850,Full,White,ASRock,asrock-steel-legend-sl-850gw-850-gold
 MPG A1000G,257.3,ATX,gold,1000,Full,Black,MSI,msi-mpg-a1000g-1000-gold
-TR2 S,70.61,ATX,plus,600,false,Black,Thermaltake,thermaltake-tr2-s-600-plus
+TR2 S,70.61,ATX,plus,600,Non-modular,Black,Thermaltake,thermaltake-tr2-s-600-plus
 RM850e (2022),200.0,ATX,gold,850,Full,Black,Corsair,corsair-rm850e-2022-850-gold
 VERTEX GX-850,149.99,ATX,gold,850,Full,Black / Silver,SeaSonic,seasonic-vertex-gx-850-850-gold
-FX350-G,112.14,Flex ATX,gold,350,false,Black,Silverstone,silverstone-fx350-g-350-gold
+FX350-G,112.14,Flex ATX,gold,350,Non-modular,Black,Silverstone,silverstone-fx350-g-350-gold
 Focus GX V4 ATX 3 (2024),114.74,ATX,gold,750,Full,White,SeaSonic,seasonic-focus-gx-v4-atx-3-2024-750-gold
 Group Hydro GE,84.99,ATX,gold,650,Full,,FSP,fsp-group-hydro-ge-650-gold
 RM1000e (2022),265.0,ATX,gold,1000,Full,Black,Corsair,corsair-rm1000e-2022-1000-gold
-ATX-PR850W PCIE5.0,74.98,ATX,gold,850,false,Black,Apevia,apevia-atx-pr850w-pcie5-0-850-gold
+ATX-PR850W PCIE5.0,74.98,ATX,gold,850,Non-modular,Black,Apevia,apevia-atx-pr850w-pcie5-0-850-gold
 UD850GM-A PG5,119.99,ATX,gold,850,Full,Black,Gigabyte,gigabyte-ud850gm-a-pg5-850-gold
 GX Pro Rampage,159.99,ATX,platinum,1050,Full,White,GameMax,gamemax-gx-pro-rampage-1050-platinum
 FOCUS GX-750 ATX 3.0,154.0,ATX,gold,750,Full,Black,SeaSonic,seasonic-focus-gx-750-atx-3-0-750-gold
-Challenger CL-650B,62.99,ATX,bronze,650,false,Black,ASRock,asrock-challenger-cl-650b-650-bronze
+Challenger CL-650B,62.99,ATX,bronze,650,Non-modular,Black,ASRock,asrock-challenger-cl-650b-650-bronze
 Toughpower GF A3 - TT Premium Edition,159.99,ATX,gold,1200,Full,Black,Thermaltake,thermaltake-toughpower-gf-a3-tt-premium-edition-1200-gold
 Toughpower GF3 TT Premium,167.99,ATX,gold,1350,Full,Black,Thermaltake,thermaltake-toughpower-gf3-tt-premium-1350-gold
 Flower LEADEX VII XG,229.99,ATX,gold,1300,Full,Black,Super,super-flower-leadex-vii-xg-1300-gold
 ROG Strix Aura Edition,204.24,ATX,gold,1000,Full,Black,Asus,asus-rog-strix-aura-edition-1000-gold
 FOCUS GX,150.41,ATX,gold,650,Full,Black,SeaSonic,seasonic-focus-gx-650-gold
-PSAZ-650W,59.99,ATX,bronze,650,false,Black,Azza,azza-psaz-650w-650-bronze
+PSAZ-650W,59.99,ATX,bronze,650,Non-modular,Black,Azza,azza-psaz-650w-650-bronze
 Master V1300 Platinum,391.9,ATX,platinum,1300,Full,Black,Cooler,cooler-master-v1300-platinum-1300-platinum
 quiet! Straight Power 12,172.99,ATX,platinum,750,Full,Black,be,be-quiet-straight-power-12-750-platinum
 Toughpower GF A3 - TT Premium Edition,109.99,ATX,gold,750,Full,Black,Thermaltake,thermaltake-toughpower-gf-a3-tt-premium-edition-750-gold
 Phantom Gaming PG-1000G,149.99,ATX,gold,1000,Full,Black,ASRock,asrock-phantom-gaming-pg-1000g-1000-gold
 CX450M (2015),119.99,ATX,bronze,450,Semi,,Corsair,corsair-cx450m-2015-450-bronze
 Katana Chroma,119.99,ATX,platinum,850,Full,Black,Razer,razer-katana-chroma-850-platinum
-PSAZ-750W,74.98,ATX,bronze,750,false,Black,Azza,azza-psaz-750w-750-bronze
+PSAZ-750W,74.98,ATX,bronze,750,Non-modular,Black,Azza,azza-psaz-750w-750-bronze
 Steel Legend SL-650G,97.99,ATX,gold,650,Full,Black,ASRock,asrock-steel-legend-sl-650g-650-gold
-Vero L5,99.82,ATX,bronze,600,false,Black,ENDORFY,endorfy-vero-l5-600-bronze
-KRATOS M1 B,64.98,ATX,bronze,750,false,Black,GAMDIAS,gamdias-kratos-m1-b-750-bronze
-TUF Gaming B,84.99,ATX,bronze,550,false,Black,Asus,asus-tuf-gaming-b-550-bronze
+Vero L5,99.82,ATX,bronze,600,Non-modular,Black,ENDORFY,endorfy-vero-l5-600-bronze
+KRATOS M1 B,64.98,ATX,bronze,750,Non-modular,Black,GAMDIAS,gamdias-kratos-m1-b-750-bronze
+TUF Gaming B,84.99,ATX,bronze,550,Non-modular,Black,Asus,asus-tuf-gaming-b-550-bronze
 650 BQ,146.03,ATX,bronze,650,Semi,,EVGA,evga-650-bq-650-bronze
 RM850x (2018),407.0,ATX,gold,850,Full,White / Black,Corsair,corsair-rm850x-2018-850-gold
 Flower Leadex III Gold UP,179.99,ATX,gold,1300,Full,Black,Super,super-flower-leadex-iii-gold-up-1300-gold
@@ -309,15 +309,15 @@ Zeus 1650R,557.45,ATX,titanium,1650,Full,,Silverstone,silverstone-zeus-1650r-165
 quiet! System Power 9 CM,204.42,ATX,bronze,400,Semi,Black,be,be-quiet-system-power-9-cm-400-bronze
 Flower LEADEX VII Platinum PRO,239.99,ATX,platinum,1200,Full,White,Super,super-flower-leadex-vii-platinum-pro-1200-platinum
 RGB Pro,109.99,ATX,gold,850,Full,White,GameMax,gamemax-rgb-pro-850-gold
-Essential,74.25,ATX,gold,550,false,Black / Yellow,Silverstone,silverstone-essential-550-gold
+Essential,74.25,ATX,gold,550,Non-modular,Black / Yellow,Silverstone,silverstone-essential-550-gold
 Design Ion Gold,226.04,ATX,gold,850,Full,Black,Fractal,fractal-design-ion-gold-850-gold
-Master MWE Bronze V2,179.34,ATX,bronze,750,false,Black,Cooler,cooler-master-mwe-bronze-v2-750-bronze
+Master MWE Bronze V2,179.34,ATX,bronze,750,Non-modular,Black,Cooler,cooler-master-mwe-bronze-v2-750-bronze
 Toughpower GF3 TT Premium,299.99,ATX,gold,1650,Full,Black,Thermaltake,thermaltake-toughpower-gf3-tt-premium-1650-gold
 Phantom Gaming PG-750G,99.99,ATX,gold,750,Full,Black,ASRock,asrock-phantom-gaming-pg-750g-750-gold
 Phantom Gaming PG-1300G,189.99,ATX,gold,1300,Full,Black,ASRock,asrock-phantom-gaming-pg-1300g-1300-gold
-quiet! System Power 10,257.84,ATX,gold,850,false,Black,be,be-quiet-system-power-10-850-gold
+quiet! System Power 10,257.84,ATX,gold,850,Non-modular,Black,be,be-quiet-system-power-10-850-gold
 Flower Leadex III Gold UP,119.99,ATX,gold,750,Full,Black,Super,super-flower-leadex-iii-gold-up-750-gold
-Challenger CL-550B,57.99,ATX,bronze,550,false,Black,ASRock,asrock-challenger-cl-550b-550-bronze
+Challenger CL-550B,57.99,ATX,bronze,550,Non-modular,Black,ASRock,asrock-challenger-cl-550b-550-bronze
 ROG Strix Aura Edition,139.99,ATX,gold,750,Full,Black,Asus,asus-rog-strix-aura-edition-750-gold
 SuperNOVA 650 P6,155.54,ATX,platinum,650,Full,Black / Silver,EVGA,evga-supernova-650-p6-650-platinum
 Phantom Gaming PG-1600G,249.99,ATX,gold,1600,Full,Black,ASRock,asrock-phantom-gaming-pg-1600g-1600-gold
@@ -327,9 +327,9 @@ Flower Zillion FG,109.99,ATX,gold,850,Full,Black,Super,super-flower-zillion-fg-8
 Toughpower PF3-L,149.99,ATX,platinum,850,Full,Black,Thermaltake,thermaltake-toughpower-pf3-l-850-platinum
 Steel Legend SL-1000GW,159.99,ATX,gold,1000,Full,White,ASRock,asrock-steel-legend-sl-1000gw-1000-gold
 XPG CYBERCORE,169.99,ATX,platinum,1300,Full,Black / Silver,ADATA,adata-xpg-cybercore-1300-platinum
-Group FSP400-60FGGBA,99.99,Flex ATX,gold,400,false,Silver,FSP,fsp-group-fsp400-60fggba-400-gold
+Group FSP400-60FGGBA,99.99,Flex ATX,gold,400,Non-modular,Silver,FSP,fsp-group-fsp400-60fggba-400-gold
 Master V750 SFX GOLD,149.99,SFX,gold,750,Full,White,Cooler,cooler-master-v750-sfx-gold-750-gold
-Smart BX1 550,62.49,ATX,bronze,550,false,Black,Thermaltake,thermaltake-smart-bx1-550-550-bronze
+Smart BX1 550,62.49,ATX,bronze,550,Non-modular,Black,Thermaltake,thermaltake-smart-bx1-550-550-bronze
 CXM,155.0,ATX,bronze,750,Semi,,Corsair,corsair-cxm-750-bronze
 Master V SFX Platinum,677.0,SFX,platinum,1300,Full,Black,Cooler,cooler-master-v-sfx-platinum-1300-platinum
 SX500-G,113.22,SFX,gold,500,Full,Black,Silverstone,silverstone-sx500-g-500-gold
@@ -338,33 +338,33 @@ MPG A850GF,237.49,ATX,gold,850,Full,Black,MSI,msi-mpg-a850gf-850-gold
 750 BQ,168.73,ATX,bronze,750,Semi,,EVGA,evga-750-bq-750-bronze
 PRIME PX-1600 ATX 3.0,469.99,ATX,platinum,1600,Full,Black / Silver,SeaSonic,seasonic-prime-px-1600-atx-3-0-1600-platinum
 TITAN PLA,239.0,ATX,platinum,1200,Full,White,Montech,montech-titan-pla-1200-platinum
-Challenger CL-750B,74.99,ATX,bronze,750,false,Black,ASRock,asrock-challenger-cl-750b-750-bronze
-TR2 S,102.55,ATX,plus,700,false,Black,Thermaltake,thermaltake-tr2-s-700-plus
+Challenger CL-750B,74.99,ATX,bronze,750,Non-modular,Black,ASRock,asrock-challenger-cl-750b-750-bronze
+TR2 S,102.55,ATX,plus,700,Non-modular,Black,Thermaltake,thermaltake-tr2-s-700-plus
 quiet! System Power 9 700 CM,195.36,ATX,bronze,700,Semi,Black,be,be-quiet-system-power-9-700-cm-700-bronze
 C550,89.98,ATX,bronze,550,Semi,Black,NZXT,nzxt-c550-550-bronze
 SuperNOVA 1000 P2,499.0,ATX,platinum,1000,Full,,EVGA,evga-supernova-1000-p2-1000-platinum
 C650 (2022),139.98,ATX,gold,650,Full,Black,NZXT,nzxt-c650-2022-650-gold
 Toughpower SFX,139.38,SFX,platinum,750,Full,Black,Thermaltake,thermaltake-toughpower-sfx-750-platinum
 RM650,229.99,ATX,gold,650,Full,Black,Corsair,corsair-rm650-650-gold
-SSP-300SFG,108.6,SFX,gold,300,false,Silver,SeaSonic,seasonic-ssp-300sfg-300-gold
+SSP-300SFG,108.6,SFX,gold,300,Non-modular,Silver,SeaSonic,seasonic-ssp-300sfg-300-gold
 PRIME Fanless,365.28,ATX,titanium,700,Full,Black,SeaSonic,seasonic-prime-fanless-700-titanium
 HX1500i (2022),478.99,ATX,platinum,1500,Full,Black,Corsair,corsair-hx1500i-2022-1500-platinum
 ROG Strix Aura Edition,209.99,ATX,gold,1000,Full,White,Asus,asus-rog-strix-aura-edition-1000-gold
-Challenger CL-850G,89.99,ATX,gold,850,false,Black,ASRock,asrock-challenger-cl-850g-850-gold
+Challenger CL-850G,89.99,ATX,gold,850,Non-modular,Black,ASRock,asrock-challenger-cl-850g-850-gold
 Flower LEADEX VII XG,184.99,ATX,gold,1000,Full,White,Super,super-flower-leadex-vii-xg-1000-gold
 SX700-PT,187.03,SFX,platinum,700,Full,Black,Silverstone,silverstone-sx700-pt-700-platinum
-quiet! System Power 10,271.0,ATX,bronze,750,false,Black,be,be-quiet-system-power-10-750-bronze
-G12 GC,345.72,ATX,gold,650,false,Black / Blue,SeaSonic,seasonic-g12-gc-650-gold
-610 BP,122.38,ATX,bronze,610,false,Black,EVGA,evga-610-bp-610-bronze
+quiet! System Power 10,271.0,ATX,bronze,750,Non-modular,Black,be,be-quiet-system-power-10-750-bronze
+G12 GC,345.72,ATX,gold,650,Non-modular,Black / Blue,SeaSonic,seasonic-g12-gc-650-gold
+610 BP,122.38,ATX,bronze,610,Non-modular,Black,EVGA,evga-610-bp-610-bronze
 AMPERE,115.0,ATX,platinum,850,Full,Black,RAIJINTEK,raijintek-ampere-850-platinum
 SuperNOVA 850 P2,399.99,ATX,platinum,850,Full,,EVGA,evga-supernova-850-p2-850-platinum
 ROG Strix Aura Edition,184.99,ATX,gold,850,Full,Black,Asus,asus-rog-strix-aura-edition-850-gold
 650 B5,189.99,ATX,bronze,650,Full,Black,EVGA,evga-650-b5-650-bronze
 SX1000-LPT,319.99,SFX,platinum,1000,Full,Black,Silverstone,silverstone-sx1000-lpt-1000-platinum
 SuperNOVA 1000 G5,237.42,ATX,gold,1000,Full,Black / Green,EVGA,evga-supernova-1000-g5-1000-gold
-SST-TX300,59.0,TFX,bronze,300,false,Black,Silverstone,silverstone-sst-tx300-300-bronze
+SST-TX300,59.0,TFX,bronze,300,Non-modular,Black,Silverstone,silverstone-sst-tx300-300-bronze
 Toughpower GF2 ARGB,99.98,ATX,gold,650,Full,Black,Thermaltake,thermaltake-toughpower-gf2-argb-650-gold
-600 B1,176.99,ATX,bronze,600,false,,EVGA,evga-600-b1-600-bronze
+600 B1,176.99,ATX,bronze,600,Non-modular,,EVGA,evga-600-b1-600-bronze
 SilentStorm,186.62,SFX,gold,500,Full,Black,SHARKOON,sharkoon-silentstorm-500-gold
 SFX,168.95,SFX,platinum,700,Full,Black,Silverstone,silverstone-sfx-700-platinum
 Toughpower PF3-L,219.99,ATX,platinum,1200,Full,Black,Thermaltake,thermaltake-toughpower-pf3-l-1200-platinum
@@ -372,13 +372,13 @@ NE1000G M ATX3.0,179.99,ATX,gold,1000,Full,Black,Antec,antec-ne1000g-m-atx3-0-10
 Taichi TC-1300T,449.99,ATX,titanium,1300,Full,Black / Silver,ASRock,asrock-taichi-tc-1300t-1300-titanium
 HX1200i,449.0,ATX,platinum,1200,Full,,Corsair,corsair-hx1200i-1200-platinum
 PRIME Titanium,599.0,ATX,titanium,1000,Full,,SeaSonic,seasonic-prime-titanium-1000-titanium
-TX500-G,159.79,TFX,gold,500,false,Black,Silverstone,silverstone-tx500-g-500-gold
-Smart RGB 230V,136.0,ATX,plus,500,false,Black,Thermaltake,thermaltake-smart-rgb-230v-500-plus
+TX500-G,159.79,TFX,gold,500,Non-modular,Black,Silverstone,silverstone-tx500-g-500-gold
+Smart RGB 230V,136.0,ATX,plus,500,Non-modular,Black,Thermaltake,thermaltake-smart-rgb-230v-500-plus
 "Group Hydro PTM X PRO,Gen5",179.99,ATX,platinum,1000,Full,Black,FSP,fsp-group-hydro-ptm-x-pro-gen5-1000-platinum
 Flower LEADEX VII XG,189.99,ATX,gold,1000,Full,Black,Super,super-flower-leadex-vii-xg-1000-gold
-Power AP-MFATX40P8,74.98,Flex ATX,bronze,400,false,Silver,Athena,athena-power-ap-mfatx40p8-400-bronze
+Power AP-MFATX40P8,74.98,Flex ATX,bronze,400,Non-modular,Silver,Athena,athena-power-ap-mfatx40p8-400-bronze
 Flower LEADEX VII Platinum PRO,169.99,ATX,platinum,850,Full,Black,Super,super-flower-leadex-vii-platinum-pro-850-platinum
-HELIOS P2-850G,89.99,ATX,gold,850,false,Black,GAMDIAS,gamdias-helios-p2-850g-850-gold
+HELIOS P2-850G,89.99,ATX,gold,850,Non-modular,Black,GAMDIAS,gamdias-helios-p2-850g-850-gold
 TITAN PLA,189.0,ATX,platinum,850,Full,White,Montech,montech-titan-pla-850-platinum
 Toughpower GF1 PE,215.99,ATX,gold,850,Full,Black,Thermaltake,thermaltake-toughpower-gf1-pe-850-gold
 Strider Titanium,389.99,ATX,titanium,1300,Full,Black / Blue,Silverstone,silverstone-strider-titanium-1300-titanium
@@ -386,7 +386,7 @@ Supremo FM5,179.19,ATX,gold,750,Full,Black,ENDORFY,endorfy-supremo-fm5-750-gold
 G12 GM,292.64,ATX,gold,850,Semi,Black / Blue,SeaSonic,seasonic-g12-gm-850-gold
 CMG1200G5,129.99,ATX,gold,1200,Full,Black,Rosewill,rosewill-cmg1200g5-1200-gold
 850 B5,169.0,ATX,bronze,850,Full,Black,EVGA,evga-850-b5-850-bronze
-SFX,111.08,SFX,bronze,450,false,Black,Silverstone,silverstone-sfx-450-bronze
+SFX,111.08,SFX,bronze,450,Non-modular,Black,Silverstone,silverstone-sfx-450-bronze
 SuperNOVA 1600 P+,459.33,ATX,platinum,1600,Full,Black,EVGA,evga-supernova-1600-p-1600-platinum
 Toughpower PF3-L,184.99,ATX,platinum,1050,Full,Black,Thermaltake,thermaltake-toughpower-pf3-l-1050-platinum
 VERTEX PX-850,309.35,ATX,platinum,850,Full,Black / Silver,SeaSonic,seasonic-vertex-px-850-850-platinum
@@ -399,37 +399,37 @@ Prime Fanless PX-500,255.07,ATX,platinum,500,Full,Black,SeaSonic,seasonic-prime-
 HX1000i (2022),260.0,ATX,platinum,1000,Full,Black,Corsair,corsair-hx1000i-2022-1000-platinum
 VERTEX GX-750,149.99,ATX,gold,750,Full,Black / Silver,SeaSonic,seasonic-vertex-gx-750-750-gold
 TITAN PLA,219.62,ATX,platinum,1000,Full,White,Montech,montech-titan-pla-1000-platinum
-PSAZ-550W,54.99,ATX,bronze,550,false,Black,Azza,azza-psaz-550w-550-bronze
+PSAZ-550W,54.99,ATX,bronze,550,Non-modular,Black,Azza,azza-psaz-550w-550-bronze
 SX-G,152.99,SFX,gold,700,Full,Black,Silverstone,silverstone-sx-g-700-gold
-Vero L5,89.92,ATX,bronze,500,false,Black,ENDORFY,endorfy-vero-l5-500-bronze
-Master MWE White V2 230V,126.29,ATX,plus,700,false,Black,Cooler,cooler-master-mwe-white-v2-230v-700-plus
+Vero L5,89.92,ATX,bronze,500,Non-modular,Black,ENDORFY,endorfy-vero-l5-500-bronze
+Master MWE White V2 230V,126.29,ATX,plus,700,Non-modular,Black,Cooler,cooler-master-mwe-white-v2-230v-700-plus
 HELA 850R,220.85,ATX,platinum,850,Full,Black / Silver,Silverstone,silverstone-hela-850r-850-platinum
 C650,99.98,ATX,bronze,650,Semi,Black,NZXT,nzxt-c650-650-bronze
 PRIME 1300 Gold,289.98,ATX,gold,1300,Full,Black,SeaSonic,seasonic-prime-1300-gold-1300-gold
 UD1300GM PG5,219.99,ATX,gold,1300,Full,Black,Gigabyte,gigabyte-ud1300gm-pg5-1300-gold
 RGB,199.99,ATX,platinum,1300,Full,Black,GameMax,gamemax-rgb-1300-platinum
 SuperNOVA 750 P2,449.99,ATX,platinum,750,Full,,EVGA,evga-supernova-750-p2-750-platinum
-Essential,68.2,ATX,bronze,550,false,Black,Silverstone,silverstone-essential-550-bronze
+Essential,68.2,ATX,bronze,550,Non-modular,Black,Silverstone,silverstone-essential-550-bronze
 SuperNOVA 1200 P3,363.17,ATX,platinum,1200,Full,Black / Silver,EVGA,evga-supernova-1200-p3-1200-platinum
 NE1000G M White ATX 3.0,283.18,ATX,gold,1000,Full,White,Antec,antec-ne1000g-m-white-atx-3-0-1000-gold
 TITAN PLA,139.0,ATX,platinum,750,Full,White,Montech,montech-titan-pla-750-platinum
 PlatiGemini,259.99,ATX,platinum,1200,Full,Black,Enermax,enermax-platigemini-1200-platinum
-TX700-G,210.45,TFX,gold,700,false,Black,Silverstone,silverstone-tx700-g-700-gold
-Smart RGB 230V,74.48,ATX,plus,600,false,Black,Thermaltake,thermaltake-smart-rgb-230v-600-plus
-VTE,76.54,ATX,bronze,600,false,Black,Cougar,cougar-vte-600-bronze
+TX700-G,210.45,TFX,gold,700,Non-modular,Black,Silverstone,silverstone-tx700-g-700-gold
+Smart RGB 230V,74.48,ATX,plus,600,Non-modular,Black,Thermaltake,thermaltake-smart-rgb-230v-600-plus
+VTE,76.54,ATX,bronze,600,Non-modular,Black,Cougar,cougar-vte-600-bronze
 GSK ATX3.1,173.07,ATX,gold,750,Full,Black,Antec,antec-gsk-atx3-1-750-gold
 SuperNOVA 1000 G3,399.99,ATX,gold,1000,Full,,EVGA,evga-supernova-1000-g3-1000-gold
 "Group Hydro PTM X PRO,Gen5",160.56,ATX,platinum,850,Full,Black,FSP,fsp-group-hydro-ptm-x-pro-gen5-850-platinum
-Group FSP300-60LG,133.59,Mini ITX,bronze,300,false,Black,FSP,fsp-group-fsp300-60lg-300-bronze
+Group FSP300-60LG,133.59,Mini ITX,bronze,300,Non-modular,Black,FSP,fsp-group-fsp300-60lg-300-bronze
 Master V750 Gold V2,193.9,ATX,gold,750,Full,Black,Cooler,cooler-master-v750-gold-v2-750-gold
-Argus RGB II,106.57,ATX,bronze,500,false,Black,Inter-Tech,inter-tech-argus-rgb-ii-500-bronze
+Argus RGB II,106.57,ATX,bronze,500,Non-modular,Black,Inter-Tech,inter-tech-argus-rgb-ii-500-bronze
 Strider,98.34,ATX,bronze,700,Full,,Silverstone,silverstone-strider-700-bronze
 CENTURY G5,99.71,ATX,gold,750,Full,Black,Montech,montech-century-g5-750-gold
-VP,39.99,ATX,,450,false,,Antec,antec-vp-450-nan
-CSK,126.9,ATX,bronze,550,false,Black / Yellow,Antec,antec-csk-550-bronze
+VP,39.99,ATX,,450,Non-modular,,Antec,antec-vp-450-nan
+CSK,126.9,ATX,bronze,550,Non-modular,Black / Yellow,Antec,antec-csk-550-bronze
 SuperNOVA 1600 P2,799.99,ATX,platinum,1600,Full,,EVGA,evga-supernova-1600-p2-1600-platinum
 PRIME TX,673.36,ATX,titanium,1600,Full,Black / Silver,SeaSonic,seasonic-prime-tx-1600-titanium
-URANO VX,73.87,ATX,bronze,750,false,Black / Orange,NOX,nox-urano-vx-750-bronze
+URANO VX,73.87,ATX,bronze,750,Non-modular,Black / Orange,NOX,nox-urano-vx-750-bronze
 Strider Platinum S,292.99,ATX,platinum,1200,Full,Black,Silverstone,silverstone-strider-platinum-s-1200-platinum
 Toughpower iRGB PLUS 750,118.5,ATX,gold,750,Full,Black,Thermaltake,thermaltake-toughpower-irgb-plus-750-750-gold
 RGB Rainbow,160.99,ATX,gold,1050,Full,Black,GameMax,gamemax-rgb-rainbow-1050-gold
@@ -442,29 +442,29 @@ Master XG850 Plus,145.99,ATX,platinum,850,Full,Black,Cooler,cooler-master-xg850-
 SilentStorm Cool Zero 650,169.64,ATX,gold,650,Full,Black,SHARKOON,sharkoon-silentstorm-cool-zero-650-650-gold
 AORUS P GM,180.31,ATX,gold,750,Full,Black / Silver,Gigabyte,gigabyte-aorus-p-gm-750-gold
 AX850,319.99,ATX,gold,850,Full,,Corsair,corsair-ax850-850-gold
-TX650,255.0,ATX,plus,650,false,,Corsair,corsair-tx650-650-plus
+TX650,255.0,ATX,plus,650,Non-modular,,Corsair,corsair-tx650-650-plus
 Master MWE Gold V2 ATX3.0,313.0,ATX,gold,1250,Full,Black,Cooler,cooler-master-mwe-gold-v2-atx3-0-1250-gold
-500 BA,109.99,ATX,bronze,500,false,Black,EVGA,evga-500-ba-500-bronze
+500 BA,109.99,ATX,bronze,500,Non-modular,Black,EVGA,evga-500-ba-500-bronze
 VERTEX PX-750,324.46,ATX,platinum,750,Full,Black / Silver,SeaSonic,seasonic-vertex-px-750-750-platinum
-XP600R6,174.35,ATX,,600,false,Black / Red,Xilence,xilence-xp600r6-600-nan
+XP600R6,174.35,ATX,,600,Non-modular,Black / Red,Xilence,xilence-xp600r6-600-nan
 Group Hydro PTM PRO,139.99,ATX,platinum,850,Full,Black,FSP,fsp-group-hydro-ptm-pro-850-platinum
 Strider Platinum S,215.21,ATX,platinum,1000,Full,Black,Silverstone,silverstone-strider-platinum-s-1000-platinum
 FOCUS GX,486.87,ATX,gold,1000,Full,Black,SeaSonic,seasonic-focus-gx-1000-gold
 AMPERE,162.9,ATX,platinum,1200,Full,Black,RAIJINTEK,raijintek-ampere-1200-platinum
 C (2019),215.01,ATX,gold,850,Full,Black,NZXT,nzxt-c-2019-850-gold
-SSP-300SUG,119.0,Flex ATX,gold,300,false,Silver,SeaSonic,seasonic-ssp-300sug-300-gold
+SSP-300SUG,119.0,Flex ATX,gold,300,Non-modular,Silver,SeaSonic,seasonic-ssp-300sug-300-gold
 Katana Chroma,389.99,ATX,platinum,1200,Full,Black,Razer,razer-katana-chroma-1200-platinum
 AMPERE,139.9,ATX,platinum,1000,Full,Black,RAIJINTEK,raijintek-ampere-1000-platinum
 SuperNOVA 650 P2,399.99,ATX,platinum,650,Full,,EVGA,evga-supernova-650-p2-650-platinum
 Essential,91.98,ATX,gold,550,Semi,Black,Silverstone,silverstone-essential-550-gold
-XP750R6.2,94.75,ATX,plus,750,false,Black,Xilence,xilence-xp750r6-2-750-plus
-FSP300-60ATV,59.99,ATX,,300,false,,Sparkle,sparkle-fsp300-60atv-300-nan
+XP750R6.2,94.75,ATX,plus,750,Non-modular,Black,Xilence,xilence-xp750r6-2-750-plus
+FSP300-60ATV,59.99,ATX,,300,Non-modular,,Sparkle,sparkle-fsp300-60atv-300-nan
 NE1300G M ATX3.0,236.67,ATX,gold,1300,Full,Black,Antec,antec-ne1300g-m-atx3-0-1300-gold
 AMPERE,169.9,ATX,platinum,1200,Full,White,RAIJINTEK,raijintek-ampere-1200-platinum
 Toughpower GF1 PE,169.99,ATX,gold,750,Full,Black,Thermaltake,thermaltake-toughpower-gf1-pe-750-gold
 Argus RGB CM II,213.83,ATX,gold,650,Semi,Black,Inter-Tech,inter-tech-argus-rgb-cm-ii-650-gold
 Essential,107.51,ATX,gold,750,Semi,Black / Blue,Silverstone,silverstone-essential-750-gold
-AL-8250SFX,83.71,SFX,,250,false,Silver,Apex,apex-al-8250sfx-250-nan
+AL-8250SFX,83.71,SFX,,250,Non-modular,Silver,Apex,apex-al-8250sfx-250-nan
 MAG A-GL PCIE5 II,155.09,ATX,gold,1000,Full,Black,MSI,msi-mag-a-gl-pcie5-ii-1000-gold
 Extreme 850R Platinum,255.21,SFX,,850,Full,Black,Silverstone,silverstone-extreme-850r-platinum-850-nan
 Strider,487.49,ATX,silver,1500,Full,Black,Silverstone,silverstone-strider-1500-silver
@@ -477,92 +477,92 @@ ATMOS,207.7,ATX,gold,850,Full,Black,Chieftec,chieftec-atmos-850-gold
 ST75F-GS-V3,125.99,ATX,gold,750,Full,Black,Silverstone,silverstone-st75f-gs-v3-750-gold
 UD850GM-A,109.99,ATX,gold,850,Full,Black,Gigabyte,gigabyte-ud850gm-a-850-gold
 Rebel P20 SFX,490.9,SFX,platinum,1000,Full,Black,SHARKOON,sharkoon-rebel-p20-sfx-1000-platinum
-ARGB,64.98,ATX,bronze,650,false,Black,Azza,azza-argb-650-bronze
+ARGB,64.98,ATX,bronze,650,Non-modular,Black,Azza,azza-argb-650-bronze
 Strider Platinum,150.38,ATX,platinum,750,Full,,Silverstone,silverstone-strider-platinum-750-platinum
 Group Hydro GE,84.99,ATX,gold,650,Full,Black,FSP,fsp-group-hydro-ge-650-gold
 Cooler YS850,129.99,ATX,gold,850,Full,Black,PC,pc-cooler-ys850-850-gold
 SuperNOVA 1600 G2,599.99,ATX,gold,1600,Full,,EVGA,evga-supernova-1600-g2-1600-gold
 SX1000R-PL,326.99,SFX,platinum,1000,Full,Black / White,Silverstone,silverstone-sx1000r-pl-1000-platinum
-Essential,95.32,ATX,gold,750,false,Black / Yellow,Silverstone,silverstone-essential-750-gold
+Essential,95.32,ATX,gold,750,Non-modular,Black / Yellow,Silverstone,silverstone-essential-750-gold
 Win P130II,249.0,ATX,platinum,1300,Full,Black,In,in-win-p130ii-1300-platinum
-710 BP,200.29,ATX,bronze,710,false,Black,EVGA,evga-710-bp-710-bronze
-Group FSP500-50FSPT,198.99,Flex ATX,platinum,500,false,Silver,FSP,fsp-group-fsp500-50fspt-500-platinum
+710 BP,200.29,ATX,bronze,710,Non-modular,Black,EVGA,evga-710-bp-710-bronze
+Group FSP500-50FSPT,198.99,Flex ATX,platinum,500,Non-modular,Silver,FSP,fsp-group-fsp500-50fspt-500-platinum
 Power & Cooling Silencer,186.89,ATX,platinum,1050,Full,,PC,pc-power-cooling-silencer-1050-platinum
 TOUGHPOWER PF1 ARGB,199.98,ATX,platinum,850,Full,,Thermaltake,thermaltake-toughpower-pf1-argb-850-platinum
 ATMOS,181.58,ATX,gold,750,Full,Black,Chieftec,chieftec-atmos-750-gold
 Strider Titanium,363.99,ATX,titanium,1100,Full,Black / Blue,Silverstone,silverstone-strider-titanium-1100-titanium
 ST85F-GS-V2,131.33,ATX,gold,850,Full,,Silverstone,silverstone-st85f-gs-v2-850-gold
-Group FSP220-60LE(80),79.98,Mini ITX,plus,220,false,Silver,FSP,fsp-group-fsp220-60le-80-220-plus
+Group FSP220-60LE(80),79.98,Mini ITX,plus,220,Non-modular,Silver,FSP,fsp-group-fsp220-60le-80-220-plus
 High Current Gamer,155.31,ATX,bronze,620,Semi,,Antec,antec-high-current-gamer-620-bronze
 Smart BM2,327.49,ATX,bronze,750,Semi,Black,Thermaltake,thermaltake-smart-bm2-750-bronze
 Smart SE,243.57,ATX,,630,Semi,,Thermaltake,thermaltake-smart-se-630-nan
 Signature Platinum,384.9,ATX,platinum,1300,Full,Black,Antec,antec-signature-platinum-1300-platinum
 XPG FUSION 1600,599.99,ATX,titanium,1600,Full,Black / Silver,ADATA,adata-xpg-fusion-1600-1600-titanium
 Smart SE,145.0,ATX,,530,Semi,Black,Thermaltake,thermaltake-smart-se-530-nan
-quiet! TFX Power 3 300,143.97,TFX,gold,300,false,Black,be,be-quiet-tfx-power-3-300-300-gold
+quiet! TFX Power 3 300,143.97,TFX,gold,300,Non-modular,Black,be,be-quiet-tfx-power-3-300-300-gold
 Cooler YS1000,179.99,ATX,gold,1000,Full,Black,PC,pc-cooler-ys1000-1000-gold
-TX300,90.97,TFX,bronze,300,false,Black,Silverstone,silverstone-tx300-300-bronze
+TX300,90.97,TFX,bronze,300,Non-modular,Black,Silverstone,silverstone-tx300-300-bronze
 Win P105II,199.0,ATX,platinum,1050,Full,Black,In,in-win-p105ii-1050-platinum
 AX650,250.0,ATX,gold,650,Full,,Corsair,corsair-ax650-650-gold
 Win P85,211.74,ATX,gold,850,Full,Black,In,in-win-p85-850-gold
-Earthwatts Green,108.11,ATX,plus,500,false,,Antec,antec-earthwatts-green-500-plus
-Power Apollo,55.99,SFX,,300,false,Silver,Athena,athena-power-apollo-300-nan
-TX750 V2,300.0,ATX,bronze,750,false,,Corsair,corsair-tx750-v2-750-bronze
+Earthwatts Green,108.11,ATX,plus,500,Non-modular,,Antec,antec-earthwatts-green-500-plus
+Power Apollo,55.99,SFX,,300,Non-modular,Silver,Athena,athena-power-apollo-300-nan
+TX750 V2,300.0,ATX,bronze,750,Non-modular,,Corsair,corsair-tx750-v2-750-bronze
 Design Ion Gold,238.0,ATX,gold,550,Full,Black,Fractal,fractal-design-ion-gold-550-gold
 Smart,196.56,ATX,bronze,750,Semi,,Thermaltake,thermaltake-smart-750-bronze
 CFZ,99.99,ATX,bronze,750,Semi,Black,Rosewill,rosewill-cfz-750-bronze
-VALENS-600,140.0,ATX,gold,600,false,,Rosewill,rosewill-valens-600-600-gold
-Green,80.0,ATX,plus,430,false,,Rosewill,rosewill-green-430-plus
+VALENS-600,140.0,ATX,gold,600,Non-modular,,Rosewill,rosewill-valens-600-600-gold
+Green,80.0,ATX,plus,430,Non-modular,,Rosewill,rosewill-green-430-plus
 GEX,159.0,ATX,gold,1050,Full,Black,Cougar,cougar-gex-1050-gold
-Argus RGB II,192.22,ATX,bronze,600,false,Black,Inter-Tech,inter-tech-argus-rgb-ii-600-bronze
+Argus RGB II,192.22,ATX,bronze,600,Non-modular,Black,Inter-Tech,inter-tech-argus-rgb-ii-600-bronze
 Toughpower,409.46,ATX,gold,1500,Semi,,Thermaltake,thermaltake-toughpower-1500-gold
-PS480D,29.99,ATX,,480,false,,Logisys,logisys-ps480d-480-nan
-SL-275TFX,45.95,TFX,,275,false,Silver,Apex,apex-sl-275tfx-275-nan
-PS480D2,30.99,ATX,,480,false,,Logisys,logisys-ps480d2-480-nan
+PS480D,29.99,ATX,,480,Non-modular,,Logisys,logisys-ps480d-480-nan
+SL-275TFX,45.95,TFX,,275,Non-modular,Silver,Apex,apex-sl-275tfx-275-nan
+PS480D2,30.99,ATX,,480,Non-modular,,Logisys,logisys-ps480d2-480-nan
 POLAR,199.99,ATX,platinum,1200,Full,White,Cougar,cougar-polar-1200-platinum
 Group Hydro PTM PRO,249.99,ATX,platinum,1000,Full,Black,FSP,fsp-group-hydro-ptm-pro-1000-platinum
 True Power,222.02,ATX,bronze,850,Full,,Antec,antec-true-power-850-bronze
 Toughpower PF1 - TT Premium Edition,362.22,ATX,platinum,1050,Full,Black,Thermaltake,thermaltake-toughpower-pf1-tt-premium-edition-1050-platinum
-Argus RGB II,173.8,ATX,bronze,700,false,Black,Inter-Tech,inter-tech-argus-rgb-ii-700-bronze
+Argus RGB II,173.8,ATX,bronze,700,Non-modular,Black,Inter-Tech,inter-tech-argus-rgb-ii-700-bronze
 POLAR,209.0,ATX,platinum,1050,Full,White,Cougar,cougar-polar-1050-platinum
 XP1250MR9.2,475.05,ATX,gold,1250,Full,Black / Red,Xilence,xilence-xp1250mr9-2-1250-gold
-Basiq,84.0,ATX,,350,false,,Antec,antec-basiq-350-nan
+Basiq,84.0,ATX,,350,Non-modular,,Antec,antec-basiq-350-nan
 Win P65,131.0,ATX,gold,650,Full,Black,In,in-win-p65-650-gold
-CL-500B,44.72,ATX,,500,false,,CoolMax,coolmax-cl-500b-500-nan
+CL-500B,44.72,ATX,,500,Non-modular,,CoolMax,coolmax-cl-500b-500-nan
 Strider Platinum,326.99,ATX,platinum,1200,Full,,Silverstone,silverstone-strider-platinum-1200-platinum
-Earthwatts Green,114.64,ATX,bronze,430,false,,Antec,antec-earthwatts-green-430-bronze
-Power APOLLO 600,230.84,SFX,bronze,600,false,Black,Athena,athena-power-apollo-600-600-bronze
-Power AP-MTFX30,36.99,TFX,,300,false,Silver,Athena,athena-power-ap-mtfx30-300-nan
-SilentStorm,156.97,SFX,bronze,450,false,Black,SHARKOON,sharkoon-silentstorm-450-bronze
-Green,170.0,ATX,plus,530,false,,Rosewill,rosewill-green-530-plus
-XP550R9,158.0,ATX,gold,550,false,Black / Red,Xilence,xilence-xp550r9-550-gold
+Earthwatts Green,114.64,ATX,bronze,430,Non-modular,,Antec,antec-earthwatts-green-430-bronze
+Power APOLLO 600,230.84,SFX,bronze,600,Non-modular,Black,Athena,athena-power-apollo-600-600-bronze
+Power AP-MTFX30,36.99,TFX,,300,Non-modular,Silver,Athena,athena-power-ap-mtfx30-300-nan
+SilentStorm,156.97,SFX,bronze,450,Non-modular,Black,SHARKOON,sharkoon-silentstorm-450-bronze
+Green,170.0,ATX,plus,530,Non-modular,,Rosewill,rosewill-green-530-plus
+XP550R9,158.0,ATX,gold,550,Non-modular,Black / Red,Xilence,xilence-xp550r9-550-gold
 EVO_Blue,114.99,ATX,gold,650,Semi,,Thermaltake,thermaltake-evo-blue-650-gold
-SS-400ET Bronze,89.0,ATX,bronze,400,false,,SeaSonic,seasonic-ss-400et-bronze-400-bronze
+SS-400ET Bronze,89.0,ATX,bronze,400,Non-modular,,SeaSonic,seasonic-ss-400et-bronze-400-bronze
 SuperNOVA 850 GA,307.99,ATX,gold,850,Full,,EVGA,evga-supernova-850-ga-850-gold
 PMG750,114.99,ATX,gold,750,Full,Black,Rosewill,rosewill-pmg750-750-gold
-Earthwatts,124.98,ATX,bronze,500,false,,Antec,antec-earthwatts-500-bronze
+Earthwatts,124.98,ATX,bronze,500,Non-modular,,Antec,antec-earthwatts-500-bronze
 Power & Cooling Silencer MK III,118.49,ATX,gold,750,Semi,,PC,pc-power-cooling-silencer-mk-iii-750-gold
-SS-850HT Silver,169.0,ATX,silver,850,false,,SeaSonic,seasonic-ss-850ht-silver-850-silver
+SS-850HT Silver,169.0,ATX,silver,850,Non-modular,,SeaSonic,seasonic-ss-850ht-silver-850-silver
 Polaris 3.0,220.09,ATX,gold,1050,Full,Black,Chieftec,chieftec-polaris-3-0-1050-gold
-ZX-700,134.18,ATX,plus,700,false,,CoolMax,coolmax-zx-700-700-plus
+ZX-700,134.18,ATX,plus,700,Non-modular,,CoolMax,coolmax-zx-700-700-plus
 900488,64.98,ATX,,550,Full,,VisionTek,visiontek-900488-550-nan
-XP750R12.ARGB,208.57,ATX,gold,750,false,Black,Xilence,xilence-xp750r12-argb-750-gold
-Win IP-S300FF1-0,65.94,TFX,plus,300,false,Silver,In,in-win-ip-s300ff1-0-300-plus
+XP750R12.ARGB,208.57,ATX,gold,750,Non-modular,Black,Xilence,xilence-xp750r12-argb-750-gold
+Win IP-S300FF1-0,65.94,TFX,plus,300,Non-modular,Silver,In,in-win-ip-s300ff1-0-300-plus
 Power & Cooling Silencer,282.08,ATX,platinum,1200,Full,,PC,pc-power-cooling-silencer-1200-platinum
 Polaris 3.0,281.83,ATX,gold,850,Full,Black,Chieftec,chieftec-polaris-3-0-850-gold
 P1-650X-CAG9,101.3,ATX,bronze,650,Full,,XFX,xfx-p1-650x-cag9-650-bronze
-TX750 V2,300.0,ATX,bronze,750,false,,Corsair,corsair-tx750-v2-750-bronze
-FSP350-60GNV,69.99,SFX,,350,false,Silver,Sparkle,sparkle-fsp350-60gnv-350-nan
-CL-700B,63.0,ATX,,700,false,,CoolMax,coolmax-cl-700b-700-nan
-SS-600ES,129.01,ATX,bronze,600,false,Gray,SeaSonic,seasonic-ss-600es-600-bronze
-Platinum,134.69,ATX,bronze,600,false,,SeaSonic,seasonic-platinum-600-bronze
-SSP-300TBS,88.47,TFX,bronze,300,false,Silver,SeaSonic,seasonic-ssp-300tbs-300-bronze
+TX750 V2,300.0,ATX,bronze,750,Non-modular,,Corsair,corsair-tx750-v2-750-bronze
+FSP350-60GNV,69.99,SFX,,350,Non-modular,Silver,Sparkle,sparkle-fsp350-60gnv-350-nan
+CL-700B,63.0,ATX,,700,Non-modular,,CoolMax,coolmax-cl-700b-700-nan
+SS-600ES,129.01,ATX,bronze,600,Non-modular,Gray,SeaSonic,seasonic-ss-600es-600-bronze
+Platinum,134.69,ATX,bronze,600,Non-modular,,SeaSonic,seasonic-platinum-600-bronze
+SSP-300TBS,88.47,TFX,bronze,300,Non-modular,Silver,SeaSonic,seasonic-ssp-300tbs-300-bronze
 Black Edition,126.99,ATX,silver,750,Full,,XFX,xfx-black-edition-750-silver
 ZU-1000B,301.6,ATX,bronze,1000,Semi,,CoolMax,coolmax-zu-1000b-1000-bronze
-RM-1000B,103.59,ATX,,1000,false,,CoolMax,coolmax-rm-1000b-1000-nan
+RM-1000B,103.59,ATX,,1000,Non-modular,,CoolMax,coolmax-rm-1000b-1000-nan
 XP1080,108.56,ATX,,1080,Full,,HEC,hec-xp1080-1080-nan
-SS-300TFX Bronze,89.99,TFX,bronze,300,false,Silver,SeaSonic,seasonic-ss-300tfx-bronze-300-bronze
-Group FSP300-60LG-5K,113.74,Flex ATX,bronze,300,false,Silver,FSP,fsp-group-fsp300-60lg-5k-300-bronze
-Power AP-MFATX50P8,170.38,Flex ATX,silver,500,false,Silver,Athena,athena-power-ap-mfatx50p8-500-silver
+SS-300TFX Bronze,89.99,TFX,bronze,300,Non-modular,Silver,SeaSonic,seasonic-ss-300tfx-bronze-300-bronze
+Group FSP300-60LG-5K,113.74,Flex ATX,bronze,300,Non-modular,Silver,FSP,fsp-group-fsp300-60lg-5k-300-bronze
+Power AP-MFATX50P8,170.38,Flex ATX,silver,500,Non-modular,Silver,Athena,athena-power-ap-mfatx50p8-500-silver
 CUG-950B,103.11,ATX,,950,Full,,CoolMax,coolmax-cug-950b-950-nan
 TC-1200PD8G,309.99,ATX,,1200,Full,Gray,iStarUSA,istarusa-tc-1200pd8g-1200-nan

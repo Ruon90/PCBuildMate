@@ -93,14 +93,14 @@ AMD Ryzen 9 9955HX3D 16-Core Processor,543.82,6,9-9955hx3d-16
 AMD EPYC 4545P 16-Core Processor,528.45,2,4545p
 Apple M2 Ultra,524.92,5,apple-m2-ultra
 AMD Eng Sample: 100-000000870-32_Y,522.44,9,eng-sample-100-000000870-32-y
-Intel Core i9-14900KS,517.12,23,i9-14900ks
+Intel Core i9-14900KS,517.12,23,14900ks
 AMD Ryzen 9 7900X 12-Core Processor,510.23,1,7900x
-13th Gen Intel Core i9-13900KS,500.84,10,i9-13900ks
+13th Gen Intel Core i9-13900KS,500.84,10,13900ks
 AMD Ryzen Threadripper 3960X 24-Core Processor,498.39,7,3960x
-Intel Core i9-14900KF,496.0,39,i9-14900kf
-Intel Core i9-14900K,494.88,106,i9-14900k
+Intel Core i9-14900KF,496.0,39,14900kf
+Intel Core i9-14900K,494.88,106,14900k
 2X Intel Xeon CPU E5-2698 v4 @ 2.20GHz,493.07,1,2698
-13th Gen Intel Core i9-13900KF,485.25,46,i9-13900kf
+13th Gen Intel Core i9-13900KF,485.25,46,13900kf
 2X Intel Xeon CPU E5-2673 v4 @ 2.30GHz,484.13,1,2673
 31X AMD EPYC 7763 64-Core Processor,483.88,2,7763
 AMD Ryzen 9 7945HX with Radeon Graphics,483.24,42,7945hx
@@ -109,7 +109,7 @@ AMD RYZEN AI MAX+ 395 w/ Radeon 8060S,479.64,34,8060s
 Intel Xeon W-3275 CPU @ 2.50GHz,477.85,2,3275
 2X Intel Xeon CPU E5-2682 v4 @ 2.50GHz,477.26,1,2682
 Intel Core Ultra 7 265K,476.16,163,ultra-7-265k
-13th Gen Intel Core i9-13900K,475.48,54,i9-13900k
+13th Gen Intel Core i9-13900K,475.48,54,13900k
 Apple M4 Max,474.2,84,apple-m4-max
 AMD Ryzen 9 7940HX with Radeon Graphics,472.77,4,7940hx
 AMD Ryzen 9 9900X3D 12-Core Processor,471.68,14,9900x3d
@@ -122,7 +122,7 @@ AMD Ryzen 9 7945HX3D with Radeon Graphics,463.79,2,9-7945hx3d-with-radeon-graphi
 AMD Ryzen Threadripper 2990WX 32-Core Processor,461.61,6,2990wx
 Intel Core Ultra 9 275HX,459.88,125,ultra-9-275hx
 AMD Ryzen 9 8940HX with Radeon Graphics,458.38,19,8940hx
-Intel Core i7-14700KF,457.32,79,i7-14700kf
+Intel Core i7-14700KF,457.32,79,14700kf
 AMD EPYC 9124 16-Core Processor,451.78,1,9124
 AMD Ryzen Threadripper PRO 7945WX 12-Cores,451.21,1,7945wx
 AMD Ryzen 9 9850HX 12-Core Processor,449.83,1,9850hx
@@ -130,7 +130,7 @@ AMD Ryzen 9 9850HX 12-Core Processor,449.83,1,9850hx
 Intel Xeon Platinum 8275CL CPU @ 3.00GHz,440.12,1,8275cl
 Apple M1 Ultra,433.5,11,apple-m1-ultra
 Intel Xeon W-3265M CPU @ 2.70GHz,433.28,1,3265m
-Intel Core i7-14700K,427.07,55,i7-14700k
+Intel Core i7-14700K,427.07,55,14700k
 2X Intel Xeon CPU E5-2698 v3 @ 2.30GHz,418.53,1,2698
 2X Intel Xeon Gold 6138 CPU @ 2.00GHz,416.82,1,6138
 AMD Ryzen Threadripper PRO 7985WX 64-Cores,415.56,25,7985wx
@@ -138,7 +138,7 @@ AMD Ryzen 9 7900X 12-Core Processor,414.99,84,7900x
 Intel Core Ultra 7 255HX,412.41,20,ultra-7-255hx
 Intel Xeon w5-3435X,412.17,3,3435x
 AMD Ryzen 9 7900 12-Core Processor,411.17,94,7900
-13th Gen Intel Core i9-13900F,405.79,4,i9-13900f
+13th Gen Intel Core i9-13900F,405.79,4,13900f
 AMD Ryzen 9 7900X3D 12-Core Processor,403.27,22,7900x3d
 4X Intel Xeon Platinum 8358 CPU @ 2.60GHz,401.4,1,8358
 AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S,398.01,11,8060s
@@ -148,34 +148,34 @@ AMD Ryzen 9 5950X 16-Core Processor,394.64,281,5950x
 Apple M3 Max,393.46,32,apple-m3-max
 2X Intel Xeon CPU E5-2680 v4 @ 2.40GHz,386.77,3,2680
 2X Intel Xeon CPU E5-2690 v3 @ 2.60GHz,385.99,3,2690
-Intel Core i9-10980XE CPU @ 3.00GHz,384.41,3,i9-10980xe
+Intel Core i9-10980XE CPU @ 3.00GHz,384.41,3,10980xe
 2X Intel Xeon Gold 6140 CPU @ 2.30GHz,383.66,2,6140
-Intel Core i9-12900KS,382.36,6,i9-12900ks
-13th Gen Intel Core i9-13950HX,382.17,20,i9-13950hx
-13th Gen Intel Core i7-13700K,381.92,42,i7-13700k
+Intel Core i9-12900KS,382.36,6,12900ks
+13th Gen Intel Core i9-13950HX,382.17,20,13950hx
+13th Gen Intel Core i7-13700K,381.92,42,13700k
 2X Intel Xeon CPU E5-2690 v4 @ 2.60GHz,380.6,4,2690
-13th Gen Intel Core i9-13900,380.42,4,i9-13900
-13th Gen Intel Core i7-13700KF,377.96,34,i7-13700kf
+13th Gen Intel Core i9-13900,380.42,4,13900
+13th Gen Intel Core i7-13700KF,377.96,34,13700kf
 Intel Core Ultra 7 265,377.24,5,ultra-7-265
-Intel Core i9-7980XE CPU @ 2.60GHz,376.16,1,i9-7980xe
+Intel Core i9-7980XE CPU @ 2.60GHz,376.16,1,7980xe
 AMD Ryzen 9 5900XT 16-Core Processor,371.54,23,5900xt
-13th Gen Intel Core i9-13900HX,371.33,92,i9-13900hx
+13th Gen Intel Core i9-13900HX,371.33,92,13900hx
 2X Intel Xeon CPU E5-2697 v3 @ 2.60GHz,369.93,1,2697
 2X Intel Xeon CPU E5-2687W v4 @ 3.00GHz,365.03,2,2687w
 AMD Ryzen 9 3950X 16-Core Processor,361.03,10,3950x
 Intel Core Ultra 7 265F,355.4,4,ultra-7-265f
 Intel Xeon Gold 6238R CPU @ 2.20GHz,354.75,1,6238r
 2X Intel Xeon CPU E5-2650 v4 @ 2.20GHz,353.31,1,2650
-Intel Core i9-12900K,352.92,30,i9-12900k
+Intel Core i9-12900K,352.92,30,12900k
 AMD RYZEN AI MAX 390 w/ Radeon 8050S,351.85,1,8050s
-Intel Core i9-12900KF,349.88,15,i9-12900kf
+Intel Core i9-12900KF,349.88,15,12900kf
 Apple M4 Pro,342.69,111,apple-m4-pro
 AMD RYZEN AI MAX PRO 390 w/ Radeon 8050S,342.5,2,8050s
-Intel Core i7-14700HX,341.58,78,i7-14700hx
-13th Gen Intel Core i9-13980HX,335.15,15,i9-13980hx
+Intel Core i7-14700HX,341.58,78,14700hx
+13th Gen Intel Core i9-13980HX,335.15,15,13980hx
 AMD Ryzen 7 9800X3D 8-Core Processor,334.43,685,9800x3d
 AMD EPYC 7313 16-Core Processor,333.83,1,7313
-Intel Core i9-14900HX,332.33,49,i9-14900hx
+Intel Core i9-14900HX,332.33,49,14900hx
 Intel Core Ultra 5 245K,330.16,10,ultra-5-245k
 4X Intel Xeon CPU E7- 4860  @ 2.27GHz,323.87,1,4860
 AMD Ryzen AI 9 HX 375 w/ Radeon 890M,322.69,3,ai-9-hx-375-w-radeon-890m
@@ -185,48 +185,48 @@ AMD Ryzen 7 9700X 8-Core Processor,312.34,273,9700x
 AMD Ryzen 9 7845HX with Radeon Graphics,310.76,4,7845hx
 2X Intel Xeon CPU E5-2687W v3 @ 3.10GHz,309.84,4,2687w
 Intel Xeon CPU E5-2699A v4 @ 2.40GHz,308.59,1,2699a
-13th Gen Intel Core i7-13700T,307.76,4,i7-13700t
+13th Gen Intel Core i7-13700T,307.76,4,13700t
 Intel Xeon W-3245 CPU @ 3.20GHz,307.75,4,3245
 4X AMD Opteron(tm) Processor 6386 SE,306.39,1,6386
-Intel Core i5-14600KF,304.68,50,i5-14600kf
+Intel Core i5-14600KF,304.68,50,14600kf
 Intel Core Ultra 5 235,304.58,3,ultra-5-235
 AMD Ryzen 9 5900X 12-Core Processor,303.39,161,5900x
 Intel Xeon Gold 6254 CPU @ 3.10GHz,303.18,1,6254
 AMD Ryzen AI 9 H 365 w/ Radeon 880M,301.59,2,ai-9-h-365-w-radeon-880m
 AMD Ryzen AI 9 HX PRO 370 w/ Radeon 890M,301.44,8,ai-9-hx-pro-370-w-radeon-890m
 AMD Ryzen AI 9 HX 370 w/ Radeon 890M,300.93,45,ai-9-hx-370-w-radeon-890m
-Intel Core i7-14700F,299.1,26,i7-14700f
-13th Gen Intel Core i7-13850HX,297.79,2,i7-13850hx
+Intel Core i7-14700F,299.1,26,14700f
+13th Gen Intel Core i7-13850HX,297.79,2,13850hx
 Intel Xeon W-2295 CPU @ 3.00GHz,296.91,1,2295
-13th Gen Intel Core i5-13600K,296.66,19,i5-13600k
-Intel Core i5-14600K,295.82,64,i5-14600k
-13th Gen Intel Core i5-13600KF,295.52,24,i5-13600kf
-Intel Core i9-12900F,293.98,3,i9-12900f
+13th Gen Intel Core i5-13600K,296.66,19,13600k
+Intel Core i5-14600K,295.82,64,14600k
+13th Gen Intel Core i5-13600KF,295.52,24,13600kf
+Intel Core i9-12900F,293.98,3,12900f
 AMD EPYC 4345P 8-Core Processor,293.59,1,4345p
-Intel Core i7-12700K,292.0,44,i7-12700k
-Intel Core i7-14650HX,291.03,46,i7-14650hx
-Intel Core i9-14900F,290.29,4,i9-14900f
+Intel Core i7-12700K,292.0,44,12700k
+Intel Core i7-14650HX,291.03,46,14650hx
+Intel Core i9-14900F,290.29,4,14900f
 Intel Xeon 6507P,289.96,1,6507p
 Intel Xeon W-2191B CPU @ 2.30GHz,288.89,1,2191b
 Intel Xeon CPU E5-2696 v4 @ 2.20GHz,288.7,5,2696
-13th Gen Intel Core i7-13700F,287.14,9,i7-13700f
+13th Gen Intel Core i7-13700F,287.14,9,13700f
 2X Intel Xeon Gold 5118 CPU @ 2.30GHz,286.36,1,5118
 AMD Ryzen 9 3900XT 12-Core Processor,286.04,4,3900xt
 Intel Xeon CPU E5-2699 v4 @ 2.20GHz,285.71,1,2699
-Intel Core i9-7960X CPU @ 2.80GHz,285.4,3,i9-7960x
-Intel Core i7-12700KF,284.31,49,i7-12700kf
+Intel Core i9-7960X CPU @ 2.80GHz,285.4,3,7960x
+Intel Core i7-12700KF,284.31,49,12700kf
 AMD EPYC 9015 8-Core Processor,280.43,1,9015
-Intel Core i7-14700,280.29,21,i7-14700
+Intel Core i7-14700,280.29,21,14700
 AMD Ryzen 7 7700X 8-Core Processor,279.74,93,7700x
 AMD Ryzen AI 9 HX PRO 375 w/ Radeon 890M,277.41,2,ai-9-hx-pro-375-w-radeon-890m
 Apple M5,277.02,19,apple-m5
 AMD Ryzen Threadripper PRO 3955WX 16-Cores,276.68,2,3955wx
-Intel Core i9-12950HX,273.78,2,i9-12950hx
+Intel Core i9-12950HX,273.78,2,12950hx
 2X Intel Xeon CPU E5-2630 v4 @ 2.20GHz,273.03,1,2630
 Intel Xeon Silver 4410T,272.91,1,4410t
-Intel Core i5-12600KF,272.33,69,i5-12600kf
-Intel Core i9-7920X CPU @ 2.90GHz,272.04,1,i9-7920x
-Intel Core i9-9960X CPU @ 3.10GHz,271.18,1,i9-9960x
+Intel Core i5-12600KF,272.33,69,12600kf
+Intel Core i9-7920X CPU @ 2.90GHz,272.04,1,7920x
+Intel Core i9-9960X CPU @ 3.10GHz,271.18,1,9960x
 AMD Ryzen 5 9600X 6-Core Processor,270.42,202,9600x
 Intel Xeon Gold 6138 CPU @ 2.00GHz,268.08,1,6138
 AMD Ryzen Threadripper 2950X 16-Core Processor,268.07,1,2950x
@@ -245,53 +245,53 @@ Intel Core Ultra 7 265H,260.77,7,ultra-7-265h
 Intel Xeon CPU E5-2698 v4 @ 2.20GHz,259.59,1,2698
 AMD Ryzen 9 3900X 12-Core Processor,259.27,76,3900x
 Intel Xeon CPU E5-2695 v4 @ 2.10GHz,258.05,2,2695
-Intel Core i9-14900,257.0,4,i9-14900
+Intel Core i9-14900,257.0,4,14900
 AMD Ryzen 7 7840HS with Radeon 780M Graphics,254.95,6,7840hs
 AMD Ryzen 7 7745HX with Radeon Graphics,253.76,5,7745hx
 Snapdragon X 12-core X1E80100 @ 3.40 GHz,252.9,6,snapdragon-x-12-x1e80100-3-40-ghz
-Intel Core i9-12900E,252.41,2,i9-12900e
+Intel Core i9-12900E,252.41,2,12900e
 AMD EPYC 7282 16-Core Processor,251.94,2,7282
 2X Intel Xeon CPU E5-2696 v2 @ 2.50GHz,251.49,1,2696
 Intel Core 9 270H,251.44,2,9-270h
-Intel Core i9-10920X CPU @ 3.50GHz,251.4,9,i9-10920x
+Intel Core i9-10920X CPU @ 3.50GHz,251.4,9,10920x
 Intel Xeon W-2275 CPU @ 3.30GHz,250.65,1,2275
 2X Intel Xeon CPU E5-2660 v3 @ 2.60GHz,249.28,2,2660
 AMD Ryzen 7 8700G w/ Radeon 780M Graphics,248.51,21,8700g
-Intel Core i7-12850HX,248.13,2,i7-12850hx
+Intel Core i7-12850HX,248.13,2,12850hx
 Intel Xeon w5-2445,247.86,1,2445
-13th Gen Intel Core i5-13500,246.82,10,i5-13500
+13th Gen Intel Core i5-13500,246.82,10,13500
 AMD Ryzen 7 8700F 8-Core Processor,245.62,11,8700f
 AMD EPYC 9455P 48-Core Processor,245.15,21,9455p
-Intel Core i7-12700F,244.11,17,i7-12700f
+Intel Core i7-12700F,244.11,17,12700f
 AMD Ryzen 9 3900 12-Core Processor,242.51,2,3900
 Intel Xeon Gold 6226R CPU @ 2.90GHz,242.37,1,6226r
 AMD Ryzen 7 5700X 8-Core Processor,241.89,292,5700x
 Genuine Intel 0000,240.92,16,0000
 2X Intel Xeon Silver 4114 CPU @ 2.20GHz,240.01,2,4114
 2X Intel Xeon Gold 6146 CPU @ 3.20GHz,239.79,2,6146
-Intel Core i9-7940X CPU @ 3.10GHz,239.66,1,i9-7940x
-Intel Core i9-10900K CPU @ 3.70GHz,239.18,21,i9-10900k
+Intel Core i9-7940X CPU @ 3.10GHz,239.66,1,7940x
+Intel Core i9-10900K CPU @ 3.70GHz,239.18,21,10900k
 Intel Xeon Silver 4314 CPU @ 2.40GHz,238.0,1,4314
 AMD Ryzen 9 7940H w/ Radeon 780M Graphics,237.95,1,7940h
 8X Intel Core Ultra 7 265K,237.85,1,8x-ultra-7-265k
 AMD Ryzen 5 9600 6-Core Processor,237.33,1,9600
-13th Gen Intel Core i7-13700HX,234.21,19,i7-13700hx
-13th Gen Intel Core i7-13700,234.04,3,i7-13700
+13th Gen Intel Core i7-13700HX,234.21,19,13700hx
+13th Gen Intel Core i7-13700,234.04,3,13700
 AMD Ryzen 7 255 w/ Radeon 780M Graphics,233.92,9,7-255-w-radeon-780m-graphics
 AMD Ryzen 9 8945H w/ Radeon 780M Graphics,232.48,2,8945h
-Intel Core i9-10940X CPU @ 3.30GHz,231.72,1,i9-10940x
+Intel Core i9-10940X CPU @ 3.30GHz,231.72,1,10940x
 Intel Xeon CPU E5-2697A v4 @ 2.60GHz,230.73,6,2697a
 Intel Xeon CPU E5-2696 v3 @ 2.30GHz,230.66,4,2696
-13th Gen Intel Core i7-13800H,230.3,2,i7-13800h
+13th Gen Intel Core i7-13800H,230.3,2,13800h
 2X Intel Xeon CPU E5-2680 v2 @ 2.80GHz,229.56,1,2680
 AMD Ryzen 7 7840U w/ Radeon  780M Graphics,228.98,3,7840u
-13th Gen Intel Core i5-13600,228.61,1,i5-13600
+13th Gen Intel Core i5-13600,228.61,1,13600
 Intel Xeon Silver 4410Y,228.09,1,4410y
-Intel Core i9-10900KF CPU @ 3.70GHz,227.82,4,i9-10900kf
+Intel Core i9-10900KF CPU @ 3.70GHz,227.82,4,10900kf
 Intel Core Ultra 9 285H,227.76,42,ultra-9-285h
-Intel Core i9-10850K CPU @ 3.60GHz,227.58,17,i9-10850k
+Intel Core i9-10850K CPU @ 3.60GHz,227.58,17,10850k
 Intel Core Ultra 5 225,227.54,2,ultra-5-225
-Intel Core i5-12600K,227.48,29,i5-12600k
+Intel Core i5-12600K,227.48,29,12600k
 Apple M3 Pro,227.17,33,apple-m3-pro
 AMD Ryzen 7 260 w/ Radeon 780M Graphics,224.84,9,7-260-w-radeon-780m-graphics
 AMD Ryzen 9 8945HS w/ Radeon 780M Graphics,224.39,6,8945hs
@@ -301,16 +301,16 @@ AMD Ryzen AI 9 365 w/ Radeon 880M,223.73,12,ai-9-365-w-radeon-880m
 AMD Ryzen 9 7940HS w/ Radeon 780M Graphics,223.58,13,7940hs
 AMD Ryzen 9 270 w/ Radeon 780M Graphics,223.48,4,9-270-w-radeon-780m-graphics
 Intel Core Ultra 5 230F,222.64,9,ultra-5-230f
-Intel Core i7-12800HX,222.16,5,i7-12800hx
+Intel Core i7-12800HX,222.16,5,12800hx
 AMD Ryzen 7 H 255 w/ Radeon 780M Graphics,222.11,3,7-h-255-w-radeon-780m-graphics
 AMD EPYC 7281 16-Core Processor,221.8,1,7281
 Apple M4,221.78,179,apple-m4
-Intel Core i7-12700,221.77,18,i7-12700
+Intel Core i7-12700,221.77,18,12700
 2X Intel Xeon CPU E5-2640 v3 @ 2.60GHz,220.55,5,2640
 AMD Ryzen AI 7 PRO 350 w/ Radeon 860M,220.46,5,ai-7-pro-350-w-radeon-860m
 AMD Ryzen 5 9500F 6-Core Processor,217.19,3,9500f
 AMD Ryzen 7 8845HS w/ Radeon 780M Graphics,216.83,36,8845hs
-13th Gen Intel Core i5-13450HX,216.69,68,i5-13450hx
+13th Gen Intel Core i5-13450HX,216.69,68,13450hx
 AMD Ryzen 7 8745HS w/ Radeon 780M Graphics,215.41,4,8745hs
 AMD Ryzen 7 5800XT 8-Core Processor,214.87,70,5800xt
 AMD Ryzen 7 250 w/ Radeon 780M Graphics,214.3,7,7-250-w-radeon-780m-graphics
@@ -328,33 +328,33 @@ AMD Ryzen 7 7435HS,209.74,57,7435hs
 Snapdragon X 10-core X1P64100 @ 3.40 GHz,209.24,3,snapdragon-x-10-x1p64100-3-40-ghz
 AMD Ryzen 7 5800X3D 8-Core Processor,209.17,83,5800x3d
 Intel Xeon CPU E5-2698 v3 @ 2.30GHz,208.06,3,2698
-Intel Core i9-9900KF CPU @ 3.60GHz,205.21,2,i9-9900kf
+Intel Core i9-9900KF CPU @ 3.60GHz,205.21,2,9900kf
 AMD Ryzen 7 5800X 8-Core Processor,204.73,181,5800x
-13th Gen Intel Core i7-13650HX,204.32,49,i7-13650hx
+13th Gen Intel Core i7-13650HX,204.32,49,13650hx
 Apple M2 Pro,204.11,22,apple-m2-pro
-13th Gen Intel Core i5-13400,203.83,6,i5-13400
+13th Gen Intel Core i5-13400,203.83,6,13400
 AMD Ryzen 5 7600X 6-Core Processor,202.69,73,7600x
 Intel Xeon CPU E5-2697 v3 @ 2.60GHz,202.04,5,2697
 AMD Ryzen 7 PRO 8840HS w/ Radeon 780M Graphics,201.58,1,8840hs
-13th Gen Intel Core i5-13400F,201.13,46,i5-13400f
-13th Gen Intel Core i9-13900HK,201.0,3,i9-13900hk
-Intel Core i7-11700K @ 3.60GHz,198.94,9,i7-11700k
+13th Gen Intel Core i5-13400F,201.13,46,13400f
+13th Gen Intel Core i9-13900HK,201.0,3,13900hk
+Intel Core i7-11700K @ 3.60GHz,198.94,9,11700k
 2X Intel Xeon CPU E5-2690 v2 @ 3.00GHz,198.75,6,2690
 AMD Ryzen 9 PRO 7940HS w/ Radeon 780M Graphics,198.5,1,7940hs
 AMD Ryzen 5 7600 6-Core Processor,198.03,44,7600
 AMD Ryzen AI Z2 Extreme,198.02,1,ai-z2-extreme
-Intel Core i9-10910 CPU @ 3.60GHz,197.59,1,i9-10910
-Intel Core i9-10900X CPU @ 3.70GHz,197.1,2,i9-10900x
-Intel Core i5-14400F,196.54,26,i5-14400f
+Intel Core i9-10910 CPU @ 3.60GHz,197.59,1,10910
+Intel Core i9-10900X CPU @ 3.70GHz,197.1,2,10900x
+Intel Core i5-14400F,196.54,26,14400f
 Intel Xeon CPU E5-2680 v4 @ 2.40GHz,196.24,9,2680
-Intel Core i5-14500,196.0,1,i5-14500
+Intel Core i5-14500,196.0,1,14500
 AMD Ryzen Threadripper 2920X 12-Core Processor,195.18,2,2920x
 AMD Ryzen 5 7600X3D 6-Core Processor,194.34,7,7600x3d
-Intel Core i5-14500HX,192.4,9,i5-14500hx
+Intel Core i5-14500HX,192.4,9,14500hx
 AMD Ryzen 5 7500F 6-Core Processor,191.56,42,7500f
 Intel Core Ultra 5 235H,191.49,1,ultra-5-235h
 Intel Core Ultra 7 165H,191.22,6,ultra-7-165h
-Intel Core i5-14400,191.12,9,i5-14400
+Intel Core i5-14400,191.12,9,14400
 AMD Ryzen 7 5700X3D 8-Core Processor,190.89,30,5700x3d
 AMD Ryzen 7 6800HS Creator Edition,190.16,1,6800hs
 AMD Ryzen 5 7500X3D 6-Core Processor,190.12,2,7500x3d
@@ -367,91 +367,91 @@ AMD Ryzen 5 7640U w/ Radeon 760M Graphics,185.75,1,7640u
 Intel Xeon CPU E5-2687W v4 @ 3.00GHz,185.69,1,2687w
 AMD Ryzen AI 7 350 w/ Radeon 860M,185.67,26,ai-7-350-w-radeon-860m
 AMD Ryzen 5 7400F 6-Core Processor,185.22,2,7400f
-Intel Core i9-9900KS CPU @ 4.00GHz,185.17,2,i9-9900ks
+Intel Core i9-9900KS CPU @ 4.00GHz,185.17,2,9900ks
 AMD Ryzen 7 7735HS with Radeon Graphics,184.33,37,7735hs
 AMD Ryzen 7 PRO 3700 8-Core Processor,184.03,1,3700
 AMD Ryzen 7 3800X 8-Core Processor,183.9,12,3800x
-13th Gen Intel Core i9-13900H,183.74,56,i9-13900h
+13th Gen Intel Core i9-13900H,183.74,56,13900h
 AMD Ryzen 7 PRO 6850H with Radeon Graphics,183.35,17,6850h
-Intel Core i9-10900 CPU @ 2.80GHz,182.63,2,i9-10900
+Intel Core i9-10900 CPU @ 2.80GHz,182.63,2,10900
 AMD Ryzen 7 3800XT 8-Core Processor,182.41,4,3800xt
-Intel Core i7-10700KF CPU @ 3.80GHz,182.22,1,i7-10700kf
+Intel Core i7-10700KF CPU @ 3.80GHz,182.22,1,10700kf
 AMD Ryzen 5 8600G w/ Radeon 760M Graphics,181.42,10,8600g
 AMD Ryzen 5 240 w/ Radeon 760M Graphics,181.21,1,5-240-w-radeon-760m-graphics
-Intel Core i7-10700K CPU @ 3.80GHz,180.05,18,i7-10700k
+Intel Core i7-10700K CPU @ 3.80GHz,180.05,18,10700k
 Genuine Intel 0000 @ 1.80GHz,179.85,4,0000
-Intel Core i9-11900KF @ 3.50GHz,178.8,6,i9-11900kf
-Intel Core i9-11900K @ 3.50GHz,178.66,4,i9-11900k
+Intel Core i9-11900KF @ 3.50GHz,178.8,6,11900kf
+Intel Core i9-11900K @ 3.50GHz,178.66,4,11900k
 Snapdragon X Plus (8-core) @ 3.30 GHz,178.18,1,snapdragon-x-plus-8-3-30-ghz
 Snapdragon X Plus - X1P42100 - Qualcomm Oryon CPU,177.93,4,snapdragon-x-plus-x1p42100-qualcomm-oryon
-Intel Core i5-14450HX,177.28,2,i5-14450hx
+Intel Core i5-14450HX,177.28,2,14450hx
 AMD Ryzen 9 6900HS with Radeon Graphics,176.85,30,6900hs
 Intel Xeon CPU E5-2690 v4 @ 2.60GHz,175.97,3,2690
 Apple Silicon,175.06,4,apple-silicon
-Intel Core i9-12900HK,174.66,2,i9-12900hk
-Intel Core i9-12900H,173.87,18,i9-12900h
-13th Gen Intel Core i5-13490F,173.03,3,i5-13490f
+Intel Core i9-12900HK,174.66,2,12900hk
+Intel Core i9-12900H,173.87,18,12900h
+13th Gen Intel Core i5-13490F,173.03,3,13490f
 AMD Ryzen 7 3700X 8-Core Processor,172.49,51,3700x
 AMD Ryzen 7 6800H with Radeon Graphics,172.41,19,6800h
-Intel Core i7-12700H,171.18,45,i7-12700h
+Intel Core i7-12700H,171.18,45,12700h
 Snapdragon X - X126100 - Qualcomm Oryon CPU,170.25,5,snapdragon-x-x126100-qualcomm-oryon
-Intel Core i9-9900K CPU @ 3.60GHz,169.85,37,i9-9900k
+Intel Core i9-9900K CPU @ 3.60GHz,169.85,37,9900k
 AMD Ryzen 9 6900HX with Radeon Graphics,167.81,2,6900hx
 AMD Ryzen 7 5800HS with Radeon Graphics,167.43,3,5800hs
 Intel Xeon CPU E5-2690 v3 @ 2.60GHz,167.33,1,2690
-Intel Core i7-6950X CPU @ 3.00GHz,167.18,3,i7-6950x
+Intel Core i7-6950X CPU @ 3.00GHz,167.18,3,6950x
 2X Intel Xeon Silver 4110 CPU @ 2.10GHz,166.79,1,4110
-Intel Core i9-11950H @ 2.60GHz,165.53,7,i9-11950h
+Intel Core i9-11950H @ 2.60GHz,165.53,7,11950h
 AMD Ryzen 5 7640HS w/ Radeon 760M Graphics,164.92,4,7640hs
 Apple M1 Pro,163.59,44,apple-m1-pro
 AMD EPYC 7R13 Processor,162.19,1,epyc-7r13
-Intel Core i7-12650HX,162.02,1,i7-12650hx
+Intel Core i7-12650HX,162.02,1,12650hx
 AMD Ryzen 9 5900HX with Radeon Graphics,161.87,20,5900hx
 AMD Ryzen 5 8645HS w/ Radeon 760M Graphics,161.47,9,8645hs
 AMD Ryzen 5 5600X3D 6-Core Processor,159.8,7,5600x3d
-13th Gen Intel Core i7-13620H,159.63,40,i7-13620h
+13th Gen Intel Core i7-13620H,159.63,40,13620h
 Intel Xeon CPU E5-2670 v3 @ 2.30GHz,159.04,2,2670
-Intel Core i9-10900F CPU @ 2.80GHz,158.49,3,i9-10900f
+Intel Core i9-10900F CPU @ 2.80GHz,158.49,3,10900f
 AMD Ryzen Z1 Extreme,158.46,6,z1-extreme
 AMD Ryzen 7 PRO 6850U with Radeon Graphics,158.26,2,6850u
 AMD Ryzen 5 5600GT with Radeon Graphics,158.21,7,5600gt
 AMD Ryzen AI 5 340 w/ Radeon 840M,158.1,4,ai-5-340-w-radeon-840m
-Intel Core i7-9700KF CPU @ 3.60GHz,157.2,2,i7-9700kf
-13th Gen Intel Core i7-13700H,156.91,19,i7-13700h
+Intel Core i7-9700KF CPU @ 3.60GHz,157.2,2,9700kf
+13th Gen Intel Core i7-13700H,156.91,19,13700h
 Intel Xeon W-2245 CPU @ 3.90GHz,156.07,1,2245
 Intel Xeon W-2140B CPU @ 3.20GHz,155.93,2,2140b
 AMD Ryzen 5 5600X 6-Core Processor,155.87,160,5600x
-Intel Core i7-11700F @ 2.50GHz,155.61,6,i7-11700f
+Intel Core i7-11700F @ 2.50GHz,155.61,6,11700f
 AMD Ryzen 7 6800U with Radeon Graphics,154.87,5,6800u
-13th Gen Intel Core i5-13500HX,154.65,2,i5-13500hx
-Intel Core i5-12490F,154.19,1,i5-12490f
-Intel Core i5-12400F,154.01,53,i5-12400f
+13th Gen Intel Core i5-13500HX,154.65,2,13500hx
+Intel Core i5-12490F,154.19,1,12490f
+Intel Core i5-12400F,154.01,53,12400f
 AMD Ryzen 5 5600XT 6-Core Processor,153.79,4,5600xt
 AMD Ryzen 5 8500G w/ Radeon 740M Graphics,153.15,9,8500g
-Intel Core i5-12500,152.81,5,i5-12500
-Intel Core i9-11900 @ 2.50GHz,152.76,4,i9-11900
-Intel Core i5-12400,152.41,19,i5-12400
+Intel Core i5-12500,152.81,5,12500
+Intel Core i9-11900 @ 2.50GHz,152.76,4,11900
+Intel Core i5-12400,152.41,19,12400
 Intel Core Ultra 5 225H,152.33,2,ultra-5-225h
-Intel Core i5-12600HX,151.83,3,i5-12600hx
-Intel Core i7-10700F CPU @ 2.90GHz,151.32,5,i7-10700f
-Intel Core i7-10700 CPU @ 2.90GHz,151.16,12,i7-10700
+Intel Core i5-12600HX,151.83,3,12600hx
+Intel Core i7-10700F CPU @ 2.90GHz,151.32,5,10700f
+Intel Core i7-10700 CPU @ 2.90GHz,151.16,12,10700
 Intel Core 7 240H,150.52,5,7-240h
 AMD Ryzen 5 5600 6-Core Processor,150.18,59,5600
 Intel Core Ultra 7 155H,150.13,46,ultra-7-155h
-Intel Core i7-11700KF @ 3.60GHz,149.55,1,i7-11700kf
-Intel Core i7-12650H,149.05,19,i7-12650h
-Intel Core i9-9900 CPU @ 3.10GHz,148.87,3,i9-9900
+Intel Core i7-11700KF @ 3.60GHz,149.55,1,11700kf
+Intel Core i7-12650H,149.05,19,12650h
+Intel Core i9-9900 CPU @ 3.10GHz,148.87,3,9900
 AMD Ryzen 5 3600XT 6-Core Processor,148.78,1,3600xt
 AMD Ryzen 7 8840U w/ Radeon 780M Graphics,148.72,2,8840u
 Intel Xeon CPU E5-2689 v4 @ 3.10GHz,148.71,2,2689
-Intel Core i7-7820X CPU @ 3.60GHz,148.48,3,i7-7820x
-13th Gen Intel Core i5-13500H,147.44,7,i5-13500h
+Intel Core i7-7820X CPU @ 3.60GHz,148.48,3,7820x
+13th Gen Intel Core i5-13500H,147.44,7,13500h
 AMD Ryzen 7 2700 Eight-Core Processor,147.2,5,2700
 Intel Xeon CPU E5-1660 v3 @ 3.00GHz,146.12,1,1660
 AMD Ryzen 5 5600G with Radeon Graphics,145.91,132,5600g
 AMD Ryzen 5 5500X3D 6-Core Processor,145.35,2,5500x3d
 Intel Xeon CPU E5-2680 v3 @ 2.50GHz,145.25,1,2680
-Intel Core i5-11600K @ 3.90GHz,144.88,5,i5-11600k
+Intel Core i5-11600K @ 3.90GHz,144.88,5,11600k
 AMD Ryzen 7 PRO 4750GE with Radeon Graphics,144.38,1,4750ge
 AMD Ryzen 7 2700X Eight-Core Processor,144.06,26,2700x
 Intel Xeon CPU E5-2630 v4 @ 2.20GHz,143.44,1,2630
@@ -465,53 +465,53 @@ AMD Ryzen 7 5800H with Radeon Graphics,141.87,42,5800h
 AMD Ryzen 7 4800H with Radeon Graphics,141.43,21,4800h
 Virtual CPU @ 3.41GHz,141.37,1,virtual-3-41ghz
 Intel Core Ultra 5 228V,141.16,2,ultra-5-228v
-13th Gen Intel Core i5-13500T,141.06,1,i5-13500t
+13th Gen Intel Core i5-13500T,141.06,1,13500t
 Intel Xeon Gold 5118 CPU @ 2.30GHz,140.71,1,5118
 AMD Ryzen 7 1800X Eight-Core Processor,140.59,14,1800x
 Intel Xeon W-11865MRE @ 2.60GHz,140.39,3,xeon-w-11865mre-2-60ghz
-Intel Core i7-8086K CPU @ 4.00GHz,138.83,2,i7-8086k
+Intel Core i7-8086K CPU @ 4.00GHz,138.83,2,8086k
 Intel Xeon CPU E5-2667 v4 @ 3.20GHz,138.59,7,2667
 AMD Ryzen Threadripper 1900X 8-Core Processor,138.55,1,1900x
 AMD Ryzen 7 5825U with Radeon Graphics,138.5,6,5825u
-Intel Core i7-9700K CPU @ 3.60GHz,138.37,25,i7-9700k
+Intel Core i7-9700K CPU @ 3.60GHz,138.37,25,9700k
 AMD Ryzen 5 3600X 6-Core Processor,138.2,19,3600x
 Intel Xeon CPU E5-2676 v3 @ 2.40GHz,137.79,2,2676
 AMD Ryzen 5 5500,137.63,47,5500
-Intel Core i5-10500 CPU @ 3.10GHz,137.25,5,i5-10500
+Intel Core i5-10500 CPU @ 3.10GHz,137.25,5,10500
 2X Genuine Intel CPU  @ 2.90GHz,137.09,1,2x-genuine-2-90ghz
-Intel Core i9-9980HK CPU @ 2.40GHz,136.0,15,i9-9980hk
+Intel Core i9-9980HK CPU @ 2.40GHz,136.0,15,9980hk
 AMD Ryzen 5 PRO 5650G with Radeon Graphics,135.99,1,5650g
-Intel Core i9-11900H @ 2.50GHz,135.93,8,i9-11900h
-Intel Core i5-12500H,135.79,52,i5-12500h
-Intel Core i9-11900KB @ 3.30GHz,135.77,1,i9-11900kb
+Intel Core i9-11900H @ 2.50GHz,135.93,8,11900h
+Intel Core i5-12500H,135.79,52,12500h
+Intel Core i9-11900KB @ 3.30GHz,135.77,1,11900kb
 AMD Ryzen 7 8840HS w/ Radeon 780M Graphics,135.53,3,8840hs
-Intel Core i5-12450HX,135.41,19,i5-12450hx
-Intel Core i5-10600K CPU @ 4.10GHz,135.34,6,i5-10600k
-Intel Core i7-11850H @ 2.50GHz,134.72,12,i7-11850h
+Intel Core i5-12450HX,135.41,19,12450hx
+Intel Core i5-10600K CPU @ 4.10GHz,135.34,6,10600k
+Intel Core i7-11850H @ 2.50GHz,134.72,12,11850h
 AMD Ryzen 9 5900HS with Radeon Graphics,134.45,6,5900hs
-Intel Core i5-11500 @ 2.70GHz,134.26,3,i5-11500
+Intel Core i5-11500 @ 2.70GHz,134.26,3,11500
 Intel Xeon CPU E5-1660 v4 @ 3.20GHz,133.59,1,1660
 AMD Ryzen 5 PRO 7540U w/ Radeon 740M Graphics,133.44,1,7540u
 AMD Ryzen Z1,133.44,1,z1
 AMD Ryzen AI 5 PRO 340 w/ Radeon 840M,133.43,2,ai-5-pro-340-w-radeon-840m
 AMD Ryzen 7 7445HS w/ Radeon 740M Graphics,133.24,5,7445hs
 AMD Ryzen 9 4900HS with Radeon Graphics,132.89,7,4900hs
-13th Gen Intel Core i3-13100F,131.97,1,i3-13100f
+13th Gen Intel Core i3-13100F,131.97,1,13100f
 AMD Ryzen 5 5600T 6-Core Processor,131.7,2,5600t
 AMD Ryzen 5 7535HS with Radeon Graphics,131.56,12,7535hs
 AMD Eng Sample: 100-000000098-40_39/27_Y,130.8,1,eng-sample-100-000000098-40-39-27-y
 AMD Ryzen 7 7730U with Radeon Graphics,130.66,17,7730u
 AMD Ryzen 7 7840H with Radeon 780M Graphics,130.66,1,7840h
 Genuine Intel CPU 0000 @ 2.60GHz,130.5,1,0000
-Intel Core i9-11980HK @ 2.60GHz,130.5,1,i9-11980hk
-Intel Core i9-9880H CPU @ 2.30GHz,130.04,16,i9-9880h
+Intel Core i9-11980HK @ 2.60GHz,130.5,1,11980hk
+Intel Core i9-9880H CPU @ 2.30GHz,130.04,16,9880h
 Intel Core Ultra 5 225U,129.91,2,ultra-5-225u
 2X Intel Xeon CPU           X5680  @ 3.33GHz,129.85,1,2x-xeon-x5680-3-33ghz
-Intel Core i9-9900T CPU @ 2.10GHz,129.27,1,i9-9900t
+Intel Core i9-9900T CPU @ 2.10GHz,129.27,1,9900t
 AMD Ryzen 5 6600HS Creator Edition,128.89,2,6600hs
 Intel Core Ultra 7 258V,128.15,19,ultra-7-258v
 AMD Ryzen 5 220 w/ Radeon 740M Graphics,127.73,4,5-220-w-radeon-740m-graphics
-Intel Core i7-11700 @ 2.50GHz,127.67,9,i7-11700
+Intel Core i7-11700 @ 2.50GHz,127.67,9,11700
 Intel Core Ultra 5 236V,126.99,1,ultra-5-236v
 AMD Ryzen 5 3600 6-Core Processor,126.68,87,3600
 Intel Xeon w3-2425,126.46,1,2425
@@ -519,55 +519,55 @@ Apple M3,126.38,32,apple-m3
 Intel Core 5 210H,126.29,10,5-210h
 AMD Ryzen 7 1700X Eight-Core Processor,125.65,4,1700x
 AMD Ryzen 9 5980HX with Radeon Graphics,125.34,1,5980hx
-Intel Core i7-5960X CPU @ 3.00GHz,125.06,3,i7-5960x
+Intel Core i7-5960X CPU @ 3.00GHz,125.06,3,5960x
 QEMU Virtual CPU version 2.5+,123.9,1,qemu-virtual-version-2-5
 AMD Ryzen 5 4500 6-Core Processor,123.59,10,4500
-Intel Core i7-10870H CPU @ 2.20GHz,123.56,5,i7-10870h
+Intel Core i7-10870H CPU @ 2.20GHz,123.56,5,10870h
 AMD Ryzen 5 PRO 4650G with Radeon Graphics,123.46,7,4650g
-Intel Core i7-1270P,123.11,1,i7-1270p
-Intel Core i7-11800H @ 2.30GHz,122.75,42,i7-11800h
-13th Gen Intel Core i5-13420H,122.34,25,i5-13420h
+Intel Core i7-1270P,123.11,1,1270p
+Intel Core i7-11800H @ 2.30GHz,122.75,42,11800h
+13th Gen Intel Core i5-13420H,122.34,25,13420h
 AMD Ryzen 5 4600G with Radeon Graphics,122.0,4,4600g
 AMD Ryzen 7 5800U with Radeon Graphics,121.66,3,5800u
 Intel Core Ultra 7 256V,121.5,5,ultra-7-256v
 AMD Ryzen 7 PRO 4750U with Radeon Graphics,121.43,7,4750u
-Intel Core i5-10600KF CPU @ 4.10GHz,121.41,3,i5-10600kf
+Intel Core i5-10600KF CPU @ 4.10GHz,121.41,3,10600kf
 AMD Ryzen 7 1700 Eight-Core Processor,121.36,4,1700
-Intel Core i5-11400F @ 2.60GHz,121.32,12,i5-11400f
-Intel Core i7-8700 CPU @ 3.20GHz,121.03,21,i7-8700
-Intel Core i7-1280P,120.98,2,i7-1280p
-Intel Core i7-8700K CPU @ 3.70GHz,120.61,20,i7-8700k
-Intel Core i7-10875H CPU @ 2.30GHz,120.52,4,i7-10875h
+Intel Core i5-11400F @ 2.60GHz,121.32,12,11400f
+Intel Core i7-8700 CPU @ 3.20GHz,121.03,21,8700
+Intel Core i7-1280P,120.98,2,1280p
+Intel Core i7-8700K CPU @ 3.70GHz,120.61,20,8700k
+Intel Core i7-10875H CPU @ 2.30GHz,120.52,4,10875h
 AMD Ryzen 5 PRO 5675U with Radeon Graphics,119.72,1,5675u
-Intel Core i5-1240P,119.69,1,i5-1240p
+Intel Core i5-1240P,119.69,1,1240p
 AMD Ryzen 5 5600H with Radeon Graphics,119.2,30,5600h
 Intel Xeon CPU E5-2640 v4 @ 2.40GHz,119.2,1,2640
 AMD Ryzen 7 4800U with Radeon Graphics,118.93,1,4800u
-Intel Core i5-11400 @ 2.60GHz,118.46,2,i5-11400
-Intel Core i3-14100F,118.08,1,i3-14100f
-Intel Core i3-14100,118.04,2,i3-14100
+Intel Core i5-11400 @ 2.60GHz,118.46,2,11400
+Intel Core i3-14100F,118.08,1,14100f
+Intel Core i3-14100,118.04,2,14100
 Intel Xeon CPU E5-1650 v4 @ 3.60GHz,117.85,3,1650
-13th Gen Intel Core i5-1340P,117.49,2,i5-1340p
-Intel Core i5-10400 CPU @ 2.90GHz,117.34,12,i5-10400
-13th Gen Intel Core i7-1360P,116.58,4,i7-1360p
-13th Gen Intel Core i7-1365U,116.33,1,i7-1365u
+13th Gen Intel Core i5-1340P,117.49,2,1340p
+Intel Core i5-10400 CPU @ 2.90GHz,117.34,12,10400
+13th Gen Intel Core i7-1360P,116.58,4,1360p
+13th Gen Intel Core i7-1365U,116.33,1,1365u
 AMD Ryzen 5 5560U with Radeon Graphics,116.31,2,5560u
 AMD Ryzen 7 PRO 5850U with Radeon Graphics,115.99,5,5850u
 AMD Ryzen 5 4600U with Radeon Graphics,115.97,2,4600u
-Intel Core i7-9700F CPU @ 3.00GHz,115.96,5,i7-9700f
+Intel Core i7-9700F CPU @ 3.00GHz,115.96,5,9700f
 Intel Xeon CPU E5-2697 v2 @ 2.70GHz,115.19,8,2697
-Intel Core i5-11260H @ 2.60GHz,114.62,3,i5-11260h
-Intel Core i5-10400F CPU @ 2.90GHz,113.94,22,i5-10400f
-Intel Core i7-12800H,113.6,2,i7-12800h
+Intel Core i5-11260H @ 2.60GHz,114.62,3,11260h
+Intel Core i5-10400F CPU @ 2.90GHz,113.94,22,10400f
+Intel Core i7-12800H,113.6,2,12800h
 Intel Core Ultra 9 288V,112.93,11,ultra-9-288v
 AMD Ryzen 7 PRO 8840U w/ Radeon 780M Graphics,112.36,3,8840u
 Intel Core Ultra 7 268V,112.25,8,ultra-7-268v
 AMD Ryzen 5 7535U with Radeon Graphics,112.09,1,7535u
 AMD Ryzen 7 5700U with Radeon Graphics,111.99,10,5700u
 AMD Ryzen 5 6600H with Radeon Graphics,111.46,7,6600h
-Intel Core i5-12450H,111.2,23,i5-12450h
-Intel Core i7-7800X CPU @ 3.50GHz,109.63,1,i7-7800x
-Intel Core i7-5930K CPU @ 3.50GHz,109.58,2,i7-5930k
+Intel Core i5-12450H,111.2,23,12450h
+Intel Core i7-7800X CPU @ 3.50GHz,109.63,1,7800x
+Intel Core i7-5930K CPU @ 3.50GHz,109.58,2,5930k
 Intel Core Ultra 5 226V,109.57,5,ultra-5-226v
 AMD Ryzen 5 PRO 5650U with Radeon Graphics,109.15,4,5650u
 Intel Xeon CPU E5-2695 v2 @ 2.40GHz,108.71,1,2695
@@ -575,48 +575,48 @@ Apple M2,108.49,35,apple-m2
 Intel Xeon CPU E5-2696 v2 @ 2.50GHz,108.46,1,2696
 AMD Ryzen 5 2600X Six-Core Processor,106.97,7,2600x
 Intel Xeon W-2135 CPU @ 3.70GHz,106.7,5,2135
-13th Gen Intel Core i3-13100,106.48,2,i3-13100
-Intel Core i3-12100F,106.15,8,i3-12100f
+13th Gen Intel Core i3-13100,106.48,2,13100
+Intel Core i3-12100F,106.15,8,12100f
 AMD BC-250,105.83,5,bc-250
 AMD Ryzen 5 2600 Six-Core Processor,104.8,32,2600
 AMD Ryzen 7 PRO 7840U w/ Radeon 780M Graphics,104.54,7,7840u
-Intel Core i5-10600 CPU @ 3.30GHz,104.48,1,i5-10600
+Intel Core i5-10600 CPU @ 3.30GHz,104.48,1,10600
 Intel Xeon CPU E5-2650 v3 @ 2.30GHz,104.43,3,2650
 AMD Ryzen 7 260 w/ Radeon 780M,104.21,1,7-260-w-radeon-780m
-Intel Core i5-11400H @ 2.70GHz,103.97,45,i5-11400h
+Intel Core i5-11400H @ 2.70GHz,103.97,45,11400h
 AMD Ryzen 5 5600U with Radeon Graphics,102.81,1,5600u
 2X Intel Xeon CPU           X5675  @ 3.07GHz,102.42,2,2x-xeon-x5675-3-07ghz
 AMD Ryzen 5 4600H with Radeon Graphics,101.92,8,4600h
-Intel Core i5-9600K CPU @ 3.70GHz,101.8,23,i5-9600k
+Intel Core i5-9600K CPU @ 3.70GHz,101.8,23,9600k
 Intel Xeon CPU E5-2680 v2 @ 2.80GHz,101.67,2,2680
 2X Intel Xeon CPU           E5645  @ 2.40GHz,100.99,1,2x-xeon-e5645-2-40ghz
 Intel Xeon CPU E5-2690 v2 @ 3.00GHz,100.84,1,2690
 Intel Xeon CPU E5-2667 v3 @ 3.20GHz,100.24,2,2667
-Intel Core i9-10885H CPU @ 2.40GHz,99.85,5,i9-10885h
+Intel Core i9-10885H CPU @ 2.40GHz,99.85,5,10885h
 AMD Ryzen 5 5500U with Radeon Graphics,99.55,24,5500u
 2X Intel Xeon Bronze 3106 CPU @ 1.70GHz,98.82,1,3106
 Intel Xeon CPU E5-1650 v3 @ 3.50GHz,98.62,2,1650
 Intel Xeon W-11855M CPU @ 3.20GHz,97.6,3,11855m
 AMD Ryzen 5 1600X Six-Core Processor,96.96,1,1600x
 AMD Ryzen 5 1600 Six-Core Processor,96.54,9,1600
-Intel Core i7-5820K CPU @ 3.30GHz,95.82,6,i7-5820k
+Intel Core i7-5820K CPU @ 3.30GHz,95.82,6,5820k
 Apple M1,95.44,69,apple-m1
-Intel Core i7-10850H CPU @ 2.70GHz,94.73,3,i7-10850h
+Intel Core i7-10850H CPU @ 2.70GHz,94.73,3,10850h
 2X Intel Xeon CPU           X5650  @ 2.67GHz,94.65,3,2x-xeon-x5650-2-67ghz
 2X Intel Xeon CPU           X5660  @ 2.80GHz,94.58,4,2x-xeon-x5660-2-80ghz
-Intel Core i9-8950HK CPU @ 2.90GHz,94.13,2,i9-8950hk
-Intel Core i7-8700T CPU @ 2.40GHz,92.37,1,i7-8700t
-Intel Core i3-12100,91.84,4,i3-12100
-Intel Core i5-8600K CPU @ 3.60GHz,91.75,3,i5-8600k
-Intel Core i7-1265U,91.66,2,i7-1265u
-Intel Core i7-7700K CPU @ 4.20GHz,90.51,21,i7-7700k
-Intel Core i7-9750H CPU @ 2.60GHz,90.28,52,i7-9750h
-Intel Core i7-10750H CPU @ 2.60GHz,90.0,22,i7-10750h
-13th Gen Intel Core i7-1355U,88.5,5,i7-1355u
+Intel Core i9-8950HK CPU @ 2.90GHz,94.13,2,8950hk
+Intel Core i7-8700T CPU @ 2.40GHz,92.37,1,8700t
+Intel Core i3-12100,91.84,4,12100
+Intel Core i5-8600K CPU @ 3.60GHz,91.75,3,8600k
+Intel Core i7-1265U,91.66,2,1265u
+Intel Core i7-7700K CPU @ 4.20GHz,90.51,21,7700k
+Intel Core i7-9750H CPU @ 2.60GHz,90.28,52,9750h
+Intel Core i7-10750H CPU @ 2.60GHz,90.0,22,10750h
+13th Gen Intel Core i7-1355U,88.5,5,1355u
 AMD Ryzen 5 PRO 4650U with Radeon Graphics,88.47,4,4650u
-Intel Core i7-8700B CPU @ 3.20GHz,88.23,1,i7-8700b
-Intel Core i7-9850H CPU @ 2.60GHz,88.08,11,i7-9850h
-Intel Core i7-9700 CPU @ 3.00GHz,87.98,9,i7-9700
+Intel Core i7-8700B CPU @ 3.20GHz,88.23,1,8700b
+Intel Core i7-9850H CPU @ 2.60GHz,88.08,11,9850h
+Intel Core i7-9700 CPU @ 3.00GHz,87.98,9,9700
 AMD Ryzen 5 Microsoft Surface Edition,87.96,1,5-microsoft-surface-edition
 4X AMD EPYC 9175F 16-Core Processor,87.74,1,9175f
 AMD Ryzen 3 3300X 4-Core Processor,87.31,2,3300x
@@ -625,326 +625,326 @@ Virtual CPU @ 3.24GHz,86.67,1,virtual-3-24ghz
 Intel Xeon CPU E3-1275 v5 @ 3.60GHz,86.16,3,1275
 AMD Ryzen 5 3500X 6-Core Processor,85.54,6,3500x
 Intel Xeon E-2276M  CPU @ 2.80GHz,85.0,1,2276m
-Intel Core i5-9400 CPU @ 2.90GHz,84.77,3,i5-9400
-Intel Core i5-9600KF CPU @ 3.70GHz,84.42,5,i5-9600kf
-Intel Core i5-1245UE,83.9,2,i5-1245ue
-Intel Core i5-8400 CPU @ 2.80GHz,83.62,4,i5-8400
-Intel Core i7-8750H CPU @ 2.20GHz,83.39,24,i7-8750h
-Intel Core i7-8850H CPU @ 2.60GHz,81.65,11,i7-8850h
-Intel Core i5-9500 CPU @ 3.00GHz,81.62,1,i5-9500
-Intel Core i7-6700K CPU @ 4.00GHz,81.46,18,i7-6700k
+Intel Core i5-9400 CPU @ 2.90GHz,84.77,3,9400
+Intel Core i5-9600KF CPU @ 3.70GHz,84.42,5,9600kf
+Intel Core i5-1245UE,83.9,2,1245ue
+Intel Core i5-8400 CPU @ 2.80GHz,83.62,4,8400
+Intel Core i7-8750H CPU @ 2.20GHz,83.39,24,8750h
+Intel Core i7-8850H CPU @ 2.60GHz,81.65,11,8850h
+Intel Core i5-9500 CPU @ 3.00GHz,81.62,1,9500
+Intel Core i7-6700K CPU @ 4.00GHz,81.46,18,6700k
 Intel Core Ultra 5 125U,80.39,6,ultra-5-125u
 AMD Ryzen 5 5625U with Radeon Graphics,80.03,6,5625u
 Intel Xeon E-2176M  CPU @ 2.70GHz,79.71,2,2176m
-Intel Core i3-10105F CPU @ 3.70GHz,79.61,1,i3-10105f
+Intel Core i3-10105F CPU @ 3.70GHz,79.61,1,10105f
 AMD Ryzen 3 PRO 4350G with Radeon Graphics,79.49,1,4350g
-Intel Core i3-10100F CPU @ 3.60GHz,79.09,2,i3-10100f
+Intel Core i3-10100F CPU @ 3.60GHz,79.09,2,10100f
 AMD Ryzen 5 7235HS,78.77,13,7235hs
-Intel Core i7-11370H @ 3.30GHz,78.63,4,i7-11370h
+Intel Core i7-11370H @ 3.30GHz,78.63,4,11370h
 AMD Ryzen 5 7530U with Radeon Graphics,78.57,5,7530u
 AMD Ryzen 3 7330U with Radeon Graphics,78.06,1,7330u
-Intel Core i5-8500 CPU @ 3.00GHz,78.03,10,i5-8500
+Intel Core i5-8500 CPU @ 3.00GHz,78.03,10,8500
 AMD Ryzen 5 7430U with Radeon Graphics,77.59,2,7430u
 Intel Core 5 120U,77.33,3,5-120u
-Intel Core i5-8600 CPU @ 3.10GHz,77.28,2,i5-8600
+Intel Core i5-8600 CPU @ 3.10GHz,77.28,2,8600
 Intel Core Ultra 5 115U,77.13,1,ultra-5-115u
 Intel Xeon W-2133 CPU @ 3.60GHz,76.85,3,2133
-Intel Core i7-1255U,76.39,14,i7-1255u
-Intel Core i5-9400F CPU @ 2.90GHz,75.74,16,i5-9400f
-Intel Core i3-10100 CPU @ 3.60GHz,75.37,6,i3-10100
+Intel Core i7-1255U,76.39,14,1255u
+Intel Core i5-9400F CPU @ 2.90GHz,75.74,16,9400f
+Intel Core i3-10100 CPU @ 3.60GHz,75.37,6,10100
 AMD Ryzen 3 3100 4-Core Processor,75.35,1,3100
-Intel Core i5-11300H @ 3.10GHz,75.19,2,i5-11300h
+Intel Core i5-11300H @ 3.10GHz,75.19,2,11300h
 Intel Xeon CPU E5-2690 0 @ 2.90GHz,75.16,1,2690
-Intel Core i5-10500H CPU @ 2.50GHz,74.76,2,i5-10500h
+Intel Core i5-10500H CPU @ 2.50GHz,74.76,2,10500h
 Intel Xeon W-2223 CPU @ 3.60GHz,74.59,1,2223
-Intel Core i7-1260P,74.27,9,i7-1260p
-4X 12th Gen Intel Core i5-12400,74.09,1,i5-12400
+Intel Core i7-1260P,74.27,9,1260p
+4X 12th Gen Intel Core i5-12400,74.09,1,12400
 AMD EPYC 7543P 32-Core Processor,74.06,4,7543p
-Intel Core i5-10400T CPU @ 2.00GHz,72.66,1,i5-10400t
+Intel Core i5-10400T CPU @ 2.00GHz,72.66,1,10400t
 AMD EPYC 74F3 24-Core Processor,72.41,1,epyc-74f3-24
 Intel Core Ultra 5 235U,72.23,1,ultra-5-235u
 Intel Xeon CPU E5-1650 v2 @ 3.50GHz,72.1,2,1650
-Intel Core i7-7700 CPU @ 3.60GHz,71.89,30,i7-7700
+Intel Core i7-7700 CPU @ 3.60GHz,71.89,30,7700
 Intel Xeon W-2125 CPU @ 4.00GHz,71.78,2,2125
 Intel Xeon w3-2423,71.78,1,2423
-Intel Core i5-8259U CPU @ 2.30GHz,71.71,1,i5-8259u
+Intel Core i5-8259U CPU @ 2.30GHz,71.71,1,8259u
 Intel Xeon CPU E3-1240 v5 @ 3.50GHz,71.47,4,1240
-Intel Core i5-9400T CPU @ 1.80GHz,71.28,1,i5-9400t
-Intel Core i7-10810U CPU @ 1.10GHz,71.1,1,i7-10810u
-Intel Core i5-1145G7 @ 2.60GHz,70.87,3,i5-1145g7-2-60ghz
-Intel Core i3-10105 CPU @ 3.70GHz,70.64,2,i3-10105
-Intel Core i7-9700T CPU @ 2.00GHz,70.1,1,i7-9700t
+Intel Core i5-9400T CPU @ 1.80GHz,71.28,1,9400t
+Intel Core i7-10810U CPU @ 1.10GHz,71.1,1,10810u
+Intel Core i5-1145G7 @ 2.60GHz,70.87,3,1145g7-2-60ghz
+Intel Core i3-10105 CPU @ 3.70GHz,70.64,2,10105
+Intel Core i7-9700T CPU @ 2.00GHz,70.1,1,9700t
 AMD Ryzen 5 3400G with Radeon Vega Graphics,69.74,9,3400g
 AMD Ryzen 5 4500U with Radeon Graphics,69.46,4,4500u
 Intel Core Ultra 7 155U,69.45,3,ultra-7-155u
-Intel Core i5-8500T CPU @ 2.10GHz,69.35,1,i5-8500t
-Intel Core i7-4790K CPU @ 4.00GHz,68.83,9,i7-4790k
+Intel Core i5-8500T CPU @ 2.10GHz,69.35,1,8500t
+Intel Core i7-4790K CPU @ 4.00GHz,68.83,9,4790k
 AMD Ryzen 5 2500X Quad-Core Processor,68.33,1,2500x
 AMD Custom APU 0932,68.32,4,0932
-Intel Core i5-7600K CPU @ 3.80GHz,68.3,15,i5-7600k
+Intel Core i5-7600K CPU @ 3.80GHz,68.3,15,7600k
 Intel Core Ultra 5 135H,68.25,2,ultra-5-135h
-Intel Core i7-4770K CPU @ 3.50GHz,67.92,6,i7-4770k
+Intel Core i7-4770K CPU @ 3.50GHz,67.92,6,4770k
 Intel Core 7 150U,67.76,1,7-150u
-Intel Core i7-6700 CPU @ 3.40GHz,67.75,12,i7-6700
-Intel Core i5-8400T CPU @ 1.70GHz,67.62,1,i5-8400t
-Intel Core i5-1035G4 CPU @ 1.10GHz,67.57,3,i5-1035g4-1-10ghz
+Intel Core i7-6700 CPU @ 3.40GHz,67.75,12,6700
+Intel Core i5-8400T CPU @ 1.70GHz,67.62,1,8400t
+Intel Core i5-1035G4 CPU @ 1.10GHz,67.57,3,1035g4-1-10ghz
 AMD Custom APU 0405,67.22,6,0405
 AMD Ryzen 3 PRO 4450U with Radeon Graphics,66.86,1,4450u
 AMD Ryzen 5 2400G with Radeon Vega Graphics,66.5,4,2400g
 Intel Xeon CPU E5-4650 0 @ 2.70GHz,65.47,1,4650
 Intel Xeon CPU E5-1620 v4 @ 3.50GHz,65.43,1,1620
 AMD Ryzen 7 7735U with Radeon Graphics,65.07,1,7735u
-Intel Core i7-8557U CPU @ 1.70GHz,64.62,1,i7-8557u
-Intel Core i7-1185G7 @ 3.00GHz,64.22,12,i7-1185g7-3-00ghz
-Intel Core i7-4700HQ CPU @ 2.40GHz,63.74,1,i7-4700hq
-Intel Core i7-3930K CPU @ 3.20GHz,63.4,1,i7-3930k
+Intel Core i7-8557U CPU @ 1.70GHz,64.62,1,8557u
+Intel Core i7-1185G7 @ 3.00GHz,64.22,12,1185g7-3-00ghz
+Intel Core i7-4700HQ CPU @ 2.40GHz,63.74,1,4700hq
+Intel Core i7-3930K CPU @ 3.20GHz,63.4,1,3930k
 Intel Xeon W-2123 CPU @ 3.60GHz,63.3,3,2123
-Intel Core i7-7700HQ CPU @ 2.80GHz,62.95,19,i7-7700hq
+Intel Core i7-7700HQ CPU @ 2.80GHz,62.95,19,7700hq
 AMD EPYC-Genoa Processor,62.8,1,epyc-genoa
-Intel Core i5-10300H CPU @ 2.50GHz,62.75,22,i5-10300h
-Intel Core i5-1038NG7 CPU @ 2.00GHz,62.75,7,i5-1038ng7-2-00ghz
-Intel Core i5-1245U,62.54,1,i5-1245u
-Intel Core i5-6600K CPU @ 3.50GHz,62.26,6,i5-6600k
-Intel Core i7-4770 CPU @ 3.40GHz,61.87,8,i7-4770
-Intel Core i3-10100T CPU @ 3.00GHz,61.73,1,i3-10100t
-Intel Core i5-11320H @ 3.20GHz,61.66,2,i5-11320h
-Intel Core i3-9100F CPU @ 3.60GHz,61.62,10,i3-9100f
+Intel Core i5-10300H CPU @ 2.50GHz,62.75,22,10300h
+Intel Core i5-1038NG7 CPU @ 2.00GHz,62.75,7,1038ng7-2-00ghz
+Intel Core i5-1245U,62.54,1,1245u
+Intel Core i5-6600K CPU @ 3.50GHz,62.26,6,6600k
+Intel Core i7-4770 CPU @ 3.40GHz,61.87,8,4770
+Intel Core i3-10100T CPU @ 3.00GHz,61.73,1,10100t
+Intel Core i5-11320H @ 3.20GHz,61.66,2,11320h
+Intel Core i3-9100F CPU @ 3.60GHz,61.62,10,9100f
 AMD Ryzen 5 7520U with Radeon Graphics,61.56,7,7520u
 Apple silicon,61.48,1,apple-silicon
-Intel Core i5-1235U,61.38,13,i5-1235u
-13th Gen Intel Core i3-1315U,61.17,4,i3-1315u
-Intel Core i5-9300H CPU @ 2.40GHz,61.14,7,i5-9300h
+Intel Core i5-1235U,61.38,13,1235u
+13th Gen Intel Core i3-1315U,61.17,4,1315u
+Intel Core i5-9300H CPU @ 2.40GHz,61.14,7,9300h
 AMD Ryzen Embedded V1756B with Radeon Vega Gfx,60.93,1,embedded-v1756b-with-radeon-vega-gfx
 Intel Xeon CPU E5-1620 v3 @ 3.50GHz,60.61,2,1620
-Intel Core i5-8300H CPU @ 2.30GHz,60.59,4,i5-8300h
+Intel Core i5-8300H CPU @ 2.30GHz,60.59,4,8300h
 Intel Xeon CPU E5-2660 0 @ 2.20GHz,60.42,1,2660
 AMD Ryzen 7 PRO 7730U with Radeon Graphics,60.08,1,7730u
 AMD Ryzen 7 Microsoft Surface Edition,59.92,2,7-microsoft-surface-edition
-Intel Core i7-6700T CPU @ 2.80GHz,59.76,4,i7-6700t
+Intel Core i7-6700T CPU @ 2.80GHz,59.76,4,6700t
 Intel Xeon CPU E3-1535M v6 @ 3.10GHz,59.61,1,1535m
-Intel Core i7-4790 CPU @ 3.60GHz,59.18,8,i7-4790
+Intel Core i7-4790 CPU @ 3.60GHz,59.18,8,4790
 Intel Xeon CPU E3-1246 v3 @ 3.50GHz,58.52,1,1246
-Intel Core i7-7700T CPU @ 2.90GHz,58.3,1,i7-7700t
-Intel Core i7-4870HQ CPU @ 2.50GHz,58.24,6,i7-4870hq
+Intel Core i7-7700T CPU @ 2.90GHz,58.3,1,7700t
+Intel Core i7-4870HQ CPU @ 2.50GHz,58.24,6,4870hq
 Intel Xeon CPU E5-2650 0 @ 2.00GHz,57.79,1,2650
 Intel Core 3 100U,57.69,1,3-100u
 Intel Xeon E-2124G CPU @ 3.40GHz,57.69,1,2124g
 AMD Ryzen 5 PRO 2400G with Radeon Vega Graphics,57.47,1,2400g
 Intel Xeon CPU E3-1276 v3 @ 3.60GHz,57.47,2,1276
-Intel Core i3-9100 CPU @ 3.60GHz,57.22,1,i3-9100
-Intel Core i3-1215U,57.17,3,i3-1215u
+Intel Core i3-9100 CPU @ 3.60GHz,57.22,1,9100
+Intel Core i3-1215U,57.17,3,1215u
 Intel Xeon CPU E3-1535M v5 @ 2.90GHz,57.13,2,1535m
-13th Gen Intel Core i5-1335U,56.82,2,i5-1335u
-Intel Core i7-4720HQ CPU @ 2.60GHz,55.57,1,i7-4720hq
+13th Gen Intel Core i5-1335U,56.82,2,1335u
+Intel Core i7-4720HQ CPU @ 2.60GHz,55.57,1,4720hq
 2X Intel Xeon CPU           E5620  @ 2.40GHz,54.72,1,2x-xeon-e5620-2-40ghz
-Intel Core i5-4690K CPU @ 3.50GHz,54.24,4,i5-4690k
+Intel Core i5-4690K CPU @ 3.50GHz,54.24,4,4690k
 Intel Xeon CPU E5-2609 v4 @ 1.70GHz,53.65,1,2609
 AMD Ryzen 7 3700U with Radeon Vega Mobile Gfx,53.45,1,3700u
-Intel Core i5-9300HF CPU @ 2.40GHz,53.44,2,i5-9300hf
-Intel Core i5-1155G7 @ 2.50GHz,52.99,3,i5-1155g7-2-50ghz
+Intel Core i5-9300HF CPU @ 2.40GHz,53.44,2,9300hf
+Intel Core i5-1155G7 @ 2.50GHz,52.99,3,1155g7-2-50ghz
 AMD Ryzen 5 3550H with Radeon Vega Mobile Gfx,52.84,15,3550h
-Intel Core i7-4930K CPU @ 3.40GHz,52.66,1,i7-4930k
-Intel Core i7-1165G7 @ 2.80GHz,52.37,61,i7-1165g7-2-80ghz
-Intel Core i5-5575R CPU @ 2.80GHz,52.34,2,i5-5575r
-Intel Core i5-7300HQ CPU @ 2.50GHz,52.27,3,i5-7300hq
+Intel Core i7-4930K CPU @ 3.40GHz,52.66,1,4930k
+Intel Core i7-1165G7 @ 2.80GHz,52.37,61,1165g7-2-80ghz
+Intel Core i5-5575R CPU @ 2.80GHz,52.34,2,5575r
+Intel Core i5-7300HQ CPU @ 2.50GHz,52.27,3,7300hq
 Intel Xeon CPU           X5675  @ 3.07GHz,52.18,2,xeon-x5675-3-07ghz
-Intel Core i3-1220P,52.06,1,i3-1220p
+Intel Core i3-1220P,52.06,1,1220p
 AMD FX(tm)-8350 Eight-Core Processor,51.49,10,8350
-Intel Core i7-4702MQ CPU @ 2.20GHz,51.3,1,i7-4702mq
-Intel Core i5-7500 CPU @ 3.40GHz,51.17,1,i5-7500
-Intel Core i5-4690 CPU @ 3.50GHz,50.79,2,i5-4690
-Intel Core i5-9500T CPU @ 2.20GHz,50.77,1,i5-9500t
+Intel Core i7-4702MQ CPU @ 2.20GHz,51.3,1,4702mq
+Intel Core i5-7500 CPU @ 3.40GHz,51.17,1,7500
+Intel Core i5-4690 CPU @ 3.50GHz,50.79,2,4690
+Intel Core i5-9500T CPU @ 2.20GHz,50.77,1,9500t
 Intel Xeon CPU           X5670  @ 2.93GHz,50.46,2,xeon-x5670-2-93ghz
 AMD Ryzen 5 3350G with Radeon Vega Graphics,50.41,2,3350g
-Intel Core i3-8100B CPU @ 3.60GHz,50.27,1,i3-8100b
-Intel Core i7-7820HQ CPU @ 2.90GHz,50.06,3,i7-7820hq
-13th Gen Intel Core i5-1334U,50.02,4,i5-1334u
-Intel Core i7-1068NG7 CPU @ 2.30GHz,49.8,2,i7-1068ng7-2-30ghz
-Intel Core i7-8565U CPU @ 1.80GHz,49.53,7,i7-8565u
+Intel Core i3-8100B CPU @ 3.60GHz,50.27,1,8100b
+Intel Core i7-7820HQ CPU @ 2.90GHz,50.06,3,7820hq
+13th Gen Intel Core i5-1334U,50.02,4,1334u
+Intel Core i7-1068NG7 CPU @ 2.30GHz,49.8,2,1068ng7-2-30ghz
+Intel Core i7-8565U CPU @ 1.80GHz,49.53,7,8565u
 AMD Ryzen 5 1400 Quad-Core Processor,48.82,2,1400
 Intel Xeon CPU E5-1650 0 @ 3.20GHz,48.72,1,1650
-Intel Core i5-1135G7 @ 2.40GHz,48.44,56,i5-1135g7-2-40ghz
-Intel Core i5-8265U CPU @ 1.60GHz,48.31,8,i5-8265u
+Intel Core i5-1135G7 @ 2.40GHz,48.44,56,1135g7-2-40ghz
+Intel Core i5-8265U CPU @ 1.60GHz,48.31,8,8265u
 AMD EPYC 7452 32-Core Processor,47.9,1,7452
-Intel Core i7-3770 CPU @ 3.40GHz,47.84,13,i7-3770
-Intel Core i7-3770K CPU @ 3.50GHz,47.78,8,i7-3770k
-Intel Core i7-8650U CPU @ 1.90GHz,47.7,6,i7-8650u
+Intel Core i7-3770 CPU @ 3.40GHz,47.84,13,3770
+Intel Core i7-3770K CPU @ 3.50GHz,47.78,8,3770k
+Intel Core i7-8650U CPU @ 1.90GHz,47.7,6,8650u
 AMD Ryzen 5 PRO 3500U w/ Radeon Vega Mobile Gfx,47.57,2,3500u
 AMD Ryzen 7 3700C  with Radeon Vega Mobile Gfx,47.51,2,3700c
-Intel Core i7-8665U CPU @ 1.90GHz,47.5,35,i7-8665u
+Intel Core i7-8665U CPU @ 1.90GHz,47.5,35,8665u
 AMD FX-8370 Eight-Core Processor,47.24,2,8370
 AMD Ryzen 7 4700U with Radeon Graphics,47.16,30,4700u
-Intel Core i7-2600K CPU @ 3.40GHz,47.05,4,i7-2600k
+Intel Core i7-2600K CPU @ 3.40GHz,47.05,4,2600k
 Intel Xeon Gold 6250 CPU @ 3.90GHz,47.03,1,6250
-Intel Core i5-7400 CPU @ 3.00GHz,46.51,8,i5-7400
-Intel Core i7-4820K CPU @ 3.70GHz,46.43,1,i7-4820k
-Intel Core i5-8257U CPU @ 1.40GHz,46.42,2,i5-8257u
-Intel Core i5-6500 CPU @ 3.20GHz,46.31,11,i5-6500
-Intel Core i5-4570 CPU @ 3.20GHz,45.61,2,i5-4570
+Intel Core i5-7400 CPU @ 3.00GHz,46.51,8,7400
+Intel Core i7-4820K CPU @ 3.70GHz,46.43,1,4820k
+Intel Core i5-8257U CPU @ 1.40GHz,46.42,2,8257u
+Intel Core i5-6500 CPU @ 3.20GHz,46.31,11,6500
+Intel Core i5-4570 CPU @ 3.20GHz,45.61,2,4570
 AMD Ryzen 3 3200G with Radeon Vega Graphics,45.1,5,3200g
 AMD Ryzen 3 5300U with Radeon Graphics,44.68,1,5300u
 Intel Xeon CPU E3-1225 v5 @ 3.30GHz,44.64,1,1225
 AMD Ryzen 3 2200G with Radeon Vega Graphics,44.63,2,2200g
-Intel Core i5-4590 CPU @ 3.30GHz,44.62,3,i5-4590
-Intel Core i7-8569U CPU @ 2.80GHz,44.57,3,i7-8569u
-Intel Core i3-8100T CPU @ 3.10GHz,43.89,2,i3-8100t
-Intel Core i7-10610U CPU @ 1.80GHz,43.58,2,i7-10610u
-Intel Core i7-8550U CPU @ 1.80GHz,43.52,11,i7-8550u
-Intel Core i7-2600 CPU @ 3.40GHz,43.51,1,i7-2600
+Intel Core i5-4590 CPU @ 3.30GHz,44.62,3,4590
+Intel Core i7-8569U CPU @ 2.80GHz,44.57,3,8569u
+Intel Core i3-8100T CPU @ 3.10GHz,43.89,2,8100t
+Intel Core i7-10610U CPU @ 1.80GHz,43.58,2,10610u
+Intel Core i7-8550U CPU @ 1.80GHz,43.52,11,8550u
+Intel Core i7-2600 CPU @ 3.40GHz,43.51,1,2600
 AMD FX(tm)-8150 Eight-Core Processor,43.41,1,8150
-Intel Core i5-8250U CPU @ 1.60GHz,43.07,6,i5-8250u
+Intel Core i5-8250U CPU @ 1.60GHz,43.07,6,8250u
 Intel Xeon CPU E5-1607 v4 @ 3.10GHz,42.84,1,1607
-Intel Core i5-6600 CPU @ 3.30GHz,42.66,2,i5-6600
-Intel Core i7-3770S CPU @ 3.10GHz,42.61,1,i7-3770s
-Intel Core i5-8365U CPU @ 1.60GHz,42.37,3,i5-8365u
-Intel Core i7-4770HQ CPU @ 2.20GHz,42.2,1,i7-4770hq
-Intel Core i7-4700MQ CPU @ 2.40GHz,42.19,1,i7-4700mq
-Intel Core i5-8350U CPU @ 1.70GHz,41.89,12,i5-8350u
+Intel Core i5-6600 CPU @ 3.30GHz,42.66,2,6600
+Intel Core i7-3770S CPU @ 3.10GHz,42.61,1,3770s
+Intel Core i5-8365U CPU @ 1.60GHz,42.37,3,8365u
+Intel Core i7-4770HQ CPU @ 2.20GHz,42.2,1,4770hq
+Intel Core i7-4700MQ CPU @ 2.40GHz,42.19,1,4700mq
+Intel Core i5-8350U CPU @ 1.70GHz,41.89,12,8350u
 Intel Xeon CPU E5-1620 0 @ 3.60GHz,41.65,1,1620
-Intel Core i7-3615QM CPU @ 2.30GHz,41.57,1,i7-3615qm
+Intel Core i7-3615QM CPU @ 2.30GHz,41.57,1,3615qm
 4X Intel Xeon Platinum 8260 CPU @ 2.40GHz,41.23,1,8260
-Intel Core i5-6500T CPU @ 2.50GHz,41.14,2,i5-6500t
-Intel Core i7-3720QM CPU @ 2.60GHz,40.69,2,i7-3720qm
+Intel Core i5-6500T CPU @ 2.50GHz,41.14,2,6500t
+Intel Core i7-3720QM CPU @ 2.60GHz,40.69,2,3720qm
 AMD Ryzen 5 3500U with Radeon Vega Mobile Gfx,40.65,31,3500u
-Intel Core i5-10310U CPU @ 1.70GHz,40.6,4,i5-10310u
-Intel Core i7-4765T CPU @ 2.00GHz,40.51,1,i7-4765t
-Intel Core i5-4670 CPU @ 3.40GHz,40.39,3,i5-4670
-Intel Core i5-6300HQ CPU @ 2.30GHz,40.16,3,i5-6300hq
-Intel Core i7-3820QM CPU @ 2.70GHz,39.84,1,i7-3820qm
-Intel Core i5-7440HQ CPU @ 2.80GHz,39.8,1,i5-7440hq
+Intel Core i5-10310U CPU @ 1.70GHz,40.6,4,10310u
+Intel Core i7-4765T CPU @ 2.00GHz,40.51,1,4765t
+Intel Core i5-4670 CPU @ 3.40GHz,40.39,3,4670
+Intel Core i5-6300HQ CPU @ 2.30GHz,40.16,3,6300hq
+Intel Core i7-3820QM CPU @ 2.70GHz,39.84,1,3820qm
+Intel Core i5-7440HQ CPU @ 2.80GHz,39.8,1,7440hq
 Intel Xeon CPU           W3530  @ 2.80GHz,39.53,1,xeon-w3530-2-80ghz
-Intel Core i5-1035G1 CPU @ 1.00GHz,38.75,42,i5-1035g1-1-00ghz
-Intel Core i5-4440 CPU @ 3.10GHz,37.53,1,i5-4440
+Intel Core i5-1035G1 CPU @ 1.00GHz,38.75,42,1035g1-1-00ghz
+Intel Core i5-4440 CPU @ 3.10GHz,37.53,1,4440
 AMD FX-8320E Eight-Core Processor,37.37,1,8320e
-Intel Core i7-6820HQ CPU @ 2.70GHz,37.33,6,i7-6820hq
-Intel Core i3-7100 CPU @ 3.90GHz,37.12,1,i3-7100
-Intel Core i7-1065G7 CPU @ 1.30GHz,36.82,11,i7-1065g7-1-30ghz
-Intel Core i3-9100T CPU @ 3.10GHz,36.54,1,i3-9100t
-Intel Core i7-3612QM CPU @ 2.10GHz,36.53,1,i7-3612qm
-Intel Core i5-10200H CPU @ 2.40GHz,36.43,1,i5-10200h
-Intel Core i7 CPU         940  @ 2.93GHz,36.36,6,i7-940-2-93ghz
-Intel Core i7-3610QM CPU @ 2.30GHz,36.11,2,i7-3610qm
+Intel Core i7-6820HQ CPU @ 2.70GHz,37.33,6,6820hq
+Intel Core i3-7100 CPU @ 3.90GHz,37.12,1,7100
+Intel Core i7-1065G7 CPU @ 1.30GHz,36.82,11,1065g7-1-30ghz
+Intel Core i3-9100T CPU @ 3.10GHz,36.54,1,9100t
+Intel Core i7-3612QM CPU @ 2.10GHz,36.53,1,3612qm
+Intel Core i5-10200H CPU @ 2.40GHz,36.43,1,10200h
+Intel Core i7 CPU         940  @ 2.93GHz,36.36,6,940-2-93ghz
+Intel Core i7-3610QM CPU @ 2.30GHz,36.11,2,3610qm
 AMD FX(tm)-8120 Eight-Core Processor,35.98,1,8120
-Intel Core i5-3570K CPU @ 3.40GHz,35.31,2,i5-3570k
-Intel Core i5-10210U CPU @ 1.60GHz,35.24,10,i5-10210u
-Intel Core i7-2630QM CPU @ 2.00GHz,34.99,1,i7-2630qm
+Intel Core i5-3570K CPU @ 3.40GHz,35.31,2,3570k
+Intel Core i5-10210U CPU @ 1.60GHz,35.24,10,10210u
+Intel Core i7-2630QM CPU @ 2.00GHz,34.99,1,2630qm
 AMD Ryzen 3 3300U with Radeon Vega Mobile Gfx,34.34,1,3300u
-Intel Core i5-3570 CPU @ 3.40GHz,34.29,2,i5-3570
+Intel Core i5-3570 CPU @ 3.40GHz,34.29,2,3570
 Intel Xeon CPU E3-1230 V2 @ 3.30GHz,34.13,2,1230
 Intel Xeon CPU E3-1220 v3 @ 3.10GHz,34.01,2,1220
-Intel Core i7 CPU         870  @ 2.93GHz,33.64,1,i7-870-2-93ghz
-Intel Core i5-3330 CPU @ 3.00GHz,33.48,1,i5-3330
+Intel Core i7 CPU         870  @ 2.93GHz,33.64,1,870-2-93ghz
+Intel Core i5-3330 CPU @ 3.00GHz,33.48,1,3330
 AMD FX(tm)-8300 Eight-Core Processor,33.23,2,8300
 Intel N150,33.0,10,n150
-Intel Core i5-3470 CPU @ 3.20GHz,32.81,10,i5-3470
-Intel Core i7-7600U CPU @ 2.80GHz,32.8,2,i7-7600u
-Intel Core i7-7567U CPU @ 3.50GHz,32.73,1,i7-7567u
+Intel Core i5-3470 CPU @ 3.20GHz,32.81,10,3470
+Intel Core i7-7600U CPU @ 2.80GHz,32.8,2,7600u
+Intel Core i7-7567U CPU @ 3.50GHz,32.73,1,7567u
 Intel Xeon Platinum,32.59,7,xeon-platinum
-Intel Core i3-8100 CPU @ 3.60GHz,32.47,2,i3-8100
-Intel Core i5-6400 CPU @ 2.70GHz,31.98,1,i5-6400
+Intel Core i3-8100 CPU @ 3.60GHz,32.47,2,8100
+Intel Core i5-6400 CPU @ 2.70GHz,31.98,1,6400
 AMD FX(tm)-6300 Six-Core Processor,31.8,2,6300
-Intel Core i7-10510U CPU @ 1.80GHz,31.8,3,i7-10510u
+Intel Core i7-10510U CPU @ 1.80GHz,31.8,3,10510u
 Intel Xeon W-2102 CPU @ 2.90GHz,31.67,1,2102
-Intel Core i7-7660U CPU @ 2.50GHz,31.41,1,i7-7660u
-Intel Core i3-6100 CPU @ 3.70GHz,30.9,3,i3-6100
-Intel Core i3-4330 CPU @ 3.50GHz,30.79,3,i3-4330
-Intel Core i5-4570S CPU @ 2.90GHz,30.0,1,i5-4570s
-Intel Core i5-7360U CPU @ 2.30GHz,29.67,5,i5-7360u
-Intel Core i5-3550 CPU @ 3.30GHz,29.63,1,i5-3550
+Intel Core i7-7660U CPU @ 2.50GHz,31.41,1,7660u
+Intel Core i3-6100 CPU @ 3.70GHz,30.9,3,6100
+Intel Core i3-4330 CPU @ 3.50GHz,30.79,3,4330
+Intel Core i5-4570S CPU @ 2.90GHz,30.0,1,4570s
+Intel Core i5-7360U CPU @ 2.30GHz,29.67,5,7360u
+Intel Core i5-3550 CPU @ 3.30GHz,29.63,1,3550
 Intel Pentium Gold 7505 @ 2.00GHz,29.31,2,7505
 Intel N95,28.88,6,n95
-Intel Core i5-6440HQ CPU @ 2.60GHz,28.86,1,i5-6440hq
-Intel Core i5-4590S CPU @ 3.00GHz,28.83,2,i5-4590s
-Intel Core i5-2400 CPU @ 3.10GHz,28.61,1,i5-2400
+Intel Core i5-6440HQ CPU @ 2.60GHz,28.86,1,6440hq
+Intel Core i5-4590S CPU @ 3.00GHz,28.83,2,4590s
+Intel Core i5-2400 CPU @ 3.10GHz,28.61,1,2400
 AMD Athlon 3000G with Radeon Vega Graphics,28.54,1,3000g
-Intel Core i5-1030NG7 CPU @ 1.10GHz,27.81,1,i5-1030ng7-1-10ghz
-Intel Core i7-6500U CPU @ 2.50GHz,27.78,1,i7-6500u
-Intel Core i5-2500K CPU @ 3.30GHz,27.34,3,i5-2500k
-Intel Core i5-6267U CPU @ 2.90GHz,26.93,1,i5-6267u
-Intel Core i5-4200M CPU @ 2.50GHz,26.48,1,i5-4200m
-Intel Core i3-4130 CPU @ 3.40GHz,26.46,1,i3-4130
+Intel Core i5-1030NG7 CPU @ 1.10GHz,27.81,1,1030ng7-1-10ghz
+Intel Core i7-6500U CPU @ 2.50GHz,27.78,1,6500u
+Intel Core i5-2500K CPU @ 3.30GHz,27.34,3,2500k
+Intel Core i5-6267U CPU @ 2.90GHz,26.93,1,6267u
+Intel Core i5-4200M CPU @ 2.50GHz,26.48,1,4200m
+Intel Core i3-4130 CPU @ 3.40GHz,26.46,1,4130
 Intel Xeon Platinum 8272CL CPU @ 2.60GHz,26.43,1,8272cl
-Intel Core i5-7267U CPU @ 3.10GHz,26.25,2,i5-7267u
-Intel Core i5-6200U CPU @ 2.30GHz,25.92,7,i5-6200u
+Intel Core i5-7267U CPU @ 3.10GHz,26.25,2,7267u
+Intel Core i5-6200U CPU @ 2.30GHz,25.92,7,6200u
 Intel N100,25.82,3,n100
 Intel Xeon CPU           E5620  @ 2.40GHz,25.76,1,xeon-e5620-2-40ghz
-Intel Core i5-4460  CPU @ 3.20GHz,25.59,3,i5-4460
+Intel Core i5-4460  CPU @ 3.20GHz,25.59,3,4460
 AMD EPYC 7V12 64-Core Processor,25.42,3,epyc-7v12-64
-Intel Core i3-1115G4 @ 3.00GHz,25.2,6,i3-1115g4-3-00ghz
-Intel Core i7-4810MQ CPU @ 2.80GHz,24.44,1,i7-4810mq
+Intel Core i3-1115G4 @ 3.00GHz,25.2,6,1115g4-3-00ghz
+Intel Core i7-4810MQ CPU @ 2.80GHz,24.44,1,4810mq
 Intel Pentium Gold G5420T CPU @ 3.20GHz,24.27,1,pentium-gold-g5420t-3-20ghz
-Intel Core i3-4160T CPU @ 3.10GHz,24.22,1,i3-4160t
-Intel Core i5-5200U CPU @ 2.20GHz,24.22,2,i5-5200u
-Intel Core i5-5350U CPU @ 1.80GHz,23.76,4,i5-5350u
-Intel Core i7-3520M CPU @ 2.90GHz,23.75,1,i7-3520m
-Intel Core i5-5287U CPU @ 2.90GHz,23.48,2,i5-5287u
-Intel Core i3-1005G1 CPU @ 1.20GHz,23.45,8,i3-1005g1-1-20ghz
+Intel Core i3-4160T CPU @ 3.10GHz,24.22,1,4160t
+Intel Core i5-5200U CPU @ 2.20GHz,24.22,2,5200u
+Intel Core i5-5350U CPU @ 1.80GHz,23.76,4,5350u
+Intel Core i7-3520M CPU @ 2.90GHz,23.75,1,3520m
+Intel Core i5-5287U CPU @ 2.90GHz,23.48,2,5287u
+Intel Core i3-1005G1 CPU @ 1.20GHz,23.45,8,1005g1-1-20ghz
 "AMD A10-7800 Radeon R7, 12 Compute Cores 4C+8G",23.43,1,7800
-Intel Core i5-7300U CPU @ 2.60GHz,23.19,7,i5-7300u
-Intel Core i5-4278U CPU @ 2.60GHz,23.12,1,i5-4278u
-Intel Core i5-4310M CPU @ 2.70GHz,22.68,1,i5-4310m
-Intel Core i5-6360U CPU @ 2.00GHz,22.68,2,i5-6360u
-Intel Core i3-7130U CPU @ 2.70GHz,22.53,1,i3-7130u
+Intel Core i5-7300U CPU @ 2.60GHz,23.19,7,7300u
+Intel Core i5-4278U CPU @ 2.60GHz,23.12,1,4278u
+Intel Core i5-4310M CPU @ 2.70GHz,22.68,1,4310m
+Intel Core i5-6360U CPU @ 2.00GHz,22.68,2,6360u
+Intel Core i3-7130U CPU @ 2.70GHz,22.53,1,7130u
 "AMD A10-7860K Radeon R7, 12 Compute Cores 4C+8G",21.98,1,7860k
 AMD A10-5700 APU with Radeon(tm) HD Graphics,21.7,1,5700
 AMD Ryzen 3 2200U with Radeon Vega Mobile Gfx,21.48,1,2200u
-Intel Core i7-2670QM CPU @ 2.20GHz,21.48,1,i7-2670qm
-Intel Core i7-5557U CPU @ 3.10GHz,21.44,1,i7-5557u
+Intel Core i7-2670QM CPU @ 2.20GHz,21.48,1,2670qm
+Intel Core i7-5557U CPU @ 3.10GHz,21.44,1,5557u
 Intel Xeon Platinum 8259CL CPU @ 2.50GHz,21.31,1,8259cl
-Intel Core i5-2540M CPU @ 2.60GHz,20.94,1,i5-2540m
-Intel Core i3-4160 CPU @ 3.60GHz,20.84,1,i3-4160
-Intel Core i3-7020U CPU @ 2.30GHz,20.64,5,i3-7020u
-Intel Core i3-3220T CPU @ 2.80GHz,20.57,1,i3-3220t
-Intel Core i7-6600U CPU @ 2.60GHz,20.37,3,i7-6600u
+Intel Core i5-2540M CPU @ 2.60GHz,20.94,1,2540m
+Intel Core i3-4160 CPU @ 3.60GHz,20.84,1,4160
+Intel Core i3-7020U CPU @ 2.30GHz,20.64,5,7020u
+Intel Core i3-3220T CPU @ 2.80GHz,20.57,1,3220t
+Intel Core i7-6600U CPU @ 2.60GHz,20.37,3,6600u
 AMD FX(tm)-4130 Quad-Core Processor,20.04,1,4130
 Intel Celeron N5095A @ 2.00GHz,19.87,1,celeron-n5095a-2-00ghz
-Intel Core i7 CPU         950  @ 3.07GHz,19.73,1,i7-950-3-07ghz
-Intel Core i7-4650U CPU @ 1.70GHz,19.46,4,i7-4650u
-Intel Core i5-5300U CPU @ 2.30GHz,19.44,3,i5-5300u
-Intel Core i5-7200U CPU @ 2.50GHz,19.36,6,i5-7200u
+Intel Core i7 CPU         950  @ 3.07GHz,19.73,1,950-3-07ghz
+Intel Core i7-4650U CPU @ 1.70GHz,19.46,4,4650u
+Intel Core i5-5300U CPU @ 2.30GHz,19.44,3,5300u
+Intel Core i5-7200U CPU @ 2.50GHz,19.36,6,7200u
 AMD Ryzen 5 1500X Quad-Core Processor,18.98,1,1500x
-Intel Core i3-7100U CPU @ 2.40GHz,18.94,1,i3-7100u
+Intel Core i3-7100U CPU @ 2.40GHz,18.94,1,7100u
 "AMD A8-9600 RADEON R7, 10 COMPUTE CORES 4C+6G",18.83,2,9600
-Intel Core i5-6300U CPU @ 2.40GHz,18.63,4,i5-6300u
-Intel Core i5-8210Y CPU @ 1.60GHz,18.61,1,i5-8210y
-Intel Core i7-6650U CPU @ 2.20GHz,17.98,1,i7-6650u
-Intel Core i5-3230M CPU @ 2.60GHz,17.71,1,i5-3230m
-Intel Core i3-5005U CPU @ 2.00GHz,17.64,2,i3-5005u
+Intel Core i5-6300U CPU @ 2.40GHz,18.63,4,6300u
+Intel Core i5-8210Y CPU @ 1.60GHz,18.61,1,8210y
+Intel Core i7-6650U CPU @ 2.20GHz,17.98,1,6650u
+Intel Core i5-3230M CPU @ 2.60GHz,17.71,1,3230m
+Intel Core i3-5005U CPU @ 2.00GHz,17.64,2,5005u
 Intel Pentium CPU 5405U @ 2.30GHz,17.56,1,5405u
 Intel Celeron N5105 @ 2.00GHz,17.54,1,celeron-n5105-2-00ghz
-Intel Core i3-3220 CPU @ 3.30GHz,17.47,1,i3-3220
+Intel Core i3-3220 CPU @ 3.30GHz,17.47,1,3220
 Intel Core m3-7Y30 CPU @ 1.00GHz,16.51,1,m3-7y30-1-00ghz
 "AMD A10-9600P RADEON R5, 10 COMPUTE CORES 4C+6G",16.37,1,9600p
-Intel Core i7-4960HQ CPU @ 2.60GHz,15.89,1,i7-4960hq
+Intel Core i7-4960HQ CPU @ 2.60GHz,15.89,1,4960hq
 AMD Ryzen 3 3250U with Radeon Graphics,15.81,1,3250u
-Intel Core i5 CPU         750  @ 2.67GHz,15.48,1,i5-750-2-67ghz
-Intel Core i5-5250U CPU @ 1.60GHz,15.12,6,i5-5250u
+Intel Core i5 CPU         750  @ 2.67GHz,15.48,1,750-2-67ghz
+Intel Core i5-5250U CPU @ 1.60GHz,15.12,6,5250u
 AMD Athlon Silver 3050U with Radeon Graphics,15.05,1,3050u
-Intel Core i3-3240 CPU @ 3.40GHz,15.02,1,i3-3240
-Intel Core i3-4005U CPU @ 1.70GHz,14.84,1,i3-4005u
+Intel Core i3-3240 CPU @ 3.40GHz,15.02,1,3240
+Intel Core i3-4005U CPU @ 1.70GHz,14.84,1,4005u
 AMD Ryzen 3 3200U with Radeon Vega Mobile Gfx,14.79,5,3200u
-Intel Core i3-1000NG4 CPU @ 1.10GHz,14.61,3,i3-1000ng4-1-10ghz
+Intel Core i3-1000NG4 CPU @ 1.10GHz,14.61,3,1000ng4-1-10ghz
 AMD A8-6600K APU with Radeon(tm) HD Graphics,14.3,1,6600k
-Intel Core i5-4210U CPU @ 1.70GHz,14.3,6,i5-4210u
+Intel Core i5-4210U CPU @ 1.70GHz,14.3,6,4210u
 Intel Celeron J4125 CPU @ 2.00GHz,14.02,1,celeron-j4125-2-00ghz
 Intel Xeon CPU @ 2.20GHz,13.84,1,xeon-2-20ghz
-Intel Core i3-2130 CPU @ 3.40GHz,13.64,1,i3-2130
+Intel Core i3-2130 CPU @ 3.40GHz,13.64,1,2130
 Intel Pentium CPU G2030 @ 3.00GHz,13.47,1,pentium-g2030-3-00ghz
-Intel Core i5-2415M CPU @ 2.30GHz,13.45,1,i5-2415m
+Intel Core i5-2415M CPU @ 2.30GHz,13.45,1,2415m
 "AMD A10-7850K Radeon R7, 12 Compute Cores 4C+8G",12.14,1,7850k
-Intel Core i3-5010U CPU @ 2.10GHz,12.11,1,i3-5010u
+Intel Core i3-5010U CPU @ 2.10GHz,12.11,1,5010u
 Intel Celeron N4120 CPU @ 1.10GHz,11.72,2,celeron-n4120-1-10ghz
-Intel Core i7-7500U CPU @ 2.70GHz,11.55,3,i7-7500u
-Intel Core i5-2410M CPU @ 2.30GHz,10.38,1,i5-2410m
-Intel Core i3-6100U CPU @ 2.30GHz,10.28,1,i3-6100u
+Intel Core i7-7500U CPU @ 2.70GHz,11.55,3,7500u
+Intel Core i5-2410M CPU @ 2.30GHz,10.38,1,2410m
+Intel Core i3-6100U CPU @ 2.30GHz,10.28,1,6100u
 Intel Celeron CPU 1005M @ 1.90GHz,10.0,2,1005m
 AMD A8-6410 APU with AMD Radeon R5 Graphics,9.7,1,6410
-Intel Core i3-10110U CPU @ 2.10GHz,9.27,1,i3-10110u
+Intel Core i3-10110U CPU @ 2.10GHz,9.27,1,10110u
 Intel Pentium CPU  N3710  @ 1.60GHz,8.17,1,pentium-n3710-1-60ghz
 Intel N200,7.96,1,n200
 Intel Pentium 3805U @ 1.90GHz,7.12,1,3805u
 AMD A8-7410 APU with AMD Radeon R5 Graphics,6.85,2,7410
-Intel Core i5-4340M CPU @ 2.90GHz,5.74,1,i5-4340m
+Intel Core i5-4340M CPU @ 2.90GHz,5.74,1,4340m
 Intel Celeron N4020 CPU @ 1.10GHz,4.52,1,celeron-n4020-1-10ghz
 Intel Celeron CPU  N3060  @ 1.60GHz,3.65,1,celeron-n3060-1-60ghz
 Intel Celeron CPU 2950M @ 2.00GHz,3.58,1,2950m
