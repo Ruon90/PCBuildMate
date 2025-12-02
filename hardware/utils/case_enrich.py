@@ -15,7 +15,6 @@ def normalize_case_type(raw: str) -> str:
         return ""
     t = raw.strip().lower()
 
-    # common mappings
     if "mini" in t and "itx" in t:
         return "Mini-ITX"
     if "micro" in t and "atx" in t:
@@ -24,76 +23,48 @@ def normalize_case_type(raw: str) -> str:
         return "ATX Mid Tower"
     if "full" in t and "tower" in t:
         return "ATX Full Tower"
-    if "tower" in t:  # generic tower
+    if "tower" in t:
         return "ATX Tower"
     if "htpc" in t or "slim" in t:
         return "HTPC/Slim"
     if "cube" in t or "sff" in t or "small form" in t:
         return "SFF"
-    # fallback
-    return raw.strip()
+    return raw.strip().title()
 
 # -----------------------------
-# Slug helpers (updated)
+# Slug helpers
 # -----------------------------
 def slugify(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", str(text).lower()).strip("-")
-
 
 def slugify_case(name: str, case_type: str) -> str:
     norm_type = normalize_case_type(case_type)
     return f"{slugify(name)}-{slugify(norm_type)}"
 
-
-
-
 # -----------------------------
-# Fallback convention mapping with volume thresholds
+# Fallback convention mapping
 # -----------------------------
 def fallback_psu_form(case_type: str, volume: float) -> str:
-    """
-    Convention-based inference when AI doesn't return a PSU form factor.
-    Uses case type + external volume thresholds.
-    """
     t = (case_type or "").lower()
-
-    # Attempt to parse volume into float; None if not numeric
     try:
         vol = float(str(volume).strip())
     except (ValueError, TypeError):
         vol = None
 
-    # Mini ITX: mostly SFX; larger minis can fit SFX-L
     if "mini" in t and "itx" in t:
-        if vol is not None and vol > 20:
-            return "SFX-L"
-        return "SFX"
-
-    # Micro ATX: many support ATX; very compact micro cases may use SFX
+        return "SFX-L" if vol and vol > 20 else "SFX"
     if "micro" in t and "atx" in t:
-        if vol is not None and vol > 30:
-            return "ATX"
-        return "SFX"
-
-    # ATX Mid/Full Tower: overwhelmingly ATX PSUs
+        return "ATX" if vol and vol > 30 else "SFX"
     if "tower" in t or "mid" in t or "full" in t or "atx" in t:
         return "ATX"
-
-    # Slim/HTPC: typically TFX (or Flex in very small)
     if "htpc" in t or "slim" in t:
         return "TFX"
-
-    # Cube / SFF: smaller tends to SFX/SFX-L; larger cubes can fit ATX
-    if "cube" in t or "small form" in t or "sff" in t:
-        if vol is not None and vol < 25:
-            return "SFX-L"
-        return "ATX"
-
-    # Default fallback
+    if "cube" in t or "sff" in t or "small form" in t:
+        return "SFX-L" if vol and vol < 25 else "ATX"
     return "ATX"
 
 # -----------------------------
-# AI batch enrichment for PSU form factor
+# AI batch enrichment
 # -----------------------------
 ENDPOINTS = {
     "gpt-4.1-mini": "https://models.inference.ai.azure.com/openai/deployments/gpt-4.1-mini/chat/completions",
@@ -105,11 +76,6 @@ TOKENS = {
 }
 
 def call_ai_batch(slugs_with_context, model="gpt-4.1-mini", debug=False):
-    """
-    slugs_with_context: list of dicts like:
-      { "slug": "...", "type": "ATX Mid Tower", "external_volume": "45" }
-    Price is intentionally excluded to reduce tokens.
-    """
     lines = []
     for item in slugs_with_context:
         line = f'{item["slug"]} | type={item.get("type","")}'
@@ -122,15 +88,6 @@ You enrich PC case specs. For each line, infer the PSU form factor that fits the
 Return ONLY valid JSON array. Each element:
 - slug (string; match input)
 - psu_form_factor (ATX, SFX, SFX-L, TFX, Flex, None if unknown)
-
-Heuristics:
-- ATX Mid/Full Tower -> ATX
-- Micro ATX -> ATX (or SFX if very small)
-- Mini ITX -> SFX (SFX-L if larger volume)
-- HTPC/Slim -> TFX
-- Small Form Factor/Cube -> SFX-L if compact, ATX if larger
-- Use external volume as a guide: <25L = SFX/SFX-L, >40L = ATX
-- If uncertain, choose the most common fit for the type.
 
 Cases:
 {chr(10).join(lines)}
@@ -160,33 +117,26 @@ Cases:
 # Pipeline
 # -----------------------------
 def run_pipeline(case_file: str, output_file: str, debug=False):
-    df = pd.read_csv(case_file)
-
-    # ensure psu column exists and is string dtype
+    # force psu column to string dtype
+    df = pd.read_csv(case_file, dtype={"psu": "string"})
     if "psu" not in df.columns:
         df["psu"] = ""
-    df["psu"] = df["psu"].astype(str)
+    df["psu"] = df["psu"].fillna("").astype(str)
 
-    # Filter out rows without price
     before = len(df)
     df = df.dropna(subset=["price"])
     df = df[df["price"].astype(str).str.strip() != ""]
     after_price_filter = len(df)
 
-    # Normalize case types before slugging
+    # normalize case types and build slug
     df["type"] = df["type"].apply(normalize_case_type)
     df["slug"] = df.apply(lambda r: slugify_case(r["name"], r["type"]), axis=1)
 
-    # Build slug
-    df["slug"] = df.apply(lambda r: slugify_case(r["name"], r["type"]), axis=1)
-
-    # Determine which rows need PSU form factor
-    needs_psu = df[(df["psu"].isna()) | (df["psu"].astype(str).str.strip() == "")]
+    needs_psu = df[(df["psu"].str.strip() == "")]
     batch_size = 25
     ai_filled = 0
     fallback_filled = 0
 
-    # Batch AI enrichment
     for i in range(0, len(needs_psu), batch_size):
         block = needs_psu.iloc[i:i+batch_size].copy()
         ctx = []
@@ -207,28 +157,25 @@ def run_pipeline(case_file: str, output_file: str, debug=False):
 
         for slug, form in res_mini.items():
             if form and str(form).strip():
-                df.loc[df["slug"] == slug, "psu"] = form
+                df.loc[df["slug"] == slug, "psu"] = str(form).strip()
                 ai_filled += 1
 
         time.sleep(1)
 
-    # Apply fallback for any still missing
-    still_missing = df[(df["psu"].isna()) | (df["psu"].astype(str).str.strip() == "")]
+    still_missing = df[(df["psu"].str.strip() == "")]
     for _, row in still_missing.iterrows():
         fallback = fallback_psu_form(row.get("type", ""), row.get("external_volume", ""))
         df.loc[df["slug"] == row["slug"], "psu"] = fallback
         fallback_filled += 1
 
-    # Final output
     df.to_csv(output_file, index=False)
 
-    # Summary
     print("\n=== Case Enrichment Summary ===")
     print(f"Rows in input: {before}")
     print(f"Rows after price filter: {after_price_filter} (dropped {before - after_price_filter})")
     print(f"PSU form factor filled by AI: {ai_filled}")
     print(f"PSU form factor filled by fallback: {fallback_filled}")
-    unresolved_after = len(df[(df["psu"].isna()) | (df["psu"].astype(str).str.strip() == "")])
+    unresolved_after = len(df[(df["psu"].str.strip() == "")])
     print(f"Remaining unresolved PSU entries: {unresolved_after}")
     print(f"Enriched case CSV written to {output_file}")
 
