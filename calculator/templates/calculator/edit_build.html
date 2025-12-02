@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Edit Build #{{ build.pk }}</h2>
+  <form method="post" action="{% url 'edit_build' build.pk %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="cpu">CPU</label>
+      <select name="cpu" id="cpu" class="form-select">
+        {% for cpu in cpus %}
+          <option value="{{ cpu.pk }}" {% if cpu == build.cpu %}selected{% endif %}>{{ cpu.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <!-- Repeat for gpu, motherboard, ram, storage, psu, cooler, case -->
+    <button type="submit" class="btn btn-success">Save Changes</button>
+  </form>
+</div>
+{% endblock %}

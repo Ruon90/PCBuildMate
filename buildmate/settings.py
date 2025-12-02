@@ -24,6 +24,26 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # default
+    'allauth.account.auth_backends.AuthenticationBackend',  # allauth
+]
+LOGIN_REDIRECT_URL = '/'          # where to go after login
+ACCOUNT_LOGOUT_REDIRECT_URL = '/' # where to go after logout
+# Allow login by both username and email
+ACCOUNT_LOGIN_METHODS = {"username", "email"}
+
+# Define required fields at signup
+ACCOUNT_SIGNUP_FIELDS = [
+    "email", 
+    "username*",   # * means required
+    "password1*", 
+    "password2*",
+]
+
+ACCOUNT_EMAIL_VERIFICATION = 'optional'  # or 'mandatory'
+
+SITE_ID = 1
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -44,6 +64,11 @@ INSTALLED_APPS = [
     'hardware',
     'crispy_forms',
     'crispy_bootstrap5',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',   
+    'allauth.socialaccount.providers.apple',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +78,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -70,6 +96,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'django.template.context_processors.request',
+                'calculator.context_processors.auth_forms',
             ],
         },
     },

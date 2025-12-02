@@ -85,15 +85,25 @@
     <p><strong>Total Price:</strong> £{{ price }}</p>
     <p><strong>Total Score:</strong> {{ score }}</p>
 
-    {% if user.is_authenticated %}
-        <form method="post" action="{% url 'save_build' %}">
-            {% csrf_token %}
-            <button class="btn btn-success">Save Build</button>
-        </form>
-    {% else %}
-        <div class="alert alert-warning mt-3">
-            Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> to save this build.
-        </div>
-    {% endif %}
+{% if user.is_authenticated %}
+  <!-- Logged-in users: direct save -->
+  <form method="post" action="{% url 'save_build' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success">Save build to account</button>
+  </form>
+{% else %}
+  <!-- Anonymous users: trigger signup modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">
+    Register to save this build
+  </button>
+{% endif %}
+
+<form method="post" action="{% url 'clear_build' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-danger mt-3">
+        Clear Current Build
+    </button>
+</form>
+
 </div>
 {% endblock %}

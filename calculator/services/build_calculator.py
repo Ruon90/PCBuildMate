@@ -179,15 +179,15 @@ def find_best_build(
 
     # Dynamic N and sort keys
     if budget < 800:
-        cpu_n, gpu_n, ram_n = 50, 50, 10
+        cpu_n, gpu_n, ram_n = 65, 65, 15
         sort_key_cpu = lambda c: c.cached_score / float(c.price or 1)
         sort_key_gpu = lambda g: g.cached_score / float(g.price or 1)
     elif budget < 1200:
-        cpu_n, gpu_n, ram_n = 30, 30, 8
+        cpu_n, gpu_n, ram_n = 50, 50, 12
         sort_key_cpu = lambda c: c.cached_score / float(c.price or 1)
         sort_key_gpu = lambda g: g.cached_score / float(g.price or 1)
     else:
-        cpu_n, gpu_n, ram_n = 15, 15, 5
+        cpu_n, gpu_n, ram_n = 25, 25, 10
         sort_key_cpu = lambda c: c.cached_score
         sort_key_gpu = lambda g: g.cached_score
 
@@ -201,17 +201,16 @@ def find_best_build(
     sorted_gpus = sorted(gpus, key=sort_key_gpu, reverse=True)[:gpu_n]
     sorted_rams = sorted(rams, key=lambda r: r.cached_score, reverse=True)[:ram_n]
 
-    # Streamline storage: filter by price and capacity, then sort by cheapest
+    # Streamline storage
     max_storage_price = budget * 0.40
-    storages = [
-        s for s in storages
-        if s.price and s.price <= max_storage_price
-    ]
+    storages = [s for s in storages if s.price and s.price <= max_storage_price]
     storages = sorted(storages, key=lambda s: float(s.price or 0))
 
     progress = []
     stats = {"trios": 0, "fail_mobo": 0, "fail_storage": 0, "fail_psu": 0,
              "fail_cooler": 0, "fail_case": 0, "fail_budget": 0}
+
+    valid_builds = []
 
     for cpu in sorted_cpus:
         for gpu in sorted_gpus:
@@ -219,63 +218,59 @@ def find_best_build(
                 stats["trios"] += 1
                 trio_price = (float(cpu.price or 0)) + (float(gpu.price or 0)) + (float(ram.price or 0))
                 if trio_price > float(budget):
-                    print(f"[SKIP] Trio over budget: CPU={cpu.name}, GPU={gpu.gpu_name}, RAM={ram.name}, price={trio_price}")
                     stats["fail_budget"] += 1
                     continue
 
                 mobos_compat = [m for m in mobos if compatible_cpu_mobo_cached(cpu, m) and compatible_mobo_ram_cached(m, ram)]
                 if not mobos_compat:
-                    print(f"[FAIL] No compatible motherboard for CPU={cpu.name}, GPU={gpu.gpu_name}, RAM={ram.name}")
                     stats["fail_mobo"] += 1
                     continue
                 mobo = min(mobos_compat, key=lambda m: float(m.price or 0))
-                print(f"[MATCH] Selected motherboard {mobo.name}")
 
                 storage = next((s for s in storages if compatible_storage_cached(mobo, s)), None)
                 if not storage:
-                    print(f"[FAIL] No compatible storage for Mobo={mobo.name}")
                     stats["fail_storage"] += 1
                     continue
-                print(f"[MATCH] Selected storage {storage.name}")
 
                 psus_compat = [p for p in psus if psu_ok_cached(p, cpu, gpu)]
                 if not psus_compat:
-                    print(f"[FAIL] No compatible PSU for CPU={cpu.name}, GPU={gpu.gpu_name}")
                     stats["fail_psu"] += 1
                     continue
                 psu = min(psus_compat, key=lambda p: float(p.price or 0))
-                print(f"[MATCH] Selected PSU {psu.name}")
 
                 coolers_compat = [c for c in coolers if cooler_ok_cached(c, cpu)]
                 if not coolers_compat:
-                    print(f"[FAIL] No compatible cooler for CPU={cpu.name}")
                     stats["fail_cooler"] += 1
                     continue
                 cooler = min(coolers_compat, key=lambda c: float(c.price or 0))
-                print(f"[MATCH] Selected cooler {cooler.name}")
 
                 cases_compat = [c for c in cases if compatible_case_cached(mobo, c)]
                 if not cases_compat:
-                    print(f"[FAIL] No compatible case for Mobo={mobo.name}")
                     stats["fail_case"] += 1
                     continue
                 case = min(cases_compat, key=lambda c: float(c.price or 0))
-                print(f"[MATCH] Selected case {case.name}")
 
                 parts = [cpu, gpu, mobo, ram, storage, psu, cooler, case]
                 price = total_price(parts)
 
                 if price <= float(budget):
                     score = weighted_scores(cpu, gpu, ram, mode, resolution)
-                    print(f"[SUCCESS] Build valid: price={price}, score={score}")
-                    progress.append("Best build found successfully!")
-                    print(f"Summary stats: {stats}")
-                    return BuildCandidate(cpu, gpu, mobo, ram, storage, psu, cooler, case, price, score), progress
-                else:
-                    print(f"[FAIL] Build exceeds budget {budget}: price={price}")
-                    stats["fail_budget"] += 1
+                    candidate = BuildCandidate(cpu, gpu, mobo, ram, storage, psu, cooler, case, price, score)
+                    valid_builds.append(candidate)
 
-    print("No valid build found within budget.")
+                    #  Stop once we have 20 builds
+                    if len(valid_builds) >= 20:
+                        break
+            if len(valid_builds) >= 20:
+                break
+        if len(valid_builds) >= 20:
+            break
+
+    if valid_builds:
+        # Pick the build with the highest score
+        best_build = max(valid_builds, key=lambda b: b.total_score)
+        progress.append(f"Selected best build out of {len(valid_builds)} candidates.")
+        return best_build, progress
+
     progress.append("No valid build found within budget.")
-    print(f"Summary stats: {stats}")
     return None, progress

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-4">
+  <h2>Sign up</h2>
+  {% if form.errors %}
+    <div class="alert alert-danger">
+      {{ form.non_field_errors }}
+    </div>
+  {% endif %}
+  <form method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ request.GET.next|default:'/' }}">
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Sign up</button>
+  </form>
+</div>
+{% endblock %}
