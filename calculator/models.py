@@ -25,6 +25,8 @@ class UserBuild(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     total_score = models.IntegerField(default=0)
+    # ISO currency code for the user's selected currency when saving a build
+    currency = models.CharField(max_length=3, default="USD")
 
     def calculate_totals(self):
         # Keep weights as floats for simplicity

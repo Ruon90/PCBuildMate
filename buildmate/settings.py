@@ -46,7 +46,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'optional'  # or 'mandatory'
 SITE_ID = 1
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
 EXCHANGE_RATE_API_KEY = os.environ.get("EXCHANGE_RATE_API_KEY")

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-
 {% block content %}
+{% load currency_tags %}
 <div class="container">
     {% if builds %}
         <div class="row">
@@ -20,43 +20,42 @@
                             <p><strong>Cooler:</strong> {{ build.cooler.name }}</p>
                             <p><strong>Case:</strong> {{ build.case.name }}</p>
                             <hr>
-                            <p><strong>Budget:</strong> £{{ build.budget }}</p>
-                            <p><strong>Cost:</strong> £{{ build.total_price }}</p>
+                            {% load currency_tags %}
+                            <p><strong>Budget:</strong> {{ build.currency|currency_symbol }}{{ build.budget }}</p>
+                            <p><strong>Cost:</strong> {{ build.currency|currency_symbol }}{{ build.total_price|convert_from_usd:build.currency|floatformat:2 }}</p>
                             <p><strong>Score:</strong> {{ build.total_score }}</p>
                         </div>
-                        <div class="card-footer d-flex justify-content-between">
-                            <a href="{% url 'build_preview_pk' build.pk %}" class="btn btn-primary btn-sm">View</a>
-                            <a href="{% url 'edit_build' build.pk %}" class="btn btn-warning btn-sm">Edit</a>
-                            <!-- Delete button triggers modal -->
-                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ build.pk }}">
-                            Delete
-                    </button>
+                                                <div class="card-footer d-flex justify-content-between">
+                                                        <a href="{% url 'build_preview_pk' build.pk %}" class="btn btn-primary btn-sm">View</a>
+                                                        <a href="{% url 'edit_build' build.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                                                        <!-- Delete button triggers modal -->
+                                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ build.pk }}">Delete</button>
+                                                </div>
+                                        </div>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="deleteModal{{ build.pk }}" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                        <div class="modal-header bg-danger text-white">
-                            <h5 class="modal-title">Confirm Delete</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Deleting this build is permanent. Are you sure you want to continue?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <form method="post" action="{% url 'delete_build' build.pk %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Yes, Delete</button>
-                            </form>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
+                                        <!-- Modal (placed after the card to avoid overlap) -->
+                                        <div class="modal fade" id="deleteModal{{ build.pk }}" tabindex="-1" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-danger text-white">
+                                                        <h5 class="modal-title">Confirm Delete</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Deleting this build is permanent. Are you sure you want to continue?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form method="post" action="{% url 'delete_build' build.pk %}">
+                                                            {% csrf_token %}
+                                                            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                                                        </form>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                        </div>
-                    </div>
-                </div>
+                                </div>
             {% endfor %}
         </div>
     {% else %}

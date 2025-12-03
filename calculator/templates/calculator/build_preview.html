@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load currency_tags %}
 {% block content %}
 <div class="container mt-4">
     <h2>Preview Build</h2>
@@ -9,7 +10,7 @@
                 <div class="card-header">CPU</div>
                 <div class="card-body">
                     <h5>{{ cpu.name }}</h5>
-                    <p>Price: £{{ cpu.price }}</p>
+                    <p>Price: {{ currency|currency_symbol }}{{ cpu.price|convert_from_usd:currency|floatformat:2 }}</p>
                     <p>UserBenchmark: {{ cpu.userbenchmark_score }}</p>
                     <p>Blender: {{ cpu.blender_score }}</p>
                 </div>
@@ -20,7 +21,7 @@
                 <div class="card-header">Graphics Card</div>
                 <div class="card-body">
                     <h5>{{ gpu.gpu_name }}</h5>
-                    <p>Price: £{{ gpu.price }}</p>
+                    <p>Price: {{ currency|currency_symbol }}{{ gpu.price|convert_from_usd:currency|floatformat:2 }}</p>
                     <p>UserBenchmark: {{ gpu.userbenchmark_score }}</p>
                     <p>Blender: {{ gpu.blender_score }}</p>
                 </div>
@@ -31,7 +32,7 @@
                 <div class="card-header">Motherboard</div>
                 <div class="card-body">
                     <h5>{{ motherboard.name }}</h5>
-                    <p>Price: £{{ motherboard.price }}</p>
+                    <p>Price: {{ currency|currency_symbol }}{{ motherboard.price|convert_from_usd:currency|floatformat:2 }}</p>
                     <p>Chipset: {{ motherboard.chipset }}</p>
                     <p>Blender: {{ motherboard.blender_score }}</p>
                 </div>
@@ -42,7 +43,7 @@
                 <div class="card-header">RAM</div>
                 <div class="card-body">
                     <h5>{{ ram.name }}</h5>
-                    <p>Price: £{{ ram.price }}</p>
+                    <p>Price: {{ currency|currency_symbol }}{{ ram.price|convert_from_usd:currency|floatformat:2 }}</p>
                     <p>UserBenchmark: {{ ram.userbenchmark_score }}</p>
                     <p>Blender: {{ ram.blender_score }}</p>
                 </div>
@@ -53,7 +54,7 @@
                 <div class="card-header">Case</div>
                 <div class="card-body">
                     <h5>{{ case.name }}</h5>
-                    <p>Price: £{{ case.price }}</p>
+                    <p>Price: {{ currency|currency_symbol }}{{ case.price|convert_from_usd:currency|floatformat:2 }}</p>
                     <p>UserBenchmark: {{ case.userbenchmark_score }}</p>
                     <p>Blender: {{ case.blender_score }}</p>
                 </div>
@@ -64,7 +65,7 @@
                 <div class="card-header">Power Supply</div>
                 <div class="card-body">
                     <h5>{{ psu.name }}</h5>
-                    <p>Price: £{{ psu.price }}</p>
+                    <p>Price: {{ currency|currency_symbol }}{{ psu.price|convert_from_usd:currency|floatformat:2 }}</p>
                     <p>UserBenchmark: {{ psu.userbenchmark_score }}</p>
                     <p>Blender: {{ psu.blender_score }}</p>
                 </div>
@@ -75,7 +76,7 @@
                 <div class="card-header">Storage</div>
                 <div class="card-body">
                     <h5>{{ storage.name }}</h5>
-                    <p>Price: £{{ storage.price }}</p>
+                    <p>Price: {{ currency|currency_symbol }}{{ storage.price|convert_from_usd:currency|floatformat:2 }}</p>
                     <p>UserBenchmark: {{ storage.userbenchmark_score }}</p>
                     <p>Blender: {{ storage.blender_score }}</p>
                 </div>
@@ -86,7 +87,7 @@
                 <div class="card-header">CPU Cooler</div>
                 <div class="card-body">
                     <h5>{{ cooler.name }}</h5>
-                    <p>Price: £{{ cooler.price }}</p>
+                    <p>Price: {{ currency|currency_symbol }}{{ cooler.price|convert_from_usd:currency|floatformat:2 }}</p>
                     <p>UserBenchmark: {{ cooler.userbenchmark_score }}</p>
                     <p>Blender: {{ cooler.blender_score }}</p>
                 </div>
@@ -97,7 +98,7 @@
                 <div class="card-header">Case</div>
                 <div class="card-body">
                     <h5>{{ case.name }}</h5>
-                    <p>Price: £{{ case.price }}</p>
+                    <p>Price: {{ currency|currency_symbol }}{{ case.price|convert_from_usd:currency|floatformat:2 }}</p>
                     <p>UserBenchmark: {{ case.userbenchmark_score }}</p>
                     <p>Blender: {{ case.blender_score }}</p>
                 </div>
@@ -108,7 +109,7 @@
         <!-- Repeat for GPU, RAM, Storage, PSU, Cooler, Case -->
     </div>
 
-    <p><strong>Total Price:</strong> £{{ price }}</p>
+    <p><strong>Total Price:</strong> {{ currency|currency_symbol }}{{ price|convert_from_usd:currency|floatformat:2 }}</p>
     <p><strong>Total Score:</strong> {{ score }}</p>
 
 {% if not is_saved_preview %}

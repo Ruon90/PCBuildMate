@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load currency_tags %}
 {% block content %}
 <div class="container">
   <h2 class="mb-4">Edit Build #{{ build.pk }}</h2>
@@ -17,9 +18,9 @@
     <!-- BASIC VIEW -->
     <div id="basicView">
       <div class="mb-3">
-        <label for="budget" class="form-label">Budget (£)</label>
-        <input type="number" name="budget" id="budget" class="form-control"
-               value="{{ build.budget|default:1000 }}" required>
+        <label for="budget" class="form-label">Budget ({{ build.currency|currency_symbol }})</label>
+   <input type="number" name="budget" id="budget" class="form-control"
+     value="{{ build.budget|default:1000 }}" required>
         <small class="text-muted">Adjust your budget and parts will be reassigned automatically.</small>
       </div>
       <div class="mt-3 d-flex justify-content-end">

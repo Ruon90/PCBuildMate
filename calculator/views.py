@@ -1,10 +1,11 @@
 from urllib import request
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .forms import BudgetForm
-from .models import CPU, GPU, Motherboard, RAM, Storage, PSU, CPUCooler, Case, UserBuild
+from .models import CPU, GPU, Motherboard, RAM, Storage, PSU, CPUCooler, Case, UserBuild, CurrencyRate
 from .services.build_calculator import find_best_build
 from allauth.account.forms import SignupForm, LoginForm
 from django.views.decorators.http import require_POST
@@ -30,12 +31,25 @@ def calculate_build(request):
     if request.method == "POST":
         form = BudgetForm(request.POST)
         if form.is_valid():
+            # Read user-entered budget and currency (site data/prices are USD)
             budget = float(form.cleaned_data["budget"])
+            currency = form.cleaned_data.get("currency") or "USD"
             mode = form.cleaned_data["build_type"]
             resolution = form.cleaned_data["resolution"]
+            # Convert submitted budget into USD (site/catalog prices are USD)
+            # CurrencyRate.rate_to_usd is stored as 1 unit of currency -> X USD.
+            try:
+                sel_rate = CurrencyRate.objects.filter(currency=currency).first()
+                if sel_rate:
+                    budget_usd = budget * float(sel_rate.rate_to_usd)
+                else:
+                    # assume the user entered USD
+                    budget_usd = budget
+            except Exception:
+                budget_usd = budget
 
             best, progress = find_best_build(
-                budget=budget,
+                budget=budget_usd,
                 mode=mode,
                 resolution=resolution,
                 cpus=CPU.objects.all(),
@@ -59,9 +73,14 @@ def calculate_build(request):
                     "psu": best.psu.pk,
                     "cooler": best.cooler.pk,
                     "case": best.case.pk,
+                    # keep the original user-entered budget + currency
                     "budget": budget,
+                    "currency": currency,
+                    # and the converted budget used for calculation (in USD)
+                    "budget_usd": float(budget_usd),
                     "mode": mode,
                     "score": float(best.total_score),
+                    # prices from models are in USD
                     "price": float(best.total_price),
                 }
                 return JsonResponse({
@@ -94,9 +113,12 @@ def build_preview(request):
                 "psu": latest_build.psu.id,
                 "cooler": latest_build.cooler.id,
                 "case": latest_build.case.id,
-                "budget": latest_build.total_price,  # or store separately
+                # keep the user's entered budget (in their currency)
+                "budget": latest_build.budget,
+                "currency": getattr(latest_build, "currency", "USD"),
                 "mode": getattr(latest_build, "mode", None),
                 "score": latest_build.total_score,
+                # total_price is stored in USD (catalog prices are USD)
                 "price": latest_build.total_price,
             }
 
@@ -117,6 +139,10 @@ def build_preview(request):
     signup_form = SignupForm()
     login_form = LoginForm()
 
+    # expose currency for the template (default USD)
+    currency = build_data.get("currency", "USD")
+    currency_symbol = None
+
     return render(request, "calculator/build_preview.html", {
         "cpu": cpu, "gpu": gpu, "motherboard": mobo, "ram": ram,
         "storage": storage, "psu": psu, "cooler": cooler, "case": case,
@@ -125,6 +151,8 @@ def build_preview(request):
         "signup_form": signup_form,
         "login_form": login_form,
         "is_saved_preview": False,
+        "currency": currency,
+        "currency_symbol": currency_symbol,
     })
 
 
@@ -155,6 +183,10 @@ def build_preview_pk(request, pk):
     signup_form = SignupForm()
     login_form = LoginForm()
 
+    # For saved builds, use the stored currency on the model if present (default USD)
+    currency = getattr(build_obj, "currency", "USD")
+    currency_symbol = None
+
     return render(request, "calculator/edit_build_preview.html", {
         "cpu": cpu, "gpu": gpu, "motherboard": mobo, "ram": ram,
         "storage": storage, "psu": psu, "cooler": cooler, "case": case,
@@ -162,6 +194,8 @@ def build_preview_pk(request, pk):
         "score": build_obj.total_score, "price": build_obj.total_price,
         "signup_form": signup_form, "login_form": login_form,
         "is_saved_preview": True,
+        "currency": currency,
+        "currency_symbol": currency_symbol,
     })
 
 @login_required
@@ -184,8 +218,11 @@ def save_build(request):
             case=get_object_or_404(Case, pk=build_data.get("case")),
             budget=build_data.get("budget"),
             mode=build_data.get("mode"),
-            total_score=build_data.get("total_score"),
-            total_price=build_data.get("total_price"),
+            # persist user's chosen currency (fallback USD)
+            currency=build_data.get("currency", "USD"),
+            total_score=build_data.get("score"),
+            # price stored in session is USD total from the calculator
+            total_price=build_data.get("price"),
         )
     except KeyError:
         # If any key is missing, just redirect safely
@@ -217,22 +254,8 @@ def delete_build(request, pk):
     return redirect("saved_builds")
 
 # --- Edit build ---
-# calculator/views.py
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import UserBuild
-from hardware.models import CPU, GPU, Motherboard, RAM, Storage, PSU, CPUCooler, Case
-from .services.build_calculator import (
-    compatible_cpu_mobo,
-    compatible_mobo_ram,
-    compatible_storage,
-    compatible_case,
-    psu_ok,
-    cooler_ok,
-    total_price,
-    weighted_scores,
-)
+
 
 @login_required
 def edit_build(request, pk):

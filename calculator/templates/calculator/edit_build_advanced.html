@@ -1,3 +1,4 @@
+{% load currency_tags %}
 <div class="row">
   <!-- CPU -->
   <div class="col-12 col-md-6 col-lg-6 mb-3">
@@ -13,7 +14,7 @@
                       data-brand="{{ cpu.brand|lower }}"
                       {% if cpu.pk == build.cpu.pk %}selected{% endif %}>
                 {{ cpu.name }} — {{ cpu.core_count }} cores @ {{ cpu.boost_clock }}GHz
-                (£{{ cpu.price }}, Score: {{ cpu.userbenchmark_score }})
+                {{ build.currency|currency_symbol }}{{ cpu.price|convert_from_usd:build.currency|floatformat:2 }}, Score: {{ cpu.userbenchmark_score }})
               </option>
             {% endfor %}
           </select>
@@ -44,7 +45,7 @@
                       data-brand="{{ gpu.brand|lower }}"
                       {% if gpu.pk == build.gpu.pk %}selected{% endif %}>
                 {{ gpu.gpu_name }} — {{ gpu.vram_size }}GB VRAM, {{ gpu.tdp }}W TDP
-                (£{{ gpu.price }}, Score: {{ gpu.userbenchmark_score }})
+                {{ build.currency|currency_symbol }}{{ gpu.price|convert_from_usd:build.currency|floatformat:2 }}, Score: {{ gpu.userbenchmark_score }})
               </option>
             {% endfor %}
           </select>
@@ -76,7 +77,7 @@
                       data-speed="{{ ram.frequency_mhz }}"
                       {% if ram.pk == build.ram.pk %}selected{% endif %}>
                 {{ ram.name }} — {{ ram.ddr_generation }} {{ ram.frequency_mhz }}MHz
-                (£{{ ram.price }}, Score: {{ ram.userbenchmark_score }})
+                {{ build.currency|currency_symbol }}{{ ram.price|convert_from_usd:build.currency|floatformat:2 }}, Score: {{ ram.userbenchmark_score }})
               </option>
             {% endfor %}
           </select>
@@ -140,7 +141,7 @@
                       data-interface="{{ storage.interface|lower }}"
                       {% if storage.pk == build.storage.pk %}selected{% endif %}>
                 {{ storage.name }} — {{ storage.capacity_gb }}GB, {{ storage.interface }}
-                (£{{ storage.price }}, Score: {{ storage.userbenchmark_score }})
+                {{ build.currency|currency_symbol }}{{ storage.price|convert_from_usd:build.currency|floatformat:2 }}, Score: {{ storage.userbenchmark_score }})
               </option>
             {% endfor %}
           </select>
@@ -171,7 +172,7 @@
                       data-wattage="{{ psu.wattage }}"
                       {% if psu.pk == build.psu.pk %}selected{% endif %}>
                 {{ psu.name }} — {{ psu.wattage }}W
-                (£{{ psu.price }}, Score: {{ psu.userbenchmark_score }})
+                {{ build.currency|currency_symbol }}{{ psu.price|convert_from_usd:build.currency|floatformat:2 }}, Score: {{ psu.userbenchmark_score }})
               </option>
             {% endfor %}
           </select>
@@ -203,7 +204,7 @@
                       data-throughput="{{ cooler.power_throughput }}"
                       {% if cooler.pk == build.cooler.pk %}selected{% endif %}>
                 {{ cooler.name }} — {{ cooler.power_throughput }}W throughput
-                (£{{ cooler.price }}, Score: {{ cooler.userbenchmark_score }})
+                {{ build.currency|currency_symbol }}{{ cooler.price|convert_from_usd:build.currency|floatformat:2 }}, Score: {{ cooler.userbenchmark_score }})
               </option>
             {% endfor %}
           </select>
