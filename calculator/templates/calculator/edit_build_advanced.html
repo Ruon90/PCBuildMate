@@ -1,0 +1,120 @@
+<!-- Advanced dropdowns with metadata + tooltips -->
+
+<div class="mb-3">
+  <label for="cpu" class="form-label">CPU</label>
+  <select name="cpu" id="cpu" class="form-select" required>
+    {% for cpu in cpus %}
+      <option value="{{ cpu.pk }}"
+              data-socket="{{ cpu.socket }}"
+              data-tdp="{{ cpu.tdp }}"
+              data-brand="{{ cpu.brand|lower }}"
+              {% if cpu.pk == build.cpu.pk %}selected{% endif %}>
+        {{ cpu.name }} — {{ cpu.cores }} cores @ {{ cpu.base_clock }}GHz, {{ cpu.tdp }}W TDP
+      </option>
+    {% endfor %}
+  </select>
+  <div id="cpuMessage" class="alert alert-warning mt-2" style="display:none"></div>
+</div>
+
+<div class="mb-3">
+  <label for="gpu" class="form-label">GPU</label>
+  <select name="gpu" id="gpu" class="form-select" required>
+    {% for gpu in gpus %}
+      <option value="{{ gpu.pk }}"
+              data-tdp="{{ gpu.tdp }}"
+              data-brand="{{ gpu.brand|lower }}"
+              {% if gpu.pk == build.gpu.pk %}selected{% endif %}>
+        {{ gpu.gpu_name }} — {{ gpu.vram_size }}GB VRAM, {{ gpu.tdp }}W TDP
+      </option>
+    {% endfor %}
+  </select>
+  <div id="gpuMessage" class="alert alert-warning mt-2" style="display:none"></div>
+</div>
+
+<div class="mb-3">
+  <label for="ram" class="form-label">RAM</label>
+  <select name="ram" id="ram" class="form-select" required>
+    {% for ram in rams %}
+      <option value="{{ ram.pk }}"
+              data-ddr="{{ ram.ddr_generation|upper }}"
+              data-speed="{{ ram.frequency_mhz }}"
+              {% if ram.pk == build.ram.pk %}selected{% endif %}>
+        {{ ram.name }} — {{ ram.ddr_generation }} {{ ram.frequency_mhz }}MHz
+      </option>
+    {% endfor %}
+  </select>
+  <div id="ramMessage" class="alert alert-warning mt-2" style="display:none"></div>
+</div>
+
+<div class="mb-3">
+  <label for="motherboard" class="form-label">Motherboard</label>
+  <select name="motherboard" id="motherboard" class="form-select" required>
+    {% for mobo in mobos %}
+      <option value="{{ mobo.pk }}"
+              data-socket="{{ mobo.socket }}"
+              data-ddr="{{ mobo.ddr_version|upper }}"
+              data-formfactor="{{ mobo.form_factor }}"
+              data-nvme="{{ mobo.nvme_support|yesno:'true,false' }}"
+              {% if mobo.pk == build.motherboard.pk %}selected{% endif %}>
+        {{ mobo.name }} — Socket {{ mobo.socket }}, DDR{{ mobo.ddr_version }}, {{ mobo.form_factor }}
+      </option>
+    {% endfor %}
+  </select>
+  <div id="moboMessage" class="alert alert-warning mt-2" style="display:none"></div>
+</div>
+
+<div class="mb-3">
+  <label for="storage" class="form-label">Storage</label>
+  <select name="storage" id="storage" class="form-select" required>
+    {% for storage in storages %}
+      <option value="{{ storage.pk }}"
+              data-interface="{{ storage.interface|lower }}"
+              {% if storage.pk == build.storage.pk %}selected{% endif %}>
+        {{ storage.name }} — {{ storage.capacity_gb }}GB, {{ storage.interface }}
+      </option>
+    {% endfor %}
+  </select>
+  <div id="storageMessage" class="alert alert-warning mt-2" style="display:none"></div>
+</div>
+
+<div class="mb-3">
+  <label for="psu" class="form-label">PSU</label>
+  <select name="psu" id="psu" class="form-select" required>
+    {% for psu in psus %}
+      <option value="{{ psu.pk }}"
+              data-wattage="{{ psu.wattage }}"
+              {% if psu.pk == build.psu.pk %}selected{% endif %}>
+        {{ psu.name }} — {{ psu.wattage }}W
+      </option>
+    {% endfor %}
+  </select>
+  <div id="psuMessage" class="alert alert-warning mt-2" style="display:none"></div>
+</div>
+
+<div class="mb-3">
+  <label for="cooler" class="form-label">Cooler</label>
+  <select name="cooler" id="cooler" class="form-select" required>
+    {% for cooler in coolers %}
+      <option value="{{ cooler.pk }}"
+              data-throughput="{{ cooler.power_throughput }}"
+              {% if cooler.pk == build.cooler.pk %}selected{% endif %}>
+        {{ cooler.name }} — {{ cooler.power_throughput }}W throughput
+      </option>
+    {% endfor %}
+  </select>
+  <div id="coolerMessage" class="alert alert-warning mt-2" style="display:none"></div>
+</div>
+
+<div class="mb-3">
+  <label for="case" class="form-label">Case</label>
+  <select name="case" id="case" class="form-select" required>
+    {% for case in cases %}
+      <option value="{{ case.pk }}"
+              data-formfactor="{{ case.case_type }}"
+              {% if case.pk == build.case.pk %}selected{% endif %}>
+        {{ case.name }} — {{ case.case_type }}
+      </option>
+    {% endfor %}
+  </select>
+  <div id="caseMessage" class="alert alert-warning mt-2" style="display:none"></div>
+</div>

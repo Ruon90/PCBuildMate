@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import List
+from hardware.models import CPU, GPU, Motherboard, RAM, Storage, PSU, CPUCooler, Case
 
 HEADROOM_RATIO = 0.30
 
@@ -179,21 +180,21 @@ def find_best_build(
 
     # Dynamic N and sort keys
     if budget < 800:
-        cpu_n, gpu_n, ram_n = 65, 65, 15
+        cpu_n, gpu_n, ram_n = 165, 165, 60
         sort_key_cpu = lambda c: c.cached_score / float(c.price or 1)
         sort_key_gpu = lambda g: g.cached_score / float(g.price or 1)
     elif budget < 1200:
-        cpu_n, gpu_n, ram_n = 50, 50, 12
+        cpu_n, gpu_n, ram_n = 150, 150, 50
         sort_key_cpu = lambda c: c.cached_score / float(c.price or 1)
         sort_key_gpu = lambda g: g.cached_score / float(g.price or 1)
     else:
-        cpu_n, gpu_n, ram_n = 25, 25, 10
+        cpu_n, gpu_n, ram_n = 125, 125, 40
         sort_key_cpu = lambda c: c.cached_score
         sort_key_gpu = lambda g: g.cached_score
 
     # Filter by affordability first
-    cpus = [c for c in cpus if c.price and float(c.price) <= budget * 0.3]
-    gpus = [g for g in gpus if g.price and float(g.price) <= budget * 0.4]
+    cpus = [c for c in cpus if c.price and float(c.price) <= budget * 0.9]
+    gpus = [g for g in gpus if g.price and float(g.price) <= budget * 0.9]
     rams = [r for r in rams if r.price and float(r.price) <= budget * 0.15]
 
     # Sort and slice
@@ -259,11 +260,11 @@ def find_best_build(
                     valid_builds.append(candidate)
 
                     #  Stop once we have 20 builds
-                    if len(valid_builds) >= 20:
+                    if len(valid_builds) >= 50:
                         break
-            if len(valid_builds) >= 20:
+            if len(valid_builds) >= 40:
                 break
-        if len(valid_builds) >= 20:
+        if len(valid_builds) >= 30:
             break
 
     if valid_builds:
@@ -274,3 +275,39 @@ def find_best_build(
 
     progress.append("No valid build found within budget.")
     return None, progress
+
+def auto_assign_parts(budget, mode="gaming", resolution="1440p"):
+    """
+    Basic mode helper: given a budget, return the best build candidate
+    using the full build_calculator logic.
+    """
+    cpus = CPU.objects.all()
+    gpus = GPU.objects.all()
+    mobos = Motherboard.objects.all()
+    rams = RAM.objects.all()
+    storages = Storage.objects.all()
+    psus = PSU.objects.all()
+    coolers = CPUCooler.objects.all()
+    cases = Case.objects.all()
+
+    best_build, progress = find_best_build(
+        budget, mode, resolution,
+        cpus, gpus, mobos, rams, storages, psus, coolers, cases
+    )
+
+    if not best_build:
+        return None  # no valid build found
+
+    # Return a dict of parts so the view can assign them
+    return {
+        "cpu": best_build.cpu,
+        "gpu": best_build.gpu,
+        "mobo": best_build.motherboard,
+        "ram": best_build.ram,
+        "storage": best_build.storage,
+        "psu": best_build.psu,
+        "cooler": best_build.cooler,
+        "case": best_build.case,
+        "total_price": best_build.total_price,
+        "total_score": best_build.total_score,
+    }

@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
@@ -7,7 +8,17 @@ from .models import CPU, GPU, Motherboard, RAM, Storage, PSU, CPUCooler, Case, U
 from .services.build_calculator import find_best_build
 from allauth.account.forms import SignupForm, LoginForm
 from django.views.decorators.http import require_POST
-
+from .services.build_calculator import (
+    auto_assign_parts,
+    compatible_cpu_mobo,
+    compatible_mobo_ram,
+    compatible_storage,
+    compatible_case,
+    psu_ok,
+    cooler_ok,
+    total_price,
+    weighted_scores,
+)
 def index(request):
     """Landing page with budget form."""
     form = BudgetForm()
@@ -167,47 +178,107 @@ def delete_build(request, pk):
     build.delete()
     return redirect("saved_builds")
 
+# --- Edit build ---
+# calculator/views.py
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import UserBuild
+from hardware.models import CPU, GPU, Motherboard, RAM, Storage, PSU, CPUCooler, Case
+from .services.build_calculator import (
+    compatible_cpu_mobo,
+    compatible_mobo_ram,
+    compatible_storage,
+    compatible_case,
+    psu_ok,
+    cooler_ok,
+    total_price,
+    weighted_scores,
+)
+
 @login_required
 def edit_build(request, pk):
     build = get_object_or_404(UserBuild, pk=pk, user=request.user)
 
     if request.method == "POST":
-        # Update build with selected parts
-        build.cpu_id = request.POST.get("cpu")
-        build.gpu_id = request.POST.get("gpu")
-        build.motherboard_id = request.POST.get("motherboard")
-        build.ram_id = request.POST.get("ram")
-        build.storage_id = request.POST.get("storage")
-        build.psu_id = request.POST.get("psu")
-        build.cooler_id = request.POST.get("cooler")
-        build.case_id = request.POST.get("case")
+        mode = request.POST.get("mode", "basic")
+
+        if mode == "basic":
+            # --- Basic mode: budget-based reassignment ---
+            budget = float(request.POST.get("budget") or 0)
+            build.budget = budget
+            parts = auto_assign_parts(budget, mode="gaming", resolution="1440p")
+            if parts:
+                build.cpu = parts["cpu"]
+                build.gpu = parts["gpu"]
+                build.motherboard = parts["mobo"]
+                build.ram = parts["ram"]
+                build.storage = parts["storage"]
+                build.psu = parts["psu"]
+                build.cooler = parts["cooler"]
+                build.case = parts["case"]
+                build.total_price = parts["total_price"]
+                build.total_score = parts["total_score"]
+            else:
+                messages.error(request, "No valid build found within budget.")
+                return redirect("edit_build", pk=build.pk)
+
+        else:  # --- Advanced mode: manual dropdowns ---
+            build.cpu_id = request.POST.get("cpu")
+            build.gpu_id = request.POST.get("gpu")
+            build.motherboard_id = request.POST.get("motherboard")
+            build.ram_id = request.POST.get("ram")
+            build.storage_id = request.POST.get("storage")
+            build.psu_id = request.POST.get("psu")
+            build.cooler_id = request.POST.get("cooler")
+            build.case_id = request.POST.get("case")
+
+            # Compatibility checks
+            if build.cpu and build.motherboard and not compatible_cpu_mobo(build.cpu, build.motherboard):
+                messages.error(request, "Selected CPU and motherboard are not compatible.")
+                return redirect("edit_build", pk=build.pk)
+
+            if build.motherboard and build.ram and not compatible_mobo_ram(build.motherboard, build.ram):
+                messages.error(request, "Selected RAM is not compatible with motherboard.")
+                return redirect("edit_build", pk=build.pk)
+
+            if build.motherboard and build.storage and not compatible_storage(build.motherboard, build.storage):
+                messages.error(request, "Selected storage is not compatible with motherboard.")
+                return redirect("edit_build", pk=build.pk)
+
+            if build.motherboard and build.case and not compatible_case(build.motherboard, build.case):
+                messages.error(request, "Selected case is not compatible with motherboard.")
+                return redirect("edit_build", pk=build.pk)
+
+            if build.psu and build.cpu and build.gpu and not psu_ok(build.psu, build.cpu, build.gpu):
+                messages.error(request, "PSU wattage is insufficient for CPU + GPU.")
+                return redirect("edit_build", pk=build.pk)
+
+            if build.cooler and build.cpu and not cooler_ok(build.cooler, build.cpu):
+                messages.error(request, "Cooler throughput is insufficient for CPU.")
+                return redirect("edit_build", pk=build.pk)
+
+            # Recalculate totals
+            parts = [build.cpu, build.gpu, build.motherboard, build.ram,
+                     build.storage, build.psu, build.cooler, build.case]
+            build.total_price = total_price(parts)
+            build.total_score = weighted_scores(build.cpu, build.gpu, build.ram, build.mode, "1440p")
+
+        # Save changes
         build.save()
+        messages.success(request, "Build updated successfully.")
         return redirect("saved_builds")
 
-    # GET: show form with compatible parts
-    cpus, gpus, rams, cases, storages, mobos, psus, coolers = prefilter_components(
-        CPU.objects.all(), GPU.objects.all(), RAM.objects.all(),
-        Case.objects.all(), Storage.objects.all(), Motherboard.objects.all(),
-        PSU.objects.all(), CPUCooler.objects.all(),
-        build.budget, build.mode
-    )
-
-    compatible_mobos = [m for m in mobos if compatible_cpu_mobo(build.cpu, m) and compatible_mobo_ram(m, build.ram)]
-    compatible_rams = [r for r in rams if compatible_mobo_ram(build.motherboard, r)]
-    compatible_cases = [c for c in cases if compatible_case(build.motherboard, c)]
-    compatible_psus = [p for p in psus if psu_ok(p, build.cpu, build.gpu)]
-    compatible_coolers = [c for c in coolers if cooler_ok(c, build.cpu)]
-    compatible_storages = [s for s in storages if compatible_storage(build.motherboard, s)]
-
+    # GET: render form
     context = {
         "build": build,
-        "cpus": cpus,
-        "gpus": gpus,
-        "mobos": compatible_mobos,
-        "rams": compatible_rams,
-        "cases": compatible_cases,
-        "psus": compatible_psus,
-        "coolers": compatible_coolers,
-        "storages": compatible_storages,
+        "cpus": CPU.objects.all(),
+        "gpus": GPU.objects.all(),
+        "mobos": Motherboard.objects.all(),
+        "rams": RAM.objects.all(),
+        "cases": Case.objects.all(),
+        "psus": PSU.objects.all(),
+        "coolers": CPUCooler.objects.all(),
+        "storages": Storage.objects.all(),
     }
     return render(request, "calculator/edit_build.html", context)
