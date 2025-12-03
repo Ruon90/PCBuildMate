@@ -6,6 +6,19 @@
     <h2>Saved Build Preview</h2>
     <div class="row">
         <div class="col-md-6">
+            <div class="mt-3">
+                <p><strong>Total Price:</strong> {{ currency|currency_symbol }}{{ price|convert_from_usd:currency|floatformat:2 }}
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mt-3">
+                <p><strong>Total Score:</strong> {{ score }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
             <div class="card mb-3">
                 <div class="card-header">CPU</div>
                 <div class="card-body">
@@ -95,10 +108,7 @@
 
     </div>
 
-    <div class="mt-3">
-    <p><strong>Total Price:</strong> {{ currency|currency_symbol }}{{ price|convert_from_usd:currency|floatformat:2 }}</p>
-        <p><strong>Total Score:</strong> {{ score }}</p>
-    </div>
+
 
 </div>
 {% endblock %}
