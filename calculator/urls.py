@@ -10,6 +10,8 @@ urlpatterns = [
 
     # Build preview page (redirect target after calculation)
     path("build/preview/", views.build_preview, name="build_preview"),
+    # Preview a specific saved UserBuild
+    path("build/preview/<int:pk>/", views.build_preview_pk, name="build_preview_pk"),
 
     # Save build (requires login)
     path("build/save/", views.save_build, name="save_build"),

@@ -124,6 +124,44 @@ def build_preview(request):
         "score": build_data.get("score"), "price": build_data.get("price"),
         "signup_form": signup_form,
         "login_form": login_form,
+        "is_saved_preview": False,
+    })
+
+
+def build_preview_pk(request, pk):
+    """Render a preview for a specific UserBuild (by pk) without using session cache."""
+    build_obj = get_object_or_404(UserBuild, pk=pk)
+    # only allow the owner to preview their saved build
+    if not request.user.is_authenticated or build_obj.user != request.user:
+        # don't reveal existence to other users
+        return get_object_or_404(UserBuild, pk=0)
+
+    try:
+        cpu = get_object_or_404(CPU, pk=build_obj.cpu.id)
+        gpu = get_object_or_404(GPU, pk=build_obj.gpu.id)
+        mobo = get_object_or_404(Motherboard, pk=build_obj.motherboard.id)
+        ram = get_object_or_404(RAM, pk=build_obj.ram.id)
+        storage = get_object_or_404(Storage, pk=build_obj.storage.id)
+        psu = get_object_or_404(PSU, pk=build_obj.psu.id)
+        cooler = get_object_or_404(CPUCooler, pk=build_obj.cooler.id)
+        case = get_object_or_404(Case, pk=build_obj.case.id)
+
+    except Exception:
+        # If related parts were deleted or inconsistent, show a friendly error
+        return render(request, "calculator/build_preview.html", {
+            "error": "Saved build is missing one or more components. Please edit or delete this build.",
+        })
+
+    signup_form = SignupForm()
+    login_form = LoginForm()
+
+    return render(request, "calculator/edit_build_preview.html", {
+        "cpu": cpu, "gpu": gpu, "motherboard": mobo, "ram": ram,
+        "storage": storage, "psu": psu, "cooler": cooler, "case": case,
+        "budget": build_obj.budget, "mode": getattr(build_obj, "mode", None),
+        "score": build_obj.total_score, "price": build_obj.total_price,
+        "signup_form": signup_form, "login_form": login_form,
+        "is_saved_preview": True,
     })
 
 @login_required

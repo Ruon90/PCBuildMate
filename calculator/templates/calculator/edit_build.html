@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-4">
+<div class="container">
   <h2 class="mb-4">Edit Build #{{ build.pk }}</h2>
 
   <!-- Toggle buttons -->
@@ -22,72 +22,14 @@
                value="{{ build.budget|default:1000 }}" required>
         <small class="text-muted">Adjust your budget and parts will be reassigned automatically.</small>
       </div>
+      <div class="mt-3 d-flex justify-content-end">
+        <button type="submit" class="btn btn-success">Save Changes</button>
+      </div>
     </div>
 
     <!-- ADVANCED VIEW -->
     <div id="advancedView" style="display:none;">
 
-      <!-- Filter toggle groups -->
-      <div class="mb-3">
-        <label class="form-label">CPU brand</label>
-        <div id="cpuBrandFilters" class="btn-group" role="group">
-          <button type="button" class="btn btn-outline-primary" data-brand="amd">AMD</button>
-          <button type="button" class="btn btn-outline-primary" data-brand="intel">Intel</button>
-          <button type="button" class="btn btn-outline-secondary" id="cpuClear">Clear</button>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">GPU brand</label>
-        <div id="gpuBrandFilters" class="btn-group" role="group">
-          <button type="button" class="btn btn-outline-primary" data-brand="amd">AMD</button>
-          <button type="button" class="btn btn-outline-primary" data-brand="intel">Intel</button>
-          <button type="button" class="btn btn-outline-secondary" id="gpuClear">Clear</button>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">RAM DDR</label>
-        <div id="ramDDRFilters" class="btn-group" role="group">
-          <button type="button" class="btn btn-outline-primary" data-ddr="DDR3">DDR3</button>
-          <button type="button" class="btn btn-outline-primary" data-ddr="DDR4">DDR4</button>
-          <button type="button" class="btn btn-outline-primary" data-ddr="DDR5">DDR5</button>
-          <button type="button" class="btn btn-outline-secondary" id="ramClear">Clear</button>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">Storage interface</label>
-        <div id="storageFilters" class="btn-group" role="group">
-          <button type="button" class="btn btn-outline-primary" data-iface="pcie gen3">PCIe Gen3</button>
-          <button type="button" class="btn btn-outline-primary" data-iface="pcie gen4">PCIe Gen4</button>
-          <button type="button" class="btn btn-outline-primary" data-iface="pcie gen5">PCIe Gen5</button>
-          <button type="button" class="btn btn-outline-secondary" id="storageClear">Clear</button>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">PSU minimum wattage</label>
-        <div id="psuFilters" class="btn-group" role="group">
-          <button type="button" class="btn btn-outline-primary" data-wattage="400">400W+</button>
-          <button type="button" class="btn btn-outline-primary" data-wattage="600">600W+</button>
-          <button type="button" class="btn btn-outline-primary" data-wattage="800">800W+</button>
-          <button type="button" class="btn btn-outline-primary" data-wattage="1000">1000W+</button>
-          <button type="button" class="btn btn-outline-secondary" id="psuClear">Clear</button>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">Cooler throughput</label>
-        <div id="coolerFilters" class="btn-group" role="group">
-          <button type="button" class="btn btn-outline-primary" data-throughput="50">≥50W</button>
-          <button type="button" class="btn btn-outline-primary" data-throughput="150">≥150W</button>
-          <button type="button" class="btn btn-outline-primary" data-throughput="300">≥300W</button>
-          <button type="button" class="btn btn-outline-secondary" id="coolerClear">Clear</button>
-        </div>
-      </div>
-
-      <!-- Dropdowns -->
       {% include "calculator/edit_build_advanced.html" %}
     </div>
 
@@ -146,6 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const storageClear = document.getElementById("storageClear");
   const psuClear = document.getElementById("psuClear");
   const coolerClear = document.getElementById("coolerClear");
+  const moboSocketClear = document.getElementById("moboSocketClear");
+  const caseFormClear = document.getElementById("caseFormClear");
 
   function normalizeDDR(s){ return s ? s.toString().trim().toUpperCase() : ""; }
   function normalizeFF(s){
@@ -170,8 +114,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showTooltip(id,msg){ const el=document.getElementById(id); if(el){ el.textContent=msg; el.style.display="block"; } }
+  function hideTooltip(id){ const el=document.getElementById(id); if(el){ el.style.display="none"; el.textContent = ""; } }
   function markInvalid(sel){ sel.classList.add("is-invalid"); sel.setAttribute("aria-invalid","true"); }
   function clearInvalid(sel){ sel.classList.remove("is-invalid"); sel.removeAttribute("aria-invalid"); }
+  // Central helper to set/clear invalid state for CPU and motherboard together
+  function setCpuMoboInvalid(invalid, moboMsg, cpuMsg){
+    if(invalid){
+      if (moboMsg) showTooltip("moboMessage", moboMsg);
+      if (cpuMsg) showTooltip("cpuMessage", cpuMsg);
+      markInvalid(moboSelect);
+      markInvalid(cpuSelect);
+    } else {
+      clearInvalid(moboSelect);
+      clearInvalid(cpuSelect);
+      hideTooltip("moboMessage");
+      hideTooltip("cpuMessage");
+    }
+  }
   function ensureSelection(select){
     const sel = select.selectedOptions[0];
     if (!sel || sel.hidden) {
@@ -192,8 +151,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const cpuSocket = cpuSelect.selectedOptions[0]?.dataset.socket || "";
     [...moboSelect.options].forEach(opt => { opt.hidden = (opt.dataset.socket !== cpuSocket); });
     const selHidden = moboSelect.selectedOptions[0]?.hidden;
-    if (showTip && selHidden) { showTooltip("moboMessage", `CPU socket mismatch. Select a ${cpuSocket} motherboard.`); markInvalid(moboSelect); }
-    if (!selHidden) clearInvalid(moboSelect);
+    if (selHidden) {
+      if (showTip) {
+        setCpuMoboInvalid(true, `CPU socket mismatch. Select a ${cpuSocket} motherboard.`, `Selected CPU socket ${cpuSocket} is not supported by the current motherboard.`);
+      } else {
+        // mark invalid visually but don't necessarily show tooltips
+        markInvalid(moboSelect);
+        markInvalid(cpuSelect);
+      }
+    } else {
+      // clear invalid state for both when compatible
+      setCpuMoboInvalid(false);
+    }
   }
 
   function filterMobosByRam(showTip=false){
@@ -203,8 +172,13 @@ document.addEventListener("DOMContentLoaded", () => {
       opt.hidden = !(ramDDR === moboDDR || !ramDDR);
     });
     const selHidden = moboSelect.selectedOptions[0]?.hidden;
-    if (showTip && selHidden) { showTooltip("ramMessage", `Motherboard does not support ${ramDDR}. Change motherboard or RAM.`); markInvalid(moboSelect); }
-    if (!selHidden) clearInvalid(moboSelect);
+    if (selHidden) {
+      showTooltip("ramMessage", `Motherboard does not support ${ramDDR}. Change motherboard or RAM.`);
+      markInvalid(moboSelect);
+    } else {
+      clearInvalid(moboSelect);
+      hideTooltip("ramMessage");
+    }
   }
 
   function filterRamByMobo(showTip=false){
@@ -214,25 +188,48 @@ document.addEventListener("DOMContentLoaded", () => {
       opt.hidden = !(ramDDR === moboDDR || !moboDDR);
     });
     const selHidden = ramSelect.selectedOptions[0]?.hidden;
-    if (showTip && selHidden) { showTooltip("moboMessage", `Use ${moboDDR} RAM for this motherboard.`); markInvalid(ramSelect); }
-    if (!selHidden) clearInvalid(ramSelect);
+    if (selHidden) {
+      showTooltip("moboMessage", `Use ${moboDDR} RAM for this motherboard.`);
+      markInvalid(ramSelect);
+    } else {
+      clearInvalid(ramSelect);
+      hideTooltip("moboMessage");
+    }
   }
 
-  function filterCases(showTip=false){
-    const moboFF = normalizeFF(moboSelect.selectedOptions[0]?.dataset.formfactor);
-    [...caseSelect.options].forEach(opt => {
-      const caseFF = normalizeFF(opt.dataset.formfactor);
-      let ok=false;
-      if (moboFF==="mini-itx") ok = ["mini-itx","atx","tower"].includes(caseFF);
-      else if (moboFF==="microatx") ok = caseFF!=="mini-itx";
-      else if (moboFF==="atx") ok = ["atx","tower"].includes(caseFF);
-      else ok = caseFF===moboFF;
-      opt.hidden = !ok;
-    });
-    const selHidden = caseSelect.selectedOptions[0]?.hidden;
-    if (showTip && selHidden) { showTooltip("caseMessage", `Case does not fit ${moboFF} motherboards.`); markInvalid(caseSelect); }
-    if (!selHidden) clearInvalid(caseSelect);
+ function filterCases(showTip=false) {
+  const moboFF = (moboSelect.selectedOptions[0]?.dataset.formfactor || "").toLowerCase();
+  [...caseSelect.options].forEach(opt => {
+    const caseFF = (opt.dataset.formfactor || "").toLowerCase();
+    let ok = false;
+
+    if (moboFF.includes("mini")) {
+      // Mini-ITX fits in anything
+      ok = true;
+    } else if (moboFF.includes("micro")) {
+      // Micro-ATX not compatible with mini cases
+      ok = !caseFF.includes("itx");
+    } else if (moboFF.includes("atx")) {
+      // ATX not compatible with mini or micro cases
+      ok = !(caseFF.includes("mini") || caseFF.includes("micro"));
+    } else {
+      // Fallback strict match
+      ok = caseFF === moboFF;
+    }
+
+    opt.hidden = !ok;
+  });
+  const selHidden = caseSelect.selectedOptions[0]?.hidden;
+  if (showTip && selHidden) {
+    showTooltip("caseMessage", `This case does not fit ${moboFF.toUpperCase()} motherboards. Please select a compatible case.`);
+    markInvalid(caseSelect);
   }
+  if (!selHidden) {
+    clearInvalid(caseSelect);
+    hideTooltip("caseMessage");
+  }
+}
+
 
   function filterStorage(showTip=false){
     const moboNvme = (moboSelect.selectedOptions[0]?.dataset.nvme || "false").toLowerCase();
@@ -243,8 +240,13 @@ document.addEventListener("DOMContentLoaded", () => {
       opt.hidden = !ok;
     });
     const selHidden = storageSelect.selectedOptions[0]?.hidden;
-    if (showTip && selHidden) { showTooltip("storageMessage", `Motherboard does not support NVMe/PCIe. Choose SATA or change motherboard.`); markInvalid(storageSelect); }
-    if (!selHidden) clearInvalid(storageSelect);
+    if (selHidden) {
+      showTooltip("storageMessage", `Motherboard does not support NVMe/PCIe. Choose SATA or change motherboard.`);
+      markInvalid(storageSelect);
+    } else {
+      clearInvalid(storageSelect);
+      hideTooltip("storageMessage");
+    }
   }
 
   function filterPSUs(showTip=false){
@@ -256,8 +258,13 @@ document.addEventListener("DOMContentLoaded", () => {
       opt.hidden = wattage < required;
     });
     const selHidden = psuSelect.selectedOptions[0]?.hidden;
-    if (showTip && selHidden) { showTooltip("psuMessage", `PSU insufficient. Select ≥ ${required}W.`); markInvalid(psuSelect); }
-    if (!selHidden) clearInvalid(psuSelect);
+    if (selHidden) {
+      showTooltip("psuMessage", `PSU insufficient. Select ≥ ${required}W.`);
+      markInvalid(psuSelect);
+    } else {
+      clearInvalid(psuSelect);
+      hideTooltip("psuMessage");
+    }
   }
 
   function filterCoolers(showTip=false){
@@ -267,8 +274,13 @@ document.addEventListener("DOMContentLoaded", () => {
       opt.hidden = th < cpuTDP;
     });
     const selHidden = coolerSelect.selectedOptions[0]?.hidden;
-    if (showTip && selHidden) { showTooltip("coolerMessage", `Cooler insufficient for CPU TDP (${cpuTDP}W).`); markInvalid(coolerSelect); }
-    if (!selHidden) clearInvalid(coolerSelect);
+    if (selHidden) {
+      showTooltip("coolerMessage", `Cooler insufficient for CPU TDP (${cpuTDP}W).`);
+      markInvalid(coolerSelect);
+    } else {
+      clearInvalid(coolerSelect);
+      hideTooltip("coolerMessage");
+    }
   }
 
   // Button filters + highlight
@@ -290,7 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
       filterMobosByCpu(true);
     });
   });
-  cpuClear?.addEventListener("click", ()=> clearFilter("cpuBrandFilters", cpuSelect));
+  cpuClear?.addEventListener("click", ()=> { clearFilter("cpuBrandFilters", cpuSelect); filterMobosByCpu(true); });
 
   document.querySelectorAll("#gpuBrandFilters button[data-brand]").forEach(btn=>{
     btn.addEventListener("click", ()=>{
@@ -347,6 +359,40 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   psuClear?.addEventListener("click", ()=> clearFilter("psuFilters", psuSelect));
 
+  // Motherboard socket filters (was present in template but missing JS binding)
+  document.querySelectorAll("#moboSocketFilters button[data-socket]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const socket = btn.dataset.socket;
+      [...moboSelect.options].forEach(opt => { opt.hidden = (opt.dataset.socket !== socket); });
+      activate("moboSocketFilters", btn);
+      showTooltip("moboMessage", `Filtered motherboards: ${socket.toUpperCase()}.`);
+      ensureSelection(moboSelect);
+      // re-run dependent filters
+      filterRamByMobo(true);
+      filterCases(true);
+      filterStorage(true);
+      // also re-evaluate cpu <> mobo compatibility so highlights/tooltips stay accurate
+      filterMobosByCpu(true);
+    });
+  });
+  moboSocketClear?.addEventListener("click", ()=> { clearFilter("moboSocketFilters", moboSelect); filterMobosByCpu(true); });
+
+  // Case form-factor filters (was present in template but missing JS binding)
+  document.querySelectorAll("#caseFormFilters button[data-formfactor]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const ff = btn.dataset.formfactor.toLowerCase();
+      [...caseSelect.options].forEach(opt => {
+        const caseFF = (opt.dataset.formfactor || "").toLowerCase();
+        opt.hidden = !caseFF.includes(ff);
+      });
+      activate("caseFormFilters", btn);
+      showTooltip("caseMessage", `Filtered cases: ${ff.toUpperCase()}.`);
+      ensureSelection(caseSelect);
+      filterCases(true);
+    });
+  });
+  caseFormClear?.addEventListener("click", ()=> clearFilter("caseFormFilters", caseSelect));
+
   document.querySelectorAll("#coolerFilters button[data-throughput]").forEach(btn=>{
     btn.addEventListener("click", ()=>{
       const minT = parseInt(btn.dataset.throughput,10);
@@ -375,7 +421,7 @@ document.addEventListener("DOMContentLoaded", () => {
   cpuSelect.addEventListener("change", ()=>{ filterMobosByCpu(true); filterPSUs(true); filterCoolers(true); });
   gpuSelect.addEventListener("change", ()=>{ filterPSUs(true); });
   ramSelect.addEventListener("change", ()=>{ filterMobosByRam(true); filterRamByMobo(true); });
-  moboSelect.addEventListener("change", ()=>{ filterRamByMobo(true); filterCases(true); filterStorage(true); });
+  moboSelect.addEventListener("change", ()=>{ filterRamByMobo(true); filterCases(true); filterStorage(true); filterMobosByCpu(true); });
 
 });
 </script>

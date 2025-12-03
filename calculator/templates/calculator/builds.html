@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-4">
-    <h2 class="mb-4">My Saved Builds</h2>
-
+<div class="container">
     {% if builds %}
         <div class="row">
             {% for build in builds %}
@@ -23,10 +21,11 @@
                             <p><strong>Case:</strong> {{ build.case.name }}</p>
                             <hr>
                             <p><strong>Budget:</strong> £{{ build.budget }}</p>
-                            <p><strong>Mode:</strong> {{ build.mode }}</p>
+                            <p><strong>Cost:</strong> £{{ build.total_price }}</p>
+                            <p><strong>Score:</strong> {{ build.total_score }}</p>
                         </div>
                         <div class="card-footer d-flex justify-content-between">
-                            <a href="{% url 'build_preview' %}" class="btn btn-primary btn-sm">View</a>
+                            <a href="{% url 'build_preview_pk' build.pk %}" class="btn btn-primary btn-sm">View</a>
                             <a href="{% url 'edit_build' build.pk %}" class="btn btn-warning btn-sm">Edit</a>
                             <!-- Delete button triggers modal -->
                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ build.pk }}">

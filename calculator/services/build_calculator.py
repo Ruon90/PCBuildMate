@@ -136,7 +136,13 @@ def compatible_case_cached(mobo, case):
 def compatible_storage_cached(mobo, storage):
     key = mobo.id
     if key not in storage_cache:
-        storage_cache[key] = str(getattr(mobo, "nvme_support", "")).lower() == "true"
+        val = str(getattr(mobo, "nvme_support", "")).lower()
+        storage_cache[key] = (
+            "pcie" in val
+            or "nvme" in val
+            or "m.2" in val
+            or val in {"true", "1", "yes", "y"}
+        )
 
     iface = (storage.interface or "").lower()
     # Accept NVMe or any PCIe Gen variant
