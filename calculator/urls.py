@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-
+from .views import ai_chat
 urlpatterns = [
     # Landing page with budget form
     path("", views.index, name="home"),
@@ -23,4 +23,5 @@ urlpatterns = [
     path("build/<int:pk>/delete/", views.delete_build, name="delete_build"),
     # Edit a saved build (requires login)
     path("build/<int:pk>/edit/", views.edit_build, name="edit_build"),
+    path("ai-chat/", ai_chat, name="ai_chat"),
 ]

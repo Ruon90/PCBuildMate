@@ -1,3 +1,6 @@
+import os
+import json
+import requests
 from urllib import request
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
@@ -20,6 +23,7 @@ from .services.build_calculator import (
     total_price,
     weighted_scores,
 )
+from django.views.decorators.csrf import csrf_exempt
 def index(request):
     """Landing page with budget form."""
     form = BudgetForm()
@@ -343,3 +347,132 @@ def edit_build(request, pk):
         "storages": Storage.objects.all(),
     }
     return render(request, "calculator/edit_build.html", context)
+
+## Tokens and endpoints
+GITHUB_TOKEN_MINI = os.getenv("GITHUB_TOKEN_MINI") or os.getenv("GITHUB_TOKEN")
+GITHUB_TOKEN_FULL = os.getenv("GITHUB_TOKEN_FULL") or os.getenv("GITHUB_TOKEN")
+
+ENDPOINTS = {
+    "gpt-4.1-mini": "https://models.inference.ai.azure.com/openai/deployments/gpt-4.1-mini/chat/completions",
+    "gpt-4.1": "https://models.inference.ai.azure.com/openai/deployments/gpt-4.1/chat/completions"
+}
+
+def select_token(model: str) -> str:
+    return GITHUB_TOKEN_MINI if model == "gpt-4.1-mini" else GITHUB_TOKEN_FULL
+
+
+# -----------------------------
+# Canned responses
+# -----------------------------
+CANNED_RESPONSES = {
+    "ram not compatible": "RAM DDR generation must match the motherboard DDR generation. DDR4 will not fit DDR5 slots.",
+    "cpu not compatible": "Check socket type: CPUs must match the motherboard socket (e.g., AM5 vs LGA1700).",
+    "gpu bottleneck": "Ensure your CPU and GPU are balanced. A weak CPU can bottleneck a powerful GPU.",
+    "psu wattage": "Your PSU must provide enough wattage for all components. Add ~20% headroom for stability.",
+    "cooler clearance": "Large air coolers may not fit in small cases. Always check case clearance specs.",
+    "case size": "Ensure your case supports your motherboard form factor (ATX, Micro‑ATX, Mini‑ITX).",
+}
+
+def check_canned(message: str) -> str | None:
+    msg_lower = message.lower()
+    for key, reply in CANNED_RESPONSES.items():
+        if key in msg_lower:
+            return reply
+    return None
+
+# -----------------------------
+# AI call
+# -----------------------------
+def call_ai(message: str, model: str, debug=False, max_chars=600) -> str:
+    """Call AI model and return a concise reply."""
+    token = select_token(model)
+    endpoint = ENDPOINTS[model]
+
+    # Prompt enforces numbered list formatting
+    prompt = (
+        f"Answer the user question as a short, readable numbered list of steps. "
+        f"Keep the response under {max_chars} characters.\n\n"
+        f"User question: {message}"
+    )
+
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0.2
+    }
+
+    try:
+        resp = requests.post(endpoint, headers=headers, json=payload, timeout=(10, 90))
+        if debug:
+            print(f"[AI] {model} -> Status {resp.status_code}")
+            print(f"[AI] Raw: {resp.text[:300]}")
+        if resp.status_code != 200:
+            return None
+        data = resp.json()
+        if "choices" not in data or not data["choices"]:
+            return None
+
+        choice = data["choices"][0]
+        reply = None
+
+        # ✅ Correct field based on your raw JSON
+        if "message" in choice and "content" in choice["message"]:
+            reply = choice["message"]["content"]
+        elif "text" in choice:
+            reply = choice["text"]
+
+        if reply:
+            if len(reply) > max_chars:
+                reply = reply[:max_chars] + "..."
+            return reply.strip()
+
+        return None
+    except Exception as e:
+        if debug:
+            print(f"[AI] Error ({model}): {e}")
+        return None
+
+
+
+# -----------------------------
+# Main chat view
+# -----------------------------
+@csrf_exempt
+def ai_chat(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        user_message = data.get("message")
+
+        # --- Check canned responses first ---
+        canned = check_canned(user_message)
+        if canned:
+            ai_text = canned
+        else:
+            # --- Try GPT-4.1 first, fallback to GPT-4.1-mini ---
+            ai_text = call_ai(user_message, "gpt-4.1") or call_ai(user_message, "gpt-4.1-mini")
+            if not ai_text:
+                ai_text = "Sorry, I couldn’t generate a response."
+
+        # --- YouTube API call ---
+        yt_url = "https://www.googleapis.com/youtube/v3/search"
+        yt_params = {
+            "part": "snippet",
+            "q": user_message,
+            "type": "video",
+            "maxResults": 3,
+            "key": os.environ.get("YOUTUBE_API_KEY"),
+        }
+        yt_response = requests.get(yt_url, params=yt_params)
+        yt_data = yt_response.json()
+        videos = []
+        for item in yt_data.get("items", []):
+            videos.append({
+                "title": item["snippet"]["title"],
+                "url": f"https://www.youtube.com/watch?v={item['id']['videoId']}"
+            })
+
+        return JsonResponse({"reply": ai_text, "videos": videos})
