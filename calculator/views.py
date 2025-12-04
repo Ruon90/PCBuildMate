@@ -337,14 +337,15 @@ def edit_build(request, pk):
     # GET: render form
     context = {
         "build": build,
-        "cpus": CPU.objects.all(),
-        "gpus": GPU.objects.all(),
-        "mobos": Motherboard.objects.all(),
-        "rams": RAM.objects.all(),
-        "cases": Case.objects.all(),
-        "psus": PSU.objects.all(),
-        "coolers": CPUCooler.objects.all(),
-        "storages": Storage.objects.all(),
+        # Pre-sort dropdowns by price desc (highest first)
+        "cpus": CPU.objects.order_by('-price'),
+        "gpus": GPU.objects.order_by('-price'),
+        "mobos": Motherboard.objects.order_by('-price'),
+        "rams": RAM.objects.order_by('-price'),
+        "cases": Case.objects.order_by('-price'),
+        "psus": PSU.objects.order_by('-price'),
+        "coolers": CPUCooler.objects.order_by('-price'),
+        "storages": Storage.objects.order_by('-price'),
     }
     return render(request, "calculator/edit_build.html", context)
 
