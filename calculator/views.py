@@ -10,6 +10,7 @@ from django.urls import reverse
 from .forms import BudgetForm
 from .models import CPU, GPU, Motherboard, RAM, Storage, PSU, CPUCooler, Case, UserBuild, CurrencyRate
 from .services.build_calculator import find_best_build
+import traceback
 from allauth.account.forms import SignupForm, LoginForm
 from django.views.decorators.http import require_POST
 from .services.build_calculator import (
@@ -24,6 +25,9 @@ from .services.build_calculator import (
     weighted_scores,
 )
 from django.views.decorators.csrf import csrf_exempt
+from dataclasses import dataclass, field
+from typing import Dict
+
 def index(request):
     """Landing page with budget form."""
     form = BudgetForm()
@@ -38,6 +42,11 @@ def calculate_build(request):
             # Read user-entered budget and currency (site data/prices are USD)
             budget = float(form.cleaned_data["budget"])
             currency = form.cleaned_data.get("currency") or "USD"
+            # Optional preferences
+            cpu_brand_pref = form.cleaned_data.get("cpu_brand") or ""
+            gpu_brand_pref = form.cleaned_data.get("gpu_brand") or ""
+            ram_size_pref = form.cleaned_data.get("ram_size") or ""
+            storage_capacity_pref = form.cleaned_data.get("storage_capacity") or ""
             mode = form.cleaned_data["build_type"]
             resolution = form.cleaned_data["resolution"]
             # Convert submitted budget into USD (site/catalog prices are USD)
@@ -52,19 +61,48 @@ def calculate_build(request):
             except Exception:
                 budget_usd = budget
 
-            best, progress = find_best_build(
+            # Apply preference filters before running the heavy build logic.
+            cpus_qs = CPU.objects.all()
+            gpus_qs = GPU.objects.all()
+            rams_qs = RAM.objects.all()
+            storages_qs = Storage.objects.all()
+
+            if cpu_brand_pref:
+                cpus_qs = cpus_qs.filter(brand__iexact=cpu_brand_pref)
+            if gpu_brand_pref:
+                gpus_qs = gpus_qs.filter(brand__iexact=gpu_brand_pref)
+            if ram_size_pref:
+                try:
+                    cap = int(ram_size_pref)
+                    rams_qs = rams_qs.filter(capacity_gb__gte=cap)
+                except ValueError:
+                    pass
+            if storage_capacity_pref:
+                try:
+                    cap = int(storage_capacity_pref)
+                    storages_qs = storages_qs.filter(capacity__gte=cap)
+                except ValueError:
+                    pass
+
+            try:
+                best, progress = find_best_build(
                 budget=budget_usd,
                 mode=mode,
                 resolution=resolution,
-                cpus=CPU.objects.all(),
-                gpus=GPU.objects.all(),
+                cpus=cpus_qs,
+                gpus=gpus_qs,
                 mobos=Motherboard.objects.all(),
-                rams=RAM.objects.all(),
-                storages=Storage.objects.all(),
+                rams=rams_qs,
+                storages=storages_qs,
                 psus=PSU.objects.all(),
                 coolers=CPUCooler.objects.all(),
                 cases=Case.objects.all(),
             )
+            except Exception as e:
+                # Log traceback to console for debugging and return a JSON error for the AJAX caller
+                tb = traceback.format_exc()
+                print("[ERROR] Exception in find_best_build:\n", tb)
+                return JsonResponse({"error": "Internal error while calculating build. See server logs."}, status=500)
 
             if best:
                 # Store preview in session using primary keys
@@ -420,7 +458,7 @@ def call_ai(message: str, model: str, debug=False, max_chars=600) -> str:
         choice = data["choices"][0]
         reply = None
 
-        # ✅ Correct field based on your raw JSON
+        #  Correct field based on your raw JSON
         if "message" in choice and "content" in choice["message"]:
             reply = choice["message"]["content"]
         elif "text" in choice:
@@ -477,3 +515,5 @@ def ai_chat(request):
             })
 
         return JsonResponse({"reply": ai_text, "videos": videos})
+    
+

@@ -25,8 +25,11 @@ class UserBuild(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     total_score = models.IntegerField(default=0)
-    # ISO currency code for the user's selected currency when saving a build
     currency = models.CharField(max_length=3, default="USD")
+    bottleneck_pct = models.FloatField(default=0.0)
+    bottleneck_type = models.CharField(max_length=50, default="", blank=True)
+    fps_estimates = models.JSONField(default=dict, blank=True)
+    workstation_estimates = models.JSONField(default=dict, blank=True)
 
     def calculate_totals(self):
         # Keep weights as floats for simplicity
@@ -57,7 +60,24 @@ class UserBuild(models.Model):
         return price, score
 
     def save(self, *args, **kwargs):
-        self.total_price, self.total_score = self.calculate_totals()
+        # Only auto-recalculate totals when they are not already provided.
+        # This preserves scores/prices computed by the build calculator (stored
+        # in the session) or by explicit code paths (e.g. edit advanced which
+        # sets `build.total_score` before saving). If totals are zero/empty,
+        # calculate them from the current component selections.
+        try:
+            price_set = bool(self.total_price and float(self.total_price) > 0)
+        except Exception:
+            price_set = False
+
+        try:
+            score_set = bool(self.total_score and int(self.total_score) > 0)
+        except Exception:
+            score_set = False
+
+        if not (price_set and score_set):
+            self.total_price, self.total_score = self.calculate_totals()
+
         super().save(*args, **kwargs)
 
 

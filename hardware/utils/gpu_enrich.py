@@ -262,7 +262,7 @@ def main():
     args = parser.parse_args()
 
     input_path = Path(args.file)
-    output_path = input_path.with_name(input_path.stem + "_enriched2.csv")
+    output_path = input_path.with_name(input_path.stem + "_enriched3.csv")
 
     gpu_enrich(
         input_file=str(input_path),

@@ -30,11 +30,21 @@ class BudgetForm(forms.Form):
     )
     build_type = forms.ChoiceField(
         choices=BUILD_TYPE_CHOICES,
-        widget=forms.RadioSelect,
+        widget=forms.Select,
         label="Build Type"
     )
     resolution = forms.ChoiceField(
         choices=RESOLUTION_CHOICES,
-        widget=forms.RadioSelect,
+        widget=forms.Select,
         label="Resolution"
     )
+    # Optional preferences
+    CPU_BRAND_CHOICES = [('', 'No preference'), ('AMD', 'AMD'), ('Intel', 'Intel')]
+    GPU_BRAND_CHOICES = [('', 'No preference'), ('NVIDIA', 'NVIDIA'), ('AMD', 'AMD'), ('Intel', 'Intel')]
+    RAM_SIZE_CHOICES = [('', 'No preference'), ('16', '16GB'), ('32', '32GB')]
+    STORAGE_CAPACITY_CHOICES = [('', 'No preference'), ('512', '512GB'), ('1000', '1TB'), ('2000', '2TB')]
+
+    cpu_brand = forms.ChoiceField(choices=CPU_BRAND_CHOICES, required=False, label='CPU brand')
+    gpu_brand = forms.ChoiceField(choices=GPU_BRAND_CHOICES, required=False, label='GPU brand')
+    ram_size = forms.ChoiceField(choices=RAM_SIZE_CHOICES, required=False, label='RAM capacity')
+    storage_capacity = forms.ChoiceField(choices=STORAGE_CAPACITY_CHOICES, required=False, label='Storage capacity')

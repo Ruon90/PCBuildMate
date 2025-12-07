@@ -3,13 +3,31 @@
 
 {% block content %}
 <div class="container col-md-7">
-    <div class="card p-3 shadow-sm">
-        <form id="buildForm" method="post">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <button class="btn btn-primary w-100 mt-2" type="submit">Calculate</button>
-        </form>
-    </div>
+<div class="card p-3 shadow-sm">
+    <form id="buildForm" method="post">
+        {% csrf_token %}
+        {{ form.budget|as_crispy_field }}
+        {{ form.currency|as_crispy_field }}
+        {{ form.build_type|as_crispy_field }}
+        {{ form.resolution|as_crispy_field }}
+
+        <!-- Toggle button -->
+        <button type="button" class="btn btn-link" id="toggleFilters">
+            Show advanced filters
+        </button>
+
+        <!-- Hidden filters -->
+        <div id="advancedFilters" class="collapse">
+            {{ form.cpu_brand|as_crispy_field }}
+            {{ form.gpu_brand|as_crispy_field }}
+            {{ form.ram_size|as_crispy_field }}
+            {{ form.storage_capacity|as_crispy_field }}
+        </div>
+
+        <button class="btn btn-primary w-100 mt-2" type="submit">Calculate</button>
+    </form>
+</div>
+
 
     <!-- Progress area -->
     <div id="progressArea" class="mt-4"></div>
@@ -74,4 +92,27 @@ document.getElementById("buildForm").addEventListener("submit", function(e) {
     });
 });
 </script>
+<script>
+document.getElementById("toggleFilters").addEventListener("click", function() {
+    const filters = document.getElementById("advancedFilters");
+    const bsCollapse = new bootstrap.Collapse(filters, { toggle: true });
+
+    // Update button text
+    if (filters.classList.contains("show")) {
+        this.textContent = "Show advanced filters";
+    } else {
+        this.textContent = "Hide advanced filters";
+    }
+});
+const filters = document.getElementById("advancedFilters");
+const toggleBtn = document.getElementById("toggleFilters");
+
+filters.addEventListener("shown.bs.collapse", () => {
+  toggleBtn.textContent = "Hide advanced filters";
+});
+filters.addEventListener("hidden.bs.collapse", () => {
+  toggleBtn.textContent = "Show advanced filters";
+});
+</script>
+
 {% endblock %}
