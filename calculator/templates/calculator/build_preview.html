@@ -2,8 +2,77 @@
 
 {% load currency_tags %}
 {% block content %}
-<div class="container mt-4">
-    <h2>Preview Build</h2>
+<div class="container">
+       <div class="row mb-3">
+        <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row mt-1">
+                                <h2>Preview Build</h2>
+                                <div class="col-6 mt-2">
+                                    <p><strong>Total Price:</strong> {{ currency|currency_symbol }}{{ price|convert_from_usd:currency|floatformat:2 }}</p>
+                                </div>
+                                <div class="col-6 mt-2">
+                                    <p><strong>Total Score:</strong> {{ score }}</p>
+                                </div>
+                            </div>
+                            
+                            <div class="div mt-4">
+                                <p><a href="{% url 'preview_edit' %}" class="btn btn-primary">Edit preview</a></p>
+                            </div>
+                            
+                           
+                        </div>
+                    </div>
+                
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                        </h4 class="card-title">Performance estimates</h4>
+                        {% if mode == 'workstation' %}
+                        {# For workstation mode show a single summary (no resolution toggles) #}
+                        {% for res, data in perf.items %}
+                            {% if res == default_resolution %}
+                                <div class="mt-6">
+                                    <p class="mb-4 mt-5"><strong>Bottleneck:</strong> {{ data.bottleneck.type }} — {{ data.bottleneck.bottleneck }}%</p>
+                                    <ul class="list-unstyled mb-1 mt-1">
+                                        {% for label, sec in data.workstation.items %}
+                                        <li><strong>{{ label }}</strong>: {{ sec }} seconds</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% else %}
+                        <!-- Resolution tabs (1080p / 1440p / 4k) -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            {% for res, data in perf.items %}
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link {% if res == default_resolution %}active{% endif %}" id="tab-{{ forloop.counter }}" data-bs-toggle="tab" data-bs-target="#perf-{{ forloop.counter }}" type="button" role="tab" aria-controls="perf-{{ forloop.counter }}" aria-selected="{% if res == default_resolution %}true{% else %}false{% endif %}">{{ res }}</button>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="tab-content mt-2">
+                            {% for res, data in perf.items %}
+                            <div class="tab-pane fade {% if res == default_resolution %}show active{% endif %}" id="perf-{{ forloop.counter }}" role="tabpanel" aria-labelledby="tab-{{ forloop.counter }}">
+                                <p class="mb-1">Bottleneck: <strong>{{ data.bottleneck.type }}</strong> — {{ data.bottleneck.bottleneck }}%</p>
+                                <ul class="list-unstyled mb-0">
+                                    {% for game, vals in data.games.items %}
+                                    <li>
+                                        <strong>{{ game }}</strong>: {{ vals.overall }} FPS
+                                        <small class="text-muted">(CPU {{ vals.cpu }} / GPU {{ vals.gpu }})</small>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-4">
             <div class="card mb-3">
@@ -109,8 +178,9 @@
         <!-- Repeat for GPU, RAM, Storage, PSU, Cooler, Case -->
     </div>
 
-    <p><strong>Total Price:</strong> {{ currency|currency_symbol }}{{ price|convert_from_usd:currency|floatformat:2 }}</p>
-    <p><strong>Total Score:</strong> {{ score }}</p>
+        <!-- Replacement modals removed in favor of unified Edit preview page -->
+        <!-- Use the "Edit preview" button above to make changes to the preview build -->
+ 
 
 {% if not is_saved_preview %}
     {% if user.is_authenticated %}

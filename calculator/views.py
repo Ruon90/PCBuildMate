@@ -9,7 +9,9 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .forms import BudgetForm
 from .models import CPU, GPU, Motherboard, RAM, Storage, PSU, CPUCooler, Case, UserBuild, CurrencyRate
-from .services.build_calculator import find_best_build
+from .services.build_calculator import (
+    find_best_build,
+)
 import traceback
 from allauth.account.forms import SignupForm, LoginForm
 from django.views.decorators.http import require_POST
@@ -24,9 +26,16 @@ from .services.build_calculator import (
     total_price,
     weighted_scores,
 )
+from .services.build_calculator import (
+    estimate_fps,
+    estimate_fps_components,
+    cpu_bottleneck,
+    estimate_render_time,
+)
 from django.views.decorators.csrf import csrf_exempt
 from dataclasses import dataclass, field
 from typing import Dict
+from types import SimpleNamespace
 
 def index(request):
     """Landing page with budget form."""
@@ -118,6 +127,8 @@ def calculate_build(request):
                     # keep the original user-entered budget + currency
                     "budget": budget,
                     "currency": currency,
+                    # persist the resolution the user selected for the calculation
+                    "resolution": resolution,
                     # and the converted budget used for calculation (in USD)
                     "budget_usd": float(budget_usd),
                     "mode": mode,
@@ -185,6 +196,51 @@ def build_preview(request):
     currency = build_data.get("currency", "USD")
     currency_symbol = None
 
+    # Compute per-resolution FPS estimates and bottleneck readout for the preview build.
+    mode = build_data.get("mode", "gaming") or "gaming"
+    # If the user previously chose a resolution, use it as the default active tab
+    default_resolution = build_data.get("resolution", "1440p") or "1440p"
+    games = ["Cyberpunk 2077", "CS2", "Fortnite"]
+
+    perf = {}
+    resolutions = ["1080p", "1440p", "4k"]
+    for res in resolutions:
+        # For gaming builds compute per-game FPS contributions.
+        if mode == "workstation":
+            # Workstation estimates are render times (seconds). Resolution is
+            # not typically relevant for workstation render time but we keep
+            # the per-resolution structure for UI consistency.
+            try:
+                render_sec = estimate_render_time(cpu, gpu, mode)
+            except Exception:
+                render_sec = None
+            try:
+                binfo = cpu_bottleneck(cpu, gpu, mode, res)
+            except Exception:
+                binfo = {"bottleneck": 0.0, "type": "unknown"}
+            perf[res] = {"bottleneck": binfo, "workstation": {"Blender BMW Render (seconds)": render_sec}}
+            continue
+
+        res_games = {}
+        for g in games:
+            try:
+                cpu_fps, gpu_fps = estimate_fps_components(cpu, gpu, mode, res, g)
+                overall = round(min(cpu_fps, gpu_fps), 1)
+                res_games[g] = {"overall": overall, "cpu": cpu_fps, "gpu": gpu_fps}
+            except Exception:
+                res_games[g] = {"overall": None, "cpu": None, "gpu": None}
+
+        try:
+            binfo = cpu_bottleneck(cpu, gpu, mode, res)
+        except Exception:
+            binfo = {"bottleneck": 0.0, "type": "unknown"}
+
+        perf[res] = {"bottleneck": binfo, "games": res_games}
+
+    # Keep top-level keys for backward compatibility with templates expecting them
+    fps_estimates = perf.get(default_resolution, {}).get("games", {})
+    bottleneck_info = perf.get(default_resolution, {}).get("bottleneck", {"bottleneck": 0.0, "type": "unknown"})
+
     return render(request, "calculator/build_preview.html", {
         "cpu": cpu, "gpu": gpu, "motherboard": mobo, "ram": ram,
         "storage": storage, "psu": psu, "cooler": cooler, "case": case,
@@ -195,8 +251,207 @@ def build_preview(request):
         "is_saved_preview": False,
         "currency": currency,
         "currency_symbol": currency_symbol,
+        "perf": perf,
+        "default_resolution": default_resolution,
+        "fps_estimates": fps_estimates,
+        "bottleneck": bottleneck_info,
     })
 
+def preview_edit(request):
+    """Unified edit page for the session preview build (GET shows form, POST applies changes).
+
+    This replaces the per-component modal flow. The view tries to apply permissive
+    auto-swaps where sensible and reports any auto-swaps via Django messages.
+    """
+
+    preview = request.session.get('preview_build')
+    if not preview:
+        messages.error(request, "No preview build in session. Calculate a build first.")
+        return redirect('build_preview')
+
+    # Helper to load objects safely
+    def load_obj(key, ModelClass):
+        pk = preview.get(key)
+        if not pk:
+            return None
+        try:
+            return ModelClass.objects.get(pk=pk)
+        except Exception:
+            return None
+
+    # Current selected parts (fallbacks to DB lookups)
+    cpu = load_obj('cpu', CPU) or get_object_or_404(CPU, pk=preview.get('cpu'))
+    gpu = load_obj('gpu', GPU) or get_object_or_404(GPU, pk=preview.get('gpu'))
+    mobo = load_obj('motherboard', Motherboard) or get_object_or_404(
+        Motherboard, pk=preview.get('motherboard')
+    )
+    ram = load_obj('ram', RAM) or get_object_or_404(RAM, pk=preview.get('ram'))
+    storage = load_obj('storage', Storage) or get_object_or_404(
+        Storage, pk=preview.get('storage')
+    )
+    psu = load_obj('psu', PSU) or get_object_or_404(PSU, pk=preview.get('psu'))
+    cooler = load_obj('cooler', CPUCooler) or get_object_or_404(
+        CPUCooler, pk=preview.get('cooler')
+    )
+    case = load_obj('case', Case) or get_object_or_404(Case, pk=preview.get('case'))
+
+    if request.method == 'POST':
+        # Read submitted selections (fall back to existing preview values)
+        sel = {
+            'cpu': int(request.POST.get('cpu') or preview.get('cpu')),
+            'gpu': int(request.POST.get('gpu') or preview.get('gpu')),
+            'motherboard': int(request.POST.get('motherboard') or preview.get('motherboard')),
+            'ram': int(request.POST.get('ram') or preview.get('ram')),
+            'storage': int(request.POST.get('storage') or preview.get('storage')),
+            'psu': int(request.POST.get('psu') or preview.get('psu')),
+            'cooler': int(request.POST.get('cooler') or preview.get('cooler')),
+            'case': int(request.POST.get('case') or preview.get('case')),
+        }
+
+        # Load the selected objects
+        try:
+            new_cpu = get_object_or_404(CPU, pk=sel['cpu'])
+            new_gpu = get_object_or_404(GPU, pk=sel['gpu'])
+            new_mobo = get_object_or_404(Motherboard, pk=sel['motherboard'])
+            new_ram = get_object_or_404(RAM, pk=sel['ram'])
+            new_storage = get_object_or_404(Storage, pk=sel['storage'])
+            new_psu = get_object_or_404(PSU, pk=sel['psu'])
+            new_cooler = get_object_or_404(CPUCooler, pk=sel['cooler'])
+            new_case = get_object_or_404(Case, pk=sel['case'])
+        except Exception:
+            messages.error(request, "One or more selected components could not be found.")
+            return redirect('preview_edit')
+
+        auto_swaps = []
+
+        # CPU <-> Motherboard compatibility
+        if not compatible_cpu_mobo(new_cpu, new_mobo):
+            # prefer swapping motherboard to match CPU (try a matching mobo)
+            candidates = Motherboard.objects.order_by('-price')[:200]
+            candidate = next((mb for mb in candidates if compatible_cpu_mobo(new_cpu, mb)
+                              and compatible_mobo_ram(mb, new_ram)), None)
+            if candidate:
+                new_mobo = candidate
+                auto_swaps.append(f"motherboard -> {candidate.name} (auto-swapped to match selected CPU)")
+            else:
+                # try swapping CPU to match motherboard
+                candidates = CPU.objects.order_by('-price')[:200]
+                candidate = next((c for c in candidates if compatible_cpu_mobo(c, new_mobo)), None)
+                if candidate:
+                    new_cpu = candidate
+                    auto_swaps.append(f"cpu -> {candidate.name} (auto-swapped to match selected motherboard)")
+                else:
+                    messages.error(request, "Selected CPU and motherboard are incompatible and no compatible alternative was found.")
+                    return redirect('preview_edit')
+
+        # Motherboard <-> RAM compatibility
+        if not compatible_mobo_ram(new_mobo, new_ram):
+            candidates = RAM.objects.order_by('-price')[:200]
+            candidate = next((r for r in candidates if compatible_mobo_ram(new_mobo, r)), None)
+            if candidate:
+                new_ram = candidate
+                auto_swaps.append(f"ram -> {candidate.name} (auto-swapped to match selected motherboard)")
+            else:
+                # try swapping motherboard to match RAM
+                candidates = Motherboard.objects.order_by('-price')[:150]
+                candidate = next((mb for mb in candidates if compatible_mobo_ram(mb, new_ram)), None)
+                if candidate:
+                    new_mobo = candidate
+                    auto_swaps.append(f"motherboard -> {candidate.name} (auto-swapped to match selected RAM)")
+                else:
+                    messages.error(request, "Selected motherboard and RAM are incompatible and no compatible alternative was found.")
+                    return redirect('preview_edit')
+
+        # Motherboard <-> Storage
+        if new_storage and not compatible_storage(new_mobo, new_storage):
+            messages.error(request, "Selected storage is not compatible with the selected motherboard.")
+            return redirect('preview_edit')
+
+        # Case compatibility with motherboard
+        if new_mobo and not compatible_case(new_mobo, new_case):
+            messages.error(request, "Selected case is not compatible with the selected motherboard.")
+            return redirect('preview_edit')
+
+        # Cooler compatibility
+        if not cooler_ok(new_cooler, new_cpu):
+            messages.error(request, "Selected cooler is not sufficient for the selected CPU.")
+            return redirect('preview_edit')
+
+        # PSU <-> CPU+GPU
+        if not psu_ok(new_psu, new_cpu, new_gpu):
+            # try to upgrade PSU
+            candidates = PSU.objects.order_by('-wattage')[:150]
+            candidate = next((p for p in candidates if psu_ok(p, new_cpu, new_gpu)), None)
+            if candidate:
+                new_psu = candidate
+                auto_swaps.append(f"psu -> {candidate.name} (auto-swapped to provide sufficient wattage)")
+            else:
+                # try downgrading GPU to fit PSU
+                candidates = GPU.objects.order_by('-price')[:200]
+                candidate = next((g for g in candidates if psu_ok(new_psu, new_cpu, g)), None)
+                if candidate:
+                    new_gpu = candidate
+                    auto_swaps.append(f"gpu -> {candidate.gpu_name} (auto-swapped to fit selected PSU)")
+                else:
+                    messages.error(request, "Selected PSU cannot support the selected CPU+GPU and no alternative was found.")
+                    return redirect('preview_edit')
+
+        # Persist new selections back to session
+        mapping = {
+            'cpu': new_cpu.pk,
+            'gpu': new_gpu.pk,
+            'motherboard': new_mobo.pk,
+            'ram': new_ram.pk,
+            'storage': new_storage.pk,
+            'psu': new_psu.pk,
+            'cooler': new_cooler.pk,
+            'case': new_case.pk,
+        }
+        preview.update(mapping)
+
+        # Recompute price and score
+        try:
+            parts_list = [
+                get_object_or_404(CPU, pk=preview['cpu']),
+                get_object_or_404(GPU, pk=preview['gpu']),
+                get_object_or_404(Motherboard, pk=preview['motherboard']),
+                get_object_or_404(RAM, pk=preview['ram']),
+                get_object_or_404(Storage, pk=preview['storage']),
+                get_object_or_404(PSU, pk=preview['psu']),
+                get_object_or_404(CPUCooler, pk=preview['cooler']),
+                get_object_or_404(Case, pk=preview['case']),
+            ]
+            preview['price'] = float(total_price(parts_list))
+            preview['score'] = float(
+                weighted_scores(parts_list[0], parts_list[1], parts_list[3], preview.get('mode'), '1440p')
+            )
+        except Exception:
+            pass
+
+        request.session['preview_build'] = preview
+
+        messages.success(request, "Preview updated successfully.")
+        for note in auto_swaps:
+            messages.info(request, note)
+
+        return redirect('build_preview')
+
+    # GET: render edit form using the current selected parts
+    context = {
+        'build': SimpleNamespace(
+            cpu=cpu, gpu=gpu, motherboard=mobo, ram=ram, storage=storage,
+            psu=psu, cooler=cooler, case=case, currency=preview.get('currency', 'USD')
+        ),
+        'cpus': CPU.objects.order_by('-price'),
+        'gpus': GPU.objects.order_by('-price'),
+        'mobos': Motherboard.objects.order_by('-price'),
+        'rams': RAM.objects.order_by('-price'),
+        'cases': Case.objects.order_by('-price'),
+        'psus': PSU.objects.order_by('-price'),
+        'coolers': CPUCooler.objects.order_by('-price'),
+        'storages': Storage.objects.order_by('-price'),
+    }
+    return render(request, 'calculator/preview_edit.html', context)
 
 def build_preview_pk(request, pk):
     """Render a preview for a specific UserBuild (by pk) without using session cache."""
@@ -279,8 +534,22 @@ def save_build(request):
 @login_required
 def saved_builds(request):
     """List all builds saved by the current user."""
-    builds = UserBuild.objects.filter(user=request.user)
-    return render(request, "calculator/builds.html", {"builds": builds})
+    qs = UserBuild.objects.filter(user=request.user)
+    valid_builds = []
+    skipped = 0
+    for b in qs:
+        try:
+            # Touch related fields to ensure they exist and are loadable
+            _ = b.cpu and b.gpu and b.motherboard and b.ram and b.storage and b.psu and b.cooler and b.case
+            valid_builds.append(b)
+        except Exception:
+            # If any related object was deleted or is inconsistent, skip this build
+            skipped += 1
+
+    if skipped:
+        messages.warning(request, f"{skipped} saved build(s) were skipped because they reference missing components. Please edit or delete those builds.")
+
+    return render(request, "calculator/builds.html", {"builds": valid_builds})
 
 
 @require_POST

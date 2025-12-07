@@ -65,9 +65,12 @@ def cpu_bottleneck(cpu, gpu, mode: str, resolution: str) -> dict:
                 return {"bottleneck": 0.0, "type": "unknown"}
             ratio = cpu_fps / gpu_fps
             if ratio < 1:
-                return {"bottleneck": round((1 - ratio) * 100, 1), "type": "CPU"}
+                raw = round((1 - ratio) * 100, 1)
+                # present a less aggressive bottleneck percentage (user requested ~half)
+                return {"bottleneck": round(raw / 2.0, 1), "type": "CPU"}
             else:
-                return {"bottleneck": round((1 - (1 / ratio)) * 100, 1), "type": "GPU"}
+                raw = round((1 - (1 / ratio)) * 100, 1)
+                return {"bottleneck": round(raw / 2.0, 1), "type": "GPU"}
         except Exception:
             # fallback to score-based heuristic if FPS estimation fails
             pass
@@ -82,9 +85,11 @@ def cpu_bottleneck(cpu, gpu, mode: str, resolution: str) -> dict:
         return {"bottleneck": 0.0, "type": "unknown"}
     ratio = cpu_eff / gpu_eff
     if ratio < 1:
-        return {"bottleneck": round((1 - ratio) * 100, 1), "type": "CPU"}
+        raw = round((1 - ratio) * 100, 1)
+        return {"bottleneck": round(raw / 2.0, 1), "type": "CPU"}
     else:
-        return {"bottleneck": round((1 - (1 / ratio)) * 100, 1), "type": "GPU"}
+        raw = round((1 - (1 / ratio)) * 100, 1)
+        return {"bottleneck": round(raw / 2.0, 1), "type": "GPU"}
 
 # --- Compatibility (normalized) ---
 def norm(s):

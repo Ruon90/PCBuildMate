@@ -3,75 +3,24 @@
 {% load currency_tags %}
 {% block content %}
 <div class="container">
-  <h2 class="mb-4">Edit Build #{{ build.pk }}</h2>
+  <h2 class="mb-4">Edit Preview</h2>
 
-  <!-- Toggle buttons -->
-  <div class="btn-group mb-4" role="group">
-    <button type="button" class="btn btn-primary" id="basicBtn">Basic</button>
-    <button type="button" class="btn btn-outline-secondary" id="advancedBtn">Advanced</button>
-  </div>
-
-  <form method="post" action="{% url 'edit_build' build.pk %}">
+  <form method="post" action="{% url 'preview_edit' %}">
     {% csrf_token %}
-    <input type="hidden" name="mode" id="mode" value="basic">
+    <input type="hidden" name="mode" id="mode" value="advanced">
 
-    <!-- BASIC VIEW -->
-    <div id="basicView">
-      <div class="mb-3">
-        <label for="budget" class="form-label">Budget ({{ build.currency|currency_symbol }})</label>
-   <input type="number" name="budget" id="budget" class="form-control"
-     value="{{ build.budget|default:1000 }}" required>
-        <small class="text-muted">Adjust your budget and parts will be reassigned automatically.</small>
-      </div>
-      <div class="mt-3 d-flex justify-content-end">
-        <button type="submit" class="btn btn-success">Save Changes</button>
-      </div>
-    </div>
-
-    <!-- ADVANCED VIEW -->
-    <div id="advancedView" style="display:none;">
-
+    <div id="advancedView">
       {% include "calculator/edit_build_advanced.html" %}
     </div>
 
     <div class="mt-4 d-flex justify-content-between">
-      <a href="{% url 'saved_builds' %}" class="btn btn-secondary">Cancel</a>
-      <button type="submit" class="btn btn-success">Save Changes</button>
+      <a href="{% url 'build_preview' %}" class="btn btn-secondary">Cancel</a>
+      <button type="submit" class="btn btn-success">Apply changes</button>
     </div>
   </form>
 </div>
 
-<!-- Toggle script -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const basicBtn = document.getElementById("basicBtn");
-  const advancedBtn = document.getElementById("advancedBtn");
-  const basicView = document.getElementById("basicView");
-  const advancedView = document.getElementById("advancedView");
-  const modeField = document.getElementById("mode");
-
-  basicBtn.addEventListener("click", () => {
-    basicView.style.display = "block";
-    advancedView.style.display = "none";
-    modeField.value = "basic";
-    basicBtn.classList.add("btn-primary");
-    basicBtn.classList.remove("btn-outline-secondary");
-    advancedBtn.classList.add("btn-outline-secondary");
-    advancedBtn.classList.remove("btn-primary");
-  });
-
-  advancedBtn.addEventListener("click", () => {
-    basicView.style.display = "none";
-    advancedView.style.display = "block";
-    modeField.value = "advanced";
-    advancedBtn.classList.add("btn-primary");
-    advancedBtn.classList.remove("btn-outline-secondary");
-    basicBtn.classList.add("btn-outline-secondary");
-    basicBtn.classList.remove("btn-primary");
-  });
-});
-</script>
-
+<!-- Copy the filtering and validation JS from edit_build.html so the UI behaves identically -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const cpuSelect = document.getElementById("cpu");
@@ -118,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function hideTooltip(id){ const el=document.getElementById(id); if(el){ el.style.display="none"; el.textContent = ""; } }
   function markInvalid(sel){ sel.classList.add("is-invalid"); sel.setAttribute("aria-invalid","true"); }
   function clearInvalid(sel){ sel.classList.remove("is-invalid"); sel.removeAttribute("aria-invalid"); }
-  // Central helper to set/clear invalid state for CPU and motherboard together
   function setCpuMoboInvalid(invalid, moboMsg, cpuMsg){
     if(invalid){
       if (moboMsg) showTooltip("moboMessage", moboMsg);
@@ -156,12 +104,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (showTip) {
         setCpuMoboInvalid(true, `CPU socket mismatch. Select a ${cpuSocket} motherboard.`, `Selected CPU socket ${cpuSocket} is not supported by the current motherboard.`);
       } else {
-        // mark invalid visually but don't necessarily show tooltips
         markInvalid(moboSelect);
         markInvalid(cpuSelect);
       }
     } else {
-      // clear invalid state for both when compatible
       setCpuMoboInvalid(false);
     }
   }
@@ -174,11 +120,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     const selHidden = moboSelect.selectedOptions[0]?.hidden;
     if (selHidden) {
-      showTooltip("ramMessage", `Motherboard does not support ${ramDDR}. Change motherboard or RAM.`);
+      // Mark both RAM and motherboard as needing attention and show messages
+      showTooltip("ramMessage", `Selected RAM (${ramDDR}) may not be supported by motherboard.`);
+      showTooltip("moboMessage", `Motherboard may not support selected RAM (${ramDDR}).`);
       markInvalid(moboSelect);
+      markInvalid(ramSelect);
     } else {
+      // Compatible: clear both tooltips and invalid outlines
       clearInvalid(moboSelect);
+      clearInvalid(ramSelect);
       hideTooltip("ramMessage");
+      hideTooltip("moboMessage");
     }
   }
 
@@ -190,73 +142,86 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     const selHidden = ramSelect.selectedOptions[0]?.hidden;
     if (selHidden) {
+      // Mark both RAM and motherboard as needing attention
       showTooltip("moboMessage", `Use ${moboDDR} RAM for this motherboard.`);
       showTooltip("ramMessage", `Selected RAM is not compatible with the motherboard. Use ${moboDDR} RAM.`);
       markInvalid(ramSelect);
+      markInvalid(moboSelect);
     } else {
       clearInvalid(ramSelect);
+      clearInvalid(moboSelect);
       hideTooltip("moboMessage");
+      hideTooltip("ramMessage");
     }
   }
 
- function filterCases(showTip=false) {
-  // If a case-size filter button is active, it should override motherboard rules
-  const activeCaseBtn = document.querySelector("#caseFormFilters button.btn-primary");
-  if (activeCaseBtn) {
-    const ff = normalizeFF(activeCaseBtn.dataset.formfactor || "");
-    [...caseSelect.options].forEach(opt => {
-      const caseFF = normalizeFF(opt.dataset.formfactor || "");
-      if (!caseFF) { opt.hidden = true; return; }
+  function filterCases(showTip=false) {
+   // If a case-size filter button is active, it should override motherboard rules
+   const activeCaseBtn = document.querySelector("#caseFormFilters button.btn-primary");
+   if (activeCaseBtn) {
+     const ff = normalizeFF(activeCaseBtn.dataset.formfactor || "");
+     [...caseSelect.options].forEach(opt => {
+       const caseFF = normalizeFF(opt.dataset.formfactor || "");
+       // Prefilter out options with no form-factor information
+       if (!caseFF) { opt.hidden = true; return; }
 
-      if (ff.includes("micro")) {
-        opt.hidden = !caseFF.includes("micro");
-      } else if (ff.includes("mini") || ff.includes("itx")) {
-        opt.hidden = !(caseFF.includes("itx") || caseFF.includes("mini"));
-      } else if (ff.includes("atx") || ff.includes("tower")) {
-        opt.hidden = !((caseFF.includes("atx") || caseFF.includes("tower")) && !caseFF.includes("micro") && !caseFF.includes("mini"));
-      } else {
-        opt.hidden = !caseFF.includes(ff);
-      }
-    });
-  } else {
-    const moboFF = (moboSelect.selectedOptions[0]?.dataset.formfactor || "").toLowerCase();
-    [...caseSelect.options].forEach(opt => {
-      const caseFF = (opt.dataset.formfactor || "").toLowerCase();
-      let ok = false;
+       if (ff.includes("micro")) {
+         opt.hidden = !caseFF.includes("micro");
+       } else if (ff.includes("mini") || ff.includes("itx")) {
+         opt.hidden = !(caseFF.includes("itx") || caseFF.includes("mini"));
+       } else if (ff.includes("atx") || ff.includes("tower")) {
+         opt.hidden = !((caseFF.includes("atx") || caseFF.includes("tower")) && !caseFF.includes("micro") && !caseFF.includes("mini"));
+       } else {
+         opt.hidden = !caseFF.includes(ff);
+       }
+     });
+   } else {
+     // Normalize both motherboard and case form-factor strings for robust matching
+     const moboFF = normalizeFF(moboSelect.selectedOptions[0]?.dataset.formfactor || "");
+     [...caseSelect.options].forEach(opt => {
+       const caseFF = normalizeFF(opt.dataset.formfactor || "");
+       // Prefilter out options with no form-factor information
+       if (!caseFF) { opt.hidden = true; return; }
 
-      if (moboFF.includes("mini")) {
-        // Mini-ITX fits in anything
-        ok = true;
-      } else if (moboFF.includes("micro")) {
-        // Micro-ATX not compatible with mini cases
-        ok = !caseFF.includes("itx");
-      } else if (moboFF.includes("atx")) {
-        // ATX not compatible with mini or micro cases
-        ok = !(caseFF.includes("mini") || caseFF.includes("micro"));
-      } else {
-        // Fallback strict match
-        ok = caseFF === moboFF;
-      }
+       let ok = false;
+       if (moboFF.includes("mini") || moboFF.includes("itx")) {
+         // Mini-ITX mobos fit only in ITX-capable cases
+         ok = caseFF.includes("itx") || caseFF.includes("mini");
+       } else if (moboFF.includes("micro")) {
+         // Micro-ATX mobos require microatx cases
+         ok = caseFF.includes("micro");
+       } else if (moboFF.includes("atx") || moboFF.includes("tower")) {
+         // ATX mobos should exclude tiny/itx-only cases but accept ATX/tower
+         ok = (caseFF.includes("atx") || caseFF.includes("tower")) && !caseFF.includes("micro") && !caseFF.includes("mini");
+       } else {
+         // Fallback strict match
+         ok = caseFF === moboFF || caseFF.includes(moboFF);
+       }
 
-      opt.hidden = !ok;
-    });
+       opt.hidden = !ok;
+     });
+   }
+
+   const selHidden = caseSelect.selectedOptions[0]?.hidden;
+   if (showTip && selHidden) {
+     // If activeCaseBtn present, show message about filter; otherwise show mobo compatibility message
+     if (activeCaseBtn) {
+       const ffMsg = normalizeFF(activeCaseBtn.dataset.formfactor || "").toUpperCase();
+       showTooltip("caseMessage", `Filtered to ${ffMsg} cases; current selection is not of that size.`);
+     } else {
+       const moboMsg = normalizeFF(moboSelect.selectedOptions[0]?.dataset.formfactor || "").toUpperCase();
+       showTooltip("caseMessage", `This case does not fit ${moboMsg} motherboards. Please select a compatible case.`);
+     }
+     markInvalid(caseSelect);
+   }
+   if (!selHidden) {
+     clearInvalid(caseSelect);
+     hideTooltip("caseMessage");
+   }
   }
-  const selHidden = caseSelect.selectedOptions[0]?.hidden;
-  if (showTip && selHidden) {
-    if (activeCaseBtn) {
-      const ffMsg = normalizeFF(activeCaseBtn.dataset.formfactor || "").toUpperCase();
-      showTooltip("caseMessage", `Filtered to ${ffMsg} cases; current selection is not of that size.`);
-    } else {
-      showTooltip("caseMessage", `This case does not fit ${moboFF?.toUpperCase()} motherboards. Please select a compatible case.`);
-    }
-    markInvalid(caseSelect);
-  }
-  if (!selHidden) {
-    clearInvalid(caseSelect);
-    hideTooltip("caseMessage");
-  }
-}
 
+  // Ensure choosing a case re-triggers validation so notifications clear when user selects a valid case
+  caseSelect?.addEventListener('change', ()=> { filterCases(true); });
 
   function filterStorage(showTip=false){
     const moboNvme = (moboSelect.selectedOptions[0]?.dataset.nvme || "false").toLowerCase();
@@ -310,7 +275,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Button filters + highlight
   function clearFilter(groupId, select){
     document.querySelectorAll(`#${groupId} button`).forEach(b=>{
       b.classList.remove("btn-primary"); b.classList.add("btn-outline-primary");
@@ -386,7 +350,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   psuClear?.addEventListener("click", ()=> clearFilter("psuFilters", psuSelect));
 
-  // Motherboard socket filters (was present in template but missing JS binding)
   document.querySelectorAll("#moboSocketFilters button[data-socket]").forEach(btn=>{
     btn.addEventListener("click", ()=>{
       const socket = btn.dataset.socket;
@@ -394,23 +357,32 @@ document.addEventListener("DOMContentLoaded", () => {
       activate("moboSocketFilters", btn);
       showTooltip("moboMessage", `Filtered motherboards: ${socket.toUpperCase()}.`);
       ensureSelection(moboSelect);
-      // re-run dependent filters
       filterRamByMobo(true);
       filterCases(true);
       filterStorage(true);
-      // also re-evaluate cpu <> mobo compatibility so highlights/tooltips stay accurate
       filterMobosByCpu(true);
     });
   });
   moboSocketClear?.addEventListener("click", ()=> { clearFilter("moboSocketFilters", moboSelect); filterMobosByCpu(true); });
 
-  // Case form-factor filters (was present in template but missing JS binding)
   document.querySelectorAll("#caseFormFilters button[data-formfactor]").forEach(btn=>{
     btn.addEventListener("click", ()=>{
-      const ff = btn.dataset.formfactor.toLowerCase();
+      const ff = normalizeFF(btn.dataset.formfactor || "");
       [...caseSelect.options].forEach(opt => {
-        const caseFF = (opt.dataset.formfactor || "").toLowerCase();
-        opt.hidden = !caseFF.includes(ff);
+        const caseFF = normalizeFF(opt.dataset.formfactor || "");
+        // Prefilter out unknowns
+        if (!caseFF) { opt.hidden = true; return; }
+
+        if (ff.includes("micro")) {
+          opt.hidden = !caseFF.includes("micro");
+        } else if (ff.includes("mini") || ff.includes("itx")) {
+          opt.hidden = !(caseFF.includes("itx") || caseFF.includes("mini"));
+        } else if (ff.includes("atx") || ff.includes("tower")) {
+          // Show ATX/tower cases but exclude mini/micro
+          opt.hidden = !((caseFF.includes("atx") || caseFF.includes("tower")) && !caseFF.includes("micro") && !caseFF.includes("mini"));
+        } else {
+          opt.hidden = !caseFF.includes(ff);
+        }
       });
       activate("caseFormFilters", btn);
       showTooltip("caseMessage", `Filtered cases: ${ff.toUpperCase()}.`);
@@ -453,7 +425,4 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<script>
-  // Paste the consolidated script we built here
-</script>
 {% endblock %}

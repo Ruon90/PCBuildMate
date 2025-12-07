@@ -17,6 +17,8 @@ urlpatterns = [
     path("build/save/", views.save_build, name="save_build"),
     # Clear current preview build
     path("build/clear/", views.clear_build, name="clear_build"),
+    # Edit the current session preview (GET/POST)
+    path("build/preview/edit/", views.preview_edit, name="preview_edit"),
     # List of saved builds (requires login)
     path("builds/", views.saved_builds, name="saved_builds"),
     # Delete a saved build (requires login)
