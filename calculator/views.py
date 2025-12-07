@@ -136,6 +136,29 @@ def calculate_build(request):
                     # prices from models are in USD
                     "price": float(best.total_price),
                 }
+                # Persist top alternatives (2..11) in session so user can view/choose them later.
+                try:
+                    from .services import build_calculator as bc
+                    candidates = getattr(bc, 'LAST_CANDIDATES', []) or []
+                    # build a tuple key for the chosen (cpu,gpu,mobo,ram,storage,psu,cooler,case)
+                    chosen_key = (best.cpu.id, best.gpu.id, best.motherboard.id, best.ram.id, best.storage.id, best.psu.id, best.cooler.id, best.case.id)
+                    alts = []
+                    for cand in candidates:
+                        cand_key = (cand.cpu.id, cand.gpu.id, cand.motherboard.id, cand.ram.id, cand.storage.id, cand.psu.id, cand.cooler.id, cand.case.id)
+                        if cand_key == chosen_key:
+                            continue
+                        alts.append({
+                            'cpu': cand.cpu.id, 'gpu': cand.gpu.id, 'motherboard': cand.motherboard.id,
+                            'ram': cand.ram.id, 'storage': cand.storage.id, 'psu': cand.psu.id,
+                            'cooler': cand.cooler.id, 'case': cand.case.id,
+                            'price': float(cand.total_price), 'score': float(cand.total_score)
+                        })
+                        if len(alts) >= 10:
+                            break
+                    request.session['preview_alternatives'] = alts
+                except Exception:
+                    # do not fail the API if alternatives collection fails
+                    request.session['preview_alternatives'] = []
                 return JsonResponse({
                     "progress": progress,
                     "redirect": reverse("build_preview")
@@ -256,6 +279,71 @@ def build_preview(request):
         "fps_estimates": fps_estimates,
         "bottleneck": bottleneck_info,
     })
+
+
+def alternatives(request):
+    """Show the top alternative builds (stored in session by the calculator).
+
+    GET: render alternatives page showing up to 10 alternatives.
+    """
+    alts = request.session.get('preview_alternatives', []) or []
+    if not alts:
+        messages.info(request, "No alternative builds are available. Calculate a build first.")
+        return redirect('build_preview')
+
+    rendered = []
+    for idx, a in enumerate(alts):
+        try:
+            rendered.append({
+                'index': idx,
+                'cpu': get_object_or_404(CPU, pk=a['cpu']),
+                'gpu': get_object_or_404(GPU, pk=a['gpu']),
+                'motherboard': get_object_or_404(Motherboard, pk=a['motherboard']),
+                'ram': get_object_or_404(RAM, pk=a['ram']),
+                'storage': get_object_or_404(Storage, pk=a['storage']),
+                'psu': get_object_or_404(PSU, pk=a['psu']),
+                'cooler': get_object_or_404(CPUCooler, pk=a['cooler']),
+                'case': get_object_or_404(Case, pk=a['case']),
+                'price': a.get('price'),
+                'score': a.get('score'),
+            })
+        except Exception:
+            # skip alternatives that reference missing components
+            continue
+
+    return render(request, 'calculator/alternatives.html', {'alternatives': rendered})
+
+
+@require_POST
+def select_alternative(request):
+    """Replace the session preview with the selected alternative (by index).
+
+    POST params: alt_index (int)
+    """
+    try:
+        idx = int(request.POST.get('alt_index', -1))
+    except Exception:
+        idx = -1
+    alts = request.session.get('preview_alternatives', []) or []
+    if idx < 0 or idx >= len(alts):
+        messages.error(request, "Invalid alternative selected.")
+        return redirect('alternatives')
+
+    sel = alts[idx]
+    # preserve user's budget/currency/mode/resolution if present in existing preview
+    prev = request.session.get('preview_build', {})
+    preview = {
+        'cpu': sel['cpu'], 'gpu': sel['gpu'], 'motherboard': sel['motherboard'],
+        'ram': sel['ram'], 'storage': sel['storage'], 'psu': sel['psu'],
+        'cooler': sel['cooler'], 'case': sel['case'],
+        'price': sel.get('price'), 'score': sel.get('score'),
+        'budget': prev.get('budget'), 'currency': prev.get('currency', 'USD'),
+        'mode': prev.get('mode', 'gaming'), 'resolution': prev.get('resolution', '1440p'),
+        'budget_usd': prev.get('budget_usd'),
+    }
+    request.session['preview_build'] = preview
+    messages.success(request, "Preview replaced with selected alternative.")
+    return redirect('build_preview')
 
 def preview_edit(request):
     """Unified edit page for the session preview build (GET shows form, POST applies changes).
@@ -527,6 +615,8 @@ def save_build(request):
 
     # Clear the cached preview build once saved
     request.session.pop("preview_build", None)
+    # Clear any cached alternatives now that the build is saved
+    request.session.pop("preview_alternatives", None)
 
     return redirect("saved_builds")
 

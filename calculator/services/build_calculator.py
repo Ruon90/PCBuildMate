@@ -743,6 +743,13 @@ def find_best_build(
 
     # Flatten and select best
     flat_valid_builds = [b for bucket in valid_builds_by_cpu.values() for b in bucket]
+    # Expose the flattened candidate list for callers that want alternatives
+    try:
+        # create a stable-sorted list by score (descending)
+        LAST_CANDIDATES = sorted(flat_valid_builds, key=lambda b: b.total_score, reverse=True)
+    except Exception:
+        LAST_CANDIDATES = flat_valid_builds
+
     if flat_valid_builds:
         best_build = max(flat_valid_builds, key=lambda b: b.total_score)
         progress.append(f"Selected best build out of {len(flat_valid_builds)} candidates.")
@@ -773,6 +780,11 @@ def find_best_build(
             print("[DEBUG] Failed to print selected build details:")
             traceback.print_exc()
 
+        # attach LAST_CANDIDATES to the module so callers (views) can read them
+        try:
+            globals()['LAST_CANDIDATES'] = LAST_CANDIDATES
+        except Exception:
+            globals()['LAST_CANDIDATES'] = flat_valid_builds
         return best_build, progress
 
     progress.append("No valid build found within budget.")
@@ -782,6 +794,8 @@ def find_best_build(
         print(f"  {stats}")
     except Exception:
         pass
+    # Ensure LAST_CANDIDATES is present even when no build found
+    globals()['LAST_CANDIDATES'] = []
     return None, progress
 
 # --- Gaming FPS estimation ---
