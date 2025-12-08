@@ -68,6 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
     advancedBtn.classList.remove("btn-outline-secondary");
     basicBtn.classList.add("btn-outline-secondary");
     basicBtn.classList.remove("btn-primary");
+    // When showing advanced view, re-run validation so the included advanced partial
+    // displays the same tooltips/invalid outlines as the preview editor.
+    if (typeof runAllValidation === 'function') runAllValidation();
   });
 });
 </script>
@@ -149,109 +152,78 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function filterMobosByCpu(showTip=false){
+    // Do NOT hide motherboard options here. Button toggles handle filtering.
+    // Only validate the current selection and surface compatibility warnings.
     const cpuSocket = cpuSelect.selectedOptions[0]?.dataset.socket || "";
-    [...moboSelect.options].forEach(opt => { opt.hidden = (opt.dataset.socket !== cpuSocket); });
-    const selHidden = moboSelect.selectedOptions[0]?.hidden;
-    if (selHidden) {
-      if (showTip) {
-        setCpuMoboInvalid(true, `CPU socket mismatch. Select a ${cpuSocket} motherboard.`, `Selected CPU socket ${cpuSocket} is not supported by the current motherboard.`);
-      } else {
-        // mark invalid visually but don't necessarily show tooltips
-        markInvalid(moboSelect);
-        markInvalid(cpuSelect);
-      }
+    const moboSocket = moboSelect.selectedOptions[0]?.dataset.socket || "";
+    const incompatible = !!(cpuSocket && moboSocket && cpuSocket !== moboSocket);
+    if (incompatible) {
+      setCpuMoboInvalid(true, `CPU socket mismatch. Select a ${cpuSocket} motherboard.`, `Selected CPU socket ${cpuSocket} is not supported by the current motherboard.`);
     } else {
-      // clear invalid state for both when compatible
       setCpuMoboInvalid(false);
     }
   }
 
   function filterMobosByRam(showTip=false){
+    // Validate RAM vs selected motherboard DDR. Do not hide options here.
     const ramDDR = normalizeDDR(ramSelect.selectedOptions[0]?.dataset.ddr);
-    [...moboSelect.options].forEach(opt => {
-      const moboDDR = normalizeDDR(opt.dataset.ddr);
-      opt.hidden = !(ramDDR === moboDDR || !ramDDR);
-    });
-    const selHidden = moboSelect.selectedOptions[0]?.hidden;
-    if (selHidden) {
-      showTooltip("ramMessage", `Motherboard does not support ${ramDDR}. Change motherboard or RAM.`);
-      markInvalid(moboSelect);
-    } else {
-      clearInvalid(moboSelect);
-      hideTooltip("ramMessage");
-    }
-  }
-
-  function filterRamByMobo(showTip=false){
     const moboDDR = normalizeDDR(moboSelect.selectedOptions[0]?.dataset.ddr);
-    [...ramSelect.options].forEach(opt => {
-      const ramDDR = normalizeDDR(opt.dataset.ddr);
-      opt.hidden = !(ramDDR === moboDDR || !moboDDR);
-    });
-    const selHidden = ramSelect.selectedOptions[0]?.hidden;
-    if (selHidden) {
-      showTooltip("moboMessage", `Use ${moboDDR} RAM for this motherboard.`);
-      showTooltip("ramMessage", `Selected RAM is not compatible with the motherboard. Use ${moboDDR} RAM.`);
+    const incompatible = !!(ramDDR && moboDDR && ramDDR !== moboDDR);
+    if (incompatible) {
+      showTooltip("ramMessage", `Selected RAM (${ramDDR}) may not be supported by motherboard.`);
+      showTooltip("moboMessage", `Motherboard may not support selected RAM (${ramDDR}).`);
+      markInvalid(moboSelect);
       markInvalid(ramSelect);
     } else {
+      clearInvalid(moboSelect);
       clearInvalid(ramSelect);
+      hideTooltip("ramMessage");
       hideTooltip("moboMessage");
     }
   }
 
- function filterCases(showTip=false) {
-  // If a case-size filter button is active, it should override motherboard rules
-  const activeCaseBtn = document.querySelector("#caseFormFilters button.btn-primary");
-  if (activeCaseBtn) {
-    const ff = normalizeFF(activeCaseBtn.dataset.formfactor || "");
-    [...caseSelect.options].forEach(opt => {
-      const caseFF = normalizeFF(opt.dataset.formfactor || "");
-      if (!caseFF) { opt.hidden = true; return; }
-
-      if (ff.includes("micro")) {
-        opt.hidden = !caseFF.includes("micro");
-      } else if (ff.includes("mini") || ff.includes("itx")) {
-        opt.hidden = !(caseFF.includes("itx") || caseFF.includes("mini"));
-      } else if (ff.includes("atx") || ff.includes("tower")) {
-        opt.hidden = !((caseFF.includes("atx") || caseFF.includes("tower")) && !caseFF.includes("micro") && !caseFF.includes("mini"));
-      } else {
-        opt.hidden = !caseFF.includes(ff);
-      }
-    });
-  } else {
-    const moboFF = (moboSelect.selectedOptions[0]?.dataset.formfactor || "").toLowerCase();
-    [...caseSelect.options].forEach(opt => {
-      const caseFF = (opt.dataset.formfactor || "").toLowerCase();
-      let ok = false;
-
-      if (moboFF.includes("mini")) {
-        // Mini-ITX fits in anything
-        ok = true;
-      } else if (moboFF.includes("micro")) {
-        // Micro-ATX not compatible with mini cases
-        ok = !caseFF.includes("itx");
-      } else if (moboFF.includes("atx")) {
-        // ATX not compatible with mini or micro cases
-        ok = !(caseFF.includes("mini") || caseFF.includes("micro"));
-      } else {
-        // Fallback strict match
-        ok = caseFF === moboFF;
-      }
-
-      opt.hidden = !ok;
-    });
-  }
-  const selHidden = caseSelect.selectedOptions[0]?.hidden;
-  if (showTip && selHidden) {
-    if (activeCaseBtn) {
-      const ffMsg = normalizeFF(activeCaseBtn.dataset.formfactor || "").toUpperCase();
-      showTooltip("caseMessage", `Filtered to ${ffMsg} cases; current selection is not of that size.`);
+  function filterRamByMobo(showTip=false){
+    // Validate the currently selected RAM against the motherboard. Do not hide options.
+    const moboDDR = normalizeDDR(moboSelect.selectedOptions[0]?.dataset.ddr);
+    const ramDDR = normalizeDDR(ramSelect.selectedOptions[0]?.dataset.ddr);
+    const incompatible = !!(moboDDR && ramDDR && moboDDR !== ramDDR);
+    if (incompatible) {
+      showTooltip("moboMessage", `Use ${moboDDR} RAM for this motherboard.`);
+      showTooltip("ramMessage", `Selected RAM is not compatible with the motherboard. Use ${moboDDR} RAM.`);
+      markInvalid(ramSelect);
+      markInvalid(moboSelect);
     } else {
-      showTooltip("caseMessage", `This case does not fit ${moboFF?.toUpperCase()} motherboards. Please select a compatible case.`);
+      clearInvalid(ramSelect);
+      clearInvalid(moboSelect);
+      hideTooltip("moboMessage");
+      hideTooltip("ramMessage");
     }
-    markInvalid(caseSelect);
   }
-  if (!selHidden) {
+
+ function filterCases(showTip=false) {
+  // Keep filtering via button toggles only. Validate current selection against motherboard
+  // but do not hide options programmatically.
+  const activeCaseBtn = document.querySelector("#caseFormFilters button.btn-primary");
+  const moboFF = normalizeFF(moboSelect.selectedOptions[0]?.dataset.formfactor || "");
+  const caseFF = normalizeFF(caseSelect.selectedOptions[0]?.dataset.formfactor || "");
+  let ok = true;
+
+  if (moboFF && caseFF) {
+    if (moboFF.includes("mini") || moboFF.includes("itx")) {
+      ok = true;
+    } else if (moboFF.includes("micro")) {
+      ok = caseFF.includes("atx") || caseFF.includes("micro") || caseFF.includes("mini");
+    } else if (moboFF.includes("atx") || moboFF.includes("tower")) {
+      ok = !(caseFF.includes("micro") || caseFF.includes("mini"));
+    } else {
+      ok = caseFF === moboFF || caseFF.includes(moboFF);
+    }
+  }
+
+  if (!ok) {
+    showTooltip("caseMessage", `This case does not fit ${moboFF?.toUpperCase()} motherboards. Please select a compatible case.`);
+    markInvalid(caseSelect);
+  } else {
     clearInvalid(caseSelect);
     hideTooltip("caseMessage");
   }
@@ -259,15 +231,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   function filterStorage(showTip=false){
+    // Validate selected storage against motherboard NVMe support. Do not hide options.
     const moboNvme = (moboSelect.selectedOptions[0]?.dataset.nvme || "false").toLowerCase();
-    [...storageSelect.options].forEach(opt => {
-      const iface = normalizeIface(opt.dataset.interface);
-      let ok = true;
-      if (iface.startsWith("pcie")) ok = moboNvme === "true";
-      opt.hidden = !ok;
-    });
-    const selHidden = storageSelect.selectedOptions[0]?.hidden;
-    if (selHidden) {
+    const iface = normalizeIface(storageSelect.selectedOptions[0]?.dataset.interface);
+    const needsNvme = iface && iface.startsWith("pcie");
+    if (needsNvme && moboNvme !== "true") {
       showTooltip("storageMessage", `Motherboard does not support NVMe/PCIe. Choose SATA or change motherboard.`);
       markInvalid(storageSelect);
     } else {
@@ -277,15 +245,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function filterPSUs(showTip=false){
+    // Validate current PSU selection against estimated required wattage. Do not hide options.
     const cpuTDP = parseInt(cpuSelect.selectedOptions[0]?.dataset.tdp || "0",10);
     const gpuTDP = parseInt(gpuSelect.selectedOptions[0]?.dataset.tdp || "0",10);
     const required = Math.round((cpuTDP + gpuTDP) * 1.3);
-    [...psuSelect.options].forEach(opt => {
-      const wattage = parseInt(opt.dataset.wattage || "0",10);
-      opt.hidden = wattage < required;
-    });
-    const selHidden = psuSelect.selectedOptions[0]?.hidden;
-    if (selHidden) {
+    const selectedW = parseInt(psuSelect.selectedOptions[0]?.dataset.wattage || "0",10);
+    if (selectedW && selectedW < required) {
       showTooltip("psuMessage", `PSU insufficient. Select ≥ ${required}W.`);
       markInvalid(psuSelect);
     } else {
@@ -295,13 +260,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function filterCoolers(showTip=false){
+    // Validate selected cooler against CPU TDP. Do not hide options.
     const cpuTDP = parseInt(cpuSelect.selectedOptions[0]?.dataset.tdp || "0",10);
-    [...coolerSelect.options].forEach(opt => {
-      const th = parseInt(opt.dataset.throughput || "0",10);
-      opt.hidden = th < cpuTDP;
-    });
-    const selHidden = coolerSelect.selectedOptions[0]?.hidden;
-    if (selHidden) {
+    const th = parseInt(coolerSelect.selectedOptions[0]?.dataset.throughput || "0",10);
+    if (th && th < cpuTDP) {
       showTooltip("coolerMessage", `Cooler insufficient for CPU TDP (${cpuTDP}W).`);
       markInvalid(coolerSelect);
     } else {
@@ -324,7 +286,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const brand = btn.dataset.brand;
       [...cpuSelect.options].forEach(opt => { opt.hidden = (opt.dataset.brand !== brand); });
       activate("cpuBrandFilters", btn);
-      showTooltip("cpuMessage", `Filtered CPUs: ${brand.toUpperCase()}.`);
       ensureSelection(cpuSelect);
       filterMobosByCpu(true);
     });
@@ -336,7 +297,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const brand = btn.dataset.brand;
       [...gpuSelect.options].forEach(opt => { opt.hidden = (opt.dataset.brand !== brand); });
       activate("gpuBrandFilters", btn);
-      showTooltip("gpuMessage", `Filtered GPUs: ${brand.toUpperCase()}.`);
       ensureSelection(gpuSelect);
       filterPSUs(true);
     });
@@ -348,7 +308,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const ddr = btn.dataset.ddr;
       [...ramSelect.options].forEach(opt => { opt.hidden = normalizeDDR(opt.dataset.ddr) !== ddr; });
       activate("ramDDRFilters", btn);
-      showTooltip("ramMessage", `Filtered RAM: ${ddr}.`);
       ensureSelection(ramSelect);
       filterMobosByRam(true);
       filterRamByMobo(true);
@@ -364,7 +323,6 @@ document.addEventListener("DOMContentLoaded", () => {
         opt.hidden = !norm.includes(iface);
       });
       activate("storageFilters", btn);
-      showTooltip("storageMessage", `Filtered Storage: ${iface.toUpperCase()}.`);
       ensureSelection(storageSelect);
       filterStorage(true);
     });
@@ -379,7 +337,6 @@ document.addEventListener("DOMContentLoaded", () => {
         opt.hidden = w < minW;
       });
       activate("psuFilters", btn);
-      showTooltip("psuMessage", `Filtered PSUs: ≥${minW}W.`);
       ensureSelection(psuSelect);
       filterPSUs(true);
     });
@@ -392,7 +349,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const socket = btn.dataset.socket;
       [...moboSelect.options].forEach(opt => { opt.hidden = (opt.dataset.socket !== socket); });
       activate("moboSocketFilters", btn);
-      showTooltip("moboMessage", `Filtered motherboards: ${socket.toUpperCase()}.`);
       ensureSelection(moboSelect);
       // re-run dependent filters
       filterRamByMobo(true);
@@ -407,13 +363,23 @@ document.addEventListener("DOMContentLoaded", () => {
   // Case form-factor filters (was present in template but missing JS binding)
   document.querySelectorAll("#caseFormFilters button[data-formfactor]").forEach(btn=>{
     btn.addEventListener("click", ()=>{
-      const ff = btn.dataset.formfactor.toLowerCase();
+      const ff = normalizeFF(btn.dataset.formfactor || "");
       [...caseSelect.options].forEach(opt => {
-        const caseFF = (opt.dataset.formfactor || "").toLowerCase();
-        opt.hidden = !caseFF.includes(ff);
+        const caseFF = normalizeFF(opt.dataset.formfactor || "");
+        // Prefilter out unknowns
+        if (!caseFF) { opt.hidden = true; return; }
+
+        if (ff.includes("micro")) {
+          opt.hidden = !caseFF.includes("micro");
+        } else if (ff.includes("mini") || ff.includes("itx")) {
+          opt.hidden = !(caseFF.includes("itx") || caseFF.includes("mini"));
+        } else if (ff.includes("atx") || ff.includes("tower")) {
+          opt.hidden = !((caseFF.includes("atx") || caseFF.includes("tower")) && !caseFF.includes("micro") && !caseFF.includes("mini"));
+        } else {
+          opt.hidden = !caseFF.includes(ff);
+        }
       });
       activate("caseFormFilters", btn);
-      showTooltip("caseMessage", `Filtered cases: ${ff.toUpperCase()}.`);
       ensureSelection(caseSelect);
       filterCases(true);
     });
@@ -428,7 +394,6 @@ document.addEventListener("DOMContentLoaded", () => {
         opt.hidden = th < minT;
       });
       activate("coolerFilters", btn);
-      showTooltip("coolerMessage", `Filtered Coolers: ≥${minT}W.`);
       ensureSelection(coolerSelect);
       filterCoolers(true);
     });
@@ -436,13 +401,18 @@ document.addEventListener("DOMContentLoaded", () => {
   coolerClear?.addEventListener("click", ()=> clearFilter("coolerFilters", coolerSelect));
 
   // Initial pass: run filters but only show tooltips if current selection is invalid
-  filterMobosByCpu(true);
-  filterMobosByRam(true);
-  filterRamByMobo(true);
-  filterCases(true);
-  filterStorage(true);
-  filterPSUs(true);
-  filterCoolers(true);
+  function runAllValidation(){
+    filterMobosByCpu(true);
+    filterMobosByRam(true);
+    filterRamByMobo(true);
+    filterCases(true);
+    filterStorage(true);
+    filterPSUs(true);
+    filterCoolers(true);
+  }
+
+  // Initial pass
+  runAllValidation();
 
   // Change events to re-check compatibility and tooltips
   cpuSelect.addEventListener("change", ()=>{ filterMobosByCpu(true); filterPSUs(true); filterCoolers(true); });

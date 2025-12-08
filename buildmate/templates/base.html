@@ -8,6 +8,7 @@
   <title>PCBuildMate</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% block extra_head %}{% endblock %}
 </head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -18,9 +19,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-        {% if request.session.preview_build %}
-        <li class="nav-item"><a class="nav-link" href="{% url 'build_preview' %}">Build Calculator</a></li>
-        {% endif %}
+  {% if request.session.preview_build %}
+  <li class="nav-item"><a class="nav-link" href="{% url 'build_preview' %}">Build Calculator</a></li>
+  {% endif %}
+  <li class="nav-item"><a class="nav-link" href="{% url 'upgrade_calculator' %}">Upgrade Calculator</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'saved_builds' %}">Saved Builds</a></li>
         <li class="nav-item">
           <div class="d-flex">
@@ -232,5 +234,6 @@ chatInput.addEventListener("keypress", function(e){
   }
 });
 </script>
+{% block extra_scripts %}{% endblock %}
 </body>
 </html>

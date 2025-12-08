@@ -1,7 +1,6 @@
 import os
 import json
 import requests
-from urllib import request
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.contrib import messages
@@ -19,13 +18,17 @@ from .services.build_calculator import (
     auto_assign_parts,
     compatible_cpu_mobo,
     compatible_mobo_ram,
+    compatible_mobo_ram_cached,
     compatible_storage,
     compatible_case,
+    compatible_case_cached,
     psu_ok,
+    psu_ok_cached,
     cooler_ok,
     total_price,
     weighted_scores,
 )
+from .services.build_calculator import cpu_score, gpu_score, ram_score
 from .services.build_calculator import (
     estimate_fps,
     estimate_fps_components,
@@ -33,8 +36,6 @@ from .services.build_calculator import (
     estimate_render_time,
 )
 from django.views.decorators.csrf import csrf_exempt
-from dataclasses import dataclass, field
-from typing import Dict
 from types import SimpleNamespace
 
 def index(request):
@@ -140,21 +141,68 @@ def calculate_build(request):
                 try:
                     from .services import build_calculator as bc
                     candidates = getattr(bc, 'LAST_CANDIDATES', []) or []
-                    # build a tuple key for the chosen (cpu,gpu,mobo,ram,storage,psu,cooler,case)
-                    chosen_key = (best.cpu.id, best.gpu.id, best.motherboard.id, best.ram.id, best.storage.id, best.psu.id, best.cooler.id, best.case.id)
+
+                    # build a tuple key for the chosen build so we can skip it
+                    chosen_key = (
+                        best.cpu.id,
+                        best.gpu.id,
+                        best.motherboard.id,
+                        best.ram.id,
+                        best.storage.id,
+                        best.psu.id,
+                        best.cooler.id,
+                        best.case.id,
+                    )
+
                     alts = []
                     for cand in candidates:
-                        cand_key = (cand.cpu.id, cand.gpu.id, cand.motherboard.id, cand.ram.id, cand.storage.id, cand.psu.id, cand.cooler.id, cand.case.id)
+                        cand_key = (
+                            cand.cpu.id,
+                            cand.gpu.id,
+                            cand.motherboard.id,
+                            cand.ram.id,
+                            cand.storage.id,
+                            cand.psu.id,
+                            cand.cooler.id,
+                            cand.case.id,
+                        )
                         if cand_key == chosen_key:
                             continue
+
+                        # extract per-game FPS for the resolution the user selected
+                        fps_summary = {}
+                        try:
+                            for g in ("Cyberpunk 2077", "CS2", "Fortnite"):
+                                entry = cand.fps_estimates.get(g, {})
+                                res_entry = entry.get(resolution, {}) if isinstance(entry, dict) else {}
+                                fps_summary[g] = {
+                                    'overall': res_entry.get('estimated_fps') or
+                                               res_entry.get('estimated', None),
+                                    'cpu': res_entry.get('cpu_fps'),
+                                    'gpu': res_entry.get('gpu_fps'),
+                                }
+                        except Exception:
+                            fps_summary = {}
+
                         alts.append({
-                            'cpu': cand.cpu.id, 'gpu': cand.gpu.id, 'motherboard': cand.motherboard.id,
-                            'ram': cand.ram.id, 'storage': cand.storage.id, 'psu': cand.psu.id,
-                            'cooler': cand.cooler.id, 'case': cand.case.id,
-                            'price': float(cand.total_price), 'score': float(cand.total_score)
+                            'cpu': cand.cpu.id,
+                            'gpu': cand.gpu.id,
+                            'motherboard': cand.motherboard.id,
+                            'ram': cand.ram.id,
+                            'storage': cand.storage.id,
+                            'psu': cand.psu.id,
+                            'cooler': cand.cooler.id,
+                            'case': cand.case.id,
+                            'price': float(cand.total_price),
+                            'score': float(cand.total_score),
+                            'bottleneck_type': getattr(cand, 'bottleneck_type', None),
+                            'bottleneck_pct': getattr(cand, 'bottleneck_pct', None),
+                            'fps': fps_summary,
                         })
+
                         if len(alts) >= 10:
                             break
+
                     request.session['preview_alternatives'] = alts
                 except Exception:
                     # do not fail the API if alternatives collection fails
@@ -306,6 +354,9 @@ def alternatives(request):
                 'case': get_object_or_404(Case, pk=a['case']),
                 'price': a.get('price'),
                 'score': a.get('score'),
+                'bottleneck_type': a.get('bottleneck_type'),
+                'bottleneck_pct': a.get('bottleneck_pct'),
+                'fps': a.get('fps', {}),
             })
         except Exception:
             # skip alternatives that reference missing components
@@ -344,6 +395,430 @@ def select_alternative(request):
     request.session['preview_build'] = preview
     messages.success(request, "Preview replaced with selected alternative.")
     return redirect('build_preview')
+
+
+def upgrade_calculator(request):
+    """Upgrade calculator: given a preview or saved build and a budget, find
+    incremental upgrades that improve component benchmarks while remaining
+    compatible and within the provided budget.
+
+    This implements a greedy single-pass selection: it scores candidate
+    upgrades by (score_delta / price_delta) and picks the best ones until
+    budget is exhausted. It prefers to keep the original case and attempts
+    to maintain compatibility for motherboard when possible.
+    """
+
+    # This upgrade calculator takes a user-specified build (all components must be selected)
+    # Provide component querysets for the dropdowns on GET and validate the submitted IDs on POST.
+    cpus_qs = CPU.objects.all()
+    gpus_qs = GPU.objects.all()
+    mobos_qs = Motherboard.objects.all()
+    rams_qs = RAM.objects.all()
+    storages_qs = Storage.objects.all()
+    psus_qs = PSU.objects.all()
+    coolers_qs = CPUCooler.objects.all()
+    cases_qs = Case.objects.all()
+
+    # default mode (can be overridden by a form field)
+    mode = 'gaming'
+
+    if request.method == 'POST':
+        # If the user clicked "Use this build" for a proposed upgrade, apply it.
+        if request.POST.get('proposed_index') is not None:
+            try:
+                idx = int(request.POST.get('proposed_index'))
+                proposals = request.session.get('last_upgrade_proposals', []) or []
+                if idx < 0 or idx >= len(proposals):
+                    messages.error(request, 'Invalid proposed build selected.')
+                    return redirect('upgrade_calculator')
+                sel = proposals[idx]
+                # Build preview structure from proposal (preserve user's budget/currency/mode/resolution)
+                prev = request.session.get('preview_build', {})
+                preview = {
+                    'cpu': sel.get('cpu'), 'gpu': sel.get('gpu'), 'motherboard': sel.get('motherboard'),
+                    'ram': sel.get('ram'), 'storage': sel.get('storage'), 'psu': sel.get('psu'),
+                    'cooler': sel.get('cooler'), 'case': sel.get('case'),
+                    'price': None, 'score': None,
+                    'budget': prev.get('budget'), 'currency': prev.get('currency', 'USD'),
+                    'mode': prev.get('mode', 'gaming'), 'resolution': prev.get('resolution', '1440p'),
+                    'budget_usd': prev.get('budget_usd'),
+                }
+                request.session['preview_build'] = preview
+                messages.success(request, 'Preview replaced with selected upgrade build.')
+                return redirect('build_preview')
+            except Exception:
+                messages.error(request, 'Could not apply selected proposed build.')
+                return redirect('upgrade_calculator')
+        # parse upgrade budget
+        try:
+            budget = float(request.POST.get('upgrade_budget') or 0)
+        except Exception:
+            budget = 0.0
+
+        # Require the user to have selected every component in the form (separate from preview flow)
+        required_parts = ['cpu', 'gpu', 'motherboard', 'ram', 'storage', 'psu', 'cooler', 'case']
+        missing = [p for p in required_parts if not request.POST.get(p)]
+        if missing:
+            messages.error(request, 'Please select every component (CPU, GPU, motherboard, RAM, storage, PSU, cooler and case) before running the upgrade calculator.')
+            return render(request, 'calculator/upgrade_calculator.html', {
+                'cpus': cpus_qs, 'gpus': gpus_qs, 'mobos': mobos_qs, 'rams': rams_qs,
+                'storages': storages_qs, 'psus': psus_qs, 'coolers': coolers_qs, 'cases': cases_qs,
+            })
+
+        # Load the submitted components from the POST payload
+        try:
+            cur_cpu = get_object_or_404(CPU, pk=int(request.POST.get('cpu')))
+            cur_gpu = get_object_or_404(GPU, pk=int(request.POST.get('gpu')))
+            cur_mobo = get_object_or_404(Motherboard, pk=int(request.POST.get('motherboard')))
+            cur_ram = get_object_or_404(RAM, pk=int(request.POST.get('ram')))
+            cur_storage = get_object_or_404(Storage, pk=int(request.POST.get('storage')))
+            cur_psu = get_object_or_404(PSU, pk=int(request.POST.get('psu')))
+            cur_cooler = get_object_or_404(CPUCooler, pk=int(request.POST.get('cooler')))
+            cur_case = get_object_or_404(Case, pk=int(request.POST.get('case')))
+        except Exception:
+            messages.error(request, 'One or more selected components could not be found. Please correct your selections.')
+            return render(request, 'calculator/upgrade_calculator.html', {
+                'cpus': cpus_qs, 'gpus': gpus_qs, 'mobos': mobos_qs, 'rams': rams_qs,
+                'storages': storages_qs, 'psus': psus_qs, 'coolers': coolers_qs, 'cases': cases_qs,
+            })
+
+        mode = request.POST.get('mode', 'gaming') or 'gaming'
+
+        # Prepare baseline totals for price comparisons
+        def price_of(obj):
+            try:
+                return float(getattr(obj, 'price', 0) or 0)
+            except Exception:
+                return 0.0
+
+        base_total = (
+            price_of(cur_cpu) + price_of(cur_gpu) + price_of(cur_mobo) + price_of(cur_ram)
+            + price_of(cur_storage) + price_of(cur_psu) + price_of(cur_cooler) + price_of(cur_case)
+        )
+
+        # helpers to compute score
+        def part_score(obj, part_type):
+            try:
+                if part_type == 'cpu':
+                    return cpu_score(obj, mode)
+                if part_type == 'gpu':
+                    return gpu_score(obj, mode)
+                if part_type == 'ram':
+                    return ram_score(obj)
+            except Exception:
+                return 0.0
+            return 0.0
+
+        cur_cpu_score = part_score(cur_cpu, 'cpu')
+        cur_gpu_score = part_score(cur_gpu, 'gpu')
+
+        # We'll collect best proposals keyed to cpu id and gpu id to ensure uniqueness
+        cpu_best = {}
+        gpu_best = {}
+
+        # Gather CPU proposals (CPU alone or CPU+motherboard(+ram) if required)
+        for cand in CPU.objects.filter(price__isnull=False).order_by('price'):
+            try:
+                cand_s = part_score(cand, 'cpu')
+                if cand_s <= cur_cpu_score:
+                    continue
+
+                # Start with keeping current mobo/ram
+                total = base_total - price_of(cur_cpu) + price_of(cand)
+                swapped_mobo = None
+                swapped_ram = None
+
+                if not compatible_cpu_mobo(cand, cur_mobo):
+                    # find cheapest compatible motherboard
+                    cheapest_mobo = None
+                    for m in Motherboard.objects.filter(price__isnull=False).order_by('price'):
+                        try:
+                            if compatible_cpu_mobo(cand, m):
+                                cheapest_mobo = m
+                                break
+                        except Exception:
+                            continue
+                    if not cheapest_mobo:
+                        continue
+                    total += price_of(cheapest_mobo) - price_of(cur_mobo)
+                    swapped_mobo = cheapest_mobo
+                    # ensure RAM compat: if current RAM incompatible with new mobo, find cheapest compatible ram
+                    if not compatible_mobo_ram_cached(cheapest_mobo, cur_ram):
+                        cheapest_ram = None
+                        for r in RAM.objects.filter(price__isnull=False).order_by('price'):
+                            try:
+                                if compatible_mobo_ram_cached(cheapest_mobo, r):
+                                    cheapest_ram = r
+                                    break
+                            except Exception:
+                                continue
+                        if not cheapest_ram:
+                            # cannot find RAM for this mobo -> skip
+                            continue
+                        total += price_of(cheapest_ram) - price_of(cur_ram)
+                        swapped_ram = cheapest_ram
+
+                    # Check PSU: CPU upgrade may require a stronger PSU when paired with current GPU
+                    swapped_psu = None
+                    try:
+                        if not psu_ok_cached(cur_psu, cand, cur_gpu):
+                            # find cheapest PSU that satisfies requirements for cand + current GPU
+                            for p in PSU.objects.filter(price__isnull=False).order_by('price'):
+                                try:
+                                    if psu_ok_cached(p, cand, cur_gpu):
+                                        swapped_psu = p
+                                        break
+                                except Exception:
+                                    continue
+                            if not swapped_psu:
+                                # no PSU available to support this CPU + current GPU
+                                continue
+                            total += price_of(swapped_psu) - price_of(cur_psu)
+                    except Exception:
+                        # if psu check fails, be conservative and skip this candidate
+                        continue
+
+                price_delta = total - base_total
+                if price_delta <= 0 or price_delta > budget:
+                    continue
+
+                percent = ((cand_s - cur_cpu_score) / cur_cpu_score) * 100.0 if cur_cpu_score > 0 else 0.0
+                # store only best proposal per cpu id (highest percent)
+                prev = cpu_best.get(cand.id)
+                proposal = {
+                    'slot': 'cpu',
+                    'cpu': cand,
+                    'motherboard': swapped_mobo or cur_mobo,
+                    'ram': swapped_ram or cur_ram,
+                    'gpu': cur_gpu, 'storage': cur_storage, 'psu': swapped_psu or cur_psu, 'cooler': cur_cooler, 'case': cur_case,
+                    'percent': percent,
+                    'total_price': total,
+                    'price_delta': price_delta,
+                }
+                if not prev or proposal['percent'] > prev['percent']:
+                    cpu_best[cand.id] = proposal
+            except Exception:
+                continue
+
+        # Gather GPU proposals (GPU alone)
+        for cand in GPU.objects.filter(price__isnull=False).order_by('price'):
+            try:
+                cand_s = part_score(cand, 'gpu')
+                # Exclude Blackwell GPUs in gaming mode per user preference
+                if mode == 'gaming':
+                    try:
+                        name_hint = " ".join(filter(None, [getattr(cand, 'generation', ''), getattr(cand, 'model', ''), getattr(cand, 'gpu_name', '')]))
+                        if 'blackwell' in name_hint.lower():
+                            continue
+                    except Exception:
+                        pass
+                if cand_s <= cur_gpu_score:
+                    continue
+                total = base_total - price_of(cur_gpu) + price_of(cand)
+
+                # Check PSU: GPU upgrade may require a stronger PSU for current CPU
+                swapped_psu = None
+                try:
+                    if not psu_ok_cached(cur_psu, cur_cpu, cand):
+                        for p in PSU.objects.filter(price__isnull=False).order_by('price'):
+                            try:
+                                if psu_ok_cached(p, cur_cpu, cand):
+                                    swapped_psu = p
+                                    break
+                            except Exception:
+                                continue
+                        if not swapped_psu:
+                            # no PSU can support this GPU with current CPU
+                            continue
+                        total += price_of(swapped_psu) - price_of(cur_psu)
+                except Exception:
+                    continue
+
+                price_delta = total - base_total
+                if price_delta <= 0 or price_delta > budget:
+                    continue
+                percent = ((cand_s - cur_gpu_score) / cur_gpu_score) * 100.0 if cur_gpu_score > 0 else 0.0
+                prev = gpu_best.get(cand.id)
+                proposal = {
+                    'slot': 'gpu',
+                    'gpu': cand,
+                    'cpu': cur_cpu, 'motherboard': cur_mobo, 'ram': cur_ram,
+                    'storage': cur_storage, 'psu': swapped_psu or cur_psu, 'cooler': cur_cooler, 'case': cur_case,
+                    'percent': percent,
+                    'total_price': total,
+                    'price_delta': price_delta,
+                }
+                if not prev or proposal['percent'] > prev['percent']:
+                    gpu_best[cand.id] = proposal
+            except Exception:
+                continue
+
+        # Build combined CPU+GPU proposals from the best cpu and gpu candidates (limit to top 10 of each)
+        cpu_list = sorted(cpu_best.values(), key=lambda x: -x['percent'])[:10]
+        gpu_list = sorted(gpu_best.values(), key=lambda x: -x['percent'])[:10]
+        combo_best = {}
+        for cprop in cpu_list:
+            for gprop in gpu_list:
+                try:
+                    total = base_total
+                    # replace cpu (+mobo/ram if present in cprop)
+                    total = total - price_of(cur_cpu) - price_of(cur_mobo) - price_of(cur_ram)
+                    total += price_of(cprop['cpu']) + price_of(cprop['motherboard']) + price_of(cprop['ram'])
+                    # replace gpu
+                    total = total - price_of(cur_gpu) + price_of(gprop['gpu'])
+
+                    # Check PSU for combined CPU+GPU proposal
+                    swapped_psu = None
+                    try:
+                        if not psu_ok_cached(cur_psu, cprop['cpu'], gprop['gpu']):
+                            for p in PSU.objects.filter(price__isnull=False).order_by('price'):
+                                try:
+                                    if psu_ok_cached(p, cprop['cpu'], gprop['gpu']):
+                                        swapped_psu = p
+                                        break
+                                except Exception:
+                                    continue
+                            if not swapped_psu:
+                                # cannot source a PSU to support this combined upgrade
+                                continue
+                            total += price_of(swapped_psu) - price_of(cur_psu)
+                    except Exception:
+                        continue
+
+                    price_delta = total - base_total
+                    if price_delta <= 0 or price_delta > budget:
+                        continue
+                    # combined percent: average of cpu and gpu percent (simple heuristic)
+                    percent = (cprop['percent'] + gprop['percent']) / 2.0
+                    key = (cprop['cpu'].id, gprop['gpu'].id)
+                    proposal = {
+                        'slot': 'cpu_gpu',
+                        'cpu': cprop['cpu'], 'motherboard': cprop['motherboard'], 'ram': cprop['ram'],
+                        'gpu': gprop['gpu'], 'storage': cur_storage, 'psu': swapped_psu or cur_psu, 'cooler': cur_cooler, 'case': cur_case,
+                        'percent': percent,
+                        'total_price': total,
+                        'price_delta': price_delta,
+                    }
+                    combo_best[key] = proposal
+                except Exception:
+                    continue
+
+        # Assemble final proposals in the requested order:
+        # 1) up to 2 combined CPU+GPU proposals (best percent),
+        # 2) up to 2 GPU-only proposals (best percent, excluding GPUs already used),
+        # 3) up to 2 CPU-only proposals (best percent, excluding CPUs already used).
+        final = []
+        used_cpus = set()
+        used_gpus = set()
+
+        combo_list = sorted(combo_best.values(), key=lambda x: -x['percent'])
+        cpu_list_sorted = sorted(cpu_best.values(), key=lambda x: -x['percent'])
+        gpu_list_sorted = sorted(gpu_best.values(), key=lambda x: -x['percent'])
+
+        # Add up to 2 combined cpu+gpu proposals
+        for item in combo_list:
+            if len(final) >= 2:
+                break
+            final.append(item)
+            used_cpus.add(getattr(item.get('cpu'), 'id', None))
+            used_gpus.add(getattr(item.get('gpu'), 'id', None))
+
+        # Add up to 2 GPU-only proposals excluding GPUs already included
+        for item in gpu_list_sorted:
+            if len([p for p in final if p.get('slot') == 'cpu_gpu']) >= 0:  # no-op but keeps grouping clear
+                pass
+            if len([p for p in final if p.get('slot') == 'gpu']) >= 2:
+                break
+            gid = getattr(item.get('gpu'), 'id', None)
+            if gid in used_gpus:
+                continue
+            final.append(item)
+            used_gpus.add(gid)
+
+        # Add up to 2 CPU-only proposals excluding CPUs already included
+        for item in cpu_list_sorted:
+            if len([p for p in final if p.get('slot') == 'cpu']) >= 2:
+                break
+            cid = getattr(item.get('cpu'), 'id', None)
+            if cid in used_cpus:
+                continue
+            final.append(item)
+            used_cpus.add(cid)
+
+        proposals = final
+
+        # Save serializable proposals so the user can "use" a proposed build in a follow-up POST
+        serial = []
+        for p in proposals:
+            serial.append({
+                'slot': p.get('slot'),
+                'cpu': getattr(p.get('cpu'), 'id', None),
+                'gpu': getattr(p.get('gpu'), 'id', None),
+                'motherboard': getattr(p.get('motherboard'), 'id', None),
+                'ram': getattr(p.get('ram'), 'id', None),
+                'storage': getattr(p.get('storage'), 'id', None),
+                'psu': getattr(p.get('psu'), 'id', None),
+                'cooler': getattr(p.get('cooler'), 'id', None),
+                'case': getattr(p.get('case'), 'id', None),
+                'percent': float(p.get('percent') or 0.0),
+                'total_price': float(p.get('total_price') or 0.0),
+                'price_delta': float(p.get('price_delta') or 0.0),
+            })
+        request.session['last_upgrade_proposals'] = serial
+
+        # convert proposals into structure the template expects
+        proposed_builds = []
+        for p in proposals:
+            # Build human-friendly display strings to avoid showing object reprs in templates
+            def disp(obj):
+                try:
+                    if obj is None:
+                        return "<None>"
+                    return getattr(obj, 'name', None) or getattr(obj, 'gpu_name', None) or getattr(obj, 'model', None) or str(obj)
+                except Exception:
+                    return str(obj)
+
+            display = {
+                'cpu': disp(p.get('cpu')),
+                'gpu': disp(p.get('gpu')),
+                'motherboard': disp(p.get('motherboard')),
+                'ram': disp(p.get('ram')),
+                'storage': disp(p.get('storage')),
+                'psu': disp(p.get('psu')),
+                'cooler': disp(p.get('cooler')),
+                'case': disp(p.get('case')),
+            }
+
+            proposed_builds.append({
+                'slot': p.get('slot'),
+                'build': p,
+                'display': display,
+                'percent': p.get('percent'),
+                'total_price': p.get('total_price'),
+                'price_delta': p.get('price_delta'),
+            })
+
+        remaining = budget
+
+        return render(request, 'calculator/upgrade_calculator.html', {
+            'cpus': cpus_qs, 'gpus': gpus_qs, 'mobos': mobos_qs, 'rams': rams_qs,
+            'storages': storages_qs, 'psus': psus_qs, 'coolers': coolers_qs, 'cases': cases_qs,
+            'current': {
+                'cpu': cur_cpu, 'gpu': cur_gpu, 'motherboard': cur_mobo, 'ram': cur_ram,
+                'storage': cur_storage, 'psu': cur_psu, 'cooler': cur_cooler, 'case': cur_case,
+            },
+            'proposed_builds': proposed_builds,
+            'budget': budget,
+            'remaining': remaining,
+            'mode': mode,
+        })
+
+    # GET: show blank form (user will select every component)
+    return render(request, 'calculator/upgrade_calculator.html', {
+        'cpus': cpus_qs, 'gpus': gpus_qs, 'mobos': mobos_qs, 'rams': rams_qs,
+        'storages': storages_qs, 'psus': psus_qs, 'coolers': coolers_qs, 'cases': cases_qs,
+        'mode': mode,
+    })
 
 def preview_edit(request):
     """Unified edit page for the session preview build (GET shows form, POST applies changes).

@@ -294,16 +294,25 @@ def compatible_case_cached(mobo, case):
         mobo_ff = norm(getattr(mobo, "form_factor", None))
         case_ff = norm(getattr(case, "case_type", None))
         print(f"[DEBUG] Checking case compatibility: Mobo={getattr(mobo,'name',mobo.id)}({mobo_ff}) vs Case={getattr(case,'name',case.id)}({case_ff})")
+        # Mirror the client-side rules used by the advanced editor.
+        # If either side explicitly contains the other, accept.
         if mobo_ff in case_ff or case_ff in mobo_ff:
             case_cache[key] = True
-        elif "atx" in mobo_ff and ("tower" in case_ff or "mid" in case_ff or "full" in case_ff):
-            case_cache[key] = True
-        elif "microatx" in mobo_ff and ("atx" in case_ff or "tower" in case_ff or "mini" in case_ff):
-            case_cache[key] = True
-        elif "mini" in mobo_ff and ("microatx" in case_ff or "atx" in case_ff or "tower" in case_ff or "mini" in case_ff):
-            case_cache[key] = True
         else:
-            case_cache[key] = False
+            # If motherboard is ATX, reject any case that explicitly mentions micro/mini/itx
+            if "atx" in mobo_ff and ("micro" in case_ff or "mini" in case_ff or "itx" in case_ff):
+                case_cache[key] = False
+            # Accept large/tower/mid cases for ATX boards
+            elif "atx" in mobo_ff and ("tower" in case_ff or "mid" in case_ff or "full" in case_ff):
+                case_cache[key] = True
+            # Micro-ATX mobos are fine in ATX/tower/mini cases (avoid excluding reasonable matches)
+            elif "microatx" in mobo_ff and ("atx" in case_ff or "tower" in case_ff or "mini" in case_ff):
+                case_cache[key] = True
+            # Mini boards fit in micro/atx/tower/mini cases
+            elif "mini" in mobo_ff and ("microatx" in case_ff or "atx" in case_ff or "tower" in case_ff or "mini" in case_ff):
+                case_cache[key] = True
+            else:
+                case_cache[key] = False
     return case_cache[key]
 
 def compatible_storage_cached(mobo, storage):

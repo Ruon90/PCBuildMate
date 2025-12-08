@@ -11,18 +11,34 @@
     <div class="col-md-6 col-lg-4 mb-3">
       <div class="card h-100">
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Alt #{{ forloop.counter }} — Score: {{ alt.score|default:"N/A" }}</h5>
-          <p class="mb-1"><strong>Price:</strong> {{ alt.price|default:"N/A" }}</p>
+          <div class="mb-2">
+            <h5 class="card-title mb-0">Alt #{{ forloop.counter }} — Score: {{ alt.score|default:"N/A" }}</h5>
+            <p class="mb-0 small text-muted">Price: {{ alt.price|default:"N/A" }}</p>
+          </div>
+          {% if alt.bottleneck_type %}
+          <p class="mb-1"><strong>Bottleneck:</strong> {{ alt.bottleneck_type }} — {{ alt.bottleneck_pct }}%</p>
+          {% endif %}
           <ul class="list-unstyled small mb-3">
-            <li><strong>CPU:</strong> {{ alt.cpu.name }}</li>
-            <li><strong>GPU:</strong> {{ alt.gpu.gpu_name }}</li>
+            <li><strong>CPU:</strong> {{ alt.cpu.name }} — UB {{ alt.cpu.userbenchmark_score|default:'N/A' }} / Blender {{ alt.cpu.blender_score|default:'N/A' }}</li>
+            <li><strong>GPU:</strong> {{ alt.gpu.gpu_name }} — UB {{ alt.gpu.userbenchmark_score|default:'N/A' }} / Blender {{ alt.gpu.blender_score|default:'N/A' }}</li>
             <li><strong>Motherboard:</strong> {{ alt.motherboard.name }}</li>
-            <li><strong>RAM:</strong> {{ alt.ram.name }}</li>
+            <li><strong>RAM:</strong> {{ alt.ram.name }} — Bench {{ alt.ram.benchmark|default:'N/A' }}</li>
             <li><strong>Storage:</strong> {{ alt.storage.name }}</li>
             <li><strong>PSU:</strong> {{ alt.psu.name }}</li>
             <li><strong>Cooler:</strong> {{ alt.cooler.name }}</li>
             <li><strong>Case:</strong> {{ alt.case.name }}</li>
           </ul>
+          {% if alt.fps %}
+          <div class="mb-2 small text-muted">
+            <strong>Est. FPS ({{ request.session.preview_build.resolution|default:'1440p' }})</strong>
+            <ul class="mb-0">
+              {% for game, vals in alt.fps.items %}
+              <li>{{ game }}: {% if vals.overall %}{{ vals.overall }} FPS{% else %}N/A{% endif %}
+                <small class="text-muted">(CPU {{ vals.cpu|default:'-' }} / GPU {{ vals.gpu|default:'-' }})</small></li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
 
           <form method="post" action="{% url 'select_alternative' %}" class="mt-auto">
             {% csrf_token %}
@@ -36,4 +52,7 @@
     {% endfor %}
   </div>
 </div>
+<style>
+.placeholder-thumbnail { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; }
+</style>
 {% endblock %}

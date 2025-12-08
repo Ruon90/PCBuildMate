@@ -15,6 +15,8 @@ urlpatterns = [
     # Alternatives for the last calculated build
     path("build/preview/alternatives/", views.alternatives, name="alternatives"),
     path("build/preview/alternatives/select/", views.select_alternative, name="select_alternative"),
+    # Upgrade calculator for an existing preview or saved build
+    path("build/upgrade/", views.upgrade_calculator, name="upgrade_calculator"),
 
     # Save build (requires login)
     path("build/save/", views.save_build, name="save_build"),
