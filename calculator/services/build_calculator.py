@@ -235,14 +235,30 @@ def compatible_case(mobo, case) -> bool:
     case_ff = norm(getattr(case, "case_type", None))
     if not mobo_ff or not case_ff:
         return False
+    # Accept obvious substring/exact matches first, but guard against 'microatx'
+    # matching an ATX motherboard because 'microatx' contains 'atx' as a substring.
     if mobo_ff in case_ff or case_ff in mobo_ff:
+        if "atx" in mobo_ff and ("micro" in case_ff or "mini" in case_ff):
+            # Treat 'micro'/'mini' mentions as incompatible with ATX mobos
+            return False
         return True
-    if "atx" in mobo_ff and ("tower" in case_ff or "mid" in case_ff or "full" in case_ff):
+
+    # Strict rules:
+    # - Mini-ITX mobos fit anywhere
+    # - Micro-ATX mobos fit micro or ATX cases, but exclude mini/itx-only cases
+    # - ATX mobos only fit cases that explicitly mention 'atx' and do NOT mention 'micro' or 'mini'
+    if "mini" in mobo_ff or "itx" in mobo_ff:
         return True
-    if "microatx" in mobo_ff and ("atx" in case_ff or "tower" in case_ff or "mini" in case_ff):
-        return True
-    if "mini" in mobo_ff and ("microatx" in case_ff or "atx" in case_ff or "tower" in case_ff or "mini" in case_ff):
-        return True
+    if "micro" in mobo_ff:
+        # require case to mention micro or atx, and not be a mini/itx-only case
+        if ("micro" in case_ff) or ("atx" in case_ff):
+            if ("mini" in case_ff) or ("itx" in case_ff):
+                return False
+            return True
+        return False
+    if "atx" in mobo_ff:
+        # require explicit 'atx' and exclude micro/mini
+        return ("atx" in case_ff) and ("micro" not in case_ff) and ("mini" not in case_ff)
     return False
 
 def psu_ok(psu, cpu, gpu) -> bool:
@@ -294,23 +310,36 @@ def compatible_case_cached(mobo, case):
         mobo_ff = norm(getattr(mobo, "form_factor", None))
         case_ff = norm(getattr(case, "case_type", None))
         print(f"[DEBUG] Checking case compatibility: Mobo={getattr(mobo,'name',mobo.id)}({mobo_ff}) vs Case={getattr(case,'name',case.id)}({case_ff})")
-        # Mirror the client-side rules used by the advanced editor.
-        # If either side explicitly contains the other, accept.
+        # Mirror the stricter build-time rules:
+        # - ATX motherboards only match cases that explicitly advertise 'atx' and do NOT
+        #   mention 'micro' or 'mini'.
+        # - Micro-ATX motherboards may fit Micro-ATX or ATX cases (do not accept mini/itx-only cases).
+        # - Mini-ITX motherboards fit anywhere.
         if mobo_ff in case_ff or case_ff in mobo_ff:
-            case_cache[key] = True
-        else:
-            # If motherboard is ATX, reject any case that explicitly mentions micro/mini/itx
-            if "atx" in mobo_ff and ("micro" in case_ff or "mini" in case_ff or "itx" in case_ff):
+            # Guard against 'microatx' containing 'atx' and falsely matching ATX mobos
+            if "atx" in mobo_ff and ("micro" in case_ff or "mini" in case_ff):
                 case_cache[key] = False
-            # Accept large/tower/mid cases for ATX boards
-            elif "atx" in mobo_ff and ("tower" in case_ff or "mid" in case_ff or "full" in case_ff):
+            else:
                 case_cache[key] = True
-            # Micro-ATX mobos are fine in ATX/tower/mini cases (avoid excluding reasonable matches)
-            elif "microatx" in mobo_ff and ("atx" in case_ff or "tower" in case_ff or "mini" in case_ff):
+        else:
+            if "mini" in mobo_ff or "itx" in mobo_ff:
+                # mini-itx fits in any case
                 case_cache[key] = True
-            # Mini boards fit in micro/atx/tower/mini cases
-            elif "mini" in mobo_ff and ("microatx" in case_ff or "atx" in case_ff or "tower" in case_ff or "mini" in case_ff):
-                case_cache[key] = True
+            elif "micro" in mobo_ff:
+                # micro-atx: accept case if it mentions micro or atx, but reject mini/itx-only
+                if ("micro" in case_ff) or ("atx" in case_ff):
+                    if ("mini" in case_ff) or ("itx" in case_ff):
+                        case_cache[key] = False
+                    else:
+                        case_cache[key] = True
+                else:
+                    case_cache[key] = False
+            elif "atx" in mobo_ff:
+                # atx: only accept cases that explicitly mention 'atx' and do not mention 'micro' or 'mini'
+                if ("atx" in case_ff) and ("micro" not in case_ff) and ("mini" not in case_ff):
+                    case_cache[key] = True
+                else:
+                    case_cache[key] = False
             else:
                 case_cache[key] = False
     return case_cache[key]
@@ -550,9 +579,76 @@ def find_best_build(
 
     # Precompute cheapest compatible case/storage per mobo
     sorted_cases = sorted(cases, key=lambda c: float(c.price or 0))
+    # Strict, local case compatibility used for prefiltering during build generation.
+    # We implement the stricter rules here (without changing the global compatible_case
+    # helpers) to keep this optimization self-contained.
+    def _mobo_case_matches_strict(mobo, case):
+        mobo_ff = norm(getattr(mobo, "form_factor", ""))
+        case_ff = norm(getattr(case, "case_type", ""))
+        if not mobo_ff or not case_ff:
+            return False
+        # direct substring matches accepted, but guard against 'microatx' containing 'atx'
+        if mobo_ff in case_ff or case_ff in mobo_ff:
+            if "atx" in mobo_ff and ("micro" in case_ff or "mini" in case_ff):
+                return False
+            return True
+        # mini-itx fits anywhere
+        if "mini" in mobo_ff or "itx" in mobo_ff:
+            return True
+        # micro-atx fits in micro-atx and ATX/tower cases (do not accept mini-only cases)
+        if "micro" in mobo_ff:
+            return ("micro" in case_ff) or ("atx" in case_ff) or ("tower" in case_ff)
+        # atx only fits full/mid/tower/atx (explicitly exclude micro/mini)
+        if "atx" in mobo_ff:
+            if ("micro" in case_ff) or ("mini" in case_ff):
+                return False
+            return ("atx" in case_ff) or ("tower" in case_ff) or ("mid" in case_ff) or ("full" in case_ff)
+        return False
     for m in mobos:
-        cases_for_mobo[m.id] = next((c for c in sorted_cases if compatible_case_cached(m, c)), None)
+        # Choose the cheapest case that matches the stricter build-time rules.
+        cases_for_mobo[m.id] = next((c for c in sorted_cases if _mobo_case_matches_strict(m, c)), None)
         storages_for_mobo[m.id] = next((s for s in sorted_storages if compatible_storage_cached(m, s)), None)
+
+    # Prefilter mobos_for_cpu: drop any motherboard for which we couldn't find a
+    # compatible case according to the stricter rules above. This avoids expensive
+    # downstream loops that would otherwise try to use mobos that have no usable case.
+    pruned = 0
+    for cpu_id, mlist in list(mobos_for_cpu.items()):
+        filtered = [m for m in mlist if cases_for_mobo.get(m.id) is not None]
+        pruned += (len(mlist) - len(filtered))
+        mobos_for_cpu[cpu_id] = filtered
+    if pruned:
+        print(f"[DEBUG] Prefiltered mobos_for_cpu: removed {pruned} mobos with no strict-case match")
+
+    # Recompute socket-based RAM allowances now that mobos_for_cpu is pruned
+    socket_max_freq = {}
+    for m in mobos:
+        sk = norm(getattr(m, "socket", None))
+        try:
+            val = float(getattr(m, "ddr_max_speed", 0) or 0)
+        except Exception:
+            val = 0
+        socket_max_freq[sk] = max(socket_max_freq.get(sk, 0), val)
+
+    allowed_rams_for_cpu = {}
+    for cpu in sorted_cpus:
+        mlist = mobos_for_cpu.get(cpu.id, [])
+        if not mlist:
+            allowed_rams_for_cpu[cpu.id] = []
+            continue
+        cpu_socket = norm(getattr(cpu, "socket", None))
+        max_for_socket = socket_max_freq.get(cpu_socket)
+        if max_for_socket and max_for_socket > 0:
+            allowed = [
+                r for r in sorted_rams
+                if (getattr(r, 'frequency_mhz', 0) or 0) <= max_for_socket
+                and any(compatible_mobo_ram_cached(m, r) for m in mlist)
+            ]
+        else:
+            allowed = [r for r in sorted_rams if any(compatible_mobo_ram_cached(m, r) for m in mlist)]
+        allowed_rams_for_cpu[cpu.id] = allowed
+        if not allowed:
+            print(f"[DEBUG] CPU {display_name(cpu)} has no RAM compatible with its pruned mobos (checked {len(mlist)} mobos).")
 
     # Nested generator with access to local state
     def generate_candidates(ram_list, cpu_list=None, gpu_list=None, per_cpu_limit=None, mobos_map=None):

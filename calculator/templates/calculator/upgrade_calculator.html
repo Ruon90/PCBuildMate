@@ -2,17 +2,18 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-4">
-  <h2>Upgrade calculator</h2>
-  <p class="text-muted">Provide the exact build you want to upgrade (all components required) and enter a budget. Results are ranked by percentage performance gain. RAM and motherboard-only upgrades are not suggested; CPU upgrades may include motherboard and RAM when required. GPU upgrades are shown separately. Combined CPU+GPU proposals are included when budget allows.</p>
+<div class="card">
+  <div class="container mt-4">
+    <h2>Upgrade calculator</h2>
+    <p class="text-muted">Provide the exact build you want to upgrade (all components required) and enter a budget. Results are ranked by percentage performance gain. RAM and motherboard-only upgrades are not suggested; CPU upgrades may include motherboard and RAM when required. GPU upgrades are shown separately. Combined CPU+GPU proposals are included when budget allows.</p>
 
-  <form method="post" class="mb-4">
-    {% csrf_token %}
-    <div class="row g-3">
-      <div class="col-md-6">
-        <label class="form-label">CPU</label>
-        <select name="cpu" class="form-select searchable" required>
-          <option value="">-- select CPU --</option>
+    <form method="post" class="mb-4">
+      {% csrf_token %}
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">CPU</label>
+          <select name="cpu" class="form-select searchable" required>
+            <option value="">-- select CPU --</option>
           {% for c in cpus %}
           <option value="{{ c.id }}" {% if request.POST.cpu == c.id|stringformat:'s' %}selected{% endif %}>{% if c.name %}{{ c.name }}{% else %}{{ c }}{% endif %}</option>
           {% endfor %}
@@ -84,7 +85,7 @@
         </select>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-3">
         <label class="form-label">Mode</label>
         <select name="mode" class="form-select">
           <option value="gaming" {% if request.POST.mode == 'gaming' %}selected{% endif %}>Gaming</option>
@@ -92,12 +93,14 @@
         </select>
       </div>
 
-      <div class="col-md-4">
+      {# Resolution toggles moved to each proposal card above the FPS area #}
+
+      <div class="col-md-3">
         <label class="form-label">Budget (USD)</label>
         <input type="number" step="1" min="0" name="upgrade_budget" class="form-control" value="{{ budget|default_if_none:'' }}" required>
       </div>
 
-      <div class="col-md-4 align-self-end">
+      <div class="col-md-3 align-self-end">
         <div class="mt-2">
           <button class="btn btn-primary">Find upgrades</button>
         </div>
@@ -125,13 +128,15 @@
     </div>
     <div class="col-md-6">
       <ul class="list-group">
-        <li class="list-group-item"><strong>Storage:</strong> {{ current.storage }}</li>
-        <li class="list-group-item"><strong>PSU:</strong> {{ current.psu }}</li>
-        <li class="list-group-item"><strong>Cooler:</strong> {{ current.cooler }}</li>
-        <li class="list-group-item"><strong>Case:</strong> {{ current.case }}</li>
+        <li class="list-group-item"><strong>Storage:</strong> {{ current.storage.name }}</li>
+        <li class="list-group-item"><strong>PSU:</strong> {{ current.psu.name }}</li>
+        <li class="list-group-item"><strong>Cooler:</strong> {{ current.cooler.name }}</li>
+        <li class="list-group-item"><strong>Case:</strong> {{ current.case.name }}</li>
       </ul>
     </div>
   </div>
+</div>
+</div>
 
   {# Single-slot upgrade list removed: we now show proposed build snapshots which include estimated gain and overall price #}
 
@@ -142,7 +147,7 @@
     <div class="col-md-6 mb-3">
       <div class="card h-100">
         <div class="card-body">
-          <h5 class="card-title d-flex align-items-center">{{ pb.slot|upper }} upgrade build
+          <h5 class="card-title d-flex align-items-center">{% if pb.slot == 'cpu_gpu' %}CPU &amp; GPU{% else %}{{ pb.slot|upper }}{% endif %} upgrade build
             <span class="ms-2">
               {% if pb.build.motherboard.id != current.motherboard.id %}
                 <span class="badge bg-warning text-dark me-1">Mobo swap</span>
@@ -171,8 +176,44 @@
             <li><strong>Storage:</strong> {{ pb.display.storage.name }}</li>
             <li><strong>PSU:</strong> {{ pb.display.psu }}</li>
           </ul>
-          <p class="mt-2"><strong>Estimated gain:</strong> {{ pb.percent|floatformat:2 }}%</p>
-          <p class="mt-1"><strong>Price:</strong> ${{ pb.total_price|floatformat:2 }}</p>
+
+
+          {# Per-card resolution toggles + FPS (hidden for workstation mode) #}
+          {% if pb.show_fps %}
+          <div class="mt-2">
+            <div class="d-flex justify-content-end mb-1">
+              <div class="btn-group btn-group-sm res-toggle-card" role="group" aria-label="resolution toggles">
+                <button type="button" class="btn btn-outline-secondary res-toggle-card-btn {% if resolution == '1080p' %}active{% endif %}" data-res="1080p">1080p</button>
+                <button type="button" class="btn btn-outline-secondary res-toggle-card-btn {% if resolution == '1440p' %}active{% endif %}" data-res="1440p">1440p</button>
+                <button type="button" class="btn btn-outline-secondary res-toggle-card-btn {% if resolution == '4k' %}active{% endif %}" data-res="4k">4k</button>
+              </div>
+            </div>
+            <p class="mt-2"><strong>Estimated gain:</strong> {{ pb.percent|floatformat:2 }}%</p>
+            <strong>Estimated FPS:</strong>
+            <div class="fps-res-container mt-1">
+              {% for entry in pb.fps_res_list %}
+                <div class="fps-block" data-res="{{ entry.res }}" style="display: {% if entry.res == resolution %}block{% else %}none{% endif %};">
+                  <ul class="mb-0 small">
+                    {% for g, vals in entry.games.items %}
+                      <li>{{ g }}: {% if vals.estimated_fps %}{{ vals.estimated_fps }} FPS (CPU: {{ vals.cpu_fps }}, GPU: {{ vals.gpu_fps }}){% else %}N/A{% endif %}</li>
+                    {% endfor %}
+                  </ul>
+                  {% if entry.bottleneck %}
+                    <p class="mt-1"><strong>Bottleneck:</strong> {{ entry.bottleneck.type|default:'unknown' }} ({{ entry.bottleneck.bottleneck|default:0.0 }}%)</p>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+            <p class="mt-1"><strong>Price:</strong> ${{ pb.total_price|floatformat:2 }}</p>
+          </div>
+          {% else %}
+          <div class="mt-2">
+            <p class="mt-2"><strong>Estimated gain:</strong> {{ pb.percent|floatformat:2 }}%</p>
+            <strong>Estimated render time:</strong>
+            <p class="mb-0 small">{% if pb.workstation_estimate %}{{ pb.workstation_estimate }} seconds{% else %}N/A{% endif %}</p>
+            <p class="mt-1"><strong>Price:</strong> ${{ pb.total_price|floatformat:2 }}</p>
+          </div>
+          {% endif %}
           <form method="post">
             {% csrf_token %}
             <!-- Submit the index of the selected proposed build so the view can apply it -->
@@ -189,7 +230,7 @@
    {% if not proposed_builds %}
     <div class="alert alert-warning">No upgrades found for the selected budget and build.</div>
   {% endif %}
-</div>
+
 {% endblock %}
 {% block extra_head %}
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -207,6 +248,18 @@
           width: '100%',
           placeholder: 'Start typing to search',
           allowClear: true,
+        });
+        // Per-card resolution toggles: switch FPS blocks only inside the same card
+        $(document).on('click', '.res-toggle-card-btn', function(){
+          var res = $(this).data('res');
+          var $card = $(this).closest('.card');
+          // mark active within this card
+          $card.find('.res-toggle-card-btn').removeClass('active');
+          $(this).addClass('active');
+          // toggle fps blocks in this card only
+          $card.find('.fps-block').each(function(){
+            $(this).toggle($(this).data('res') === res);
+          });
         });
       });
     })(jQuery);

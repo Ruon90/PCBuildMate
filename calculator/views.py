@@ -421,6 +421,8 @@ def upgrade_calculator(request):
 
     # default mode (can be overridden by a form field)
     mode = 'gaming'
+    # default resolution used for UI toggles (taken from preview if present)
+    default_resolution = request.session.get('preview_build', {}).get('resolution') or '1440p'
 
     if request.method == 'POST':
         # If the user clicked "Use this build" for a proposed upgrade, apply it.
@@ -482,7 +484,10 @@ def upgrade_calculator(request):
                 'storages': storages_qs, 'psus': psus_qs, 'coolers': coolers_qs, 'cases': cases_qs,
             })
 
+        # Read mode from the submitted form (override default)
         mode = request.POST.get('mode', 'gaming') or 'gaming'
+        # resolution default (UI toggles control which resolution is shown client-side)
+        default_resolution = request.session.get('preview_build', {}).get('resolution') or '1440p'
 
         # Prepare baseline totals for price comparisons
         def price_of(obj):
@@ -582,7 +587,10 @@ def upgrade_calculator(request):
                 if price_delta <= 0 or price_delta > budget:
                     continue
 
-                percent = ((cand_s - cur_cpu_score) / cur_cpu_score) * 100.0 if cur_cpu_score > 0 else 0.0
+                # Compute percent based only on CPU+GPU combined scores (exclude RAM)
+                baseline_combo = (cur_cpu_score or 0.0) + (cur_gpu_score or 0.0)
+                new_combo = (cand_s or 0.0) + (cur_gpu_score or 0.0)
+                percent = ((new_combo - baseline_combo) / baseline_combo) * 100.0 if baseline_combo > 0 else 0.0
                 # store only best proposal per cpu id (highest percent)
                 prev = cpu_best.get(cand.id)
                 proposal = {
@@ -637,7 +645,10 @@ def upgrade_calculator(request):
                 price_delta = total - base_total
                 if price_delta <= 0 or price_delta > budget:
                     continue
-                percent = ((cand_s - cur_gpu_score) / cur_gpu_score) * 100.0 if cur_gpu_score > 0 else 0.0
+                # Compute percent based only on CPU+GPU combined scores (exclude RAM)
+                baseline_combo = (cur_cpu_score or 0.0) + (cur_gpu_score or 0.0)
+                new_combo = (cur_cpu_score or 0.0) + (cand_s or 0.0)
+                percent = ((new_combo - baseline_combo) / baseline_combo) * 100.0 if baseline_combo > 0 else 0.0
                 prev = gpu_best.get(cand.id)
                 proposal = {
                     'slot': 'gpu',
@@ -688,8 +699,21 @@ def upgrade_calculator(request):
                     price_delta = total - base_total
                     if price_delta <= 0 or price_delta > budget:
                         continue
-                    # combined percent: average of cpu and gpu percent (simple heuristic)
-                    percent = (cprop['percent'] + gprop['percent']) / 2.0
+                    # combined percent: sum of cpu and gpu percent (the total estimated improvement)
+                    # For combined CPU+GPU proposals, compute percent as change in combined CPU+GPU scores
+                    baseline_combo = (cur_cpu_score or 0.0) + (cur_gpu_score or 0.0)
+                    new_combo = (cprop.get('percent') is None and 0.0) or 0.0
+                    # cprop and gprop store 'percent' as previously computed; instead derive from parts
+                    try:
+                        c_cpu_score = getattr(cprop.get('cpu'), 'cached_score', None) or cpu_score(cprop.get('cpu'), mode)
+                    except Exception:
+                        c_cpu_score = 0.0
+                    try:
+                        g_gpu_score = getattr(gprop.get('gpu'), 'cached_score', None) or gpu_score(gprop.get('gpu'), mode)
+                    except Exception:
+                        g_gpu_score = 0.0
+                    new_combo = (c_cpu_score or 0.0) + (g_gpu_score or 0.0)
+                    percent = ((new_combo - baseline_combo) / baseline_combo) * 100.0 if baseline_combo > 0 else 0.0
                     key = (cprop['cpu'].id, gprop['gpu'].id)
                     proposal = {
                         'slot': 'cpu_gpu',
@@ -789,6 +813,54 @@ def upgrade_calculator(request):
                 'case': disp(p.get('case')),
             }
 
+            # Compute FPS estimates for all resolutions so client-side toggles can switch without reloading
+            games = ("Cyberpunk 2077", "CS2", "Fortnite")
+            resolutions = ["1080p", "1440p", "4k"]
+            fps_by_res = {res: {} for res in resolutions}
+            bottleneck_by_res = {}
+            try:
+                for res in resolutions:
+                    for g in games:
+                        try:
+                            cpu_obj = p.get('cpu')
+                            gpu_obj = p.get('gpu')
+                            cpu_fps, gpu_fps = estimate_fps_components(cpu_obj, gpu_obj, mode, res, g)
+                            est = round(min(cpu_fps, gpu_fps), 1)
+                            fps_by_res[res][g] = {
+                                'cpu_fps': cpu_fps,
+                                'gpu_fps': gpu_fps,
+                                'estimated_fps': est,
+                            }
+                        except Exception:
+                            fps_by_res[res][g] = {'cpu_fps': None, 'gpu_fps': None, 'estimated_fps': None}
+                    try:
+                        bottleneck_by_res[res] = cpu_bottleneck(p.get('cpu'), p.get('gpu'), mode, res) if p.get('cpu') and p.get('gpu') else {'bottleneck': 0.0, 'type': 'unknown'}
+                    except Exception:
+                        bottleneck_by_res[res] = {'bottleneck': 0.0, 'type': 'unknown'}
+            except Exception:
+                fps_by_res = {res: {} for res in resolutions}
+                bottleneck_by_res = {}
+
+            # Convert fps_by_res dict into a list for easier template iteration
+            fps_res_list = []
+            try:
+                for res in resolutions:
+                    fps_res_list.append({
+                        'res': res,
+                        'games': fps_by_res.get(res, {}),
+                        'bottleneck': bottleneck_by_res.get(res, {'bottleneck': 0.0, 'type': 'unknown'})
+                    })
+            except Exception:
+                fps_res_list = []
+
+            # If in workstation mode, compute a render-time estimate for the proposal
+            workstation_estimate = None
+            try:
+                if mode == 'workstation':
+                    workstation_estimate = estimate_render_time(p.get('cpu'), p.get('gpu'), mode)
+            except Exception:
+                workstation_estimate = None
+
             proposed_builds.append({
                 'slot': p.get('slot'),
                 'build': p,
@@ -796,6 +868,9 @@ def upgrade_calculator(request):
                 'percent': p.get('percent'),
                 'total_price': p.get('total_price'),
                 'price_delta': p.get('price_delta'),
+                'fps_res_list': fps_res_list,
+                'workstation_estimate': workstation_estimate,
+                'show_fps': (mode != 'workstation'),
             })
 
         remaining = budget
@@ -811,6 +886,7 @@ def upgrade_calculator(request):
             'budget': budget,
             'remaining': remaining,
             'mode': mode,
+            'resolution': default_resolution,
         })
 
     # GET: show blank form (user will select every component)

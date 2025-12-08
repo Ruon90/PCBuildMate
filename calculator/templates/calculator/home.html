@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container col-md-7">
-<div class="card p-3 shadow-sm">
+<div class="card p-3 shadow-md">
     <form id="buildForm" method="post">
         {% csrf_token %}
         {{ form.budget|as_crispy_field }}
