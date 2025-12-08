@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load currency_tags %}
+{% block content %}
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <h2>Upgrade Preview</h2>
+      <p class="text-muted">This page shows the components that will change if you apply the selected upgrade. You can save the upgrade snapshot to your account.</p>
+      <div class="card mb-3">
+        <div class="card-body">
+          <p><strong>Estimated gain:</strong> {{ percent|floatformat:2 }}%</p>
+          {% if mode == 'workstation' %}
+            <p><strong>Estimated render time:</strong> {% if workstation_estimate %}{{ workstation_estimate }} seconds{% else %}N/A{% endif %}</p>
+          {% else %}
+            <p><strong>Estimated FPS ({{ default_resolution }}):</strong></p>
+            <ul class="list-unstyled small">
+              {% for game, vals in fps_estimates.items %}
+                <li>{{ game }}: {% if vals.overall %}{{ vals.overall }} FPS (CPU: {{ vals.cpu }}, GPU: {{ vals.gpu }}){% else %}N/A{% endif %}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+          <p class="mt-2"><strong>Price delta:</strong> ${{ price_delta|floatformat:2 }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    {% for part, data in changed_items.items %}
+      {% with obj=data.obj percent=data.percent %}
+      <div class="col-md-4">
+        <div class="card mb-3">
+          <div class="card-header">{{ part|title }}</div>
+          <div class="card-body">
+            <h5>{% if obj.name %}{{ obj.name }}{% elif obj.gpu_name %}{{ obj.gpu_name }}{% else %}{{ obj }}{% endif %}</h5>
+            <p>Price: {{ currency|currency_symbol }}{{ obj.price|convert_from_usd:currency|floatformat:2 }}</p>
+            {% if part == 'cpu' or part == 'gpu' or part == 'ram' %}
+              <p><strong>Improvement:</strong> {{ percent|default:0.0|floatformat:2 }}%</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endwith %}
+    {% endfor %}
+  </div>
+
+  {% if user.is_authenticated %}
+    <form method="post" action="{% url 'save_build' %}">
+      {% csrf_token %}
+      <input type="hidden" name="is_upgrade" value="1">
+      <button type="submit" class="btn btn-success">Save upgrade to account</button>
+      <a href="{% url 'saved_builds' %}" class="btn btn-outline-secondary ms-2">Back to builds</a>
+    </form>
+  {% else %}
+    <p class="mt-3">Register to save upgrades to your account.</p>
+  {% endif %}
+
+</div>
+{% endblock %}

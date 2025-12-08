@@ -30,6 +30,8 @@ class UserBuild(models.Model):
     bottleneck_type = models.CharField(max_length=50, default="", blank=True)
     fps_estimates = models.JSONField(default=dict, blank=True)
     workstation_estimates = models.JSONField(default=dict, blank=True)
+    # Mark whether this saved build represents an upgrade snapshot (vs a full build)
+    is_upgrade = models.BooleanField(default=False)
 
     def calculate_totals(self):
         # Keep weights as floats for simplicity

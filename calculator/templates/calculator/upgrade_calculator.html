@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load currency_tags %}
 
 {% block content %}
 <div class="card">
@@ -90,6 +91,15 @@
         <select name="mode" class="form-select">
           <option value="gaming" {% if request.POST.mode == 'gaming' %}selected{% endif %}>Gaming</option>
           <option value="workstation" {% if request.POST.mode == 'workstation' %}selected{% endif %}>Workstation</option>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label">Currency</label>
+        <select name="currency" class="form-select">
+          {% for cr in currencies %}
+            <option value="{{ cr.currency }}" {% if currency == cr.currency %}selected{% endif %}>{{ cr.currency }}</option>
+          {% endfor %}
         </select>
       </div>
 
@@ -204,22 +214,25 @@
                 </div>
               {% endfor %}
             </div>
-            <p class="mt-1"><strong>Price:</strong> ${{ pb.total_price|floatformat:2 }}</p>
+  <p class="mt-1"><strong>Price (new parts):</strong> {{ currency|currency_symbol }}{{ pb.price_delta|convert_from_usd:currency|floatformat:2 }}</p>
           </div>
           {% else %}
           <div class="mt-2">
             <p class="mt-2"><strong>Estimated gain:</strong> {{ pb.percent|floatformat:2 }}%</p>
             <strong>Estimated render time:</strong>
             <p class="mb-0 small">{% if pb.workstation_estimate %}{{ pb.workstation_estimate }} seconds{% else %}N/A{% endif %}</p>
-            <p class="mt-1"><strong>Price:</strong> ${{ pb.total_price|floatformat:2 }}</p>
+            <p class="mt-1"><strong>Price (new parts):</strong> {{ currency|currency_symbol }}{{ pb.price_delta|convert_from_usd:currency|floatformat:2 }}</p>
           </div>
           {% endif %}
-          <form method="post">
-            {% csrf_token %}
-            <!-- Submit the index of the selected proposed build so the view can apply it -->
-            <input type="hidden" name="proposed_index" value="{{ forloop.counter0 }}">
-            <button class="btn btn-outline-primary btn-sm">Use this build</button>
-          </form>
+          <div class="d-flex gap-2">
+            <a href="{% url 'upgrade_preview' %}?index={{ forloop.counter0 }}" class="btn btn-primary btn-sm">Preview upgrade</a>
+            <form method="post" style="display:inline;">
+              {% csrf_token %}
+              <!-- Submit the index of the selected proposed build so the view can apply it -->
+              <input type="hidden" name="proposed_index" value="{{ forloop.counter0 }}">
+              <button class="btn btn-outline-primary btn-sm">Use this build</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>

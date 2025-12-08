@@ -12,6 +12,9 @@ urlpatterns = [
     path("build/preview/", views.build_preview, name="build_preview"),
     # Preview a specific saved UserBuild
     path("build/preview/<int:pk>/", views.build_preview_pk, name="build_preview_pk"),
+    path("build/upgrade_preview/", views.upgrade_preview, name="upgrade_preview"),
+    # View a saved upgrade in the upgrade-preview UI
+    path("build/view_upgrade/<int:pk>/", views.view_saved_upgrade, name="view_saved_upgrade"),
     # Alternatives for the last calculated build
     path("build/preview/alternatives/", views.alternatives, name="alternatives"),
     path("build/preview/alternatives/select/", views.select_alternative, name="select_alternative"),

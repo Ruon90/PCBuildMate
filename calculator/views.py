@@ -365,6 +365,221 @@ def alternatives(request):
     return render(request, 'calculator/alternatives.html', {'alternatives': rendered})
 
 
+def upgrade_preview(request):
+    """Show a focused preview page for a selected upgrade proposal.
+
+    Expects a query parameter 'index' pointing to the proposal stored in
+    `request.session['last_upgrade_proposals']` (the serializer created by
+    the upgrade calculator). The view shows only components that will change
+    as part of the upgrade, displays the estimated FPS or render-time, and
+    offers a Save button that marks the saved record as an upgrade.
+    """
+    try:
+        idx = int(request.GET.get('index', 0))
+    except Exception:
+        idx = 0
+
+    proposals = request.session.get('last_upgrade_proposals', []) or []
+    if not proposals or idx < 0 or idx >= len(proposals):
+        messages.error(request, 'No upgrade proposal found. Run the upgrade calculator first.')
+        return redirect('upgrade_calculator')
+
+    sel = proposals[idx]
+
+    # Load current preview build (or last saved build for logged-in users)
+    build_data = request.session.get('preview_build')
+    if not build_data and request.user.is_authenticated:
+        latest_build = UserBuild.objects.filter(user=request.user).order_by('-id').first()
+        if latest_build:
+            build_data = {
+                'cpu': latest_build.cpu.id,
+                'gpu': latest_build.gpu.id,
+                'motherboard': latest_build.motherboard.id,
+                'ram': latest_build.ram.id,
+                'storage': latest_build.storage.id,
+                'psu': latest_build.psu.id,
+                'cooler': latest_build.cooler.id,
+                'case': latest_build.case.id,
+                'mode': getattr(latest_build, 'mode', 'gaming'),
+                'resolution': getattr(latest_build, 'resolution', '1440p') if hasattr(latest_build, 'resolution') else '1440p',
+            }
+
+    # If there's no preview build in session, fall back to the base build that
+    # was used to create the last upgrade proposals (stored by upgrade_calculator).
+    if not build_data:
+        base = request.session.get('last_upgrade_base') or {}
+        if base:
+            build_data = base
+        else:
+            messages.error(request, 'No base build available to compare against. Calculate a preview build first.')
+            return redirect('build_preview')
+
+    # Determine which base build to compare against. Prefer the exact base
+    # used to generate proposals (last_upgrade_base) when available; otherwise
+    # use the session preview_build or latest saved build we loaded above.
+    base_ids = request.session.get('last_upgrade_base') or build_data or {}
+
+    # Load objects for the base build so we can compute FPS fallbacks where needed
+    try:
+        cur_cpu = get_object_or_404(CPU, pk=base_ids.get('cpu')) if base_ids.get('cpu') else None
+        cur_gpu = get_object_or_404(GPU, pk=base_ids.get('gpu')) if base_ids.get('gpu') else None
+        cur_mobo = get_object_or_404(Motherboard, pk=base_ids.get('motherboard')) if base_ids.get('motherboard') else None
+        cur_ram = get_object_or_404(RAM, pk=base_ids.get('ram')) if base_ids.get('ram') else None
+        cur_storage = get_object_or_404(Storage, pk=base_ids.get('storage')) if base_ids.get('storage') else None
+        cur_psu = get_object_or_404(PSU, pk=base_ids.get('psu')) if base_ids.get('psu') else None
+        cur_cooler = get_object_or_404(CPUCooler, pk=base_ids.get('cooler')) if base_ids.get('cooler') else None
+        cur_case = get_object_or_404(Case, pk=base_ids.get('case')) if base_ids.get('case') else None
+    except Exception:
+        messages.error(request, 'One or more components from the base build could not be loaded.')
+        return redirect('build_preview')
+
+    # Load proposal target parts (some may be None)
+    def safe_load(key, Model):
+        try:
+            pk = sel.get(key)
+            if not pk:
+                return None
+            return get_object_or_404(Model, pk=pk)
+        except Exception:
+            return None
+
+    new_cpu = safe_load('cpu', CPU)
+    new_gpu = safe_load('gpu', GPU)
+    new_mobo = safe_load('motherboard', Motherboard)
+    new_ram = safe_load('ram', RAM)
+    new_storage = safe_load('storage', Storage)
+    new_psu = safe_load('psu', PSU)
+    new_cooler = safe_load('cooler', CPUCooler)
+    new_case = safe_load('case', Case)
+
+    # Determine which items changed (compare serialized ids to the base ids)
+    # We'll store a mapping key -> {'obj': <Model instance>, 'percent': <float or None>}
+    changed = {}
+    def id_eq(a, b):
+        if a is None and b is None:
+            return True
+        try:
+            return str(a) == str(b)
+        except Exception:
+            return False
+
+    # For each component, if the proposal provides a different id than the base, include it
+    for key, Model in (('cpu', CPU), ('gpu', GPU), ('motherboard', Motherboard), ('ram', RAM), ('storage', Storage), ('psu', PSU), ('cooler', CPUCooler), ('case', Case)):
+        prop_id = sel.get(key)
+        base_id = base_ids.get(key)
+        if prop_id and not id_eq(prop_id, base_id):
+            # load the proposed object for display
+            try:
+                changed[key] = {'obj': get_object_or_404(Model, pk=prop_id), 'percent': None}
+            except Exception:
+                # skip missing objects but continue
+                continue
+
+    # Compute FPS or workstation estimate for the proposal (recreate the estimate logic)
+    mode = build_data.get('mode', 'gaming') or 'gaming'
+    default_resolution = build_data.get('resolution', '1440p') or '1440p'
+
+    fps_estimates = {}
+    workstation_estimate = None
+    try:
+        if mode == 'workstation':
+            workstation_estimate = estimate_render_time(new_cpu or cur_cpu, new_gpu or cur_gpu, mode)
+        else:
+            games = ['Cyberpunk 2077', 'CS2', 'Fortnite']
+            resolutions = ['1080p', '1440p', '4k']
+            # populate fps_estimates for default_resolution only to keep it lightweight
+            for g in games:
+                try:
+                    cpu_fps, gpu_fps = estimate_fps_components(new_cpu or cur_cpu, new_gpu or cur_gpu, mode, default_resolution, g)
+                    fps_estimates[g] = {'overall': round(min(cpu_fps, gpu_fps), 1), 'cpu': cpu_fps, 'gpu': gpu_fps}
+                except Exception:
+                    fps_estimates[g] = {'overall': None, 'cpu': None, 'gpu': None}
+    except Exception:
+        fps_estimates = {}
+
+    # Price delta and percent are already stored in the serial; use them when available
+    price_delta = sel.get('price_delta') or 0.0
+    percent = sel.get('percent') or 0.0
+
+    # Compute per-component improvement percentages for CPU, GPU and RAM
+    cpu_percent = 0.0
+    gpu_percent = 0.0
+    ram_percent = 0.0
+    try:
+        try:
+            cur_cpu_score = cpu_score(cur_cpu, mode) if cur_cpu else 0.0
+        except Exception:
+            cur_cpu_score = 0.0
+        try:
+            new_cpu_score = cpu_score(new_cpu, mode) if new_cpu else 0.0
+        except Exception:
+            new_cpu_score = 0.0
+        if cur_cpu_score and cur_cpu_score > 0:
+            cpu_percent = ((new_cpu_score - cur_cpu_score) / cur_cpu_score) * 100.0
+        else:
+            cpu_percent = 0.0
+    except Exception:
+        cpu_percent = 0.0
+
+    try:
+        try:
+            cur_gpu_score = gpu_score(cur_gpu, mode) if cur_gpu else 0.0
+        except Exception:
+            cur_gpu_score = 0.0
+        try:
+            new_gpu_score = gpu_score(new_gpu, mode) if new_gpu else 0.0
+        except Exception:
+            new_gpu_score = 0.0
+        if cur_gpu_score and cur_gpu_score > 0:
+            gpu_percent = ((new_gpu_score - cur_gpu_score) / cur_gpu_score) * 100.0
+        else:
+            gpu_percent = 0.0
+    except Exception:
+        gpu_percent = 0.0
+
+    try:
+        try:
+            cur_ram_score = ram_score(cur_ram) if cur_ram else 0.0
+        except Exception:
+            cur_ram_score = 0.0
+        try:
+            new_ram_score = ram_score(new_ram) if new_ram else 0.0
+        except Exception:
+            new_ram_score = 0.0
+        if cur_ram_score and cur_ram_score > 0:
+            ram_percent = ((new_ram_score - cur_ram_score) / cur_ram_score) * 100.0
+        else:
+            ram_percent = 0.0
+    except Exception:
+        ram_percent = 0.0
+
+    # Attach per-component percents into changed mapping where relevant
+    for k in list(changed.keys()):
+        entry = changed.get(k)
+        if not entry:
+            continue
+        if k == 'cpu':
+            entry['percent'] = cpu_percent
+        elif k == 'gpu':
+            entry['percent'] = gpu_percent
+        elif k == 'ram':
+            entry['percent'] = ram_percent
+        else:
+            entry['percent'] = None
+        changed[k] = entry
+
+    return render(request, 'calculator/upgrade_preview.html', {
+        'changed_items': changed,
+        'percent': percent,
+        'price_delta': price_delta,
+        'fps_estimates': fps_estimates,
+        'workstation_estimate': workstation_estimate,
+        'mode': mode,
+        'default_resolution': default_resolution,
+        'currency': build_data.get('currency', 'USD'),
+    })
+
+
 @require_POST
 def select_alternative(request):
     """Replace the session preview with the selected alternative (by index).
@@ -451,11 +666,24 @@ def upgrade_calculator(request):
             except Exception:
                 messages.error(request, 'Could not apply selected proposed build.')
                 return redirect('upgrade_calculator')
-        # parse upgrade budget
+        # parse upgrade budget (user-entered amount in their selected currency)
         try:
             budget = float(request.POST.get('upgrade_budget') or 0)
         except Exception:
             budget = 0.0
+
+        # Determine currency for this upgrade flow (prefer POSTed currency, else preview session)
+        currency = request.POST.get('currency') or request.session.get('preview_build', {}).get('currency') or 'USD'
+
+        # Convert submitted budget into USD for internal comparisons (catalog prices are in USD)
+        try:
+            sel_rate = CurrencyRate.objects.filter(currency=currency).first()
+            if sel_rate:
+                budget_usd = budget * float(sel_rate.rate_to_usd)
+            else:
+                budget_usd = budget
+        except Exception:
+            budget_usd = budget
 
         # Require the user to have selected every component in the form (separate from preview flow)
         required_parts = ['cpu', 'gpu', 'motherboard', 'ram', 'storage', 'psu', 'cooler', 'case']
@@ -465,6 +693,7 @@ def upgrade_calculator(request):
             return render(request, 'calculator/upgrade_calculator.html', {
                 'cpus': cpus_qs, 'gpus': gpus_qs, 'mobos': mobos_qs, 'rams': rams_qs,
                 'storages': storages_qs, 'psus': psus_qs, 'coolers': coolers_qs, 'cases': cases_qs,
+                'currencies': CurrencyRate.objects.all(), 'currency': request.session.get('preview_build', {}).get('currency', 'USD'),
             })
 
         # Load the submitted components from the POST payload
@@ -482,12 +711,15 @@ def upgrade_calculator(request):
             return render(request, 'calculator/upgrade_calculator.html', {
                 'cpus': cpus_qs, 'gpus': gpus_qs, 'mobos': mobos_qs, 'rams': rams_qs,
                 'storages': storages_qs, 'psus': psus_qs, 'coolers': coolers_qs, 'cases': cases_qs,
+                'currencies': CurrencyRate.objects.all(), 'currency': request.session.get('preview_build', {}).get('currency', 'USD'),
             })
 
         # Read mode from the submitted form (override default)
         mode = request.POST.get('mode', 'gaming') or 'gaming'
         # resolution default (UI toggles control which resolution is shown client-side)
         default_resolution = request.session.get('preview_build', {}).get('resolution') or '1440p'
+        # Currency for price display: prefer POSTed value, else preview session or USD
+        currency = request.POST.get('currency') or request.session.get('preview_build', {}).get('currency') or 'USD'
 
         # Prepare baseline totals for price comparisons
         def price_of(obj):
@@ -583,8 +815,26 @@ def upgrade_calculator(request):
                         # if psu check fails, be conservative and skip this candidate
                         continue
 
-                price_delta = total - base_total
-                if price_delta <= 0 or price_delta > budget:
+                # Calculate price delta as the cost of the new parts only
+                # (assume the user already owns the current parts). This is
+                # the sum of prices for components that will be changed.
+                try:
+                    new_cost = 0.0
+                    # CPU is changing to 'cand'
+                    new_cost += price_of(cand)
+                    # motherboard/ram swaps (only charge for them if they're actually different)
+                    if swapped_mobo and getattr(swapped_mobo, 'id', None) != getattr(cur_mobo, 'id', None):
+                        new_cost += price_of(swapped_mobo)
+                    if swapped_ram and getattr(swapped_ram, 'id', None) != getattr(cur_ram, 'id', None):
+                        new_cost += price_of(swapped_ram)
+                    if 'swapped_psu' in locals() and swapped_psu and getattr(swapped_psu, 'id', None) != getattr(cur_psu, 'id', None):
+                        new_cost += price_of(swapped_psu)
+                except Exception:
+                    new_cost = total - base_total
+
+                price_delta = new_cost
+                # Compare against USD-converted budget
+                if price_delta <= 0 or price_delta > budget_usd:
                     continue
 
                 # Compute percent based only on CPU+GPU combined scores (exclude RAM)
@@ -642,8 +892,17 @@ def upgrade_calculator(request):
                 except Exception:
                     continue
 
-                price_delta = total - base_total
-                if price_delta <= 0 or price_delta > budget:
+                # Price delta should be the cost of the new GPU and any new PSU
+                try:
+                    new_cost = 0.0
+                    new_cost += price_of(cand)
+                    if swapped_psu and getattr(swapped_psu, 'id', None) != getattr(cur_psu, 'id', None):
+                        new_cost += price_of(swapped_psu)
+                except Exception:
+                    new_cost = total - base_total
+
+                price_delta = new_cost
+                if price_delta <= 0 or price_delta > budget_usd:
                     continue
                 # Compute percent based only on CPU+GPU combined scores (exclude RAM)
                 baseline_combo = (cur_cpu_score or 0.0) + (cur_gpu_score or 0.0)
@@ -696,8 +955,25 @@ def upgrade_calculator(request):
                     except Exception:
                         continue
 
-                    price_delta = total - base_total
-                    if price_delta <= 0 or price_delta > budget:
+                    # Price delta for combined proposal should be cost of any new parts
+                    try:
+                        new_cost = 0.0
+                        # cpu/mobo/ram from cprop; gpu from gprop
+                        if getattr(cprop.get('cpu'), 'id', None) != getattr(cur_cpu, 'id', None):
+                            new_cost += price_of(cprop.get('cpu'))
+                        if getattr(cprop.get('motherboard'), 'id', None) != getattr(cur_mobo, 'id', None):
+                            new_cost += price_of(cprop.get('motherboard'))
+                        if getattr(cprop.get('ram'), 'id', None) != getattr(cur_ram, 'id', None):
+                            new_cost += price_of(cprop.get('ram'))
+                        if getattr(gprop.get('gpu'), 'id', None) != getattr(cur_gpu, 'id', None):
+                            new_cost += price_of(gprop.get('gpu'))
+                        if swapped_psu and getattr(swapped_psu, 'id', None) != getattr(cur_psu, 'id', None):
+                            new_cost += price_of(swapped_psu)
+                    except Exception:
+                        new_cost = total - base_total
+
+                    price_delta = new_cost
+                    if price_delta <= 0 or price_delta > budget_usd:
                         continue
                     # combined percent: sum of cpu and gpu percent (the total estimated improvement)
                     # For combined CPU+GPU proposals, compute percent as change in combined CPU+GPU scores
@@ -789,6 +1065,20 @@ def upgrade_calculator(request):
                 'price_delta': float(p.get('price_delta') or 0.0),
             })
         request.session['last_upgrade_proposals'] = serial
+        # Persist the base build used to generate these proposals so preview
+        # pages can compare correctly even when the session preview_build
+        # isn't present or is different. Store minimal ids + mode/resolution.
+        try:
+            request.session['last_upgrade_base'] = {
+                'cpu': getattr(cur_cpu, 'id', None), 'gpu': getattr(cur_gpu, 'id', None),
+                'motherboard': getattr(cur_mobo, 'id', None), 'ram': getattr(cur_ram, 'id', None),
+                'storage': getattr(cur_storage, 'id', None), 'psu': getattr(cur_psu, 'id', None),
+                'cooler': getattr(cur_cooler, 'id', None), 'case': getattr(cur_case, 'id', None),
+                'mode': mode, 'resolution': default_resolution,
+            }
+        except Exception:
+            # best-effort; don't fail upgrade flow if session write fails
+            pass
 
         # convert proposals into structure the template expects
         proposed_builds = []
@@ -887,6 +1177,7 @@ def upgrade_calculator(request):
             'remaining': remaining,
             'mode': mode,
             'resolution': default_resolution,
+            'currencies': CurrencyRate.objects.all(), 'currency': currency,
         })
 
     # GET: show blank form (user will select every component)
@@ -894,6 +1185,7 @@ def upgrade_calculator(request):
         'cpus': cpus_qs, 'gpus': gpus_qs, 'mobos': mobos_qs, 'rams': rams_qs,
         'storages': storages_qs, 'psus': psus_qs, 'coolers': coolers_qs, 'cases': cases_qs,
         'mode': mode,
+        'currencies': CurrencyRate.objects.all(), 'currency': request.session.get('preview_build', {}).get('currency', 'USD'),
     })
 
 def preview_edit(request):
@@ -1142,6 +1434,12 @@ def save_build(request):
         return redirect("home")
 
     try:
+        # Allow callers to mark this saved build as an upgrade snapshot by posting
+        # 'is_upgrade' in the save form. This is useful for distinguishing saved
+        # upgrade snapshots from full builds in the UI.
+        is_upgrade_flag = bool(request.POST.get('is_upgrade'))
+        # Ensure budget is not null when creating a saved build (use 0.0 fallback)
+        _budget_val = build_data.get("budget") if build_data.get("budget") is not None else 0.0
         build = UserBuild.objects.create(
             user=request.user,
             cpu=get_object_or_404(CPU, pk=build_data.get("cpu")),
@@ -1152,13 +1450,14 @@ def save_build(request):
             psu=get_object_or_404(PSU, pk=build_data.get("psu")),
             cooler=get_object_or_404(CPUCooler, pk=build_data.get("cooler")),
             case=get_object_or_404(Case, pk=build_data.get("case")),
-            budget=build_data.get("budget"),
+            budget=_budget_val,
             mode=build_data.get("mode"),
             # persist user's chosen currency (fallback USD)
             currency=build_data.get("currency", "USD"),
             total_score=build_data.get("score"),
             # price stored in session is USD total from the calculator
             total_price=build_data.get("price"),
+            is_upgrade=is_upgrade_flag,
         )
     except KeyError:
         # If any key is missing, just redirect safely
@@ -1204,6 +1503,136 @@ def delete_build(request, pk):
     build = get_object_or_404(UserBuild, pk=pk, user=request.user)
     build.delete()
     return redirect("saved_builds")
+
+
+@login_required
+def view_saved_upgrade(request, pk):
+    """Prepare session data so a saved upgrade can be displayed using the
+    existing `upgrade_preview` view. We create a single proposal entry
+    from the saved build and set `last_upgrade_proposals` and
+    `last_upgrade_base` in session so `upgrade_preview` can render it.
+    """
+    build = get_object_or_404(UserBuild, pk=pk, user=request.user)
+    # Only meaningful for saved upgrades; if not marked, redirect to normal preview
+    if not getattr(build, 'is_upgrade', False):
+        return redirect('build_preview_pk', pk=build.pk)
+
+    # Helper to safely extract price
+    def price_of_obj(o):
+        try:
+            return float(getattr(o, 'price', 0) or 0)
+        except Exception:
+            return 0.0
+
+    # Determine a base build to compare against. Prefer the current session
+    # preview if present, else the user's most recent non-upgrade saved build
+    base = request.session.get('preview_build')
+    base_obj = None
+    if not base:
+        base_obj = UserBuild.objects.filter(user=request.user, is_upgrade=False).exclude(pk=build.pk).order_by('-id').first()
+        if base_obj:
+            base = {
+                'cpu': base_obj.cpu.id, 'gpu': base_obj.gpu.id, 'motherboard': base_obj.motherboard.id,
+                'ram': base_obj.ram.id, 'storage': base_obj.storage.id, 'psu': base_obj.psu.id,
+                'cooler': base_obj.cooler.id, 'case': base_obj.case.id,
+                'mode': getattr(base_obj, 'mode', 'gaming'), 'resolution': getattr(base_obj, 'resolution', '1440p')
+            }
+        else:
+            # fallback: compare against the saved build itself (will show no changed items)
+            base = {
+                'cpu': build.cpu.id, 'gpu': build.gpu.id, 'motherboard': build.motherboard.id,
+                'ram': build.ram.id, 'storage': build.storage.id, 'psu': build.psu.id,
+                'cooler': build.cooler.id, 'case': build.case.id,
+                'mode': getattr(build, 'mode', 'gaming'), 'resolution': getattr(build, 'resolution', '1440p')
+            }
+
+    # Build the proposal serial representing this saved upgrade
+    sel = {
+        'slot': 'saved_upgrade',
+        'cpu': getattr(build.cpu, 'id', None),
+        'gpu': getattr(build.gpu, 'id', None),
+        'motherboard': getattr(build.motherboard, 'id', None),
+        'ram': getattr(build.ram, 'id', None),
+        'storage': getattr(build.storage, 'id', None),
+        'psu': getattr(build.psu, 'id', None),
+        'cooler': getattr(build.cooler, 'id', None),
+        'case': getattr(build.case, 'id', None),
+        'percent': 0.0,
+        'total_price': float(build.total_price or 0.0),
+        'price_delta': 0.0,
+    }
+
+    # Compute price_delta as sum of prices for components that differ from base
+    try:
+        price_delta = 0.0
+        # load base objects where available
+        if base.get('cpu'):
+            try:
+                base_cpu = CPU.objects.get(pk=base.get('cpu'))
+            except Exception:
+                base_cpu = None
+        else:
+            base_cpu = None
+        if base.get('gpu'):
+            try:
+                base_gpu = GPU.objects.get(pk=base.get('gpu'))
+            except Exception:
+                base_gpu = None
+        else:
+            base_gpu = None
+
+        # compare each part
+        if sel.get('cpu') and (not base_cpu or int(sel.get('cpu')) != int(getattr(base_cpu, 'id', None))):
+            price_delta += price_of_obj(build.cpu)
+        if sel.get('gpu') and (not base_gpu or int(sel.get('gpu')) != int(getattr(base_gpu, 'id', None))):
+            price_delta += price_of_obj(build.gpu)
+        # other parts
+        if sel.get('motherboard') and sel.get('motherboard') != base.get('motherboard'):
+            price_delta += price_of_obj(build.motherboard)
+        if sel.get('ram') and sel.get('ram') != base.get('ram'):
+            price_delta += price_of_obj(build.ram)
+        if sel.get('storage') and sel.get('storage') != base.get('storage'):
+            price_delta += price_of_obj(build.storage)
+        if sel.get('psu') and sel.get('psu') != base.get('psu'):
+            price_delta += price_of_obj(build.psu)
+        if sel.get('cooler') and sel.get('cooler') != base.get('cooler'):
+            price_delta += price_of_obj(build.cooler)
+        if sel.get('case') and sel.get('case') != base.get('case'):
+            price_delta += price_of_obj(build.case)
+    except Exception:
+        price_delta = float(build.total_price or 0.0)
+
+    sel['price_delta'] = float(price_delta)
+
+    # Compute percent (combined CPU+GPU) if base cpu/gpu available
+    try:
+        base_cpu_obj = None
+        base_gpu_obj = None
+        if base.get('cpu'):
+            try:
+                base_cpu_obj = CPU.objects.get(pk=base.get('cpu'))
+            except Exception:
+                base_cpu_obj = None
+        if base.get('gpu'):
+            try:
+                base_gpu_obj = GPU.objects.get(pk=base.get('gpu'))
+            except Exception:
+                base_gpu_obj = None
+
+        baseline_combo = (cpu_score(base_cpu_obj, base.get('mode')) if base_cpu_obj else 0.0) + (gpu_score(base_gpu_obj, base.get('mode')) if base_gpu_obj else 0.0)
+        new_combo = (cpu_score(build.cpu, build.mode) if build.cpu else 0.0) + (gpu_score(build.gpu, build.mode) if build.gpu else 0.0)
+        if baseline_combo and baseline_combo > 0:
+            sel['percent'] = ((new_combo - baseline_combo) / baseline_combo) * 100.0
+        else:
+            sel['percent'] = 0.0
+    except Exception:
+        sel['percent'] = 0.0
+
+    # Persist the single proposal and the chosen base into session and redirect to preview
+    request.session['last_upgrade_proposals'] = [sel]
+    request.session['last_upgrade_base'] = base
+
+    return redirect(f"{reverse('upgrade_preview')}?index=0")
 
 # --- Edit build ---
 from django.contrib import messages

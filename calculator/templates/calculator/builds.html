@@ -8,7 +8,7 @@
                 <div class="col-md-6">
                     <div class="card mb-3 shadow-sm">
                         <div class="card-header bg-dark text-white">
-                            Build #{{ forloop.counter }}
+                            {% if build.is_upgrade %}Upgrade #{{ forloop.counter }}{% else %}Build #{{ forloop.counter }}{% endif %}
                         </div>
                         <div class="card-body">
                             <p><strong>CPU:</strong> {{ build.cpu.name }}</p>
@@ -26,7 +26,11 @@
                             <p><strong>Score:</strong> {{ build.total_score }}</p>
                         </div>
                                                 <div class="card-footer d-flex justify-content-between">
-                                                        <a href="{% url 'build_preview_pk' build.pk %}" class="btn btn-primary btn-sm">View</a>
+                                                        {% if build.is_upgrade %}
+                                                            <a href="{% url 'view_saved_upgrade' build.pk %}" class="btn btn-primary btn-sm">View</a>
+                                                        {% else %}
+                                                            <a href="{% url 'build_preview_pk' build.pk %}" class="btn btn-primary btn-sm">View</a>
+                                                        {% endif %}
                                                         <a href="{% url 'edit_build' build.pk %}" class="btn btn-warning btn-sm">Edit</a>
                                                         <!-- Delete button triggers modal -->
                                                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ build.pk }}">Delete</button>
