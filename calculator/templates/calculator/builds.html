@@ -21,9 +21,26 @@
                             <p><strong>Case:</strong> {{ build.case.name }}</p>
                             <hr>
                             {% load currency_tags %}
-                            <p><strong>Budget:</strong> {{ build.currency|currency_symbol }}{{ build.budget }}</p>
-                            <p><strong>Cost:</strong> {{ build.currency|currency_symbol }}{{ build.total_price|convert_from_usd:build.currency|floatformat:2 }}</p>
-                            <p><strong>Score:</strong> {{ build.total_score }}</p>
+                            <p><strong>Budget:</strong>
+                                {% if build.display_budget %}
+                                    {{ build.currency|currency_symbol }}{{ build.display_budget|floatformat:2 }}
+                                {% else %}
+                                    &mdash;
+                                {% endif %}
+                            </p>
+                            {% if build.is_upgrade %}
+                                <p><strong>Cost:</strong> {{ build.currency|currency_symbol }}{{ build.display_price|convert_from_usd:build.currency|floatformat:2 }}</p>
+                                <p><strong>Estimated gain:</strong>
+                                    {% if build.estimated_gain %}
+                                        {{ build.estimated_gain|floatformat:1 }}%
+                                    {% else %}
+                                        &mdash;
+                                    {% endif %}
+                                </p>
+                            {% else %}
+                                <p><strong>Cost:</strong> {{ build.currency|currency_symbol }}{{ build.total_price|convert_from_usd:build.currency|floatformat:2 }}</p>
+                                <p><strong>Score:</strong> {{ build.total_score }}</p>
+                            {% endif %}
                         </div>
                                                 <div class="card-footer d-flex justify-content-between">
                                                         {% if build.is_upgrade %}

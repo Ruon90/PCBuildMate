@@ -3,8 +3,9 @@
 {% load currency_tags %}
 
 {% block content %}
-<div class="card">
-  <div class="container mt-4">
+<div id="upgradeCalculatorRoot">
+  <div class="card">
+    <div class="container mt-4">
     <h2>Upgrade calculator</h2>
     <p class="text-muted">Provide the exact build you want to upgrade (all components required) and enter a budget. Results are ranked by percentage performance gain. RAM and motherboard-only upgrades are not suggested; CPU upgrades may include motherboard and RAM when required. GPU upgrades are shown separately. Combined CPU+GPU proposals are included when budget allows.</p>
 
@@ -112,14 +113,32 @@
 
       <div class="col-md-3 align-self-end">
         <div class="mt-2">
-          <button class="btn btn-primary">Find upgrades</button>
+              <button class="btn btn-primary" id="findUpgradesBtn">Find upgrades</button>
         </div>
       </div>
     </div>
   </form>
 
+      <!-- Progress Modal -->
+      <div class="modal fade" id="upgradeProgressModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Finding upgrades</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p id="upgradeProgressMsg">Please wait while we evaluate upgrade options...</p>
+              <div class="progress mt-2">
+                <div id="upgradeProgressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 0%">0%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
   <h4>Current build</h4>
-  <div class="row mb-3">
+  <div id="currentBuildSummary" class="row mb-3">
     <div class="col-md-6">
       <ul class="list-group">
         <li class="list-group-item"><strong>CPU:</strong>
@@ -145,11 +164,13 @@
       </ul>
     </div>
   </div>
-</div>
+    </div>
+  </div>
 </div>
 
   {# Single-slot upgrade list removed: we now show proposed build snapshots which include estimated gain and overall price #}
 
+  <div id="proposalsSection">
   {% if proposed_builds %}
   <h4 class="mt-4">Proposed build snapshots</h4>
   <div class="row">
@@ -241,8 +262,9 @@
   {% endif %}
 
    {% if not proposed_builds %}
-    <div class="alert alert-warning">No upgrades found for the selected budget and build.</div>
+    <div id="noUpgradesAlert" class="alert alert-warning">No upgrades found for the selected budget and build.</div>
   {% endif %}
+  </div>
 
 {% endblock %}
 {% block extra_head %}
@@ -276,5 +298,251 @@
         });
       });
     })(jQuery);
+  </script>
+  <script>
+    // Intercept the upgrade form submit and show a modal with a progress bar.
+  (function(){
+  // We'll use event delegation so handlers survive DOM replacements.
+  const modalEl = document.getElementById('upgradeProgressModal');
+  const progressBar = document.getElementById('upgradeProgressBar');
+  const progressMsg = document.getElementById('upgradeProgressMsg');
+
+  if (!modalEl) return;
+
+      // Try to use Bootstrap's Modal if available; otherwise fall back to a
+      // lightweight manual show/hide so the UI still provides feedback even
+      // when the bootstrap bundle isn't present or hasn't initialized.
+      let bsModal = null;
+      if (typeof window.bootstrap !== 'undefined' && window.bootstrap.Modal) {
+        try {
+          bsModal = new window.bootstrap.Modal(modalEl, { backdrop: 'static', keyboard: false });
+        } catch (e) {
+          bsModal = null;
+        }
+      }
+
+      function manualShowModal() {
+        try {
+          // add backdrop
+          const backdrop = document.createElement('div');
+          backdrop.className = 'modal-backdrop fade show';
+          backdrop.dataset.manual = '1';
+          document.body.appendChild(backdrop);
+          // show modal
+          modalEl.classList.add('show');
+          modalEl.style.display = 'block';
+          modalEl.removeAttribute('aria-hidden');
+          modalEl.setAttribute('aria-modal', 'true');
+        } catch (e) {
+          // ignore
+        }
+      }
+
+      function manualHideModal() {
+        try {
+          // remove backdrop(s) we created
+          document.querySelectorAll('div.modal-backdrop[data-manual="1"]').forEach(el => el.remove());
+          modalEl.classList.remove('show');
+          modalEl.style.display = 'none';
+          modalEl.setAttribute('aria-hidden', 'true');
+          modalEl.removeAttribute('aria-modal');
+        } catch (e) {
+          // ignore
+        }
+      }
+
+      // delegated click handler for the Find upgrades button. This survives
+      // DOM replacements because it's attached to document.
+      document.addEventListener('click', function(ev){
+        const btn = ev.target.closest && ev.target.closest('#findUpgradesBtn');
+        if (!btn) return;
+        ev.preventDefault();
+        try { if (bsModal) bsModal.show(); else manualShowModal(); } catch(e) { manualShowModal(); }
+        // reset progress UI
+        progressBar.classList.remove('bg-danger');
+        progressBar.classList.add('bg-primary');
+        progressBar.classList.add('progress-bar-animated');
+        progressBar.style.width = '5%';
+        progressBar.textContent = '5%';
+        progressMsg.textContent = 'Please wait while we evaluate upgrade options...';
+        // submit the enclosing form
+        const form = btn.closest('form');
+        if (form && typeof form.requestSubmit === 'function') {
+          form.requestSubmit();
+        } else if (form) {
+          form.dispatchEvent(new Event('submit', { cancelable: true }));
+        }
+      });
+
+      // delegated submit handler - only handle the form that contains the
+      // Find upgrades button. This avoids intercepting the "Use this build"
+      // forms elsewhere on the page.
+      document.addEventListener('submit', function(e){
+        const form = e.target;
+        if (!form || !form.querySelector) return;
+        if (!form.querySelector('#findUpgradesBtn')) return; // not our form
+        e.preventDefault();
+        // show modal (bootstrap if available, otherwise manual)
+        try { if (bsModal) bsModal.show(); else manualShowModal(); } catch (err) { manualShowModal(); }
+        // start deterministic animated progress toward 80%
+        // share percent/anim in this scope so click handler updates are visible
+        let percent = 10;
+        let anim = null;
+        progressBar.style.width = percent + '%';
+        progressBar.textContent = percent + '%';
+
+        // deterministic stepper: fixed small increments for predictable motion
+        function startProgress(target) {
+          if (anim) clearInterval(anim);
+          anim = setInterval(() => {
+            const step = 2; // deterministic small step
+            if (percent < target) {
+              percent = Math.min(target, percent + step);
+              progressBar.style.width = percent + '%';
+              progressBar.textContent = percent + '%';
+            } else {
+              clearInterval(anim);
+              anim = null;
+            }
+          }, 140);
+        }
+        // start moving toward 80%
+        startProgress(80);
+
+        const data = new FormData(form);
+
+        fetch(window.location.href, { method: 'POST', body: data })
+          .then(r => r.text())
+            .then(text => {
+            if (anim) { clearInterval(anim); anim = null; }
+            // parse returned HTML to count proposed builds
+            try {
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(text, 'text/html');
+              // count proposal cards
+              const proposalElems = doc.querySelectorAll('.col-md-6.mb-3');
+              const count = proposalElems ? proposalElems.length : 0;
+              // finish progress. Ensure it always moves upward to completion.
+              if (percent < 90) {
+                // smoothly move to 90% then to 100%
+                startProgress(90);
+                setTimeout(() => {
+                  if (anim) { clearInterval(anim); anim = null; }
+                  percent = 100;
+                  progressBar.style.width = '100%';
+                  progressBar.textContent = '100%';
+                }, 700);
+              } else {
+                percent = 100;
+                progressBar.style.width = '100%';
+                progressBar.textContent = '100%';
+              }
+
+              if (count === 0) {
+                // no upgrades found: show red bar + message (like build calculator) then reveal server page which contains the alert
+                progressBar.classList.remove('progress-bar-animated');
+                progressBar.classList.remove('bg-primary');
+                progressBar.classList.add('bg-danger');
+                progressMsg.textContent = 'No upgrades found for the selected budget and build.';
+
+                setTimeout(() => {
+                  // replace content with server-rendered page so user sees contextual alert and options
+                  const newRoot = doc.getElementById('upgradeCalculatorRoot') || doc.querySelector('div.card');
+                  const curRoot = document.getElementById('upgradeCalculatorRoot') || document.querySelector('div.card');
+                  if (newRoot && curRoot) {
+                    // copy innerHTML instead of moving DOM nodes from another document.
+                    curRoot.innerHTML = newRoot.innerHTML;
+                    // re-initialize dynamic bits that are normally run on page load
+                    try { if (window.jQuery && typeof window.jQuery.fn.select2 === 'function') {
+                      window.jQuery('.searchable').select2({ width: '100%', placeholder: 'Start typing to search', allowClear: true });
+                    } } catch(e) {}
+                    // reattach per-card resolution toggle handlers for replaced content
+                    try {
+                      document.querySelectorAll('.res-toggle-card-btn').forEach(btn => {
+                        btn.removeEventListener('click', window._resToggleHandler || function(){});
+                      });
+                      window._resToggleHandler = function(ev){
+                        var b = ev.currentTarget;
+                        var res = b.getAttribute('data-res');
+                        var card = b.closest('.card');
+                        if (!card) return;
+                        card.querySelectorAll('.res-toggle-card-btn').forEach(x => x.classList.remove('active'));
+                        b.classList.add('active');
+                        card.querySelectorAll('.fps-block').forEach(function(el){ el.style.display = (el.getAttribute('data-res') === res) ? 'block' : 'none'; });
+                      };
+                      document.querySelectorAll('.res-toggle-card-btn').forEach(btn => btn.addEventListener('click', window._resToggleHandler));
+                    } catch(e) {}
+                  } else {
+                    window.location.reload();
+                  }
+                  try { if (bsModal) bsModal.hide(); else manualHideModal(); } catch(e) { manualHideModal(); }
+                }, 1200);
+              } else {
+                progressMsg.textContent = `Found ${count} upgrade path${count === 1 ? '' : 's'}`;
+                // Replace only the proposals section and remove the no-results alert.
+                setTimeout(() => {
+                  try {
+                    const newDocProposals = doc.getElementById('proposalsSection');
+                    const curProposals = document.getElementById('proposalsSection');
+                    const newDocCurrent = doc.getElementById('currentBuildSummary');
+                    const curCurrent = document.getElementById('currentBuildSummary');
+                    if (newDocProposals && curProposals) {
+                      curProposals.innerHTML = newDocProposals.innerHTML;
+                      // also update current build summary if present in response
+                      if (newDocCurrent && curCurrent) {
+                        curCurrent.innerHTML = newDocCurrent.innerHTML;
+                      }
+                      // remove stale no-upgrades alert if present
+                      const alertEl = document.getElementById('noUpgradesAlert');
+                      if (alertEl) alertEl.remove();
+                      // re-init interactive bits inside proposals
+                      try { if (window.jQuery && typeof window.jQuery.fn.select2 === 'function') {
+                        window.jQuery('.searchable').select2({ width: '100%', placeholder: 'Start typing to search', allowClear: true });
+                      } } catch(e) {}
+                      try {
+                        // resolution toggles reattach
+                        if (!window._resToggleHandler) {
+                          window._resToggleHandler = function(ev){
+                            var b = ev.currentTarget;
+                            var res = b.getAttribute('data-res');
+                            var card = b.closest('.card');
+                            if (!card) return;
+                            card.querySelectorAll('.res-toggle-card-btn').forEach(x => x.classList.remove('active'));
+                            b.classList.add('active');
+                            card.querySelectorAll('.fps-block').forEach(function(el){ el.style.display = (el.getAttribute('data-res') === res) ? 'block' : 'none'; });
+                          };
+                        }
+                        document.querySelectorAll('.res-toggle-card-btn').forEach(btn => btn.addEventListener('click', window._resToggleHandler));
+                      } catch(e) {}
+                    } else {
+                      // fallback to replacing the main root if section not found
+                      const newRoot = doc.getElementById('upgradeCalculatorRoot') || doc.querySelector('div.card');
+                      const curRoot = document.getElementById('upgradeCalculatorRoot') || document.querySelector('div.card');
+                      if (newRoot && curRoot) {
+                        curRoot.innerHTML = newRoot.innerHTML;
+                      } else {
+                        window.location.reload();
+                      }
+                    }
+                  } finally {
+                    try { if (bsModal) bsModal.hide(); else manualHideModal(); } catch(e) { manualHideModal(); }
+                  }
+                }, 700);
+              }
+            } catch (err) {
+              // on parse error just reload to show server-rendered page
+              try { if (bsModal) bsModal.hide(); else manualHideModal(); } catch(e) { manualHideModal(); }
+              window.location.reload();
+            }
+          }).catch(err => {
+            clearInterval(anim);
+            progressBar.classList.remove('progress-bar-animated');
+            progressBar.classList.add('bg-danger');
+            progressBar.style.width = '100%';
+            progressMsg.textContent = 'Error finding upgrades';
+              setTimeout(() => { try { if (bsModal) bsModal.hide(); else manualHideModal(); } catch(e) { manualHideModal(); } }, 1200);
+          });
+      });
+    })();
   </script>
 {% endblock %}

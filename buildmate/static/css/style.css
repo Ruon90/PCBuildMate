@@ -25,7 +25,6 @@ body {
     color: #e2e6ea !important; /* lighter hover */
     text-decoration: underline;
 }
-
 /* Main content spacing */
 main.container {
     padding-top: 2rem;
@@ -40,9 +39,20 @@ footer {
     padding: 1rem 0;
     margin-top: 2rem;
 }
-
+.navbar-brand img {
+    margin-right: 8px;
+    vertical-align: middle;
+    max-height: 50px;   
+}                           
 /* Logo tweaks */
 .navbar-brand img {
     margin-right: 8px;
     vertical-align: middle;
+}
+
+/* Utility: vertically center content area on pages that need it */
+.content-center-v {
+    min-height: 70vh; /* leave room for sticky header and footer */
+    display: flex;
+    align-items: center;
 }

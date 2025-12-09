@@ -2,7 +2,8 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container col-md-7">
+<div class="content-center-v">
+<div class="container col-md-7 mx-auto">
 <div class="card p-3 shadow-md">
     <form id="buildForm" method="post">
         {% csrf_token %}
@@ -26,30 +27,90 @@
 
         <button class="btn btn-primary w-100 mt-2" type="submit">Calculate</button>
     </form>
-</div>
+    </div>
 
 
-    <!-- Progress area -->
-    <div id="progressArea" class="mt-4"></div>
+    <!-- Progress area (messages list) -->
+        <div id="progressArea" class="mt-4"></div>
 
-    <!-- Loading bar -->
-    <div class="progress mt-3" style="height: 25px; display:none;" id="loadingBar">
-        <div id="loadingBarFill" class="progress-bar progress-bar-striped progress-bar-animated"
-             role="progressbar" style="width: 0%">0%</div>
+        <!-- Build Progress Modal -->
+        <div class="modal fade" id="buildProgressModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Calculating best build</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="buildProgressMsg">Crunching numbers and checking compatibility...</p>
+                        <div class="progress mt-2">
+                            <div id="buildProgressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 0%">0%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
 </div>
 
 <script>
 document.getElementById("buildForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const formData = new FormData(this);
+        e.preventDefault();
+        const formData = new FormData(this);
 
-    // Show loading bar
-    const loadingBar = document.getElementById("loadingBar");
-    const loadingBarFill = document.getElementById("loadingBarFill");
-    loadingBar.style.display = "block";
-    loadingBarFill.style.width = "10%";
-    loadingBarFill.textContent = "Starting...";
+        // Modal setup with Bootstrap fallback
+        const modalEl = document.getElementById('buildProgressModal');
+        const progressBar = document.getElementById('buildProgressBar');
+        const progressMsg = document.getElementById('buildProgressMsg');
+        let bsModal = null;
+        if (typeof window.bootstrap !== 'undefined' && window.bootstrap.Modal) {
+            try { bsModal = new window.bootstrap.Modal(modalEl, { backdrop: 'static', keyboard: false }); } catch (e) { bsModal = null; }
+        }
+        function manualShowModal() {
+            try {
+                const backdrop = document.createElement('div');
+                backdrop.className = 'modal-backdrop fade show';
+                backdrop.dataset.manual = '1';
+                document.body.appendChild(backdrop);
+                modalEl.classList.add('show');
+                modalEl.style.display = 'block';
+                modalEl.removeAttribute('aria-hidden');
+                modalEl.setAttribute('aria-modal','true');
+            } catch {}
+        }
+        function manualHideModal() {
+            try {
+                document.querySelectorAll('div.modal-backdrop[data-manual="1"]').forEach(el => el.remove());
+                modalEl.classList.remove('show');
+                modalEl.style.display = 'none';
+                modalEl.setAttribute('aria-hidden','true');
+                modalEl.removeAttribute('aria-modal');
+            } catch {}
+        }
+        try { if (bsModal) bsModal.show(); else manualShowModal(); } catch(e) { manualShowModal(); }
+        // Reset progress
+        progressBar.classList.remove('bg-danger');
+        progressBar.classList.add('bg-primary');
+        progressBar.classList.add('progress-bar-animated');
+        let percent = 10;
+        let anim = null;
+        progressBar.style.width = percent + '%';
+        progressBar.textContent = percent + '%';
+        progressMsg.textContent = 'Crunching numbers and checking compatibility...';
+        function startProgress(target) {
+            if (anim) clearInterval(anim);
+            anim = setInterval(() => {
+                const step = 2;
+                if (percent < target) {
+                    percent = Math.min(target, percent + step);
+                    progressBar.style.width = percent + '%';
+                    progressBar.textContent = percent + '%';
+                } else {
+                    clearInterval(anim);
+                    anim = null;
+                }
+            }, 140);
+        }
+        startProgress(80);
 
     fetch("{% url 'calculate_build' %}", {
         method: "POST",
@@ -60,34 +121,62 @@ document.getElementById("buildForm").addEventListener("submit", function(e) {
         const progressArea = document.getElementById("progressArea");
         progressArea.innerHTML = "";
 
-        if (data.progress) {
+                        let candidatesCount = (typeof data.candidates_count === 'number') ? data.candidates_count : null;
+                        if (data.progress) {
             let stepPercent = Math.floor(90 / data.progress.length);
             let currentPercent = 10;
             const ul = document.createElement("ul");
 
             data.progress.forEach(msg => {
-                const li = document.createElement("li");
-                li.textContent = msg;
-                ul.appendChild(li);
+                                // Do not echo the final summary line into the page; we'll show it in the modal
+                                const lower = (msg || '').toLowerCase();
+                                const isSummary = lower.startsWith('selected best build') || lower.startsWith('picked best build');
+                                        // Try to extract candidates count from progress lines (e.g., "out of 17 candidates")
+                                        if (candidatesCount === null && typeof msg === 'string') {
+                                            const m = msg.match(/out of\s+(\d+)\s+candidates/i);
+                                            if (m && m[1]) {
+                                                candidatesCount = parseInt(m[1], 10);
+                                            }
+                                        }
+                                if (!isSummary) {
+                                    const li = document.createElement("li");
+                                    li.textContent = msg;
+                                    ul.appendChild(li);
+                                }
 
                 currentPercent += stepPercent;
-                loadingBarFill.style.width = currentPercent + "%";
-                loadingBarFill.textContent = currentPercent + "%";
+                percent = Math.min(95, currentPercent);
+                progressBar.style.width = percent + "%";
+                progressBar.textContent = percent + "%";
             });
             progressArea.appendChild(ul);
         }
 
         if (data.redirect) {
-            loadingBarFill.style.width = "100%";
-            loadingBarFill.textContent = "Done!";
+            // Finish progress, show summary, then redirect
+            // Show summary solely in the modal; clear any page progress messages
+            progressArea.innerHTML = "";
+                        // Prefer explicit count; otherwise fall back to summary string or generic
+                        let summaryText = (data.summary && typeof data.summary === 'string') ? data.summary : null;
+                        if (!summaryText && candidatesCount !== null) {
+                            summaryText = `Picked best build of ${candidatesCount} candidates`;
+                        }
+                        progressMsg.textContent = summaryText || "Picked best build";
+            if (percent < 90) startProgress(90);
             setTimeout(() => {
-                window.location.href = data.redirect;
-            }, 1000);
+              if (anim) { clearInterval(anim); anim = null; }
+              percent = 100;
+              progressBar.style.width = '100%';
+              progressBar.textContent = '100%';
+              try { if (bsModal) bsModal.hide(); else manualHideModal(); } catch(e) { manualHideModal(); }
+              window.location.href = data.redirect;
+            }, 800);
         } else if (data.error) {
-            loadingBarFill.classList.remove("progress-bar-animated");
-            loadingBarFill.classList.add("bg-danger");
-            loadingBarFill.textContent = "Error";
+            progressBar.classList.remove("progress-bar-animated");
+            progressBar.classList.add("bg-danger");
+            progressBar.textContent = "Error";
             progressArea.innerHTML = "<div class='alert alert-danger'>" + data.error + "</div>";
+            setTimeout(() => { try { if (bsModal) bsModal.hide(); else manualHideModal(); } catch(e) { manualHideModal(); } }, 1200);
         }
     });
 });

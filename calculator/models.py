@@ -32,6 +32,10 @@ class UserBuild(models.Model):
     workstation_estimates = models.JSONField(default=dict, blank=True)
     # Mark whether this saved build represents an upgrade snapshot (vs a full build)
     is_upgrade = models.BooleanField(default=False)
+    # If this saved build is an upgrade snapshot, store the base build (component ids,
+    # mode, resolution) that the upgrade was calculated against. This makes viewing
+    # saved upgrades deterministic across sessions/devices.
+    upgrade_base = models.JSONField(default=dict, blank=True)
 
     def calculate_totals(self):
         # Keep weights as floats for simplicity
