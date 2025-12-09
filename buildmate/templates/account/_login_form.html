@@ -2,5 +2,5 @@
   {% csrf_token %}
   <input type="hidden" name="next" value="{{ request.path }}">
   {{ login_form.as_p }}
-  <button type="submit" class="btn btn-secondary w-100">Log in</button>
+  <button type="submit" class="btn btn-outline-secondary w-100">Log in</button>
 </form>

@@ -184,7 +184,7 @@
       {% csrf_token %}
       <input type="hidden" name="is_upgrade" value="1">
       <input type="hidden" name="upgrade_index" value="{{ proposal_index }}">
-      <button type="submit" class="btn btn-success">Save upgrade to account</button>
+  <button type="submit" class="btn btn-outline-success">Save upgrade to account</button>
       <a href="{% url 'saved_builds' %}" class="btn btn-outline-secondary ms-2">Back to builds</a>
     </form>
   {% else %}

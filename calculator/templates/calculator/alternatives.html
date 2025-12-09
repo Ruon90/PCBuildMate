@@ -43,7 +43,7 @@
           <form method="post" action="{% url 'select_alternative' %}" class="mt-auto">
             {% csrf_token %}
             <input type="hidden" name="alt_index" value="{{ alt.index }}">
-            <button type="submit" class="btn btn-primary">Use this build</button>
+            <button type="submit" class="btn btn-outline-primary">Use this build</button>
             <a href="{% url 'build_preview' %}" class="btn btn-link">Back to preview</a>
           </form>
         </div>

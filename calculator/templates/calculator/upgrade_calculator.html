@@ -113,7 +113,7 @@
 
       <div class="col-md-3 align-self-end">
         <div class="mt-2">
-              <button class="btn btn-primary" id="findUpgradesBtn">Find upgrades</button>
+              <button class="btn btn-outline-primary" id="findUpgradesBtn">Find upgrades</button>
         </div>
       </div>
     </div>
@@ -246,7 +246,7 @@
           </div>
           {% endif %}
           <div class="d-flex gap-2">
-            <a href="{% url 'upgrade_preview' %}?index={{ forloop.counter0 }}" class="btn btn-primary btn-sm">Preview upgrade</a>
+            <a href="{% url 'upgrade_preview' %}?index={{ forloop.counter0 }}" class="btn btn-outline-primary btn-sm">Preview upgrade</a>
             <form method="post" style="display:inline;">
               {% csrf_token %}
               <!-- Submit the index of the selected proposed build so the view can apply it -->

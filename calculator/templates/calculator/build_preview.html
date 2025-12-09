@@ -25,8 +25,8 @@
                             
                             <div class="div mt-4">
                                 <p class="d-flex gap-2">
-                                    <a href="{% url 'preview_edit' %}" class="btn btn-primary">Edit preview</a>
-                                    <a href="{% url 'alternatives' %}" class="btn btn-outline-secondary">Alternatives</a>
+                                    <a href="{% url 'preview_edit' %}" class="btn btn-outline-primary">Edit preview</a>
+                                    <a href="{% url 'alternatives' %}" class="btn btn-outline-light">Alternatives</a>
                                 </p>
                             </div>
                             
@@ -224,12 +224,12 @@
         <!-- Logged-in users: direct save -->
         <form method="post" action="{% url 'save_build' %}">
             {% csrf_token %}
-            <button type="submit" class="btn btn-success">Save build to account</button>
+              <button type="submit" class="btn btn-outline-success">Save build to account</button>
         </form>
     {% else %}
         <!-- Anonymous users: trigger signup modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">
-            Register to save this build
+        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#signupModal">
+              Register to save this build
         </button>
     {% endif %}
 

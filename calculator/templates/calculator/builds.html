@@ -44,13 +44,13 @@
                         </div>
                                                 <div class="card-footer d-flex justify-content-between">
                                                         {% if build.is_upgrade %}
-                                                            <a href="{% url 'view_saved_upgrade' build.pk %}" class="btn btn-primary btn-sm">View</a>
+                                                            <a href="{% url 'view_saved_upgrade' build.pk %}" class="btn btn-outline-primary btn-sm">View</a>
                                                         {% else %}
-                                                            <a href="{% url 'build_preview_pk' build.pk %}" class="btn btn-primary btn-sm">View</a>
+                                                            <a href="{% url 'build_preview_pk' build.pk %}" class="btn btn-outline-primary btn-sm">View</a>
                                                         {% endif %}
-                                                        <a href="{% url 'edit_build' build.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                                                        <a href="{% url 'edit_build' build.pk %}" class="btn btn-outline-warning btn-sm">Edit</a>
                                                         <!-- Delete button triggers modal -->
-                                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ build.pk }}">Delete</button>
+                                                        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ build.pk }}">Delete</button>
                                                 </div>
                                         </div>
 
@@ -68,9 +68,9 @@
                                                     <div class="modal-footer">
                                                         <form method="post" action="{% url 'delete_build' build.pk %}">
                                                             {% csrf_token %}
-                                                            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                                                            <button type="submit" class="btn btn-outline-danger">Yes, Delete</button>
                                                         </form>
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
                                                     </div>
                                                 </div>
                                             </div>

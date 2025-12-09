@@ -13,8 +13,8 @@
 
   <form method="post" action="">
     {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Continue with Google</button>
-    <a href="{% url 'account_login' %}" class="btn btn-secondary ms-2">Cancel</a>
+  <button type="submit" class="btn btn-outline-danger">Continue with Google</button>
+  <a href="{% url 'account_login' %}" class="btn btn-outline-secondary ms-2">Cancel</a>
   </form>
 </div>
 {% endblock %}
