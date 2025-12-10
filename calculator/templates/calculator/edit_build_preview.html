@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% load currency_tags %}
 {% block content %}
 <div class="container mt-4">
@@ -17,14 +16,92 @@
             </div>
         </div>
     </div>
+        <!-- Component Performance (normalized % of catalog maxima, mirroring Build Preview) -->
+        <div class="row mb-3">
+            <div class="col-md-4 mt-1">
+                <div class="card h-100 mt-1">
+                    <div class="card-body">
+                        <h6 class="card-title">CPU Performance</h6>
+                        <p class="mb-0">{% if cpu_perf %}{{ cpu_perf }}%{% else %}N/A{% endif %}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-1">
+                <div class="card h-100 mt-1 ">
+                    <div class="card-body">
+                        <h6 class="card-title">GPU Performance</h6>
+                        <p class="mb-0">{% if gpu_perf %}{{ gpu_perf }}%{% else %}N/A{% endif %}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-1">
+                <div class="card h-100 mt-1 ">
+                    <div class="card-body">
+                        <h6 class="card-title">RAM Performance</h6>
+                        <p class="mb-0">{% if ram_perf %}{{ ram_perf }}%{% else %}N/A{% endif %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+                {% if mode != 'workstation' %}
+                <!-- Per-resolution FPS section mirroring Build Preview -->
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                                    <strong class="mb-0">Estimated FPS:</strong>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="resolution toggles">
+                                        <button type="button" class="btn btn-outline-secondary res-toggle-card-btn {% if default_resolution == '1080p' %}active{% endif %}" data-res="1080p">1080p</button>
+                                        <button type="button" class="btn btn-outline-secondary res-toggle-card-btn {% if default_resolution == '1440p' %}active{% endif %}" data-res="1440p">1440p</button>
+                                        <button type="button" class="btn btn-outline-secondary res-toggle-card-btn {% if default_resolution == '4k' %}active{% endif %}" data-res="4k">4k</button>
+                                    </div>
+                                </div>
+                                <div class="fps-res-container">
+                                    {% for entry in fps_res_list %}
+                                    <div class="fps-block" data-res="{{ entry.res }}" style="display: {% if entry.res == default_resolution %}block{% else %}none{% endif %};">
+                                        <ul class="mb-0 small">
+                                            {% for g, vals in entry.games.items %}
+                                                <li>{{ g }}: {% if vals.overall %}{{ vals.overall }} FPS{% else %}N/A{% endif %}</li>
+                                            {% endfor %}
+                                        </ul>
+                                        {% if entry.bottleneck %}
+                                            <p class="mt-1"><strong>Bottleneck:</strong> {{ entry.bottleneck.type|default:'unknown' }} ({{ entry.bottleneck.bottleneck|default:0.0 }}%)</p>
+                                        {% endif %}
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <!-- Workstation render-time simple display -->
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <strong>Estimated render time:</strong>
+                                <p class="mb-0 small">{% if workstation_render_time %}{{ workstation_render_time }} seconds{% else %}N/A{% endif %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
     <div class="row">
-        <div class="col-md-6">
-            <div class="card mb-3">
-                <div class="card-header">CPU</div>
-                <div class="card-body">
-                    <h5>{{ cpu.name }}</h5>
-                    <p>Price: {{ currency|currency_symbol }}{{ cpu.price|convert_from_usd:currency|floatformat:2 }}</p>
-                    <p>UserBenchmark: {{ cpu.userbenchmark_score }}</p>
+        <div class="col-md-4 d-flex mb-2">
+            <div class="card h-100 w-100">
+                                <div class="card-header">CPU</div>
+                <div class="card-body d-flex flex-column">
+                                        <h5>{% if cpu.name %}{{ cpu.name }}{% elif cpu.model %}{{ cpu.model }}{% else %}{{ cpu }}{% endif %}</h5>
+                                        <ul class="list-unstyled small mb-2">
+                                            {% if cpu.socket %}<li><strong>Socket:</strong> {{ cpu.socket }}</li>{% endif %}
+                                            {% if cpu.core_count %}<li><strong>Core count:</strong> {{ cpu.core_count }}</li>{% endif %}
+                                            {% if cpu.thread_count %}<li><strong>Thread count:</strong> {{ cpu.thread_count }}</li>{% endif %}
+                                            {% if cpu.boost_clock %}<li><strong>Boost clock:</strong> {{ cpu.boost_clock }} GHz</li>{% endif %}
+                                            <li><strong>Performance %:</strong> {% if cpu_perf %}{{ cpu_perf }}%{% else %}N/A{% endif %}</li>
+                                        </ul>
+                                        <p class="mt-auto mb-0"><span class="fw-bold">Price: {{ currency|currency_symbol }}{{ cpu.price|convert_from_usd:currency|floatformat:2 }}</span></p>
                     <div class="mt-2 d-flex justify-content-end gap-2">
                       <a href="#" class="component-action component-details" data-type="cpu" data-id="{{ cpu.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
                       <a href="#" class="component-action component-youtube" data-query="{{ cpu.name|default:cpu.model }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
@@ -34,13 +111,19 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="card mb-3">
-                <div class="card-header">Graphics Card</div>
-                <div class="card-body">
-                    <h5>{{ gpu.gpu_name }}</h5>
-                    <p>Price: {{ currency|currency_symbol }}{{ gpu.price|convert_from_usd:currency|floatformat:2 }}</p>
-                    <p>UserBenchmark: {{ gpu.userbenchmark_score }}</p>
+        <div class="col-md-4 d-flex mb-2">
+            <div class="card h-100 w-100">
+                                <div class="card-header">Graphics Card</div>
+                <div class="card-body d-flex flex-column">
+                                        <h5>{% if gpu.gpu_name %}{{ gpu.gpu_name }}{% elif gpu.name %}{{ gpu.name }}{% elif gpu.model %}{{ gpu.model }}{% else %}{{ gpu }}{% endif %}</h5>
+                                        <ul class="list-unstyled small mb-2">
+                                            {% if gpu.base_clock %}<li><strong>Base clock:</strong> {{ gpu.base_clock }} GHz</li>{% endif %}
+                                            {% if gpu.boost_clock %}<li><strong>Boost clock:</strong> {{ gpu.boost_clock }} GHz</li>{% endif %}
+                                            {% if gpu.bus_interface %}<li><strong>Bus interface:</strong> {{ gpu.bus_interface }}</li>{% endif %}
+                                            {% if gpu.memory_size_gb or gpu.memory_type %}<li><strong>Memory:</strong> {% if gpu.memory_size_gb %}{{ gpu.memory_size_gb }}GB{% endif %} {% if gpu.memory_type %}{{ gpu.memory_type }}{% endif %}</li>{% endif %}
+                                            <li><strong>GPU Performance %:</strong> {% if gpu_perf %}{{ gpu_perf }}%{% else %}N/A{% endif %}</li>
+                                        </ul>
+                                        <p class="mt-auto mb-0"><span class="fw-bold">Price: {{ currency|currency_symbol }}{{ gpu.price|convert_from_usd:currency|floatformat:2 }}</span></p>
                     <div class="mt-2 d-flex justify-content-end gap-2">
                       <a href="#" class="component-action component-details" data-type="gpu" data-id="{{ gpu.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
                       <a href="#" class="component-action component-youtube" data-query="{{ gpu.gpu_name|default:gpu.model }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
@@ -50,13 +133,44 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="card mb-3">
+        <div class="col-md-4 d-flex mb-2 mt-1">
+            <div class="card h-100 w-100">
+                                <div class="card-header">RAM</div>
+                <div class="card-body d-flex flex-column">
+                                        <h5>{% if ram.name %}{{ ram.name }}{% elif ram.capacity_gb %}{{ ram.capacity_gb }}GB{% else %}{{ ram }}{% endif %}</h5>
+                                                      <ul class="list-unstyled small mb-2">
+                                            <li><strong>Modules:</strong> {{ ram.modules|default:'N/A' }}</li>
+                                            <li><strong>DDR Generation:</strong> {{ ram.ddr_generation|default:'N/A' }}</li>
+                                            <li><strong>Frequency:</strong> {% if ram.frequency_mhz %}{{ ram.frequency_mhz }} MHz{% else %}N/A{% endif %}</li>
+                                            <li><strong>Capacity:</strong> {% if ram.capacity_gb %}{{ ram.capacity_gb }} GB{% else %}N/A{% endif %}</li>
+                                            <li><strong>RAM Performance %:</strong> {% if ram_perf %}{{ ram_perf }}%{% else %}N/A{% endif %}</li>
+                                        </ul>
+                                                      <p class="mt-auto mb-0"><span class="fw-bold">Price: {{ currency|currency_symbol }}{{ ram.price|convert_from_usd:currency|floatformat:2 }}</span></p>
+                    <div class="mt-2 d-flex justify-content-end gap-2">
+                      <a href="#" class="component-action component-details" data-type="ram" data-id="{{ ram.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
+                      <a href="#" class="component-action component-youtube" data-query="{{ ram.name }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
+                      <a href="https://www.amazon.com/s?k={{ ram.name|urlencode }}" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Middle grid rows -->
+    <div class="row">
+        <div class="col-md-4 d-flex mb-2 mt-1">
+            <div class="card h-100 w-100">
                 <div class="card-header">Motherboard</div>
-                <div class="card-body">
-                    <h5>{{ motherboard.name }}</h5>
-                    <p>Price: {{ currency|currency_symbol }}{{ motherboard.price|convert_from_usd:currency|floatformat:2 }}</p>
-                    <p>Chipset: {{ motherboard.chipset }}</p>
+                <div class="card-body d-flex flex-column">
+                                        <h5>{% if motherboard.name %}{{ motherboard.name }}{% else %}{{ motherboard }}{% endif %}</h5>
+                                                      <ul class="list-unstyled small mb-2">
+                                                          <li><strong>Socket:</strong> {{ motherboard.socket|default:'N/A' }}</li>
+                        <li><strong>Form Factor:</strong> {{ motherboard.form_factor|default:'N/A' }}</li>
+                        <li><strong>DDR Version:</strong> {{ motherboard.ddr_version|default:'N/A' }}</li>
+                        <li><strong>NVMe:</strong> {{ motherboard.nvme_support|default:'N/A' }}</li>
+                        <li><strong>BIOS update:</strong> {% if motherboard.bios_update_required is not None %}{{ motherboard.bios_update_required|yesno:'Required,Not required' }}{% else %}N/A{% endif %}</li>
+                    </ul>
+                                                      <p class="mt-auto mb-0"><span class="fw-bold">Price: {{ currency|currency_symbol }}{{ motherboard.price|convert_from_usd:currency|floatformat:2 }}</span></p>
                     <div class="mt-2 d-flex justify-content-end gap-2">
                       <a href="#" class="component-action component-details" data-type="motherboard" data-id="{{ motherboard.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
                       <a href="#" class="component-action component-youtube" data-query="{{ motherboard.name }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
@@ -66,45 +180,18 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="card mb-3">
-                <div class="card-header">RAM</div>
-                <div class="card-body">
-                    <h5>{{ ram.name }}</h5>
-                    <p>Price: {{ currency|currency_symbol }}{{ ram.price|convert_from_usd:currency|floatformat:2 }}</p>
-                    <p>UserBenchmark: {{ ram.userbenchmark_score }}</p>
-                    <div class="mt-2 d-flex justify-content-end gap-2">
-                      <a href="#" class="component-action component-details" data-type="ram" data-id="{{ ram.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
-                      <a href="#" class="component-action component-youtube" data-query="{{ ram.name }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
-                      <a href="https://www.amazon.com/s?k={{ ram.name|urlencode }}" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="card mb-3">
-                <div class="card-header">Storage</div>
-                <div class="card-body">
-                    <h5>{{ storage.name }}</h5>
-                    <p>Price: {{ currency|currency_symbol }}{{ storage.price|convert_from_usd:currency|floatformat:2 }}</p>
-                    <p>UserBenchmark: {{ storage.userbenchmark_score }}</p>
-                    <div class="mt-2 d-flex justify-content-end gap-2">
-                      <a href="#" class="component-action component-details" data-type="storage" data-id="{{ storage.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
-                      <a href="#" class="component-action component-youtube" data-query="{{ storage.name|default:storage.model }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
-                      <a href="https://www.amazon.com/s?k={{ storage.name|default:storage.model|urlencode }}" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="card mb-3">
+        <div class="col-md-4 d-flex mb-2 mt-1">
+            <div class="card h-100 w-100">
                 <div class="card-header">Power Supply</div>
-                <div class="card-body">
-                    <h5>{% if psu.brand %}{{ psu.brand }} {% endif %}{{ psu.name }}{% if psu.wattage %} {{ psu.wattage }}W{% endif %}</h5>
-                    <p>Price: {{ currency|currency_symbol }}{{ psu.price|convert_from_usd:currency|floatformat:2 }}</p>
-                    <p>UserBenchmark: {{ psu.userbenchmark_score }}</p>
+                <div class="card-body d-flex flex-column">
+                                        <h5>{% if psu.brand %}{{ psu.brand }} {% endif %}{% if psu.name %}{{ psu.name }}{% else %}{{ psu }}{% endif %}{% if psu.wattage %} {{ psu.wattage }}W{% endif %}</h5>
+                                                      <ul class="list-unstyled small mb-2">
+                        <li><strong>PSU type:</strong> {{ psu.psu_type|default:'N/A' }}</li>
+                        <li><strong>Efficiency:</strong> {{ psu.efficiency|default:'N/A' }}</li>
+                        <li><strong>Wattage:</strong> {% if psu.wattage %}{{ psu.wattage }}W{% else %}N/A{% endif %}</li>
+                        <li><strong>Modular:</strong> {{ psu.modular|default:'N/A' }}</li>
+                    </ul>
+                                                      <p class="mt-auto mb-0"><span class="fw-bold">Price: {{ currency|currency_symbol }}{{ psu.price|convert_from_usd:currency|floatformat:2 }}</span></p>
                     <div class="mt-2 d-flex justify-content-end gap-2">
                       <a href="#" class="component-action component-details" data-type="psu" data-id="{{ psu.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
                       <a href="#" class="component-action component-youtube" data-query="{{ psu.name }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
@@ -114,29 +201,43 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="card mb-3">
-                <div class="card-header">CPU Cooler</div>
-                <div class="card-body">
-                    <h5>{{ cooler.name }}</h5>
-                    <p>Price: {{ currency|currency_symbol }}{{ cooler.price|convert_from_usd:currency|floatformat:2 }}</p>
-                    <p>UserBenchmark: {{ cooler.userbenchmark_score }}</p>
+        <!-- Move Storage to the end of the second row -->
+        <div class="col-md-4 d-flex mb-2 mt-1">
+            <div class="card h-100 w-100">
+                <div class="card-header">Storage</div>
+                <div class="card-body d-flex flex-column">
+                                        <h5>{% if storage.name %}{{ storage.name }}{% elif storage.model %}{{ storage.model }}{% else %}{{ storage }}{% endif %}</h5>
+                                                      <ul class="list-unstyled small mb-2">
+                        <li><strong>Capacity:</strong> {% if storage.capacity %}{{ storage.capacity }} GB{% else %}N/A{% endif %}</li>
+                        <li><strong>Form factor:</strong> {{ storage.form_factor|default:'N/A' }}</li>
+                        <li><strong>Interface:</strong> {{ storage.interface|default:'N/A' }}</li>
+                    </ul>
+                                                      <p class="mt-auto mb-0"><span class="fw-bold">Price: {{ currency|currency_symbol }}{{ storage.price|convert_from_usd:currency|floatformat:2 }}</span></p>
                     <div class="mt-2 d-flex justify-content-end gap-2">
-                      <a href="#" class="component-action component-details" data-type="cooler" data-id="{{ cooler.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
-                      <a href="#" class="component-action component-youtube" data-query="{{ cooler.name }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
-                      <a href="https://www.amazon.com/s?k={{ cooler.name|urlencode }}" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
+                      <a href="#" class="component-action component-details" data-type="storage" data-id="{{ storage.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
+                      <a href="#" class="component-action component-youtube" data-query="{{ storage.name|default:storage.model }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
+                      <a href="https://www.amazon.com/s?k={{ storage.name|default:storage.model|urlencode }}" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="card mb-3">
+        
+    </div>
+
+    <!-- Bottom centered row for Case and CPU Cooler -->
+    <div class="row justify-content-center">
+        <div class="col-md-4 d-flex mb-2 mt-1">
+            <div class="card h-100 w-100">
                 <div class="card-header">Case</div>
-                <div class="card-body">
-                    <h5>{{ case.name }}</h5>
-                    <p>Price: {{ currency|currency_symbol }}{{ case.price|convert_from_usd:currency|floatformat:2 }}</p>
-                    <p>UserBenchmark: {{ case.userbenchmark_score }}</p>
+                <div class="card-body d-flex flex-column">
+                                        <h5>{% if case.name %}{{ case.name }}{% else %}{{ case }}{% endif %}</h5>
+                    <ul class="list-unstyled small mb-2">
+                        <li><strong>Case type:</strong> {{ case.case_type|default:'N/A' }}</li>
+                        <li><strong>Color:</strong> {{ case.color|default:'N/A' }}</li>
+                        <li><strong>PSU:</strong> {{ case.psu|default:'N/A' }}</li>
+                    </ul>
+                    <p class="mt-auto mb-0"><span class="fw-bold">Price: {{ currency|currency_symbol }}{{ case.price|convert_from_usd:currency|floatformat:2 }}</span></p>
                     <div class="mt-2 d-flex justify-content-end gap-2">
                       <a href="#" class="component-action component-details" data-type="case" data-id="{{ case.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
                       <a href="#" class="component-action component-youtube" data-query="{{ case.name }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
@@ -146,9 +247,51 @@
             </div>
         </div>
 
+        <div class="col-md-4 d-flex mb-2 mt-1">
+            <div class="card h-100 w-100">
+                <div class="card-header">CPU Cooler</div>
+                <div class="card-body d-flex flex-column">
+                                        <h5>{% if cooler.name %}{{ cooler.name }}{% else %}{{ cooler }}{% endif %}</h5>
+                    <ul class="list-unstyled small mb-2">
+                        <li><strong>Liquid:</strong> {% if cooler.liquid is not None %}{{ cooler.liquid|yesno:'Yes,No' }}{% else %}N/A{% endif %}</li>
+                    </ul>
+                    <p class="mt-auto mb-0"><span class="fw-bold">Price: {{ currency|currency_symbol }}{{ cooler.price|convert_from_usd:currency|floatformat:2 }}</span></p>
+                    <div class="mt-2 d-flex justify-content-end gap-2">
+                      <a href="#" class="component-action component-details" data-type="cooler" data-id="{{ cooler.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
+                      <a href="#" class="component-action component-youtube" data-query="{{ cooler.name }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
+                      <a href="https://www.amazon.com/s?k={{ cooler.name|urlencode }}" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     </div>
 
 
 
 </div>
+{% endblock %}
+{% block extra_scripts %}
+<script>
+// Inline resolution toggle for Saved Build Preview FPS section
+document.addEventListener('click', function(e){
+    const btn = e.target.closest('.res-toggle-card-btn');
+    if(!btn) return;
+    const res = btn.getAttribute('data-res');
+    if(!res) return;
+    // Toggle active state within the same button group
+    const group = btn.closest('.btn-group');
+    if(group){
+        group.querySelectorAll('.res-toggle-card-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+    }
+    // Show the matching fps-block and hide others inside the nearest card body
+    const cardBody = btn.closest('.card-body');
+    const blocks = cardBody ? cardBody.querySelectorAll('.fps-block') : document.querySelectorAll('.fps-block');
+    blocks.forEach(el => {
+        el.style.display = (el.getAttribute('data-res') === res) ? 'block' : 'none';
+    });
+});
+</script>
 {% endblock %}

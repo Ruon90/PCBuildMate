@@ -22,7 +22,7 @@
                             <hr>
                             {% load currency_tags %}
                             <p><strong>Budget:</strong>
-                                {% if build.display_budget %}
+                                {% if build.display_budget is not None %}
                                     {{ build.currency|currency_symbol }}{{ build.display_budget|floatformat:2 }}
                                 {% else %}
                                     &mdash;
@@ -84,5 +84,18 @@
             You don’t have any saved builds yet. Go back to the <a href="{% url 'home' %}">calculator</a> to create one.
         </div>
     {% endif %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Ensure each delete modal is attached directly to <body> to avoid stacking-context issues
+        try {
+            const modals = document.querySelectorAll('[id^="deleteModal"]');
+            modals.forEach(m => {
+                if (m.parentNode !== document.body) {
+                    document.body.appendChild(m);
+                }
+            });
+        } catch (e) {}
+    });
+    </script>
 </div>
 {% endblock %}

@@ -85,6 +85,8 @@ document.getElementById("buildForm").addEventListener("submit", function(e) {
         const modalEl = document.getElementById('buildProgressModal');
         const progressBar = document.getElementById('buildProgressBar');
         const progressMsg = document.getElementById('buildProgressMsg');
+        // Ensure modal is attached directly to <body> to avoid stacking-context issues
+        try { if (modalEl && modalEl.parentNode !== document.body) { document.body.appendChild(modalEl); } } catch(e) {}
         let bsModal = null;
         if (typeof window.bootstrap !== 'undefined' && window.bootstrap.Modal) {
             try { bsModal = new window.bootstrap.Modal(modalEl, { backdrop: 'static', keyboard: false }); } catch (e) { bsModal = null; }

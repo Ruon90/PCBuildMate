@@ -137,11 +137,27 @@
       background-image: none !important; /* prevent user-agent gradients */
       filter: none !important;
     }
-    /* Ensure select text and options render in white */
+    /* Ensure select text and options render in white and dropdown panel is dark */
     .form-select,
     select,
     .form-select option,
     select option{ color: var(--text-primary) !important; }
+    /* Native select dropdown list background (best-effort across browsers) */
+    .form-select option,
+    select option,
+    .form-select optgroup,
+    select optgroup{
+      background-color: var(--dropdown-component) !important;
+      color: var(--text-primary) !important;
+    }
+    /* Highlight selected/hovered options in native dropdowns */
+    .form-select option:checked,
+    select option:checked,
+    .form-select option:hover,
+    select option:hover{
+      background-color: var(--highlight-bluegray) !important;
+      color: #fff !important;
+    }
     /* Select2 selected label text */
     .select2-selection__rendered{ color: var(--text-primary) !important; }
     .select2-selection{ background-color: var(--input-bg) !important; border-color: var(--card-border) !important; }
@@ -362,6 +378,32 @@
 
     /* Footer harmonized */
     footer.bg-dark{ background-color: rgba(0,0,0,0.45) !important; border-top: 1px solid var(--card-border); }
+
+    /* Ensure Bootstrap modals/backdrop sit above any page overlays/widgets */
+  /* Raise modal layers above any page overlays/gradients */
+  .modal { z-index: 2100 !important; }
+  .modal-backdrop { z-index: 2000 !important; }
+    /* Keep floating widgets below modals while open (AI agent uses high z-index) */
+  .modal-open #ai-agent { z-index: 100 !important; }
+
+    /* Page enter (slide-down/fade) — slower and smoother */
+    @keyframes pcbmSlideDownFade {
+      0% { opacity: 0; transform: translateY(-56px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .page-enter {
+      animation: pcbmSlideDownFade 210ms cubic-bezier(.2,.8,.2,1) both;
+      will-change: opacity, transform;
+    }
+    /* Page exit (slide-up/fade) */
+    @keyframes pcbmSlideUpFade {
+      0% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-60px); }
+    }
+    .page-exit {
+      animation: pcbmSlideUpFade 250ms cubic-bezier(.2,.8,.2,1) both;
+      will-change: opacity, transform;
+    }
   </style>
   {% block extra_head %}{% endblock %}
 </head>
@@ -383,15 +425,20 @@
   {% endif %}
   <li class="nav-item"><a class="nav-link" href="{% url 'upgrade_calculator' %}">Upgrade Calculator</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'saved_builds' %}">Saved Builds</a></li>
+        {% if user.is_authenticated %}
+          {% if user.is_superuser or user.is_staff %}
+          <li class="nav-item"><a class="nav-link" href="/admin/">Admin</a></li>
+          {% endif %}
+        {% endif %}
         <li class="nav-item">
           <div class="d-flex">
             {% if user.is_authenticated %}
               <form method="post" action="{% url 'account_logout' %}">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-sm btn-outline-danger">Sign out</button>
+                <button type="submit" class="btn btn-sm btn-outline-danger align-self-center align-middle mt-2">Sign out</button>
               </form>
             {% else %}
-              <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#authModal">
+              <button class="btn btn-outline-primary mt-2" data-bs-toggle="modal" data-bs-target="#authModal">
                 Register / Login
               </button>
             {% endif %}
@@ -412,7 +459,7 @@
       {% endfor %}
     </div>
   {% endif %}
-<main class="flex-grow-1 container my-5">
+<main class="flex-grow-1 container my-5" id="pageMain">
   {% block content %}{% endblock %}
   
 </main>
@@ -563,7 +610,7 @@
       </div>
 
       <div class="modal-body">
-        <div class="d-grid gap-2 mb-3">
+        <div class="d-grid gap-2 mb-2">
           <a href="{% url 'account_signup' %}" class="btn btn-outline-primary w-100">Sign up</a>
           <a href="{% url 'account_login' %}" class="btn btn-outline-secondary w-100">Log in</a>
           <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger w-100">Sign in with Google</a>
@@ -628,7 +675,88 @@
         bsAlert.close();
       }, 4000); // auto-dismiss after 4 seconds
     });
+
+    // Apply slide-down animation to page content on initial load
+    try {
+      const main = document.getElementById('pageMain');
+      if (main) {
+        // Only animate children blocks once, avoid re-animating on dynamic replacements
+        // Add the animation class to immediate children wrappers/cards if present, else to main
+        const children = Array.from(main.children);
+        if (children.length) {
+          children.forEach(el => el.classList.add('page-enter'));
+        } else {
+          main.classList.add('page-enter');
+        }
+      }
+    } catch (e) { /* no-op */ }
   });
+</script>
+<script>
+// Smooth page-exit animation on internal navigation
+(function(){
+  function isInternalLink(a){
+    try{
+      const url = new URL(a.href, window.location.origin);
+      return url.origin === window.location.origin && !a.target && !a.hasAttribute('download');
+    }catch{ return false; }
+  }
+  document.addEventListener('click', function(ev){
+    const a = ev.target.closest('a');
+    if(!a) return;
+    if(!isInternalLink(a)) return;
+    // ignore anchors and JS pseudo-links
+    const href = a.getAttribute('href') || '';
+    if(href.startsWith('#') || href.startsWith('javascript:')) return;
+    ev.preventDefault();
+    const main = document.getElementById('pageMain');
+    if(main){
+      // add exit animation to children for a cohesive effect
+      const children = Array.from(main.children);
+      const toAnimate = children.length ? children : [main];
+      toAnimate.forEach(el => {
+        el.classList.remove('page-enter');
+        el.classList.add('page-exit');
+      });
+      // Navigate after animation completes or fallback timeout
+      const navigate = () => { window.location.href = a.href; };
+      let handled = false;
+      const onEnd = () => { if(!handled){ handled = true; navigate(); } };
+      toAnimate.forEach(el => el.addEventListener('animationend', onEnd, { once: true }));
+  setTimeout(onEnd, 90); // safety timeout slightly > exit duration (300ms)
+    } else {
+      window.location.href = a.href;
+    }
+  });
+})();
+</script>
+<script>
+// Ensure back/forward navigation re-applies enter animation and clears any exit classes
+(function(){
+  function applyEnterAnimation(){
+    try{
+      const main = document.getElementById('pageMain');
+      if(!main) return;
+      const children = Array.from(main.children);
+      const targets = children.length ? children : [main];
+      targets.forEach(el => {
+        el.classList.remove('page-exit');
+        // force reflow to restart animation cleanly
+        // eslint-disable-next-line no-unused-expressions
+        void el.offsetWidth;
+        el.classList.add('page-enter');
+      });
+    }catch(e){ /* no-op */ }
+  }
+  // Fired when a page is shown in bfcache or via history back/forward
+  window.addEventListener('pageshow', function(){
+    applyEnterAnimation();
+  });
+  // Also listen for popstate to catch SPA-like history changes
+  window.addEventListener('popstate', function(){
+    applyEnterAnimation();
+  });
+})();
 </script>
 <script>
 // Component details fetcher

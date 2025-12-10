@@ -125,7 +125,7 @@
               }));
             });
             </script>
-          <p class="mt-2"><strong>Price delta:</strong> ${{ price_delta|floatformat:2 }}</p>
+          <p class="mt-2"><strong>Price delta:</strong> {{ currency|currency_symbol }}{{ price_delta|convert_from_usd:currency|floatformat:2 }}</p>
         </div>
       </div>
     </div>
@@ -286,6 +286,12 @@
       {% csrf_token %}
       <input type="hidden" name="is_upgrade" value="1">
       <input type="hidden" name="upgrade_index" value="{{ proposal_index }}">
+      {% if budget is not None %}
+      <input type="hidden" name="budget" value="{{ budget }}">
+      {% endif %}
+      {% if currency %}
+      <input type="hidden" name="currency" value="{{ currency }}">
+      {% endif %}
   <button type="submit" class="btn btn-outline-success">Save upgrade to account</button>
       <a href="{% url 'saved_builds' %}" class="btn btn-outline-secondary ms-2">Back to builds</a>
     </form>

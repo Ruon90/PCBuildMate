@@ -416,12 +416,16 @@ def build_preview(request):
     return render(request, "calculator/build_preview.html", {
         "cpu": cpu, "gpu": gpu, "motherboard": mobo, "ram": ram,
         "storage": storage, "psu": psu, "cooler": cooler, "case": case,
-        "budget": build_data.get("budget"), "mode": build_data.get("mode"),
+        # Always expose budget/currency; include session fallbacks to guarantee availability
+        "budget": build_data.get("budget"),
+        "preview_budget": request.session.get("preview_build", {}).get("budget"),
+        "mode": build_data.get("mode"),
         "score": build_data.get("score"), "price": build_data.get("price"),
         "signup_form": signup_form,
         "login_form": login_form,
         "is_saved_preview": False,
         "currency": currency,
+        "preview_currency": request.session.get("preview_build", {}).get("currency", "USD"),
         "currency_symbol": currency_symbol,
     "perf_map": perf,
     "perf": perf,  # backward-compat for templates that still reference 'perf'
@@ -874,6 +878,51 @@ def upgrade_preview(request):
     gpu_perf = perf_pct(gpu_top, gpu_val)
     ram_perf = perf_pct(ram_top, ram_val)
 
+    # Build per-resolution FPS estimates for upgrade preview (gaming mode only)
+    # Determine a sensible default resolution without relying on undefined build_obj.
+    try:
+        default_resolution = (
+            request.session.get('preview_build', {}).get('resolution')
+            or (current_build.get('resolution') if isinstance(current_build, dict) else None)
+            or (estimated_build.get('resolution') if isinstance(estimated_build, dict) else None)
+            or '1440p'
+        )
+    except Exception:
+        default_resolution = '1440p'
+    fps_res_list = []
+    bottleneck_info = {"bottleneck": 0.0, "type": "unknown"}
+    workstation_render_time = None
+    try:
+        if mode == "workstation":
+            try:
+                workstation_render_time = estimate_render_time(cpu, gpu, mode)
+            except Exception:
+                workstation_render_time = None
+        else:
+            games = ['Cyberpunk 2077', 'CS2', 'Fortnite']
+            resolutions = ['1080p', '1440p', '4k']
+            for res in resolutions:
+                games_map = {}
+                for g in games:
+                    try:
+                        cpu_fps, gpu_fps = estimate_fps_components(cpu, gpu, mode, res, g)
+                        est = round(min(cpu_fps, gpu_fps), 1) if cpu_fps is not None and gpu_fps is not None else None
+                        games_map[g] = {'overall': est, 'cpu': cpu_fps, 'gpu': gpu_fps}
+                    except Exception:
+                        games_map[g] = {'overall': None, 'cpu': None, 'gpu': None}
+                try:
+                    binfo = cpu_bottleneck(cpu, gpu, mode, res)
+                except Exception:
+                    binfo = {'bottleneck': 0.0, 'type': 'unknown'}
+                fps_res_list.append({'res': res, 'games': games_map, 'bottleneck': binfo})
+            # pick bottleneck for default resolution
+            try:
+                bottleneck_info = next((e.get('bottleneck') for e in fps_res_list if e.get('res') == default_resolution), bottleneck_info)
+            except Exception:
+                pass
+    except Exception:
+        fps_res_list = []
+
     return render(request, 'calculator/upgrade_preview.html', {
         'changed_items': changed,
         'percent': percent,
@@ -897,6 +946,13 @@ def upgrade_preview(request):
         'default_resolution': default_resolution,
         'fps_compare_list': fps_compare_list,
         'currency': currency,
+        # Include budget for save form; prefer preview session budget, else base_ids budget,
+        # and as a final fallback try any recorded last_upgrade_base.
+        'budget': (
+            (request.session.get('preview_build', {}) or {}).get('budget')
+            or base_ids.get('budget')
+            or (request.session.get('last_upgrade_base', {}) or {}).get('budget')
+        ),
         'proposal_index': idx,
         'current_build': current_build,
         'estimated_build': estimated_build,
@@ -1392,17 +1448,17 @@ def upgrade_calculator(request):
         # pages can compare correctly even when the session preview_build
         # isn't present or is different. Store minimal ids + mode/resolution.
         try:
-            # Include the user's entered budget and currency so saved-upgrade
-            # snapshots can persist this metadata and previews remain
-            # deterministic even if the session preview_build is later cleared.
-            preview_sb = request.session.get('preview_build', {}) or {}
+            # Persist the base used to compute proposals including the user's
+            # entered upgrade budget and chosen currency. This ensures the
+            # upgrade_preview save path can post the same budget/currency.
             request.session['last_upgrade_base'] = {
                 'cpu': getattr(cur_cpu, 'id', None), 'gpu': getattr(cur_gpu, 'id', None),
                 'motherboard': getattr(cur_mobo, 'id', None), 'ram': getattr(cur_ram, 'id', None),
                 'storage': getattr(cur_storage, 'id', None), 'psu': getattr(cur_psu, 'id', None),
                 'cooler': getattr(cur_cooler, 'id', None), 'case': getattr(cur_case, 'id', None),
                 'mode': mode, 'resolution': default_resolution,
-                'budget': preview_sb.get('budget'), 'currency': preview_sb.get('currency', 'USD'),
+                # Store the upgrade budget as entered (in selected currency)
+                'budget': float(budget), 'currency': currency,
             }
         except Exception:
             # best-effort; don't fail upgrade flow if session write fails
@@ -1753,6 +1809,74 @@ def build_preview_pk(request, pk):
     currency = getattr(build_obj, "currency", "USD")
     currency_symbol = None
 
+    # Compute normalized performance percentages (CPU/GPU/RAM) like build preview
+    from django.db.models import Max
+    def safe_float(v):
+        try:
+            return float(v or 0)
+        except Exception:
+            return 0.0
+    mode = getattr(build_obj, "mode", "gaming") or "gaming"
+    # Default resolution for FPS display
+    default_resolution = getattr(build_obj, "resolution", None) or "1440p"
+    cpu_field = 'blender_score' if mode == 'workstation' else 'userbenchmark_score'
+    gpu_field = 'blender_score' if mode == 'workstation' else 'userbenchmark_score'
+    ram_field = 'benchmark'  # RAM uses generic benchmark field
+    cpu_top = safe_float(CPU.objects.aggregate(m=Max(cpu_field)).get('m'))
+    gpu_top = safe_float(GPU.objects.aggregate(m=Max(gpu_field)).get('m'))
+    # Compute top RAM benchmark (field is 'benchmark' on RAM model)
+    ram_top_candidate = RAM.objects.aggregate(mb=Max('benchmark'))
+    ram_top = safe_float(ram_top_candidate.get('mb'))
+    cpu_val = safe_float(getattr(cpu, cpu_field, 0))
+    gpu_val = safe_float(getattr(gpu, gpu_field, 0))
+    # RAM benchmark value
+    ram_val = safe_float(getattr(ram, 'benchmark', None))
+    def perf_pct(top, val):
+        try:
+            if top and val:
+                return round((val / top) * 100.0, 1)
+        except Exception:
+            pass
+        return None
+    cpu_perf = perf_pct(cpu_top, cpu_val)
+    gpu_perf = perf_pct(gpu_top, gpu_val)
+    ram_perf = perf_pct(ram_top, ram_val)
+
+    # Build per-resolution FPS estimates for saved build preview (gaming mode only)
+    fps_res_list = []
+    bottleneck_info = {"bottleneck": 0.0, "type": "unknown"}
+    workstation_render_time = None
+    try:
+        if mode == "workstation":
+            try:
+                workstation_render_time = estimate_render_time(cpu, gpu, mode)
+            except Exception:
+                workstation_render_time = None
+        else:
+            games = ['Cyberpunk 2077', 'CS2', 'Fortnite']
+            resolutions = ['1080p', '1440p', '4k']
+            for res in resolutions:
+                games_map = {}
+                for g in games:
+                    try:
+                        cpu_fps, gpu_fps = estimate_fps_components(cpu, gpu, mode, res, g)
+                        est = round(min(cpu_fps, gpu_fps), 1) if cpu_fps is not None and gpu_fps is not None else None
+                        games_map[g] = {'overall': est, 'cpu': cpu_fps, 'gpu': gpu_fps}
+                    except Exception:
+                        games_map[g] = {'overall': None, 'cpu': None, 'gpu': None}
+                try:
+                    binfo = cpu_bottleneck(cpu, gpu, mode, res)
+                except Exception:
+                    binfo = {'bottleneck': 0.0, 'type': 'unknown'}
+                fps_res_list.append({'res': res, 'games': games_map, 'bottleneck': binfo})
+            # pick bottleneck for default resolution
+            try:
+                bottleneck_info = next((e.get('bottleneck') for e in fps_res_list if e.get('res') == default_resolution), bottleneck_info)
+            except Exception:
+                pass
+    except Exception:
+        fps_res_list = []
+
     return render(request, "calculator/edit_build_preview.html", {
         "cpu": cpu, "gpu": gpu, "motherboard": mobo, "ram": ram,
         "storage": storage, "psu": psu, "cooler": cooler, "case": case,
@@ -1762,11 +1886,29 @@ def build_preview_pk(request, pk):
         "is_saved_preview": True,
         "currency": currency,
         "currency_symbol": currency_symbol,
+        "cpu_perf": cpu_perf,
+        "gpu_perf": gpu_perf,
+        "ram_perf": ram_perf,
+        "default_resolution": default_resolution,
+        "fps_res_list": fps_res_list,
+        "bottleneck": bottleneck_info,
+        "workstation_render_time": workstation_render_time,
     })
 
 @login_required
 def save_build(request):
     """Save the current preview build to the logged-in user's account."""
+    # Debug: entry logs
+    try:
+        print("[save_build] ENTRY method=", request.method)
+        print("[save_build] POST keys=", list(request.POST.keys()))
+        # Show full POST mapping for troubleshooting
+        try:
+            print("[save_build] POST map=", {k: request.POST.get(k) for k in request.POST.keys()})
+        except Exception:
+            pass
+    except Exception:
+        pass
     # Allow callers to mark this saved build as an upgrade snapshot by posting
     # 'is_upgrade' in the save form. This is useful for distinguishing saved
     # upgrade snapshots from full builds in the UI.
@@ -1779,7 +1921,11 @@ def save_build(request):
     # last upgrade proposal stored in session (using the posted upgrade_index).
     if not build_data and is_upgrade_flag:
         try:
-            idx = int(request.POST.get('upgrade_index') or 0)
+            # Accept either 'upgrade_index' (from upgrade_preview) or 'proposed_index' (from upgrade_calculator)
+            idx_raw = request.POST.get('upgrade_index')
+            if idx_raw is None:
+                idx_raw = request.POST.get('proposed_index')
+            idx = int(idx_raw or 0)
         except Exception:
             idx = 0
         proposals = request.session.get('last_upgrade_proposals', []) or []
@@ -1796,8 +1942,9 @@ def save_build(request):
                 'psu': sel.get('psu') or base.get('psu'),
                 'cooler': sel.get('cooler') or base.get('cooler'),
                 'case': sel.get('case') or base.get('case'),
-                'budget': request.session.get('preview_build', {}).get('budget', 0.0),
-                'currency': request.session.get('preview_build', {}).get('currency', 'USD'),
+                # Prefer budget/currency from recorded upgrade base for deterministic saved upgrades
+                'budget': base.get('budget', request.session.get('preview_build', {}).get('budget', 0.0)),
+                'currency': base.get('currency', request.session.get('preview_build', {}).get('currency', 'USD')),
                 'mode': base.get('mode') or request.session.get('preview_build', {}).get('mode', 'gaming'),
                 'resolution': base.get('resolution') or request.session.get('preview_build', {}).get('resolution', '1440p'),
                 'price': sel.get('total_price') or None,
@@ -1805,6 +1952,10 @@ def save_build(request):
             }
 
     if not build_data:
+        try:
+            print("[save_build] build_data missing -> redirect home")
+        except Exception:
+            pass
         return redirect("home")
 
     try:
@@ -1817,12 +1968,22 @@ def save_build(request):
             try:
                 if last_upgrade_base.get('budget') is not None:
                     _budget_val = float(last_upgrade_base.get('budget'))
+                elif request.POST.get('budget') is not None:
+                    # Prefer POSTed 'budget' for upgrade saves (now posted by the calculator form)
+                    _budget_val = float(request.POST.get('budget'))
                 else:
                     _budget_val = float(build_data.get('budget') if build_data.get('budget') is not None else 0.0)
             except Exception:
+                # Final fallback
                 _budget_val = float(build_data.get('budget') if build_data.get('budget') is not None else 0.0)
 
-            currency_val = last_upgrade_base.get('currency') or build_data.get('currency') or 'USD'
+            # Prefer posted currency if provided, then recorded upgrade base currency, then build_data
+            currency_val = (
+                request.POST.get('currency')
+                or last_upgrade_base.get('currency')
+                or build_data.get('currency')
+                or 'USD'
+            )
 
             # Ensure the stored upgrade_base contains budget + currency for later deterministic previews
             stored_upgrade_base = dict(last_upgrade_base) if isinstance(last_upgrade_base, dict) else {}
@@ -1838,9 +1999,29 @@ def save_build(request):
             try:
                 _budget_val = float(build_data.get('budget') if build_data.get('budget') is not None else 0.0)
             except Exception:
-                _budget_val = 0.0
-            currency_val = build_data.get('currency') or 'USD'
+                # Consider POSTed budget as a last resort (e.g., if preview_build is partial)
+                try:
+                    _budget_val = float(request.POST.get('budget') or 0.0)
+                except Exception:
+                    _budget_val = 0.0
+            currency_val = request.POST.get('currency') or build_data.get('currency') or 'USD'
             stored_upgrade_base = {}
+
+        # --- Debug logging for budget persistence ---
+        try:
+            print("[save_build] is_upgrade=", is_upgrade_flag)
+            print("[save_build] POST.budget=", request.POST.get('budget'))
+            print("[save_build] POST.currency=", request.POST.get('currency'))
+            try:
+                print("[save_build] session.preview_build=", request.session.get('preview_build'))
+                print("[save_build] session.last_upgrade_base=", request.session.get('last_upgrade_base'))
+            except Exception:
+                pass
+            print("[save_build] session.preview_build.budget=", request.session.get('preview_build', {}).get('budget'))
+            print("[save_build] session.last_upgrade_base.budget=", (request.session.get('last_upgrade_base') or {}).get('budget'))
+            print("[save_build] resolved _budget_val=", _budget_val, "currency=", currency_val)
+        except Exception:
+            pass
 
         build = UserBuild.objects.create(
             user=request.user,
@@ -1902,7 +2083,11 @@ def saved_builds(request):
             # stored upgrade_base or fall back to the user's latest
             # non-upgrade build's budget.
             try:
-                b.display_budget = float(b.budget) if getattr(b, 'budget', None) else None
+                # Show budget even if it's 0.0; only hide when truly missing (None)
+                if hasattr(b, 'budget') and getattr(b, 'budget') is not None:
+                    b.display_budget = float(getattr(b, 'budget'))
+                else:
+                    b.display_budget = None
             except Exception:
                 b.display_budget = None
 
@@ -1926,11 +2111,12 @@ def saved_builds(request):
                         }
 
                 # If no display budget yet, try to derive it from the base or base_obj
-                if not b.display_budget:
+                # If display_budget is still None, try to derive from upgrade_base or latest base build
+                if b.display_budget is None:
                     try:
                         # prefer an explicit budget stored in upgrade_base
                         ub = getattr(b, 'upgrade_base', {}) or {}
-                        if ub.get('budget'):
+                        if 'budget' in ub and ub.get('budget') is not None:
                             b.display_budget = float(ub.get('budget'))
                         elif base_obj and getattr(base_obj, 'budget', None):
                             b.display_budget = float(base_obj.budget)
@@ -1994,7 +2180,10 @@ def saved_builds(request):
                     baseline_combo = (cpu_score(base_cpu_obj, base.get('mode')) if base_cpu_obj else 0.0) + (gpu_score(base_gpu_obj, base.get('mode')) if base_gpu_obj else 0.0)
                     new_combo = (cpu_score(b.cpu, b.mode) if b.cpu else 0.0) + (gpu_score(b.gpu, b.mode) if b.gpu else 0.0)
                     if baseline_combo and baseline_combo > 0:
-                        b.estimated_gain = ((new_combo - baseline_combo) / baseline_combo) * 100.0
+                        try:
+                            b.estimated_gain = ((new_combo - baseline_combo) / baseline_combo) * 100.0
+                        except Exception:
+                            b.estimated_gain = 0.0
                     else:
                         b.estimated_gain = 0.0
                 except Exception:

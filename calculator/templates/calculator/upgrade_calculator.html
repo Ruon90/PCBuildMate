@@ -9,7 +9,7 @@
     <h2>Upgrade calculator</h2>
     <p class="text-muted">Provide the exact build you want to upgrade (all components required) and enter a budget. Results are ranked by percentage performance gain. RAM and motherboard-only upgrades are not suggested; CPU upgrades may include motherboard and RAM when required. GPU upgrades are shown separately. Combined CPU+GPU proposals are included when budget allows.</p>
 
-    <form method="post" class="mb-4">
+  <form method="post" class="mb-4 needs-validation" novalidate>
       {% csrf_token %}
       <div class="row g-3">
         <div class="col-md-6">
@@ -20,6 +20,7 @@
           <option value="{{ c.id }}" {% if request.POST.cpu == c.id|stringformat:'s' %}selected{% endif %}>{% if c.name %}{{ c.name }}{% else %}{{ c }}{% endif %}</option>
           {% endfor %}
         </select>
+        <div class="invalid-feedback">Please select a CPU.</div>
       </div>
       <div class="col-md-6">
         <label class="form-label">GPU</label>
@@ -31,6 +32,7 @@
           </option>
           {% endfor %}
         </select>
+        <div class="invalid-feedback">Please select a GPU.</div>
       </div>
       <div class="col-md-6">
         <label class="form-label">Motherboard</label>
@@ -40,6 +42,7 @@
           <option value="{{ m.id }}" {% if request.POST.motherboard == m.id|stringformat:'s' %}selected{% endif %}>{% if m.name %}{{ m.name }}{% else %}{{ m }}{% endif %}</option>
           {% endfor %}
         </select>
+        <div class="invalid-feedback">Please select a motherboard.</div>
       </div>
       <div class="col-md-6">
         <label class="form-label">RAM</label>
@@ -49,6 +52,7 @@
           <option value="{{ r.id }}" {% if request.POST.ram == r.id|stringformat:'s' %}selected{% endif %}>{% if r.name %}{{ r.name }}{% else %}{{ r }}{% endif %}</option>
           {% endfor %}
         </select>
+        <div class="invalid-feedback">Please select RAM.</div>
       </div>
       <div class="col-md-6">
         <label class="form-label">Storage</label>
@@ -58,6 +62,7 @@
           <option value="{{ s.id }}" {% if request.POST.storage == s.id|stringformat:'s' %}selected{% endif %}>{% if s.name %}{{ s.name }}{% else %}{{ s }}{% endif %}</option>
           {% endfor %}
         </select>
+        <div class="invalid-feedback">Please select a storage drive.</div>
       </div>
       <div class="col-md-6">
         <label class="form-label">PSU</label>
@@ -67,6 +72,7 @@
           <option value="{{ p.id }}" {% if request.POST.psu == p.id|stringformat:'s' %}selected{% endif %}>{% if p.name %}{{ p.name }}{% else %}{{ p }}{% endif %}</option>
           {% endfor %}
         </select>
+        <div class="invalid-feedback">Please select a power supply.</div>
       </div>
       <div class="col-md-6">
         <label class="form-label">CPU Cooler</label>
@@ -76,6 +82,7 @@
           <option value="{{ c.id }}" {% if request.POST.cooler == c.id|stringformat:'s' %}selected{% endif %}>{% if c.name %}{{ c.name }}{% else %}{{ c }}{% endif %}</option>
           {% endfor %}
         </select>
+        <div class="invalid-feedback">Please select a CPU cooler.</div>
       </div>
       <div class="col-md-6">
         <label class="form-label">Case</label>
@@ -85,30 +92,34 @@
           <option value="{{ c.id }}" {% if request.POST.case == c.id|stringformat:'s' %}selected{% endif %}>{% if c.name %}{{ c.name }}{% else %}{{ c }}{% endif %}</option>
           {% endfor %}
         </select>
+        <div class="invalid-feedback">Please select a case.</div>
       </div>
 
       <div class="col-md-3">
         <label class="form-label">Mode</label>
-        <select name="mode" class="form-select">
+        <select name="mode" class="form-select" required>
           <option value="gaming" {% if request.POST.mode == 'gaming' %}selected{% endif %}>Gaming</option>
           <option value="workstation" {% if request.POST.mode == 'workstation' %}selected{% endif %}>Workstation</option>
         </select>
+        <div class="invalid-feedback">Please select a mode.</div>
       </div>
 
       <div class="col-md-3">
         <label class="form-label">Currency</label>
-        <select name="currency" class="form-select">
-          {% for cr in currencies %}
-            <option value="{{ cr.currency }}" {% if currency == cr.currency %}selected{% endif %}>{{ cr.currency }}</option>
-          {% endfor %}
+        <select name="currency" class="form-select" required>
+          <option value="GBP" {% if currency == 'GBP' %}selected{% endif %}>£ Pounds (GBP)</option>
+          <option value="USD" {% if currency == 'USD' %}selected{% endif %}>$ Dollars (USD)</option>
+          <option value="EUR" {% if currency == 'EUR' %}selected{% endif %}>€ Euros (EUR)</option>
         </select>
+        <div class="invalid-feedback">Please select a currency.</div>
       </div>
 
       {# Resolution toggles moved to each proposal card above the FPS area #}
 
       <div class="col-md-3">
-        <label class="form-label">Budget (USD)</label>
+        <label class="form-label">Budget</label>
         <input type="number" step="1" min="0" name="upgrade_budget" class="form-control" value="{{ budget|default_if_none:'' }}" required>
+        <div class="invalid-feedback">Please enter a valid budget.</div>
       </div>
 
       <div class="col-md-3 align-self-end">
@@ -247,11 +258,21 @@
           {% endif %}
           <div class="d-flex gap-2">
             <a href="{% url 'upgrade_preview' %}?index={{ forloop.counter0 }}" class="btn btn-outline-primary btn-sm">Preview upgrade</a>
-            <form method="post" style="display:inline;">
+            <!-- Save upgrade snapshot directly to account -->
+            <form method="post" action="{% url 'save_build' %}" style="display:inline;">
               {% csrf_token %}
-              <!-- Submit the index of the selected proposed build so the view can apply it -->
+              <input type="hidden" name="is_upgrade" value="1">
+              <!-- Use the same param name the view already expects -->
               <input type="hidden" name="proposed_index" value="{{ forloop.counter0 }}">
-              <button class="btn btn-outline-primary btn-sm">Use this build</button>
+              <!-- Pass through the current upgrade budget and currency so the save handler can persist them -->
+              {% if budget %}
+                <!-- Post as 'budget' to match save handler expectations -->
+                <input type="hidden" name="budget" value="{{ budget }}">
+              {% endif %}
+              {% if currency %}
+                <input type="hidden" name="currency" value="{{ currency }}">
+              {% endif %}
+              <button class="btn btn-outline-success btn-sm">Save build to account</button>
             </form>
           </div>
         </div>
@@ -261,9 +282,8 @@
   </div>
   {% endif %}
 
-   {% if not proposed_builds %}
-    <div id="noUpgradesAlert" class="alert alert-warning">No upgrades found for the selected budget and build.</div>
-  {% endif %}
+  <!-- Keep a hidden no-results alert in the DOM; reveal via JS only when a search returns zero proposals -->
+  <div id="noUpgradesAlert" class="alert alert-warning d-none" aria-hidden="true">No upgrades found for the selected budget and build.</div>
   </div>
 
 {% endblock %}
@@ -306,6 +326,8 @@
   const modalEl = document.getElementById('upgradeProgressModal');
   const progressBar = document.getElementById('upgradeProgressBar');
   const progressMsg = document.getElementById('upgradeProgressMsg');
+  // Ensure modal is attached directly to <body> to avoid stacking-context issues
+  try { if (modalEl && modalEl.parentNode !== document.body) { document.body.appendChild(modalEl); } } catch(e) {}
 
   if (!modalEl) return;
 
@@ -357,6 +379,20 @@
         const btn = ev.target.closest && ev.target.closest('#findUpgradesBtn');
         if (!btn) return;
         ev.preventDefault();
+        // Validate form before showing modal or submitting
+        const form = btn.closest('form');
+        if (form && typeof form.checkValidity === 'function') {
+          const valid = form.checkValidity();
+          if (!valid) {
+            // Trigger native validation UI and add Bootstrap feedback class
+            if (typeof form.reportValidity === 'function') form.reportValidity();
+            form.classList.add('was-validated');
+            // Focus the first invalid field
+            const firstInvalid = form.querySelector(':invalid');
+            if (firstInvalid && typeof firstInvalid.focus === 'function') firstInvalid.focus();
+            return; // don't open modal or submit
+          }
+        }
         try { if (bsModal) bsModal.show(); else manualShowModal(); } catch(e) { manualShowModal(); }
         // reset progress UI
         progressBar.classList.remove('bg-danger');
@@ -366,7 +402,6 @@
         progressBar.textContent = '5%';
         progressMsg.textContent = 'Please wait while we evaluate upgrade options...';
         // submit the enclosing form
-        const form = btn.closest('form');
         if (form && typeof form.requestSubmit === 'function') {
           form.requestSubmit();
         } else if (form) {
@@ -381,6 +416,15 @@
         const form = e.target;
         if (!form || !form.querySelector) return;
         if (!form.querySelector('#findUpgradesBtn')) return; // not our form
+        // If invalid, let native validation run and do NOT show modal
+        if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
+          e.preventDefault();
+          if (typeof form.reportValidity === 'function') form.reportValidity();
+          form.classList.add('was-validated');
+          const firstInvalid = form.querySelector(':invalid');
+          if (firstInvalid && typeof firstInvalid.focus === 'function') firstInvalid.focus();
+          return;
+        }
         e.preventDefault();
         // show modal (bootstrap if available, otherwise manual)
         try { if (bsModal) bsModal.show(); else manualShowModal(); } catch (err) { manualShowModal(); }
@@ -472,6 +516,14 @@
                       };
                       document.querySelectorAll('.res-toggle-card-btn').forEach(btn => btn.addEventListener('click', window._resToggleHandler));
                     } catch(e) {}
+                    // reveal the no-results alert (now rendered hidden by default)
+                    try {
+                      const alertEl = document.getElementById('noUpgradesAlert');
+                      if (alertEl) {
+                        alertEl.classList.remove('d-none');
+                        alertEl.removeAttribute('aria-hidden');
+                      }
+                    } catch(e) {}
                   } else {
                     window.location.reload();
                   }
@@ -492,9 +544,12 @@
                       if (newDocCurrent && curCurrent) {
                         curCurrent.innerHTML = newDocCurrent.innerHTML;
                       }
-                      // remove stale no-upgrades alert if present
+                      // hide no-upgrades alert if present
                       const alertEl = document.getElementById('noUpgradesAlert');
-                      if (alertEl) alertEl.remove();
+                      if (alertEl) {
+                        alertEl.classList.add('d-none');
+                        alertEl.setAttribute('aria-hidden', 'true');
+                      }
                       // re-init interactive bits inside proposals
                       try { if (window.jQuery && typeof window.jQuery.fn.select2 === 'function') {
                         window.jQuery('.searchable').select2({ width: '100%', placeholder: 'Start typing to search', allowClear: true });
