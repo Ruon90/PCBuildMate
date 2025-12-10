@@ -7,12 +7,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PCBuildMate</title>
+  <script>/* mark JS-enabled early to allow CSS to hide native selects before paint */
+    (function(){ try{ document.documentElement.classList.add('js'); }catch(e){} })();
+  </script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <!-- Select2 for consistent custom dropdown styling -->
+ 
+  <!-- Load jQuery + Select2 as early as possible so enhanced selects render before first paint -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <!-- Early Select2 init: initialize once when DOM is ready (no observers/retries) -->
+  <script>
+    (function(){
+      document.addEventListener('DOMContentLoaded', function(){
+        try{
+          if (window.jQuery && window.jQuery.fn && typeof window.jQuery.fn.select2 === 'function') {
+            var $ = window.jQuery;
+            var $sels = $('.searchable');
+            if($sels && $sels.length){
+              $sels.each(function(){
+                var $sel = $(this);
+                if($sel.data('select2')) return;
+                $sel.select2({ width: '100%', placeholder: 'Start typing to search', allowClear: true });
+              });
+              
+            }
+          }
+        }catch(e){ /* no-op */ }
+      });
+    })();
+  </script>
   <script src="https://kit.fontawesome.com/0a349cffc6.js" crossorigin="anonymous"></script>
   <style>
+    /* Hide native searchable selects on JS-enabled pages to avoid native->Select2 flash */
+    .js .form-select.searchable { visibility: hidden; }
+    /* Removed visibility-hiding rules that caused Select2 selections to be invisible */
     /* Global theme tied to hero background */
     :root{
       --bg-overlay: rgba(14,18,28,0.65);
@@ -22,6 +53,11 @@
       --text-secondary: #b8c3d9;
       --accent: #2e7cf7;
       --accent-contrast: #ffffff;
+  /* Motion tokens */
+  --motion-snap: 400ms;           /* unified duration */
+  --motion-smooth: 400ms;         /* unified duration */
+  --ease-snap: ease-in-out;       /* unified easing */
+  --ease-smooth: ease-in-out;     /* unified easing */
   /* Inputs & dropdowns should visually match the card */
   --input-bg: var(--card-bg);
   /* Standard dropdowns (mode, currency, budget, etc.) match card */
@@ -159,7 +195,13 @@
       color: #fff !important;
     }
     /* Select2 selected label text */
-    .select2-selection__rendered{ color: var(--text-primary) !important; }
+    .select2-selection__rendered{
+      color: var(--text-primary) !important;
+      display: block;               /* ensure stable box model */
+      white-space: nowrap;          /* single line to avoid height changes */
+      overflow: hidden;             /* clip long labels */
+      text-overflow: ellipsis;      /* show ellipsis instead of resizing */
+    }
     .select2-selection{ background-color: var(--input-bg) !important; border-color: var(--card-border) !important; }
   .input-group-text{ background-color: var(--input-bg) !important; border-color: var(--card-border) !important; color: var(--text-primary) !important; }
   .form-control::placeholder{ color: var(--text-secondary); opacity: 0.85; }
@@ -297,16 +339,23 @@
         border: 1px solid var(--card-border) !important;
         color: var(--text-primary) !important;
         border-radius: .5rem !important;
-        min-height: 2.7rem !important; /* increase height ~20% */
+        min-height: 2.7rem !important; /* fixed height prevents reflow */
+        height: 2.7rem !important;     /* lock height to avoid repaint jank */
       }
       .select2-container .select2-selection__rendered{
         color: var(--text-primary) !important;
-        line-height: 2.7rem !important; /* match increased height */
+        line-height: 2.7rem !important; /* keep vertical alignment stable */
         padding-left: .75rem !important;
+        padding-right: 2.2rem !important; /* reserve space for arrow to reduce text-width changes */
       }
       .select2-container .select2-selection__arrow{
         height: 2.7rem !important; /* match increased height */
+        width: 2rem !important;    /* fixed arrow width to stabilize layout */
       }
+    /* Ensure container width is always 100% to prevent relayout on init */
+    .select2-container{ width: 100% !important; }
+    /* Prevent surrounding layout from reacting to internal text changes */
+    .select2-container .select2-selection{ contain: layout style; backface-visibility: hidden; will-change: opacity; }
     /* Component dropdowns (Bootstrap-Select specifics) */
     .bootstrap-select .dropdown-menu .inner{
       background-color: var(--dropdown-component) !important;
@@ -386,24 +435,60 @@
     /* Keep floating widgets below modals while open (AI agent uses high z-index) */
   .modal-open #ai-agent { z-index: 100 !important; }
 
-    /* Page enter (slide-down/fade) — slower and smoother */
-    @keyframes pcbmSlideDownFade {
-      0% { opacity: 0; transform: translateY(-56px); }
-      100% { opacity: 1; transform: translateY(0); }
+    /* Basic page fade-in/out — minimal, unified, no movement */
+    @keyframes pcbmFadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @keyframes pcbmFadeOut {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
     }
     .page-enter {
-      animation: pcbmSlideDownFade 300ms cubic-bezier(.2,.8,.2,1) both;
-      will-change: opacity, transform;
-    }
-    /* Page exit (slide-up/fade) */
-    @keyframes pcbmSlideUpFade {
-      0% { opacity: 1; transform: translateY(0); }
-      100% { opacity: 0; transform: translateY(-60px); }
+      animation: pcbmFadeIn var(--motion-smooth) var(--ease-smooth) both;
+      will-change: opacity;
     }
     .page-exit {
-      animation: pcbmSlideUpFade 300ms cubic-bezier(.2,.8,.2,1) both;
-      will-change: opacity, transform;
+      animation: pcbmFadeOut var(--motion-snap) var(--ease-snap) both;
+      will-change: opacity;
     }
+    /* Promote and contain main content to reduce stutter */
+    #pageMain { will-change: opacity; contain: layout paint; backface-visibility: hidden; }
+
+    /* Strip list item/card animations for a clean unified page fade */
+    .list-enter, .list-enter-fast { animation: none !important; }
+
+  /* Proposals performance contains and promotes animated cards */
+  .proposals-card { will-change: opacity; backface-visibility: hidden; contain: layout paint; }
+  .fps-res-container { position: relative; }
+  .fps-block { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+  .fps-block.active { opacity: 1; pointer-events: auto; }
+
+    /* Disable Select2 internal animations so page animates as one */
+    .select2-container,
+    .select2-dropdown,
+    .select2-results,
+    .select2-results__options,
+    .select2-selection,
+    .select2-search__field {
+      transition: none !important;
+      animation: none !important;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered,
+    .select2-container--default .select2-results__option,
+    .select2-container--default .select2-results__option--highlighted {
+      transition: none !important;
+      animation: none !important;
+    }
+    /* Disable Bootstrap dropdown/collapse animations for unified page fade */
+    .dropdown-menu,
+    .collapse,
+    .collapsing {
+      transition: none !important;
+      animation: none !important;
+    }
+
+    /* Simple always-on animations */
   </style>
   {% block extra_head %}{% endblock %}
 </head>
@@ -622,10 +707,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- jQuery required for Select2 -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-<!-- Select2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <!-- Component Details Modal -->
 <div class="modal fade" id="componentDetailsModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
@@ -647,27 +728,6 @@
  </div>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    // Enhance standard selects with Select2 so dropdowns match component styling
-    try{
-      if(typeof $ !== 'undefined' && typeof $.fn.select2 !== 'undefined'){
-        $('select').each(function(){
-          const $sel = $(this);
-          // Skip selects already enhanced by component pickers
-          if($sel.hasClass('no-select2')) return;
-          if(!$sel.data('select2')){
-            $sel.select2({
-              width: '100%',
-              minimumResultsForSearch: Infinity, // hide search for simple selects
-              dropdownCssClass: 'pcbm-select2',
-              selectionCssClass: 'pcbm-select2'
-            });
-          }
-        });
-      }
-    }catch(e){ /* no-op if library not available */ }
-    // Removed auto-enhancement to Bootstrap-Select to avoid disappearing native selects.
-    // Native selects keep dark styling via .form-select rules.
-    // Only auto-dismiss global flash messages rendered in the page header.
     const alerts = document.querySelectorAll('#flashMessages .alert');
     alerts.forEach(alert => {
       setTimeout(() => {
@@ -676,22 +736,17 @@
       }, 4000); // auto-dismiss after 4 seconds
     });
 
-    // Apply slide-down animation to page content on initial load
+    // Apply page-enter animation once, immediately on DOM ready
     try {
       const main = document.getElementById('pageMain');
-      if (main) {
-        // Only animate children blocks once, avoid re-animating on dynamic replacements
-        // Add the animation class to immediate children wrappers/cards if present, else to main
-        const children = Array.from(main.children);
-        if (children.length) {
-          children.forEach(el => el.classList.add('page-enter'));
-        } else {
-          main.classList.add('page-enter');
-        }
+      if (main && !main.dataset.enterApplied) {
+        main.classList.add('page-enter');
+        main.dataset.enterApplied = '1';
       }
     } catch (e) { /* no-op */ }
   });
 </script>
+<!-- Removed reduced-motion overrides and dev toggle; animations are always enabled -->
 <script>
 // Smooth page-exit animation on internal navigation
 (function(){
@@ -710,20 +765,19 @@
     if(href.startsWith('#') || href.startsWith('javascript:')) return;
     ev.preventDefault();
     const main = document.getElementById('pageMain');
+    // Prevent double-trigger during rapid clicks
+    if(document.body.dataset.animating === '1') return;
     if(main){
-      // add exit animation to children for a cohesive effect
-      const children = Array.from(main.children);
-      const toAnimate = children.length ? children : [main];
-      toAnimate.forEach(el => {
-        el.classList.remove('page-enter');
-        el.classList.add('page-exit');
-      });
+      document.body.dataset.animating = '1';
+      // animate main only to avoid multiple animationend events
+      main.classList.remove('page-enter');
+      main.classList.add('page-exit');
       // Navigate after animation completes or fallback timeout
       const navigate = () => { window.location.href = a.href; };
       let handled = false;
       const onEnd = () => { if(!handled){ handled = true; navigate(); } };
-      toAnimate.forEach(el => el.addEventListener('animationend', onEnd, { once: true }));
-  setTimeout(onEnd, 250); // safety timeout slightly > exit duration (300ms)
+      main.addEventListener('animationend', onEnd, { once: true });
+         setTimeout(onEnd, 1000); // safety timeout slightly > exit duration (400ms)
     } else {
       window.location.href = a.href;
     }
@@ -737,15 +791,17 @@
     try{
       const main = document.getElementById('pageMain');
       if(!main) return;
-      const children = Array.from(main.children);
-      const targets = children.length ? children : [main];
-      targets.forEach(el => {
-        el.classList.remove('page-exit');
-        // force reflow to restart animation cleanly
-        // eslint-disable-next-line no-unused-expressions
-        void el.offsetWidth;
-        el.classList.add('page-enter');
-      });
+      // Clear animating guard
+      delete document.body.dataset.animating;
+      // Only animate main and avoid double re-application
+      main.classList.remove('page-exit');
+      // force reflow to restart animation cleanly
+      // eslint-disable-next-line no-unused-expressions
+      void main.offsetWidth;
+      if(!main.dataset.enterApplied){
+        main.classList.add('page-enter');
+        main.dataset.enterApplied = '1';
+      }
     }catch(e){ /* no-op */ }
   }
   // Fired when a page is shown in bfcache or via history back/forward

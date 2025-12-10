@@ -15,7 +15,7 @@
         <div class="col-md-6">
           <label class="form-label">CPU</label>
           <select name="cpu" class="form-select searchable" required>
-            <option value="">-- select CPU --</option>
+            <option value="">Start typing to search</option>
           {% for c in cpus %}
           <option value="{{ c.id }}" {% if request.POST.cpu == c.id|stringformat:'s' %}selected{% endif %}>{% if c.name %}{{ c.name }}{% else %}{{ c }}{% endif %}</option>
           {% endfor %}
@@ -25,7 +25,7 @@
       <div class="col-md-6">
         <label class="form-label">GPU</label>
         <select name="gpu" class="form-select searchable" required>
-          <option value="">-- select GPU --</option>
+          <option value="">Start typing to search</option>
           {% for g in gpus %}
           <option value="{{ g.id }}" {% if request.POST.gpu == g.id|stringformat:'s' %}selected{% endif %}>
             {% if g.gpu_name %}{{ g.gpu_name }}{% elif g.name %}{{ g.name }}{% elif g.model %}{{ g.model }}{% else %}{{ g }}{% endif %}
@@ -37,7 +37,7 @@
       <div class="col-md-6">
         <label class="form-label">Motherboard</label>
         <select name="motherboard" class="form-select searchable" required>
-          <option value="">-- select motherboard --</option>
+          <option value="">Start typing to search</option>
           {% for m in mobos %}
           <option value="{{ m.id }}" {% if request.POST.motherboard == m.id|stringformat:'s' %}selected{% endif %}>{% if m.name %}{{ m.name }}{% else %}{{ m }}{% endif %}</option>
           {% endfor %}
@@ -47,7 +47,7 @@
       <div class="col-md-6">
         <label class="form-label">RAM</label>
         <select name="ram" class="form-select searchable" required>
-          <option value="">-- select RAM --</option>
+          <option value="">Start typing to search</option>
           {% for r in rams %}
           <option value="{{ r.id }}" {% if request.POST.ram == r.id|stringformat:'s' %}selected{% endif %}>{% if r.name %}{{ r.name }}{% else %}{{ r }}{% endif %}</option>
           {% endfor %}
@@ -57,7 +57,7 @@
       <div class="col-md-6">
         <label class="form-label">Storage</label>
         <select name="storage" class="form-select searchable" required>
-          <option value="">-- select storage --</option>
+          <option value="">Start typing to search</option>
           {% for s in storages %}
           <option value="{{ s.id }}" {% if request.POST.storage == s.id|stringformat:'s' %}selected{% endif %}>{% if s.name %}{{ s.name }}{% else %}{{ s }}{% endif %}</option>
           {% endfor %}
@@ -67,7 +67,7 @@
       <div class="col-md-6">
         <label class="form-label">PSU</label>
         <select name="psu" class="form-select searchable" required>
-          <option value="">-- select PSU --</option>
+          <option value="">Start typing to search</option>
           {% for p in psus %}
           <option value="{{ p.id }}" {% if request.POST.psu == p.id|stringformat:'s' %}selected{% endif %}>{% if p.name %}{{ p.name }}{% else %}{{ p }}{% endif %}</option>
           {% endfor %}
@@ -77,7 +77,7 @@
       <div class="col-md-6">
         <label class="form-label">CPU Cooler</label>
         <select name="cooler" class="form-select searchable" required>
-          <option value="">-- select cooler --</option>
+          <option value="">Start typing to search</option>
           {% for c in coolers %}
           <option value="{{ c.id }}" {% if request.POST.cooler == c.id|stringformat:'s' %}selected{% endif %}>{% if c.name %}{{ c.name }}{% else %}{{ c }}{% endif %}</option>
           {% endfor %}
@@ -87,7 +87,7 @@
       <div class="col-md-6">
         <label class="form-label">Case</label>
         <select name="case" class="form-select searchable" required>
-          <option value="">-- select case --</option>
+          <option value="">Start typing to search</option>
           {% for c in cases %}
           <option value="{{ c.id }}" {% if request.POST.case == c.id|stringformat:'s' %}selected{% endif %}>{% if c.name %}{{ c.name }}{% else %}{{ c }}{% endif %}</option>
           {% endfor %}
@@ -187,7 +187,7 @@
   <div class="row">
     {% for pb in proposed_builds %}
     <div class="col-md-6 mb-3">
-      <div class="card h-100">
+      <div class="card h-100 proposals-card">
         <div class="card-body">
           <h5 class="card-title d-flex align-items-center">{% if pb.slot == 'cpu_gpu' %}CPU &amp; GPU{% else %}{{ pb.slot|upper }}{% endif %} upgrade build
             <span class="ms-2">
@@ -232,9 +232,9 @@
             </div>
             <p class="mt-2"><strong>Estimated gain:</strong> {{ pb.percent|floatformat:2 }}%</p>
             <strong>Estimated FPS:</strong>
-            <div class="fps-res-container mt-1">
+            <div class="fps-res-container mt-1 position-relative" style="min-height: 110px;">
               {% for entry in pb.fps_res_list %}
-                <div class="fps-block" data-res="{{ entry.res }}" style="display: {% if entry.res == resolution %}block{% else %}none{% endif %};">
+                <div class="fps-block{% if entry.res == resolution %} active{% endif %}" data-res="{{ entry.res }}">
                   <ul class="mb-0 small">
                     {% for g, vals in entry.games.items %}
                       <li>{{ g }}: {% if vals.estimated_fps %}{{ vals.estimated_fps }} FPS (CPU: {{ vals.cpu_fps }}, GPU: {{ vals.gpu_fps }}){% else %}N/A{% endif %}</li>
@@ -287,23 +287,16 @@
   </div>
 
 {% endblock %}
-{% block extra_head %}
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-{% endblock %}
+{% block extra_head %}{% endblock %}
 
 {% block extra_scripts %}
-  <!-- jQuery + Select2 (searchable selects) -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <!-- Select2 initialized below; libraries are loaded globally in base.html -->
   <script>
     // Initialize Select2 on our searchable selects when document is ready
     (function($){
+      // Initialize Select2 as early as possible on DOM ready to ensure placeholders are set before any visual transitions
       $(document).ready(function(){
-        $('.searchable').select2({
-          width: '100%',
-          placeholder: 'Start typing to search',
-          allowClear: true,
-        });
+        // Select2 is initialized globally in base.html; no need to re-init here
         // Per-card resolution toggles: switch FPS blocks only inside the same card
         $(document).on('click', '.res-toggle-card-btn', function(){
           var res = $(this).data('res');
@@ -313,7 +306,8 @@
           $(this).addClass('active');
           // toggle fps blocks in this card only
           $card.find('.fps-block').each(function(){
-            $(this).toggle($(this).data('res') === res);
+            var isTarget = $(this).data('res') === res;
+            $(this).toggleClass('active', isTarget);
           });
         });
       });
@@ -330,6 +324,47 @@
   try { if (modalEl && modalEl.parentNode !== document.body) { document.body.appendChild(modalEl); } } catch(e) {}
 
   if (!modalEl) return;
+
+      // Lightweight DOM patch helper to avoid destroying the container element.
+      // This updates only the children that changed, preventing animation restarts
+      // and preserving event bindings on unchanged nodes.
+      function patchInnerHTML(target, newHTML) {
+        if (!target) return;
+        const temp = document.createElement('div');
+        temp.innerHTML = (newHTML || '').trim();
+
+        const newChildren = Array.from(temp.childNodes);
+        const oldChildren = Array.from(target.childNodes);
+
+        // Remove old nodes that are gone or different at same index
+        for (let i = oldChildren.length - 1; i >= 0; i--) {
+          const oldNode = oldChildren[i];
+          const newNode = newChildren[i];
+          // If there's no corresponding new node, remove the old node
+          if (!newNode) {
+            target.removeChild(oldNode);
+            continue;
+          }
+          // If both exist but outerHTML differs, remove old node (will be added/replaced next)
+          if (oldNode.outerHTML !== newNode.outerHTML) {
+            target.removeChild(oldNode);
+          }
+        }
+
+        // Insert or replace nodes from the new markup
+        newChildren.forEach((newNode, i) => {
+          const oldNode = target.childNodes[i];
+          if (!oldNode) {
+            // append new node if nothing exists at this index
+            target.appendChild(newNode.cloneNode(true));
+            return;
+          }
+          // if present but different, replace it in place
+          if (oldNode.outerHTML !== newNode.outerHTML) {
+            target.replaceChild(newNode.cloneNode(true), oldNode);
+          }
+        });
+      }
 
       // Try to use Bootstrap's Modal if available; otherwise fall back to a
       // lightweight manual show/hide so the UI still provides feedback even
@@ -494,11 +529,12 @@
                   const newRoot = doc.getElementById('upgradeCalculatorRoot') || doc.querySelector('div.card');
                   const curRoot = document.getElementById('upgradeCalculatorRoot') || document.querySelector('div.card');
                   if (newRoot && curRoot) {
-                    // copy innerHTML instead of moving DOM nodes from another document.
-                    curRoot.innerHTML = newRoot.innerHTML;
+                    // patch children instead of assigning innerHTML to avoid re-animating everything
+                    patchInnerHTML(curRoot, newRoot.innerHTML);
                     // re-initialize dynamic bits that are normally run on page load
                     try { if (window.jQuery && typeof window.jQuery.fn.select2 === 'function') {
-                      window.jQuery('.searchable').select2({ width: '100%', placeholder: 'Start typing to search', allowClear: true });
+                      var $ = window.jQuery;
+                      $('.searchable').filter(function(){ return !$(this).data('select2'); }).select2({ width: '100%', placeholder: 'Start typing to search', allowClear: true });
                     } } catch(e) {}
                     // reattach per-card resolution toggle handlers for replaced content
                     try {
@@ -539,10 +575,26 @@
                     const newDocCurrent = doc.getElementById('currentBuildSummary');
                     const curCurrent = document.getElementById('currentBuildSummary');
                     if (newDocProposals && curProposals) {
-                      curProposals.innerHTML = newDocProposals.innerHTML;
+                      // Patch content instead of replacing it wholesale
+                      patchInnerHTML(curProposals, newDocProposals.innerHTML);
+                      // Animate newly inserted cards for a smooth-but-snappy feel
+                      try {
+                        curProposals.querySelectorAll('.card').forEach((card, i) => {
+                          // Stagger very slightly for perception of responsiveness
+                          setTimeout(() => {
+                            card.classList.add('list-enter');
+                            if (i < 2) card.classList.add('list-enter-fast');
+                          }, i * 30);
+                        });
+                      } catch(e) {}
                       // also update current build summary if present in response
                       if (newDocCurrent && curCurrent) {
-                        curCurrent.innerHTML = newDocCurrent.innerHTML;
+                        patchInnerHTML(curCurrent, newDocCurrent.innerHTML);
+                        try {
+                          curCurrent.querySelectorAll('.list-group-item').forEach((li, i) => {
+                            setTimeout(() => { li.classList.add('list-enter-fast'); }, i * 20);
+                          });
+                        } catch(e) {}
                       }
                       // hide no-upgrades alert if present
                       const alertEl = document.getElementById('noUpgradesAlert');
@@ -552,7 +604,8 @@
                       }
                       // re-init interactive bits inside proposals
                       try { if (window.jQuery && typeof window.jQuery.fn.select2 === 'function') {
-                        window.jQuery('.searchable').select2({ width: '100%', placeholder: 'Start typing to search', allowClear: true });
+                        var $ = window.jQuery;
+                        $('.searchable').filter(function(){ return !$(this).data('select2'); }).select2({ width: '100%', placeholder: 'Start typing to search', allowClear: true });
                       } } catch(e) {}
                       try {
                         // resolution toggles reattach
@@ -574,7 +627,8 @@
                       const newRoot = doc.getElementById('upgradeCalculatorRoot') || doc.querySelector('div.card');
                       const curRoot = document.getElementById('upgradeCalculatorRoot') || document.querySelector('div.card');
                       if (newRoot && curRoot) {
-                        curRoot.innerHTML = newRoot.innerHTML;
+                        // patch the root's children instead of assigning innerHTML
+                        patchInnerHTML(curRoot, newRoot.innerHTML);
                       } else {
                         window.location.reload();
                       }
