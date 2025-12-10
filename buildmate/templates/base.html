@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <!-- Select2 for consistent custom dropdown styling -->
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/0a349cffc6.js" crossorigin="anonymous"></script>
   <style>
     /* Global theme tied to hero background */
     :root{
@@ -95,6 +96,28 @@
     .btn-secondary{ background-color: #3a4661; border-color: #3a4661; color: var(--text-primary); }
     .btn-danger{ background-color: #e55353; border-color: #e55353; }
 
+    /* Component action icons: lighter charcoal, bigger, no underline */
+    .component-action{
+      color: #5f5f5fff !important;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none !important;
+      padding: 4px;
+    }
+    .component-action i{
+      color: inherit !important;
+      font-size: 1.2rem; /* slightly smaller */
+    }
+    .component-action:hover,
+    .component-action:focus{
+      color: #9a9a9a !important;
+      text-decoration: none !important;
+      outline: none;
+    }
+    .component-action:visited{ color: inherit; text-decoration: none !important; }
+
     /* Forms on dark */
     .form-label{ color: var(--text-secondary); }
     /* Force dark inputs/selects to match card background */
@@ -111,6 +134,8 @@
       min-height: 2.7rem; /* increase height ~20% */
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
+      background-image: none !important; /* prevent user-agent gradients */
+      filter: none !important;
     }
     /* Ensure select text and options render in white */
     .form-select,
@@ -123,6 +148,33 @@
   .input-group-text{ background-color: var(--input-bg) !important; border-color: var(--card-border) !important; color: var(--text-primary) !important; }
   .form-control::placeholder{ color: var(--text-secondary); opacity: 0.85; }
   input[type="password"]::placeholder{ color: var(--text-secondary); opacity: 0.85; }
+    /* Ensure autofill doesn't lighten password fields compared to username */
+    .form-control:-webkit-autofill,
+    .form-control:-webkit-autofill:hover,
+    .form-control:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    select:-webkit-autofill{
+      -webkit-box-shadow: 0 0 0px 1000px var(--input-bg) inset !important;
+      box-shadow: 0 0 0px 1000px var(--input-bg) inset !important;
+      -webkit-text-fill-color: var(--text-primary) !important;
+      caret-color: var(--text-primary) !important;
+      transition: background-color 9999s ease-in-out 0s !important; /* prevent flash */
+    }
+    /* Firefox autofill */
+    input:-moz-autofill,
+    input:-moz-autofill:hover,
+    input:-moz-autofill:focus{
+      box-shadow: 0 0 0px 1000px var(--input-bg) inset !important;
+      -moz-text-fill-color: var(--text-primary) !important;
+      caret-color: var(--text-primary) !important;
+    }
+    /* Extra specificity for password field to ensure parity with username */
+    .form-control[type="password"],
+    input[type="password"].form-control{
+      background-color: var(--input-bg) !important;
+      -webkit-text-fill-color: var(--text-primary) !important;
+      color: var(--text-primary) !important;
+    }
     /* Dark themed checkbox (Remember Me) */
     input[type="checkbox"]{
       width: 1.15rem;
@@ -527,6 +579,25 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <!-- Select2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!-- Component Details Modal -->
+<div class="modal fade" id="componentDetailsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="componentDetailsTitle">Component details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div id="componentDetailsLoading" class="text-center text-muted">Loading…</div>
+        <div id="componentDetailsTableWrap" class="table-responsive d-none">
+          <table class="table table-sm align-middle mb-0 table-dark" id="componentDetailsTable">
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     // Enhance standard selects with Select2 so dropdowns match component styling
@@ -558,6 +629,117 @@
       }, 4000); // auto-dismiss after 4 seconds
     });
   });
+</script>
+<script>
+// Component details fetcher
+(function(){
+  function titleCaseType(t){ return (t||'').replace(/_/g,' ').replace(/\b\w/g, s=>s.toUpperCase()); }
+  function buildRow(label, value){
+    const tr = document.createElement('tr');
+    const th = document.createElement('th'); th.className = 'w-50'; th.textContent = label;
+    const td = document.createElement('td'); td.textContent = value;
+    tr.appendChild(th); tr.appendChild(td); return tr;
+  }
+  async function openDetails(type, id){
+    const modalEl = document.getElementById('componentDetailsModal');
+    const titleEl = document.getElementById('componentDetailsTitle');
+    const loadingEl = document.getElementById('componentDetailsLoading');
+    const wrapEl = document.getElementById('componentDetailsTableWrap');
+    const tbody = document.querySelector('#componentDetailsTable tbody');
+    if(!modalEl||!titleEl||!loadingEl||!wrapEl||!tbody) return;
+    // reset
+    titleEl.textContent = titleCaseType(type) + ' details';
+    loadingEl.classList.remove('d-none');
+    wrapEl.classList.add('d-none');
+    tbody.innerHTML = '';
+    try{
+      const resp = await fetch(`/component-details/?type=${encodeURIComponent(type)}&id=${encodeURIComponent(id)}`);
+      if(!resp.ok) throw new Error('Failed to load details');
+      const data = await resp.json();
+      titleEl.textContent = `${titleCaseType(data.type)} — ${data.title}`;
+      data.rows.forEach(r=>{ tbody.appendChild(buildRow(r.label, r.value)); });
+      loadingEl.classList.add('d-none');
+      wrapEl.classList.remove('d-none');
+    }catch(e){
+      loadingEl.textContent = 'Unable to load details.';
+    }
+    try{
+      const bs = window.bootstrap && window.bootstrap.Modal ? new window.bootstrap.Modal(modalEl) : null;
+      if(bs) bs.show(); else { modalEl.classList.add('show'); modalEl.style.display='block'; }
+    }catch{ /* no-op */ }
+  }
+  document.addEventListener('click', function(ev){
+    const a = ev.target.closest('.component-details');
+    if(!a) return;
+    ev.preventDefault();
+    const type = a.getAttribute('data-type');
+    const id = a.getAttribute('data-id');
+    if(type && id){ openDetails(type, id); }
+  });
+})();
+</script>
+<!-- YouTube Reviews Modal -->
+<div class="modal fade" id="youtubeReviewsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="youtubeReviewsTitle">Reviews</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div id="youtubeReviewsLoading" class="text-center text-muted">Searching YouTube…</div>
+        <div id="youtubeReviewsGrid" class="row g-3 d-none"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+// YouTube reviews search
+(function(){
+  function openYTModal(q){
+    const modalEl = document.getElementById('youtubeReviewsModal');
+    const titleEl = document.getElementById('youtubeReviewsTitle');
+    const loadingEl = document.getElementById('youtubeReviewsLoading');
+    const gridEl = document.getElementById('youtubeReviewsGrid');
+    if(!modalEl||!titleEl||!loadingEl||!gridEl) return;
+    titleEl.textContent = `Reviews — ${q}`;
+    loadingEl.classList.remove('d-none');
+    gridEl.classList.add('d-none');
+    gridEl.innerHTML = '';
+    fetch(`/youtube-reviews/?q=${encodeURIComponent(q + ' review')}`)
+      .then(r=>r.json())
+      .then(data=>{
+        const vids = Array.isArray(data.videos) ? data.videos : [];
+        vids.slice(0,6).forEach(v=>{
+          const col = document.createElement('div'); col.className = 'col-md-4';
+          col.innerHTML = `
+            <div class="card h-100">
+              <img class="card-img-top" src="${v.thumb || ''}" alt="thumbnail">
+              <div class="card-body">
+                <a href="${v.url}" target="_blank" rel="noopener" class="stretched-link">${v.title}</a>
+              </div>
+            </div>`;
+          gridEl.appendChild(col);
+        });
+        loadingEl.classList.add('d-none');
+        gridEl.classList.remove('d-none');
+      })
+      .catch(()=>{
+        loadingEl.textContent = 'Unable to load videos.';
+      });
+    try{
+      const bs = window.bootstrap && window.bootstrap.Modal ? new window.bootstrap.Modal(modalEl) : null;
+      if(bs) bs.show(); else { modalEl.classList.add('show'); modalEl.style.display='block'; }
+    }catch{}
+  }
+  document.addEventListener('click', function(ev){
+    const btn = ev.target.closest('.component-youtube');
+    if(!btn) return;
+    ev.preventDefault();
+    const q = btn.getAttribute('data-query');
+    if(q) openYTModal(q);
+  });
+})();
 </script>
 <script>
 const chatHeader = document.getElementById("chat-header");

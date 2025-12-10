@@ -25,6 +25,11 @@
                     <h5>{{ cpu.name }}</h5>
                     <p>Price: {{ currency|currency_symbol }}{{ cpu.price|convert_from_usd:currency|floatformat:2 }}</p>
                     <p>UserBenchmark: {{ cpu.userbenchmark_score }}</p>
+                    <div class="mt-2 d-flex justify-content-end gap-2">
+                      <a href="#" class="component-action component-details" data-type="cpu" data-id="{{ cpu.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
+                      <a href="#" class="component-action component-youtube" data-query="{{ cpu.name|default:cpu.model }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
+                      <a href="https://www.amazon.com/s?k={{ cpu.name|default:cpu.model|urlencode }}" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -36,6 +41,11 @@
                     <h5>{{ gpu.gpu_name }}</h5>
                     <p>Price: {{ currency|currency_symbol }}{{ gpu.price|convert_from_usd:currency|floatformat:2 }}</p>
                     <p>UserBenchmark: {{ gpu.userbenchmark_score }}</p>
+                    <div class="mt-2 d-flex justify-content-end gap-2">
+                      <a href="#" class="component-action component-details" data-type="gpu" data-id="{{ gpu.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
+                      <a href="#" class="component-action component-youtube" data-query="{{ gpu.gpu_name|default:gpu.model }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
+                      <a href="https://www.amazon.com/s?k={{ gpu.gpu_name|default:gpu.model|urlencode }}" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -47,6 +57,11 @@
                     <h5>{{ motherboard.name }}</h5>
                     <p>Price: {{ currency|currency_symbol }}{{ motherboard.price|convert_from_usd:currency|floatformat:2 }}</p>
                     <p>Chipset: {{ motherboard.chipset }}</p>
+                    <div class="mt-2 d-flex justify-content-end gap-2">
+                      <a href="#" class="component-action component-details" data-type="motherboard" data-id="{{ motherboard.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
+                      <a href="#" class="component-action component-youtube" data-query="{{ motherboard.name }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
+                      <a href="https://www.amazon.com/s?k={{ motherboard.name|urlencode }}" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,6 +73,11 @@
                     <h5>{{ ram.name }}</h5>
                     <p>Price: {{ currency|currency_symbol }}{{ ram.price|convert_from_usd:currency|floatformat:2 }}</p>
                     <p>UserBenchmark: {{ ram.userbenchmark_score }}</p>
+                    <div class="mt-2 d-flex justify-content-end gap-2">
+                      <a href="#" class="component-action component-details" data-type="ram" data-id="{{ ram.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
+                      <a href="#" class="component-action component-youtube" data-query="{{ ram.name }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
+                      <a href="https://www.amazon.com/s?k={{ ram.name|urlencode }}" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -69,6 +89,11 @@
                     <h5>{{ storage.name }}</h5>
                     <p>Price: {{ currency|currency_symbol }}{{ storage.price|convert_from_usd:currency|floatformat:2 }}</p>
                     <p>UserBenchmark: {{ storage.userbenchmark_score }}</p>
+                    <div class="mt-2 d-flex justify-content-end gap-2">
+                      <a href="#" class="component-action component-details" data-type="storage" data-id="{{ storage.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
+                      <a href="#" class="component-action component-youtube" data-query="{{ storage.name|default:storage.model }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
+                      <a href="https://www.amazon.com/s?k={{ storage.name|default:storage.model|urlencode }}" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -77,9 +102,14 @@
             <div class="card mb-3">
                 <div class="card-header">Power Supply</div>
                 <div class="card-body">
-                    <h5>{{ psu.name }}</h5>
+                    <h5>{% if psu.brand %}{{ psu.brand }} {% endif %}{{ psu.name }}{% if psu.wattage %} {{ psu.wattage }}W{% endif %}</h5>
                     <p>Price: {{ currency|currency_symbol }}{{ psu.price|convert_from_usd:currency|floatformat:2 }}</p>
                     <p>UserBenchmark: {{ psu.userbenchmark_score }}</p>
+                    <div class="mt-2 d-flex justify-content-end gap-2">
+                      <a href="#" class="component-action component-details" data-type="psu" data-id="{{ psu.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
+                      <a href="#" class="component-action component-youtube" data-query="{{ psu.name }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
+                      <a href="https://www.amazon.com/s?k={{ psu.brand|urlencode }}+{{ psu.name|urlencode }}+{{ psu.wattage }}W" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -91,6 +121,11 @@
                     <h5>{{ cooler.name }}</h5>
                     <p>Price: {{ currency|currency_symbol }}{{ cooler.price|convert_from_usd:currency|floatformat:2 }}</p>
                     <p>UserBenchmark: {{ cooler.userbenchmark_score }}</p>
+                    <div class="mt-2 d-flex justify-content-end gap-2">
+                      <a href="#" class="component-action component-details" data-type="cooler" data-id="{{ cooler.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
+                      <a href="#" class="component-action component-youtube" data-query="{{ cooler.name }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
+                      <a href="https://www.amazon.com/s?k={{ cooler.name|urlencode }}" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -102,6 +137,11 @@
                     <h5>{{ case.name }}</h5>
                     <p>Price: {{ currency|currency_symbol }}{{ case.price|convert_from_usd:currency|floatformat:2 }}</p>
                     <p>UserBenchmark: {{ case.userbenchmark_score }}</p>
+                    <div class="mt-2 d-flex justify-content-end gap-2">
+                      <a href="#" class="component-action component-details" data-type="case" data-id="{{ case.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
+                      <a href="#" class="component-action component-youtube" data-query="{{ case.name }}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
+                      <a href="https://www.amazon.com/s?k={{ case.name|urlencode }}" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
+                    </div>
                 </div>
             </div>
         </div>

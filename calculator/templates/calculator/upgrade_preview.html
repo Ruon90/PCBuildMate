@@ -61,83 +61,55 @@
       <div class="card mb-3">
         <div class="card-body">
           <p><strong>Estimated gain:</strong> {{ percent|floatformat:2 }}%</p>
-          {% if mode == 'workstation' %}
-            <div class="row">
-              <div class="col-md-6">
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <h6 class="card-title mb-2">Current render time</h6>
-                    <p class="mb-0"><strong>{% if workstation_estimate_current %}{{ workstation_estimate_current }}s{% else %}N/A{% endif %}</strong></p>
-                  </div>
+          <div class="d-flex align-items-center mb-2">
+            <div><strong>Resolution</strong></div>
+            <div class="btn-group ms-3" role="group" aria-label="Resolutions">
+              {% for res_entry in fps_res_list %}
+                <button type="button" class="btn btn-sm btn-outline-primary res-toggle {% if res_entry.res == default_resolution %}active{% endif %}" data-res="{{ res_entry.res }}">{{ res_entry.res }}</button>
+              {% endfor %}
+            </div>
+          </div>
+
+          {% for res_entry in fps_compare_list %}
+            <div class="fps-compare-pane" data-res-pane="{{ res_entry.res }}" style="display: {% if res_entry.res == default_resolution %}block{% else %}none{% endif %};">
+              <div class="row">
+                <div class="col-6">
+                  <div class="mb-2"><strong>Current Estimated FPS</strong></div>
+                  <ul class="list-unstyled small">
+                    {% for game, vals in res_entry.games.items %}
+                      <li>{{ game }}: {% if vals.current %}{{ vals.current }} FPS{% else %}N/A{% endif %}</li>
+                    {% endfor %}
+                  </ul>
+                  <p class="small text-muted">Bottleneck: {{ res_entry.bottleneck_current.type }} ({{ res_entry.bottleneck_current.bottleneck|floatformat:1 }}%)</p>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <h6 class="card-title mb-2">Estimated render time</h6>
-                    <p class="mb-0">
-                      {% if workstation_estimate %}
-                        <strong>{{ workstation_estimate }}s</strong>
-                        {% if workstation_delta is not None and workstation_estimate_current %}
-                          <span class="ms-2 text-success">- {{ workstation_delta|floatformat:1 }}s</span>
-                        {% endif %}
-                      {% else %}N/A{% endif %}
-                    </p>
-                  </div>
+                <div class="col-6">
+                  <div class="mb-2"><strong>Estimated FPS</strong></div>
+                  <ul class="list-unstyled small">
+                    {% for game, vals in res_entry.games.items %}
+                      <li>
+                        {{ game }}:
+                        {% if vals.estimated %}
+                          {{ vals.estimated }} FPS
+                          {% if vals.delta %}
+                            <span class="ms-2 {% if vals.delta > 0 %}text-success{% elif vals.delta < 0 %}text-danger{% endif %}">
+                              {% if vals.delta > 0 %}+{% endif %}{{ vals.delta }}
+                            </span>
+                          {% endif %}
+                        {% else %}N/A{% endif %}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                  <p class="small text-muted">Bottleneck: {{ res_entry.bottleneck_estimated.type }} ({{ res_entry.bottleneck_estimated.bottleneck|floatformat:1 }}%)</p>
                 </div>
               </div>
             </div>
-            {# Delta moved inline next to estimated render time and formatted as improvement where lower is better #}
-          {% else %}
-            <div class="d-flex align-items-center mb-2">
-              <div><strong>Resolution</strong></div>
-              <div class="btn-group ms-3" role="group" aria-label="Resolutions">
-                {% for res_entry in fps_res_list %}
-                  <button type="button" class="btn btn-sm btn-outline-primary res-toggle {% if res_entry.res == default_resolution %}active{% endif %}" data-res="{{ res_entry.res }}">{{ res_entry.res }}</button>
-                {% endfor %}
-              </div>
+          {% endfor %}
+
+          {% if fps_compare_list|length == 0 %}
+            <div class="alert alert-info mt-2 mb-0 small">
+              No FPS comparison available for this proposal. Try generating upgrade proposals first, then open this preview.
             </div>
-
-            {% for res_entry in fps_compare_list %}
-              <div class="fps-compare-pane" data-res-pane="{{ res_entry.res }}" style="display: {% if res_entry.res == default_resolution %}block{% else %}none{% endif %};">
-                <div class="row">
-                  <div class="col-6">
-                    <div class="mb-2"><strong>Current Estimated FPS</strong></div>
-                    <ul class="list-unstyled small">
-                      {% for game, vals in res_entry.games.items %}
-                        <li>{{ game }}: {% if vals.current %}{{ vals.current }} FPS{% else %}N/A{% endif %}</li>
-                      {% endfor %}
-                    </ul>
-                    <p class="small text-muted">Bottleneck: {{ res_entry.bottleneck_current.type }} ({{ res_entry.bottleneck_current.bottleneck|floatformat:1 }}%)</p>
-                  </div>
-                  <div class="col-6">
-                    <div class="mb-2"><strong>Estimated FPS</strong></div>
-                    <ul class="list-unstyled small">
-                      {% for game, vals in res_entry.games.items %}
-                        <li>
-                          {{ game }}:
-                          {% if vals.estimated %}
-                            {{ vals.estimated }} FPS
-                            {% if vals.delta %}
-                              <span class="ms-2 {% if vals.delta > 0 %}text-success{% elif vals.delta < 0 %}text-danger{% endif %}">
-                                {% if vals.delta > 0 %}+{% endif %}{{ vals.delta }}
-                              </span>
-                            {% endif %}
-                          {% else %}N/A{% endif %}
-                        </li>
-                      {% endfor %}
-                    </ul>
-                    <p class="small text-muted">Bottleneck: {{ res_entry.bottleneck_estimated.type }} ({{ res_entry.bottleneck_estimated.bottleneck|floatformat:1 }}%)</p>
-                  </div>
-                </div>
-              </div>
-            {% endfor %}
-
-            {% if fps_compare_list|length == 0 %}
-              <div class="alert alert-info mt-2 mb-0 small">
-                No FPS comparison available for this proposal. Try generating upgrade proposals first, then open this preview.
-              </div>
-            {% endif %}
+          {% endif %}
 
             <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -153,29 +125,159 @@
               }));
             });
             </script>
-          {% endif %}
           <p class="mt-2"><strong>Price delta:</strong> ${{ price_delta|floatformat:2 }}</p>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Primary components row: CPU, GPU, RAM -->
   <div class="row">
+    <!-- CPU card -->
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-header">CPU</div>
+        <div class="card-body">
+          {% with obj=estimated_build.cpu %}
+          <h5>
+            {% if obj.name %}{{ obj.name }}{% else %}{{ obj }}{% endif %}
+          </h5>
+          <ul class="list-unstyled mb-2 small">
+            {% if obj.core_count %}<li><strong>Cores / Threads:</strong> {{ obj.core_count }}{% if obj.thread_count %} / {{ obj.thread_count }}{% endif %}</li>{% endif %}
+            {% if obj.base_clock %}<li><strong>Base clock:</strong> {{ obj.base_clock }} GHz</li>{% endif %}
+            {% if obj.boost_clock %}<li><strong>Boost clock:</strong> {{ obj.boost_clock }} GHz</li>{% endif %}
+          </ul>
+          <p class="mb-1"><strong>Performance:</strong> {% if cpu_perf %}{{ cpu_perf|floatformat:0 }}%{% else %}N/A{% endif %}</p>
+          <p class="mb-1"><strong>Improvement:</strong> {% if cpu_percent is not None %}{{ cpu_percent|floatformat:2 }}%{% else %}N/A{% endif %}</p>
+          <p class="mb-1"><strong>Price:</strong> {% if obj.price %}{{ currency|currency_symbol }}{{ obj.price|convert_from_usd:currency|floatformat:2 }}{% else %}N/A{% endif %}</p>
+          <div class="mt-2 d-flex justify-content-end gap-2">
+            <a href="#" class="component-action component-details" data-type="cpu" data-id="{{ obj.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
+            <a href="#" class="component-action component-youtube" data-query="{% if obj.name %}{{ obj.name }}{% else %}{{ obj }}{% endif %}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.amazon.com/s?k={% if obj.name %}{{ obj.name|urlencode }}{% else %}{{ obj|urlencode }}{% endif %}" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
+          </div>
+          {% endwith %}
+        </div>
+      </div>
+    </div>
+
+    <!-- GPU card -->
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-header">GPU</div>
+        <div class="card-body">
+          {% with obj=estimated_build.gpu %}
+          <h5>
+            {% if obj.gpu_name %}{{ obj.gpu_name }}{% elif obj.model %}{{ obj.model }}{% elif obj.name %}{{ obj.name }}{% else %}{{ obj }}{% endif %}
+          </h5>
+          <ul class="list-unstyled mb-2 small">
+            {% if obj.vram %}<li><strong>VRAM:</strong> {{ obj.vram }} GB</li>{% endif %}
+            {% if obj.base_clock %}<li><strong>Base clock:</strong> {{ obj.base_clock }} MHz</li>{% endif %}
+            {% if obj.boost_clock %}<li><strong>Boost clock:</strong> {{ obj.boost_clock }} MHz</li>{% endif %}
+          </ul>
+          <p class="mb-1"><strong>Performance:</strong> {% if gpu_perf %}{{ gpu_perf|floatformat:0 }}%{% else %}N/A{% endif %}</p>
+          <p class="mb-1"><strong>Improvement:</strong> {% if gpu_percent is not None %}{{ gpu_percent|floatformat:2 }}%{% else %}N/A{% endif %}</p>
+          <p class="mb-1"><strong>Price:</strong> {% if obj.price %}{{ currency|currency_symbol }}{{ obj.price|convert_from_usd:currency|floatformat:2 }}{% else %}N/A{% endif %}</p>
+          <div class="mt-2 d-flex justify-content-end gap-2">
+            <a href="#" class="component-action component-details" data-type="gpu" data-id="{{ obj.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
+            <a href="#" class="component-action component-youtube" data-query="{% if obj.gpu_name %}{{ obj.gpu_name }}{% elif obj.model %}{{ obj.model }}{% elif obj.name %}{{ obj.name }}{% else %}{{ obj }}{% endif %}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.amazon.com/s?k={% if obj.gpu_name %}{{ obj.gpu_name|urlencode }}{% elif obj.model %}{{ obj.model|urlencode }}{% elif obj.name %}{{ obj.name|urlencode }}{% else %}{{ obj|urlencode }}{% endif %}" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
+          </div>
+          {% endwith %}
+        </div>
+      </div>
+    </div>
+
+    <!-- RAM card -->
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-header">RAM</div>
+        <div class="card-body">
+          {% with obj=estimated_build.ram %}
+          <h5>
+            {% if obj.name %}{{ obj.name }}{% elif obj.model %}{{ obj.model }}{% else %}{{ obj }}{% endif %}
+          </h5>
+          <ul class="list-unstyled mb-2 small">
+            {% if obj.ddr_generation %}<li><strong>DDR Generation:</strong> {{ obj.ddr_generation }}</li>{% elif obj.ddr_version %}<li><strong>DDR:</strong> {{ obj.ddr_version }}</li>{% endif %}
+            {% if obj.frequency_mhz %}<li><strong>Frequency:</strong> {{ obj.frequency_mhz }} MHz</li>{% elif obj.speed %}<li><strong>Speed:</strong> {{ obj.speed }} MHz</li>{% endif %}
+          </ul>
+          <p class="mb-1"><strong>Performance:</strong> {% if ram_perf %}{{ ram_perf|floatformat:0 }}%{% else %}N/A{% endif %}</p>
+          <p class="mb-1"><strong>Improvement:</strong> {% if ram_percent is not None %}{{ ram_percent|floatformat:2 }}%{% else %}N/A{% endif %}</p>
+          <p class="mb-1"><strong>Price:</strong> {% if obj.price %}{{ currency|currency_symbol }}{{ obj.price|convert_from_usd:currency|floatformat:2 }}{% else %}N/A{% endif %}</p>
+          <div class="mt-2 d-flex justify-content-end gap-2">
+            <a href="#" class="component-action component-details" data-type="ram" data-id="{{ obj.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
+            <a href="#" class="component-action component-youtube" data-query="{% if obj.name %}{{ obj.name }}{% elif obj.model %}{{ obj.model }}{% else %}{{ obj }}{% endif %}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.amazon.com/s?k={% if obj.name %}{{ obj.name|urlencode }}{% elif obj.model %}{{ obj.model|urlencode }}{% else %}{{ obj|urlencode }}{% endif %}" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
+          </div>
+          {% endwith %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    {# Second row: all other changed parts #}
     {% for part, data in changed_items.items %}
+      {% if part != 'cpu' and part != 'gpu' and part != 'ram' %}
       {% with obj=data.obj percent=data.percent %}
       <div class="col-md-4">
         <div class="card mb-3">
           <div class="card-header">{{ part|title }}</div>
           <div class="card-body">
-            <h5>{% if obj.name %}{{ obj.name }}{% elif obj.gpu_name %}{{ obj.gpu_name }}{% else %}{{ obj }}{% endif %}</h5>
-            <p>Price: {{ currency|currency_symbol }}{{ obj.price|convert_from_usd:currency|floatformat:2 }}</p>
-            {% if part == 'cpu' or part == 'gpu' or part == 'ram' %}
-              <p><strong>Improvement:</strong> {{ percent|default:0.0|floatformat:2 }}%</p>
-            {% endif %}
+            <h5>
+              {% if part == 'psu' %}
+                {% if obj.brand %}{{ obj.brand }} {% endif %}{{ obj.name }}{% if obj.wattage %} {{ obj.wattage }}W{% endif %}
+              {% else %}
+                {% if obj.name %}{{ obj.name }}{% elif obj.gpu_name %}{{ obj.gpu_name }}{% else %}{{ obj }}{% endif %}
+              {% endif %}
+            </h5>
+            <ul class="list-unstyled mb-2 small">
+              {% if part == 'motherboard' %}
+                {% if obj.socket %}<li><strong>Socket:</strong> {{ obj.socket }}</li>{% endif %}
+                {% if obj.form_factor %}<li><strong>Form Factor:</strong> {{ obj.form_factor }}</li>{% endif %}
+                {% if obj.ddr_version %}<li><strong>DDR Version:</strong> {{ obj.ddr_version }}</li>{% endif %}
+                {% if obj.nvme_support %}<li><strong>NVMe:</strong> {{ obj.nvme_support }}</li>{% endif %}
+                {% with obj.bios_update_required|default_if_none:'' as biosreq %}{% if biosreq != '' %}<li><strong>BIOS update:</strong> {{ biosreq|yesno:"Yes,No" }}</li>{% endif %}{% endwith %}
+              {% endif %}
+
+              {% if part == 'case' %}
+                {% if obj.case_type %}<li><strong>Case type:</strong> {{ obj.case_type }}</li>{% endif %}
+                {% if obj.color %}<li><strong>Color:</strong> {{ obj.color }}</li>{% endif %}
+                {% if obj.psu %}<li><strong>PSU:</strong> {{ obj.psu }}</li>{% endif %}
+              {% endif %}
+
+              {% if part == 'psu' %}
+                {% if obj.psu_type %}<li><strong>PSU type:</strong> {{ obj.psu_type }}</li>{% endif %}
+                {% if obj.efficiency %}<li><strong>Efficiency:</strong> {{ obj.efficiency }}</li>{% endif %}
+                {% if obj.wattage %}<li><strong>Wattage:</strong> {{ obj.wattage }}W</li>{% endif %}
+                {% if obj.modular %}<li><strong>Modular:</strong> {{ obj.modular }}</li>{% endif %}
+              {% endif %}
+
+              {% if part == 'storage' %}
+                {% if obj.capacity %}<li><strong>Capacity:</strong> {{ obj.capacity }} GB</li>{% endif %}
+                {% if obj.form_factor %}<li><strong>Form factor:</strong> {{ obj.form_factor }}</li>{% endif %}
+                {% if obj.interface %}<li><strong>Interface:</strong> {{ obj.interface }}</li>{% endif %}
+              {% endif %}
+
+              {% if part == 'cooler' %}
+                {% if obj.noise_level %}<li><strong>Noise level:</strong> {{ obj.noise_level }}</li>{% endif %}
+                {% with obj.liquid|default_if_none:'' as liquidval %}{% if liquidval != '' %}<li><strong>Liquid:</strong> {{ liquidval|yesno:"Yes,No" }}</li>{% endif %}{% endwith %}
+              {% endif %}
+            </ul>
+            <p class="mb-1"><strong>Price:</strong> {% if obj.price %}{{ currency|currency_symbol }}{{ obj.price|convert_from_usd:currency|floatformat:2 }}{% else %}N/A{% endif %}</p>
+            <div class="mt-2 d-flex justify-content-end gap-2">
+              <a href="#" class="component-action component-details" data-type="{{ part }}" data-id="{{ obj.id }}" title="Further information"><i class="fa-solid fa-circle-info"></i></a>
+              <a href="#" class="component-action component-youtube" data-query="{% if obj.name %}{{ obj.name }}{% elif obj.gpu_name %}{{ obj.gpu_name }}{% elif obj.model %}{{ obj.model }}{% else %}{{ obj }}{% endif %}" title="YouTube reviews"><i class="fa-brands fa-youtube"></i></a>
+              {% if part == 'psu' %}
+              <a href="https://www.amazon.com/s?k={{ obj.brand|urlencode }}+{{ obj.name|urlencode }}+{{ obj.wattage }}W" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
+              {% else %}
+              <a href="https://www.amazon.com/s?k={% if obj.name %}{{ obj.name|urlencode }}{% elif obj.gpu_name %}{{ obj.gpu_name|urlencode }}{% elif obj.model %}{{ obj.model|urlencode }}{% else %}{{ obj|urlencode }}{% endif %}" target="_blank" rel="noopener" class="component-action" title="Search on Amazon"><i class="fa-brands fa-amazon"></i></a>
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>
       {% endwith %}
+      {% endif %}
     {% endfor %}
   </div>
 

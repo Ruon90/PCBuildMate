@@ -784,8 +784,10 @@ def upgrade_preview(request):
             cpu_percent = ((new_cpu_score - cur_cpu_score) / cur_cpu_score) * 100.0
         else:
             cpu_percent = 0.0
+        cpu_performance = new_cpu_score or 0.0
     except Exception:
         cpu_percent = 0.0
+        cpu_performance = 0.0
 
     try:
         try:
@@ -800,8 +802,10 @@ def upgrade_preview(request):
             gpu_percent = ((new_gpu_score - cur_gpu_score) / cur_gpu_score) * 100.0
         else:
             gpu_percent = 0.0
+        gpu_performance = new_gpu_score or 0.0
     except Exception:
         gpu_percent = 0.0
+        gpu_performance = 0.0
 
     try:
         try:
@@ -816,8 +820,10 @@ def upgrade_preview(request):
             ram_percent = ((new_ram_score - cur_ram_score) / cur_ram_score) * 100.0
         else:
             ram_percent = 0.0
+        ram_performance = new_ram_score or 0.0
     except Exception:
         ram_percent = 0.0
+        ram_performance = 0.0
 
     # Attach per-component percents into changed mapping where relevant
     for k in list(changed.keys()):
@@ -826,10 +832,13 @@ def upgrade_preview(request):
             continue
         if k == 'cpu':
             entry['percent'] = cpu_percent
+            entry['performance'] = cpu_performance
         elif k == 'gpu':
             entry['percent'] = gpu_percent
+            entry['performance'] = gpu_performance
         elif k == 'ram':
             entry['percent'] = ram_percent
+            entry['performance'] = ram_performance
         else:
             entry['percent'] = None
         changed[k] = entry
@@ -838,9 +847,45 @@ def upgrade_preview(request):
     # use any currency recorded on the base_ids (rare) or default to USD.
     currency = request.session.get('preview_build', {}).get('currency') or base_ids.get('currency') or 'USD'
 
+    # Compute normalized performance percentages for CPU/GPU/RAM like build preview
+    from django.db.models import Max
+    def safe_float(v):
+        try:
+            return float(v or 0)
+        except Exception:
+            return 0.0
+    cpu_field = 'blender_score' if mode == 'workstation' else 'userbenchmark_score'
+    gpu_field = 'blender_score' if mode == 'workstation' else 'userbenchmark_score'
+    ram_field = 'benchmark'
+    cpu_top = safe_float(CPU.objects.aggregate(m=Max(cpu_field)).get('m'))
+    gpu_top = safe_float(GPU.objects.aggregate(m=Max(gpu_field)).get('m'))
+    ram_top = safe_float(RAM.objects.aggregate(m=Max(ram_field)).get('m'))
+    cpu_val = safe_float(getattr(estimated_build.get('cpu'), cpu_field, 0)) if estimated_build.get('cpu') else 0.0
+    gpu_val = safe_float(getattr(estimated_build.get('gpu'), gpu_field, 0)) if estimated_build.get('gpu') else 0.0
+    ram_val = safe_float(getattr(estimated_build.get('ram'), ram_field, 0)) if estimated_build.get('ram') else 0.0
+    def perf_pct(top, val):
+        try:
+            if top and val:
+                return round((val / top) * 100.0, 1)
+        except Exception:
+            pass
+        return None
+    cpu_perf = perf_pct(cpu_top, cpu_val)
+    gpu_perf = perf_pct(gpu_top, gpu_val)
+    ram_perf = perf_pct(ram_top, ram_val)
+
     return render(request, 'calculator/upgrade_preview.html', {
         'changed_items': changed,
         'percent': percent,
+        'cpu_percent': cpu_percent,
+        'gpu_percent': gpu_percent,
+        'ram_percent': ram_percent,
+        'cpu_performance': cpu_performance,
+        'gpu_performance': gpu_performance,
+        'ram_performance': ram_performance,
+    'cpu_perf': cpu_perf,
+    'gpu_perf': gpu_perf,
+    'ram_perf': ram_perf,
         'price_delta': price_delta,
         'fps_estimates': fps_estimates,
         'fps_res_list': fps_res_list,

@@ -16,9 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from hardware import views as hw_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', include('calculator.urls')),
+    path(
+        'component-details/',
+        hw_views.component_details,
+        name='component_details',
+    ),
+    path(
+        'youtube-reviews/',
+        hw_views.youtube_reviews,
+        name='youtube_reviews',
+    ),
 ]
