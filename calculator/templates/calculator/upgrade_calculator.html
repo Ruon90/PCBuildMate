@@ -24,7 +24,7 @@
       </div>
       <div class="col-md-6">
         <label class="form-label">GPU</label>
-        <select name="gpu" class="form-select searchable" required>
+  <select name="gpu" class="form-select searchable" required>
           <option value="">Start typing to search</option>
           {% for g in gpus %}
           <option value="{{ g.id }}" {% if request.POST.gpu == g.id|stringformat:'s' %}selected{% endif %}>
@@ -36,7 +36,7 @@
       </div>
       <div class="col-md-6">
         <label class="form-label">Motherboard</label>
-        <select name="motherboard" class="form-select searchable" required>
+  <select name="motherboard" class="form-select searchable" required>
           <option value="">Start typing to search</option>
           {% for m in mobos %}
           <option value="{{ m.id }}" {% if request.POST.motherboard == m.id|stringformat:'s' %}selected{% endif %}>{% if m.name %}{{ m.name }}{% else %}{{ m }}{% endif %}</option>
@@ -46,7 +46,7 @@
       </div>
       <div class="col-md-6">
         <label class="form-label">RAM</label>
-        <select name="ram" class="form-select searchable" required>
+  <select name="ram" class="form-select searchable" required>
           <option value="">Start typing to search</option>
           {% for r in rams %}
           <option value="{{ r.id }}" {% if request.POST.ram == r.id|stringformat:'s' %}selected{% endif %}>{% if r.name %}{{ r.name }}{% else %}{{ r }}{% endif %}</option>
@@ -56,7 +56,7 @@
       </div>
       <div class="col-md-6">
         <label class="form-label">Storage</label>
-        <select name="storage" class="form-select searchable" required>
+  <select name="storage" class="form-select searchable" required>
           <option value="">Start typing to search</option>
           {% for s in storages %}
           <option value="{{ s.id }}" {% if request.POST.storage == s.id|stringformat:'s' %}selected{% endif %}>{% if s.name %}{{ s.name }}{% else %}{{ s }}{% endif %}</option>
@@ -66,7 +66,7 @@
       </div>
       <div class="col-md-6">
         <label class="form-label">PSU</label>
-        <select name="psu" class="form-select searchable" required>
+  <select name="psu" class="form-select searchable" required>
           <option value="">Start typing to search</option>
           {% for p in psus %}
           <option value="{{ p.id }}" {% if request.POST.psu == p.id|stringformat:'s' %}selected{% endif %}>{% if p.name %}{{ p.name }}{% else %}{{ p }}{% endif %}</option>
@@ -76,7 +76,7 @@
       </div>
       <div class="col-md-6">
         <label class="form-label">CPU Cooler</label>
-        <select name="cooler" class="form-select searchable" required>
+  <select name="cooler" class="form-select searchable" required>
           <option value="">Start typing to search</option>
           {% for c in coolers %}
           <option value="{{ c.id }}" {% if request.POST.cooler == c.id|stringformat:'s' %}selected{% endif %}>{% if c.name %}{{ c.name }}{% else %}{{ c }}{% endif %}</option>
@@ -86,7 +86,7 @@
       </div>
       <div class="col-md-6">
         <label class="form-label">Case</label>
-        <select name="case" class="form-select searchable" required>
+  <select name="case" class="form-select searchable" required>
           <option value="">Start typing to search</option>
           {% for c in cases %}
           <option value="{{ c.id }}" {% if request.POST.case == c.id|stringformat:'s' %}selected{% endif %}>{% if c.name %}{{ c.name }}{% else %}{{ c }}{% endif %}</option>
@@ -290,13 +290,13 @@
 {% block extra_head %}{% endblock %}
 
 {% block extra_scripts %}
-  <!-- Select2 initialized below; libraries are loaded globally in base.html -->
+  <!-- Select2 is used on this page for searchable selects -->
   <script>
     // Initialize Select2 on our searchable selects when document is ready
     (function($){
       // Initialize Select2 as early as possible on DOM ready to ensure placeholders are set before any visual transitions
       $(document).ready(function(){
-        // Select2 is initialized globally in base.html; no need to re-init here
+        try{ if($.fn.select2){ $('.searchable').filter(function(){ return !$(this).data('select2'); }).select2({ width: '100%', placeholder: 'Start typing to search', allowClear: true }); } }catch(e){}
         // Per-card resolution toggles: switch FPS blocks only inside the same card
         $(document).on('click', '.res-toggle-card-btn', function(){
           var res = $(this).data('res');
@@ -532,9 +532,19 @@
                     // patch children instead of assigning innerHTML to avoid re-animating everything
                     patchInnerHTML(curRoot, newRoot.innerHTML);
                     // re-initialize dynamic bits that are normally run on page load
-                    try { if (window.jQuery && typeof window.jQuery.fn.select2 === 'function') {
+                    try { if (window.jQuery && window.jQuery.fn && window.jQuery.fn.selectpicker) {
                       var $ = window.jQuery;
-                      $('.searchable').filter(function(){ return !$(this).data('select2'); }).select2({ width: '100%', placeholder: 'Start typing to search', allowClear: true });
+                      $('.selectpicker').each(function(){
+                        var $el = $(this);
+                        if (!$el.data('selectpicker')) { $el.selectpicker(); }
+                        else { $el.selectpicker('refresh'); }
+                      });
+                      // ensure visibility fallback
+                      $('.selectpicker').each(function(){
+                        var $el = $(this);
+                        var hasRendered = !!$el.parent().find('.bootstrap-select').length;
+                        if(!hasRendered){ $el.removeClass('bs-select-hidden').css({display:'block'}); }
+                      });
                     } } catch(e) {}
                     // reattach per-card resolution toggle handlers for replaced content
                     try {
@@ -577,24 +587,10 @@
                     if (newDocProposals && curProposals) {
                       // Patch content instead of replacing it wholesale
                       patchInnerHTML(curProposals, newDocProposals.innerHTML);
-                      // Animate newly inserted cards for a smooth-but-snappy feel
-                      try {
-                        curProposals.querySelectorAll('.card').forEach((card, i) => {
-                          // Stagger very slightly for perception of responsiveness
-                          setTimeout(() => {
-                            card.classList.add('list-enter');
-                            if (i < 2) card.classList.add('list-enter-fast');
-                          }, i * 30);
-                        });
-                      } catch(e) {}
                       // also update current build summary if present in response
                       if (newDocCurrent && curCurrent) {
                         patchInnerHTML(curCurrent, newDocCurrent.innerHTML);
-                        try {
-                          curCurrent.querySelectorAll('.list-group-item').forEach((li, i) => {
-                            setTimeout(() => { li.classList.add('list-enter-fast'); }, i * 20);
-                          });
-                        } catch(e) {}
+                        
                       }
                       // hide no-upgrades alert if present
                       const alertEl = document.getElementById('noUpgradesAlert');
@@ -603,9 +599,19 @@
                         alertEl.setAttribute('aria-hidden', 'true');
                       }
                       // re-init interactive bits inside proposals
-                      try { if (window.jQuery && typeof window.jQuery.fn.select2 === 'function') {
+                      try { if (window.jQuery && window.jQuery.fn && window.jQuery.fn.selectpicker) {
                         var $ = window.jQuery;
-                        $('.searchable').filter(function(){ return !$(this).data('select2'); }).select2({ width: '100%', placeholder: 'Start typing to search', allowClear: true });
+                        $('.selectpicker').each(function(){
+                          var $el = $(this);
+                          if (!$el.data('selectpicker')) { $el.selectpicker(); }
+                          else { $el.selectpicker('refresh'); }
+                        });
+                        // ensure visibility fallback
+                        $('.selectpicker').each(function(){
+                          var $el = $(this);
+                          var hasRendered = !!$el.parent().find('.bootstrap-select').length;
+                          if(!hasRendered){ $el.removeClass('bs-select-hidden').css({display:'block'}); }
+                        });
                       } } catch(e) {}
                       try {
                         // resolution toggles reattach

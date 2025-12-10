@@ -878,50 +878,9 @@ def upgrade_preview(request):
     gpu_perf = perf_pct(gpu_top, gpu_val)
     ram_perf = perf_pct(ram_top, ram_val)
 
-    # Build per-resolution FPS estimates for upgrade preview (gaming mode only)
-    # Determine a sensible default resolution without relying on undefined build_obj.
-    try:
-        default_resolution = (
-            request.session.get('preview_build', {}).get('resolution')
-            or (current_build.get('resolution') if isinstance(current_build, dict) else None)
-            or (estimated_build.get('resolution') if isinstance(estimated_build, dict) else None)
-            or '1440p'
-        )
-    except Exception:
-        default_resolution = '1440p'
-    fps_res_list = []
-    bottleneck_info = {"bottleneck": 0.0, "type": "unknown"}
-    workstation_render_time = None
-    try:
-        if mode == "workstation":
-            try:
-                workstation_render_time = estimate_render_time(cpu, gpu, mode)
-            except Exception:
-                workstation_render_time = None
-        else:
-            games = ['Cyberpunk 2077', 'CS2', 'Fortnite']
-            resolutions = ['1080p', '1440p', '4k']
-            for res in resolutions:
-                games_map = {}
-                for g in games:
-                    try:
-                        cpu_fps, gpu_fps = estimate_fps_components(cpu, gpu, mode, res, g)
-                        est = round(min(cpu_fps, gpu_fps), 1) if cpu_fps is not None and gpu_fps is not None else None
-                        games_map[g] = {'overall': est, 'cpu': cpu_fps, 'gpu': gpu_fps}
-                    except Exception:
-                        games_map[g] = {'overall': None, 'cpu': None, 'gpu': None}
-                try:
-                    binfo = cpu_bottleneck(cpu, gpu, mode, res)
-                except Exception:
-                    binfo = {'bottleneck': 0.0, 'type': 'unknown'}
-                fps_res_list.append({'res': res, 'games': games_map, 'bottleneck': binfo})
-            # pick bottleneck for default resolution
-            try:
-                bottleneck_info = next((e.get('bottleneck') for e in fps_res_list if e.get('res') == default_resolution), bottleneck_info)
-            except Exception:
-                pass
-    except Exception:
-        fps_res_list = []
+    # FPS estimates were built above for both current and estimated builds.
+    # Avoid recomputing here to prevent empty lists due to undefined vars
+    # and keep template behavior consistent.
 
     return render(request, 'calculator/upgrade_preview.html', {
         'changed_items': changed,
@@ -932,9 +891,9 @@ def upgrade_preview(request):
         'cpu_performance': cpu_performance,
         'gpu_performance': gpu_performance,
         'ram_performance': ram_performance,
-    'cpu_perf': cpu_perf,
-    'gpu_perf': gpu_perf,
-    'ram_perf': ram_perf,
+        'cpu_perf': cpu_perf,
+        'gpu_perf': gpu_perf,
+        'ram_perf': ram_perf,
         'price_delta': price_delta,
         'fps_estimates': fps_estimates,
         'fps_res_list': fps_res_list,
@@ -946,12 +905,16 @@ def upgrade_preview(request):
         'default_resolution': default_resolution,
         'fps_compare_list': fps_compare_list,
         'currency': currency,
-        # Include budget for save form; prefer preview session budget, else base_ids budget,
-        # and as a final fallback try any recorded last_upgrade_base.
+    # Include budget for save form.
+    # Prefer preview session budget, else base_ids budget,
+    # else any recorded last_upgrade_base.
         'budget': (
             (request.session.get('preview_build', {}) or {}).get('budget')
             or base_ids.get('budget')
-            or (request.session.get('last_upgrade_base', {}) or {}).get('budget')
+            or (
+                (request.session.get('last_upgrade_base', {}) or {})
+                .get('budget')
+            )
         ),
         'proposal_index': idx,
         'current_build': current_build,
@@ -975,15 +938,24 @@ def select_alternative(request):
         return redirect('alternatives')
 
     sel = alts[idx]
-    # preserve user's budget/currency/mode/resolution if present in existing preview
+    # Preserve budget/currency/mode/resolution if present
+    # in existing preview.
     prev = request.session.get('preview_build', {})
     preview = {
-        'cpu': sel['cpu'], 'gpu': sel['gpu'], 'motherboard': sel['motherboard'],
-        'ram': sel['ram'], 'storage': sel['storage'], 'psu': sel['psu'],
-        'cooler': sel['cooler'], 'case': sel['case'],
-        'price': sel.get('price'), 'score': sel.get('score'),
-        'budget': prev.get('budget'), 'currency': prev.get('currency', 'USD'),
-        'mode': prev.get('mode', 'gaming'), 'resolution': prev.get('resolution', '1440p'),
+        'cpu': sel['cpu'],
+        'gpu': sel['gpu'],
+        'motherboard': sel['motherboard'],
+        'ram': sel['ram'],
+        'storage': sel['storage'],
+        'psu': sel['psu'],
+        'cooler': sel['cooler'],
+        'case': sel['case'],
+        'price': sel.get('price'),
+        'score': sel.get('score'),
+        'budget': prev.get('budget'),
+        'currency': prev.get('currency', 'USD'),
+        'mode': prev.get('mode', 'gaming'),
+        'resolution': prev.get('resolution', '1440p'),
         'budget_usd': prev.get('budget_usd'),
     }
     request.session['preview_build'] = preview
@@ -1002,8 +974,10 @@ def upgrade_calculator(request):
     to maintain compatibility for motherboard when possible.
     """
 
-    # This upgrade calculator takes a user-specified build (all components must be selected)
-    # Provide component querysets for the dropdowns on GET and validate the submitted IDs on POST.
+    # This upgrade calculator takes a user-specified build.
+    # All components must be selected.
+    # Provide component querysets for dropdowns on GET.
+    # Validate submitted IDs on POST.
     cpus_qs = CPU.objects.all()
     gpus_qs = GPU.objects.all()
     mobos_qs = Motherboard.objects.all()
@@ -1016,34 +990,53 @@ def upgrade_calculator(request):
     # default mode (can be overridden by a form field)
     mode = 'gaming'
     # default resolution used for UI toggles (taken from preview if present)
-    default_resolution = request.session.get('preview_build', {}).get('resolution') or '1440p'
+    default_resolution = (
+        request.session.get('preview_build', {}).get('resolution')
+        or '1440p'
+    )
 
     if request.method == 'POST':
-        # If the user clicked "Use this build" for a proposed upgrade, apply it.
+    # If user clicked "Use this build" for a proposed upgrade, apply it.
         if request.POST.get('proposed_index') is not None:
             try:
                 idx = int(request.POST.get('proposed_index'))
-                proposals = request.session.get('last_upgrade_proposals', []) or []
+                proposals = (
+                    request.session.get('last_upgrade_proposals', [])
+                    or []
+                )
                 if idx < 0 or idx >= len(proposals):
                     messages.error(request, 'Invalid proposed build selected.')
                     return redirect('upgrade_calculator')
                 sel = proposals[idx]
-                # Build preview structure from proposal (preserve user's budget/currency/mode/resolution)
+                # Build preview structure from proposal.
+                # Preserve user's budget/currency/mode/resolution.
                 prev = request.session.get('preview_build', {})
                 preview = {
-                    'cpu': sel.get('cpu'), 'gpu': sel.get('gpu'), 'motherboard': sel.get('motherboard'),
-                    'ram': sel.get('ram'), 'storage': sel.get('storage'), 'psu': sel.get('psu'),
+                    'cpu': sel.get('cpu'),
+                    'gpu': sel.get('gpu'),
+                    'motherboard': sel.get('motherboard'),
+                    'ram': sel.get('ram'),
+                    'storage': sel.get('storage'),
+                    'psu': sel.get('psu'),
                     'cooler': sel.get('cooler'), 'case': sel.get('case'),
                     'price': None, 'score': None,
-                    'budget': prev.get('budget'), 'currency': prev.get('currency', 'USD'),
-                    'mode': prev.get('mode', 'gaming'), 'resolution': prev.get('resolution', '1440p'),
+                    'budget': prev.get('budget'),
+                    'currency': prev.get('currency', 'USD'),
+                    'mode': prev.get('mode', 'gaming'),
+                    'resolution': prev.get('resolution', '1440p'),
                     'budget_usd': prev.get('budget_usd'),
                 }
                 request.session['preview_build'] = preview
-                messages.success(request, 'Preview replaced with selected upgrade build.')
+                messages.success(
+                    request,
+                    'Preview replaced with selected upgrade build.'
+                )
                 return redirect('build_preview')
             except Exception:
-                messages.error(request, 'Could not apply selected proposed build.')
+                messages.error(
+                    request,
+                    'Could not apply selected proposed build.'
+                )
                 return redirect('upgrade_calculator')
         # parse upgrade budget (user-entered amount in their selected currency)
         try:
@@ -1051,10 +1044,16 @@ def upgrade_calculator(request):
         except Exception:
             budget = 0.0
 
-        # Determine currency for this upgrade flow (prefer POSTed currency, else preview session)
-        currency = request.POST.get('currency') or request.session.get('preview_build', {}).get('currency') or 'USD'
+    # Determine currency for this upgrade flow.
+    # Prefer POSTed currency, else preview session.
+        currency = (
+            request.POST.get('currency')
+            or request.session.get('preview_build', {}).get('currency')
+            or 'USD'
+        )
 
-        # Convert submitted budget into USD for internal comparisons (catalog prices are in USD)
+    # Convert submitted budget into USD for internal comparisons.
+    # Catalog prices are in USD.
         try:
             sel_rate = CurrencyRate.objects.filter(currency=currency).first()
             if sel_rate:
@@ -1064,34 +1063,79 @@ def upgrade_calculator(request):
         except Exception:
             budget_usd = budget
 
-        # Require the user to have selected every component in the form (separate from preview flow)
-        required_parts = ['cpu', 'gpu', 'motherboard', 'ram', 'storage', 'psu', 'cooler', 'case']
+        # Require user to have selected every component in the form.
+        # This is separate from the preview flow.
+        required_parts = [
+            'cpu', 'gpu', 'motherboard', 'ram',
+            'storage', 'psu', 'cooler', 'case'
+        ]
         missing = [p for p in required_parts if not request.POST.get(p)]
         if missing:
-            messages.error(request, 'Please select every component (CPU, GPU, motherboard, RAM, storage, PSU, cooler and case) before running the upgrade calculator.')
-            return render(request, 'calculator/upgrade_calculator.html', {
-                'cpus': cpus_qs, 'gpus': gpus_qs, 'mobos': mobos_qs, 'rams': rams_qs,
-                'storages': storages_qs, 'psus': psus_qs, 'coolers': coolers_qs, 'cases': cases_qs,
-                'currencies': CurrencyRate.objects.all(), 'currency': request.session.get('preview_build', {}).get('currency', 'USD'),
-            })
+            messages.error(
+                request,
+                'Please select every component (CPU, GPU, motherboard, '
+                'RAM, storage, PSU, cooler and case) before running the '
+                'upgrade calculator.'
+            )
+            return render(
+                request,
+                'calculator/upgrade_calculator.html',
+                {
+                    'cpus': cpus_qs,
+                    'gpus': gpus_qs,
+                    'mobos': mobos_qs,
+                    'rams': rams_qs,
+                    'storages': storages_qs,
+                    'psus': psus_qs,
+                    'coolers': coolers_qs,
+                    'cases': cases_qs,
+                    'currencies': CurrencyRate.objects.all(),
+                    'currency': request.session.get('preview_build', {})
+                    .get('currency', 'USD'),
+                }
+            )
 
         # Load the submitted components from the POST payload
         try:
             cur_cpu = get_object_or_404(CPU, pk=int(request.POST.get('cpu')))
             cur_gpu = get_object_or_404(GPU, pk=int(request.POST.get('gpu')))
-            cur_mobo = get_object_or_404(Motherboard, pk=int(request.POST.get('motherboard')))
+            cur_mobo = get_object_or_404(
+                Motherboard, pk=int(request.POST.get('motherboard'))
+            )
             cur_ram = get_object_or_404(RAM, pk=int(request.POST.get('ram')))
-            cur_storage = get_object_or_404(Storage, pk=int(request.POST.get('storage')))
+            cur_storage = get_object_or_404(
+                Storage, pk=int(request.POST.get('storage'))
+            )
             cur_psu = get_object_or_404(PSU, pk=int(request.POST.get('psu')))
-            cur_cooler = get_object_or_404(CPUCooler, pk=int(request.POST.get('cooler')))
-            cur_case = get_object_or_404(Case, pk=int(request.POST.get('case')))
+            cur_cooler = get_object_or_404(
+                CPUCooler, pk=int(request.POST.get('cooler'))
+            )
+            cur_case = get_object_or_404(
+                Case, pk=int(request.POST.get('case'))
+            )
         except Exception:
-            messages.error(request, 'One or more selected components could not be found. Please correct your selections.')
-            return render(request, 'calculator/upgrade_calculator.html', {
-                'cpus': cpus_qs, 'gpus': gpus_qs, 'mobos': mobos_qs, 'rams': rams_qs,
-                'storages': storages_qs, 'psus': psus_qs, 'coolers': coolers_qs, 'cases': cases_qs,
-                'currencies': CurrencyRate.objects.all(), 'currency': request.session.get('preview_build', {}).get('currency', 'USD'),
-            })
+            messages.error(
+                request,
+                'One or more selected components could not be found. '
+                'Please correct your selections.'
+            )
+            return render(
+                request,
+                'calculator/upgrade_calculator.html',
+                {
+                    'cpus': cpus_qs,
+                    'gpus': gpus_qs,
+                    'mobos': mobos_qs,
+                    'rams': rams_qs,
+                    'storages': storages_qs,
+                    'psus': psus_qs,
+                    'coolers': coolers_qs,
+                    'cases': cases_qs,
+                    'currencies': CurrencyRate.objects.all(),
+                    'currency': request.session.get('preview_build', {})
+                    .get('currency', 'USD'),
+                }
+            )
 
         # Read mode from the submitted form (override default)
         mode = request.POST.get('mode', 'gaming') or 'gaming'
@@ -1367,6 +1411,10 @@ def upgrade_calculator(request):
                         g_gpu_score = getattr(gprop.get('gpu'), 'cached_score', None) or gpu_score(gprop.get('gpu'), mode)
                     except Exception:
                         g_gpu_score = 0.0
+                    # Strict improvement guard: both CPU and GPU in a combo must be strictly better than current
+                    if (c_cpu_score is None or c_cpu_score <= (cur_cpu_score or 0.0)) or (g_gpu_score is None or g_gpu_score <= (cur_gpu_score or 0.0)):
+                        # Skip combos that do not improve both parts individually
+                        continue
                     new_combo = (c_cpu_score or 0.0) + (g_gpu_score or 0.0)
                     percent = ((new_combo - baseline_combo) / baseline_combo) * 100.0 if baseline_combo > 0 else 0.0
                     key = (cprop['cpu'].id, gprop['gpu'].id)
