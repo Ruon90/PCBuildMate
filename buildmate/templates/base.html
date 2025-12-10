@@ -392,7 +392,7 @@
       100% { opacity: 1; transform: translateY(0); }
     }
     .page-enter {
-      animation: pcbmSlideDownFade 210ms cubic-bezier(.2,.8,.2,1) both;
+      animation: pcbmSlideDownFade 300ms cubic-bezier(.2,.8,.2,1) both;
       will-change: opacity, transform;
     }
     /* Page exit (slide-up/fade) */
@@ -401,7 +401,7 @@
       100% { opacity: 0; transform: translateY(-60px); }
     }
     .page-exit {
-      animation: pcbmSlideUpFade 250ms cubic-bezier(.2,.8,.2,1) both;
+      animation: pcbmSlideUpFade 300ms cubic-bezier(.2,.8,.2,1) both;
       will-change: opacity, transform;
     }
   </style>
@@ -723,7 +723,7 @@
       let handled = false;
       const onEnd = () => { if(!handled){ handled = true; navigate(); } };
       toAnimate.forEach(el => el.addEventListener('animationend', onEnd, { once: true }));
-  setTimeout(onEnd, 90); // safety timeout slightly > exit duration (300ms)
+  setTimeout(onEnd, 250); // safety timeout slightly > exit duration (300ms)
     } else {
       window.location.href = a.href;
     }
