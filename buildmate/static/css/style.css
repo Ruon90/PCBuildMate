@@ -347,6 +347,9 @@ footer.bg-dark{ background-color: rgba(0,0,0,0.45); border-top: 1px solid var(--
 
 @keyframes pcbmSlideOut { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-18px); } }
 .page-exit { animation: pcbmSlideOut var(--motion-snap) var(--ease-snap) both; will-change: opacity, transform; }
+/* Content-level exit for smaller panels (previews). Slide + fade to match page-exit but scoped
+    to inner content so the rest of the layout remains stable. */
+.content-exit { animation: pcbmSlideOut var(--motion-snap) var(--ease-snap) both; will-change: opacity, transform; }
 /* Page-enter uses transitions (smooth fade + slide up -> into place). Increase distance slightly to emphasize motion. */
 .js #pageMain { opacity: 1; transform: translateY(0); transition: opacity var(--motion-smooth) ease-in, transform var(--motion-smooth) ease-out; }
 .js body:not(.page-ready) #pageMain { opacity: 0; transform: translateY(18px); }

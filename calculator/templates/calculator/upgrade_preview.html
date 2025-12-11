@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load currency_tags %}
+{% load static %}
 {% block content %}
 <div class="container" id="previewContent">
   <div class="row mb-3">
@@ -133,25 +134,7 @@
             {% endif %}
           {% endif %}
 
-            <script>
-            document.addEventListener('DOMContentLoaded', function () {
-              // Only wire up resolution toggles for gaming mode
-              try{
-                const modeEl = '{{ mode }}';
-                if(modeEl === 'workstation') return;
-              }catch(e){}
-              const buttons = document.querySelectorAll('.res-toggle');
-              const panesCmp = document.querySelectorAll('.fps-compare-pane');
-              buttons.forEach(btn => btn.addEventListener('click', function () {
-                const r = this.getAttribute('data-res');
-                buttons.forEach(b=>b.classList.remove('active'));
-                this.classList.add('active');
-                panesCmp.forEach(p => {
-                  p.style.display = (p.getAttribute('data-res-pane') === r) ? 'block' : 'none';
-                });
-              }));
-            });
-            </script>
+            {# per-page JS is loaded from static/js/pages/upgrade_preview.js (migrated from inline) #}
           <p class="mt-2"><strong>Price delta:</strong> {{ currency|currency_symbol }}{{ price_delta|convert_from_usd:currency|floatformat:2 }}</p>
         </div>
       </div>
@@ -336,43 +319,5 @@
 {% endblock %}
 
 {% block extra_scripts %}
-<script>
-  // Trigger a lightweight exit animation before navigating back,
-  // so the transition feels consistent.
-  function goBackWithExit(){
-    try{
-      // Fade only the preview content, not the base layout
-      var el = document.getElementById('previewContent');
-      if(el){ el.classList.add('content-exit'); }
-      // Set a return flag so the calculator can play a matching fade-in
-      try { sessionStorage.setItem('returningFromPreview', '1'); } catch(e){}
-  setTimeout(function(){ history.back(); }, 310);
-    }catch(e){
-      history.back();
-    }
-  }
-</script>
-<script>
-// Equalize card heights within preview rows (fallback for CSS flex inconsistencies)
-(function(){
-  function equalizePreviewRows(){
-    document.querySelectorAll('#previewContent .row.equalize').forEach(function(row){
-      const cols = Array.from(row.querySelectorAll(':scope > [class*="col-"]'));
-      if(cols.length === 0) return;
-      // reset explicit heights
-      cols.forEach(c=>{ const card = c.querySelector('.card'); if(card){ card.style.height = ''; } });
-      // compute max height of .card in this row
-      let max = 0;
-      cols.forEach(c=>{ const card = c.querySelector('.card'); if(card){ const h = card.getBoundingClientRect().height; if(h > max) max = h; } });
-      if(max > 0){ cols.forEach(c=>{ const card = c.querySelector('.card'); if(card) card.style.height = max + 'px'; }); }
-    });
-  }
-  // run on load and resize, debounce resize
-  window.addEventListener('load', equalizePreviewRows);
-  var __eqT;
-  window.addEventListener('resize', function(){ clearTimeout(__eqT); __eqT = setTimeout(equalizePreviewRows, 120); });
-  // also run after fonts load (if supported)
-  if(document.fonts && document.fonts.ready) document.fonts.ready.then(equalizePreviewRows).catch(()=>{});
-})();
-</script>
+  <script src="{% static 'js/pages/upgrade_preview.js' %}"></script>
 {% endblock %}

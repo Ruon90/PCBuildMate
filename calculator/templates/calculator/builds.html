@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{% block content %}
 {% load currency_tags %}
+{% load static %}
+{% block content %}
 <div class="container">
     {% if builds %}
         <div class="row">
@@ -84,18 +85,9 @@
             You don’t have any saved builds yet. Go back to the <a href="{% url 'home' %}">calculator</a> to create one.
         </div>
     {% endif %}
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Ensure each delete modal is attached directly to <body> to avoid stacking-context issues
-        try {
-            const modals = document.querySelectorAll('[id^="deleteModal"]');
-            modals.forEach(m => {
-                if (m.parentNode !== document.body) {
-                    document.body.appendChild(m);
-                }
-            });
-        } catch (e) {}
-    });
-    </script>
 </div>
+{% endblock %}
+
+{% block extra_scripts %}
+  <script src="{% static 'js/pages/builds.js' %}"></script>
 {% endblock %}

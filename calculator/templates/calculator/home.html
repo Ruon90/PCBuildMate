@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block content %}
 <div class="content-center-v">
 <div class="container col-md-7 mx-auto">
 <div class="card p-3 shadow-md">
-    <form id="buildForm" method="post">
+    <form id="buildForm" method="post" action="{% url 'calculate_build' %}">
         {% csrf_token %}
         {{ form.budget|as_crispy_field }}
         {{ form.currency|as_crispy_field }}
@@ -54,163 +55,9 @@
     </div>
 </div>
 
-<!-- styles for the home page were migrated into `buildmate/static/css/style.css` -->
-<script>
-document.getElementById("buildForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-        const formData = new FormData(this);
-
-        // Modal setup with Bootstrap fallback
-        const modalEl = document.getElementById('buildProgressModal');
-        const progressBar = document.getElementById('buildProgressBar');
-        const progressMsg = document.getElementById('buildProgressMsg');
-        // Ensure modal is attached directly to <body> to avoid stacking-context issues
-        try { if (modalEl && modalEl.parentNode !== document.body) { document.body.appendChild(modalEl); } } catch(e) {}
-        let bsModal = null;
-        if (typeof window.bootstrap !== 'undefined' && window.bootstrap.Modal) {
-            try { bsModal = new window.bootstrap.Modal(modalEl, { backdrop: 'static', keyboard: false }); } catch (e) { bsModal = null; }
-        }
-        function manualShowModal() {
-            try {
-                const backdrop = document.createElement('div');
-                backdrop.className = 'modal-backdrop fade show';
-                backdrop.dataset.manual = '1';
-                document.body.appendChild(backdrop);
-                modalEl.classList.add('show');
-                modalEl.style.display = 'block';
-                modalEl.removeAttribute('aria-hidden');
-                modalEl.setAttribute('aria-modal','true');
-            } catch {}
-        }
-        function manualHideModal() {
-            try {
-                document.querySelectorAll('div.modal-backdrop[data-manual="1"]').forEach(el => el.remove());
-                modalEl.classList.remove('show');
-                modalEl.style.display = 'none';
-                modalEl.setAttribute('aria-hidden','true');
-                modalEl.removeAttribute('aria-modal');
-            } catch {}
-        }
-        try { if (bsModal) bsModal.show(); else manualShowModal(); } catch(e) { manualShowModal(); }
-        // Reset progress
-        progressBar.classList.remove('bg-danger');
-        progressBar.classList.add('bg-primary');
-        progressBar.classList.add('progress-bar-animated');
-        let percent = 10;
-        let anim = null;
-        progressBar.style.width = percent + '%';
-        progressBar.textContent = percent + '%';
-        progressMsg.textContent = 'Crunching numbers and checking compatibility...';
-        function startProgress(target) {
-            if (anim) clearInterval(anim);
-            anim = setInterval(() => {
-                const step = 2;
-                if (percent < target) {
-                    percent = Math.min(target, percent + step);
-                    progressBar.style.width = percent + '%';
-                    progressBar.textContent = percent + '%';
-                } else {
-                    clearInterval(anim);
-                    anim = null;
-                }
-            }, 140);
-        }
-        startProgress(80);
-
-    fetch("{% url 'calculate_build' %}", {
-        method: "POST",
-        body: formData
-    })
-    .then(res => res.json())
-    .then(data => {
-        const progressArea = document.getElementById("progressArea");
-        progressArea.innerHTML = "";
-
-                        let candidatesCount = (typeof data.candidates_count === 'number') ? data.candidates_count : null;
-                        if (data.progress) {
-            let stepPercent = Math.floor(90 / data.progress.length);
-            let currentPercent = 10;
-            const ul = document.createElement("ul");
-
-            data.progress.forEach(msg => {
-                                // Do not echo the final summary line into the page; we'll show it in the modal
-                                const lower = (msg || '').toLowerCase();
-                                const isSummary = lower.startsWith('selected best build') || lower.startsWith('picked best build');
-                                        // Try to extract candidates count from progress lines (e.g., "out of 17 candidates")
-                                        if (candidatesCount === null && typeof msg === 'string') {
-                                            const m = msg.match(/out of\s+(\d+)\s+candidates/i);
-                                            if (m && m[1]) {
-                                                candidatesCount = parseInt(m[1], 10);
-                                            }
-                                        }
-                                if (!isSummary) {
-                                    const li = document.createElement("li");
-                                    li.textContent = msg;
-                                    ul.appendChild(li);
-                                }
-
-                currentPercent += stepPercent;
-                percent = Math.min(95, currentPercent);
-                progressBar.style.width = percent + "%";
-                progressBar.textContent = percent + "%";
-            });
-            progressArea.appendChild(ul);
-        }
-
-        if (data.redirect) {
-            // Finish progress, show summary, then redirect
-            // Show summary solely in the modal; clear any page progress messages
-            progressArea.innerHTML = "";
-                        // Prefer explicit count; otherwise fall back to summary string or generic
-                        let summaryText = (data.summary && typeof data.summary === 'string') ? data.summary : null;
-                        if (!summaryText && candidatesCount !== null) {
-                            summaryText = `Picked best build of ${candidatesCount} candidates`;
-                        }
-                        progressMsg.textContent = summaryText || "Picked best build";
-            if (percent < 90) startProgress(90);
-            setTimeout(() => {
-              if (anim) { clearInterval(anim); anim = null; }
-              percent = 100;
-              progressBar.style.width = '100%';
-              progressBar.textContent = '100%';
-              try { if (bsModal) bsModal.hide(); } catch(e) {} finally { manualHideModal(); }
-              window.location.href = data.redirect;
-            }, 800);
-        } else if (data.error) {
-            progressBar.classList.remove("progress-bar-animated");
-            progressBar.classList.add("bg-danger");
-            progressBar.textContent = "Error";
-            progressArea.innerHTML = "<div class='alert alert-danger'>" + data.error + "</div>";
-            setTimeout(() => { try { if (bsModal) bsModal.hide(); } catch(e) {} finally { manualHideModal(); } }, 1200);
-        }
-    });
-});
-</script>
-<script>
-const filters = document.getElementById("advancedFilters");
-const toggleBtn = document.getElementById("toggleFilters");
-const cardEl = document.querySelector('.card');
-
-toggleBtn.addEventListener("click", function() {
-    const bsCollapse = new bootstrap.Collapse(filters, { toggle: true });
-});
-
-filters.addEventListener("show.bs.collapse", () => {
-    toggleBtn.textContent = "Hide advanced filters";
-    cardEl && cardEl.classList.add('expanding');
-});
-filters.addEventListener("shown.bs.collapse", () => {
-    // Ensure the toggle is visible at the bottom after expansion
-    try { toggleBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch(e) {}
-    cardEl && cardEl.classList.remove('expanding');
-});
-filters.addEventListener("hide.bs.collapse", () => {
-    toggleBtn.textContent = "Show advanced filters";
-    cardEl && cardEl.classList.add('expanding');
-});
-filters.addEventListener("hidden.bs.collapse", () => {
-    cardEl && cardEl.classList.remove('expanding');
-});
-</script>
+<!-- per-page JS loaded from static/js/pages/home.js -->
+{% block extra_scripts %}
+  <script src="{% static 'js/pages/home.js' %}"></script>
+{% endblock %}
 
 {% endblock %}

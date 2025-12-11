@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load currency_tags %}
+{% load static %}
 {% block content %}
 <div class="container">
     <div class="row mb-3 align-items-stretch">
@@ -88,22 +89,8 @@
                                                         </div>
                                                                                 {% endfor %}
 
-                                                    <script>
-                                                    document.addEventListener('DOMContentLoaded', function () {
-                                                        const root = document.getElementById('bp-perf');
-                                                        if (!root) return;
-                                                        const buttons = root.querySelectorAll('.bp-res-toggle');
-                                                        const panes = root.querySelectorAll('.bp-fps-pane');
-                                                        buttons.forEach(btn => btn.addEventListener('click', function () {
-                                                            const r = this.getAttribute('data-res');
-                                                            buttons.forEach(b=>b.classList.remove('active'));
-                                                            this.classList.add('active');
-                                                            panes.forEach(p => {
-                                                                p.style.display = (p.getAttribute('data-res-pane') === r) ? 'block' : 'none';
-                                                            });
-                                                        }));
-                                                    });
-                                                    </script>
+                                                
+                                                {# per-page JS moved to static/js/pages/build_preview.js #}
                                                 </div>
                         {% endif %}
                 </div>
@@ -319,4 +306,8 @@
 {% endif %}
 
 </div>
+{% endblock %}
+
+{% block extra_scripts %}
+    <script src="{% static 'js/pages/build_preview.js' %}"></script>
 {% endblock %}
