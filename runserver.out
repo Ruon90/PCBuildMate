@@ -9933,3 +9933,16 @@ Starting build calculation...
 [11/Dec/2025 16:24:30] "GET /build/view_upgrade/84/ HTTP/1.1" 302 0
 [11/Dec/2025 16:24:31] "GET /build/upgrade_preview/?index=0 HTTP/1.1" 200 23323
 [11/Dec/2025 16:24:31] "GET /static/js/pages/upgrade_preview.js HTTP/1.1" 200 2986
+
+  Components:
+    CPU: Intel Core i3-14100F
+    GPU: Radeon RX 9060 XT 8 GB
+    Motherboard: ASRock H610M/ac
+    RAM: G.Skill Ripjaws 4 16 GB
+    Storage: Addlink S70
+    PSU: Smart
+    Cooler: ARCTIC Alpine 23
+    Case: Zalman T8
+  FPS estimates: {'Cyberpunk 2077': {'1080p': {'cpu_fps': 60.8, 'gpu_fps': 91.7, 'estimated_fps': 60.8}}, 'CS2': {'1080p': {'cpu_fps': 554.2, 'gpu_fps': 305.7, 'estimated_fps': 305.7}}, 'Fortnite': {'1080p': {'cpu_fps': 102.8, 'gpu_fps': 183.4, 'estimated_fps': 102.8}}}
+  Workstation estimates: {}
+Watching for file changes with StatReloader
