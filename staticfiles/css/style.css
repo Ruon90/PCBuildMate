@@ -56,3 +56,531 @@ footer {
     display: flex;
     align-items: center;
 }
+
+/* --- Migrated styles from base.html ---
+     These were moved from the template to centralize styling for validation.
+     Many previously used !important flags were removed for better CSS practice.
+     If specific rules need higher specificity, prefer rewriting selectors rather
+     than using !important.
+*/
+
+:root{
+    --bg-overlay: rgba(14,18,28,0.65);
+    --card-bg: rgba(255,255,255,0.08);
+    --card-border: rgba(255,255,255,0.12);
+    --text-primary: #e8eefc;
+    --text-secondary: #b8c3d9;
+    --accent: #2e7cf7;
+    --accent-contrast: #ffffff;
+    /* Slightly longer motion durations to make page transitions feel smoother */
+    --motion-snap: 360ms;
+    --motion-smooth: 420ms;
+    --ease-snap: ease-in-out;
+    --ease-smooth: ease-in-out;
+    --input-bg: var(--card-bg);
+    --dropdown-standard: var(--card-bg);
+    --dropdown-component: rgb(20,24,32);
+    --highlight-bluegray: #223b5b;
+    --highlight-white: rgba(255,255,255,0.18);
+    --navbar-height: 64px;
+}
+
+html, body { overflow-x: hidden; }
+.js .form-select.searchable { visibility: hidden; }
+
+body.site-hero{
+    background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('/static/images/hero2.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    color: var(--text-primary);
+}
+
+/* Ensure hero pages and any nested components use the readable theme text
+   This forces text to the theme primary color on hero pages (used by the
+   landing/preview areas). We scope tightly to avoid affecting other pages.
+*/
+body.site-hero,
+body.site-hero * {
+    color: var(--text-primary) !important;
+}
+body.site-hero a,
+body.site-hero a * {
+    color: #cfe3ff !important;
+}
+
+/* Make sure Select2 rendered selection is readable on hero pages */
+body.site-hero .select2-container .select2-selection__rendered,
+body.site-hero .select2-container .select2-selection__rendered * {
+    color: var(--text-primary) !important;
+}
+
+/* Font Awesome icons: default gray on hero pages, lighter on hover */
+body.site-hero .fa,
+body.site-hero .fas,
+body.site-hero .far,
+body.site-hero .fal,
+body.site-hero .fab {
+    color: var(--text-secondary) !important;
+    transition: color .12s ease;
+}
+body.site-hero a:hover .fa,
+body.site-hero .component-action:hover i,
+body.site-hero a:hover i {
+    color: var(--text-primary) !important;
+}
+
+/* FPS delta helpers: positive = green, negative = red. Use utility classes
+   where delta spans are rendered in templates. These are scoped globally so
+   they can be reused in cards, previews, and proposal components. */
+.fps-delta-positive { color: #39b54a !important; font-weight: 600; }
+.fps-delta-negative { color: #ff6666 !important; font-weight: 600; }
+
+/* If Bootstrap utility classes (text-success / text-danger) are used inside
+    hero pages they can be overridden by the broad `body.site-hero *` rule.
+    Re-apply semantic delta colors specifically for hero pages so +/− values
+    remain visibly green/red. */
+body.site-hero .text-success, body.site-hero .text-success * { color: #39b54a !important; }
+body.site-hero .text-danger,  body.site-hero .text-danger *  { color: #ff6666 !important; }
+
+/* Stronger specificity for FPS delta spans — ensure these override
+   the broad `body.site-hero * { color: ... !important }` rule so
+   delta numbers remain green/red in hero/proposals contexts. */
+body.site-hero .fps-delta-positive,
+.proposals-card .fps-delta-positive { color: #39b54a !important; font-weight: 600; }
+body.site-hero .fps-delta-negative,
+.proposals-card .fps-delta-negative { color: #ff6666 !important; font-weight: 600; }
+
+/* ID-based selectors to guarantee override on hero pages / previews.
+    We add these to be explicit when the template uses an id on the span. */
+body.site-hero #workstation-delta.fps-delta-positive,
+body.site-hero [id^="fps-delta-"].fps-delta-positive,
+.proposals-card [id^="fps-delta-"].fps-delta-positive { color: #39b54a !important; font-weight: 600; }
+
+body.site-hero #workstation-delta.fps-delta-negative,
+body.site-hero [id^="fps-delta-"].fps-delta-negative,
+.proposals-card [id^="fps-delta-"].fps-delta-negative { color: #ff6666 !important; font-weight: 600; }
+
+/* Extra high-specificity fallbacks for delta spans. These selectors are
+    intentionally verbose to ensure they win against the broad
+    `body.site-hero * { color: ... !important }` rule in edge cases where
+    the DOM is patched or vendor CSS injects different color contexts. */
+body.site-hero .proposals-card .card-body [id^="fps-delta-"].fps-delta-positive,
+body.site-hero #previewContent [id^="fps-delta-"].fps-delta-positive,
+html body.site-hero .proposals-card [id^="fps-delta-"].fps-delta-positive { color: #39b54a !important; font-weight: 700; }
+
+body.site-hero .proposals-card .card-body [id^="fps-delta-"].fps-delta-negative,
+body.site-hero #previewContent [id^="fps-delta-"].fps-delta-negative,
+html body.site-hero .proposals-card [id^="fps-delta-"].fps-delta-negative { color: #ff6666 !important; font-weight: 700; }
+
+/* Also target the workstation delta ID explicitly as a guarantee */
+body.site-hero #workstation-delta.fps-delta-positive, #workstation-delta.fps-delta-positive { color: #39b54a !important; font-weight: 700; }
+body.site-hero #workstation-delta.fps-delta-negative, #workstation-delta.fps-delta-negative { color: #ff6666 !important; font-weight: 700; }
+
+
+p, .lead { color: var(--text-primary); }
+h1, h2, h3, h4, h5, h6 { color: var(--text-primary); }
+.text-muted { color: var(--text-primary); }
+.card p { color: var(--text-secondary); }
+
+.navbar{
+    backdrop-filter: saturate(150%) blur(8px);
+    background-color: rgba(0,0,0,0.35);
+    border-bottom: 1px solid var(--card-border);
+}
+.sticky-top, header.sticky-top { position: fixed !important; top: 0 !important; left: 0; right: 0; z-index: 1030 !important; }
+.navbar .nav-link{ color: var(--text-secondary); }
+.navbar .nav-link.active, .navbar .nav-link:hover{ color: var(--text-primary); }
+
+/* Override Bootstrap utility classes (e.g. .bg-dark uses !important) so our
+     translucent navbar/footer and blur are preserved. These selectors are
+     intentionally specific and use !important to restore the original look
+     while we migrate templates away from utility classes that force opaque
+     backgrounds. */
+.navbar.bg-dark, header .navbar.bg-dark, .navbar.bg-dark.navbar {
+    background-color: rgba(0,0,0,0.35) !important;
+    backdrop-filter: saturate(150%) blur(8px) !important;
+    border-bottom: 1px solid var(--card-border) !important;
+}
+.navbar.bg-dark .nav-link, header .navbar.bg-dark .nav-link { color: var(--text-secondary) !important; }
+.navbar.bg-dark .nav-link.active, .navbar.bg-dark .nav-link:hover { color: var(--text-primary) !important; }
+
+footer.bg-dark{ background-color: rgba(0,0,0,0.45) !important; border-top: 1px solid var(--card-border) !important; }
+
+.card{
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    border-radius: 12px;
+}
+.card .card-title, .card .card-header{ color: var(--text-primary); }
+.card .list-group-item{ background-color: transparent; color: var(--text-secondary); border-color: var(--card-border); }
+
+.alert{
+    color: var(--text-primary);
+    background-color: rgba(255,255,255,0.02);
+    border: 1px solid var(--card-border);
+}
+.alert .btn-close{ filter: none; }
+/* Warning alert should stand out on dark backgrounds */
+.alert.alert-warning{ background-color: rgba(255,193,7,0.12); color: #111; }
+.modal-backdrop{ background-color:#000; }
+.modal-backdrop.show{ opacity: 0.7; }
+.modal-content{ background-color: rgba(20,24,32,0.92); color: var(--text-primary); border: 1px solid var(--card-border); backdrop-filter: blur(6px) saturate(130%); }
+.modal-header{ border-bottom-color: var(--card-border); }
+.modal-footer{ border-top-color: var(--card-border); }
+.modal .btn-close{ filter: invert(1) brightness(1.2); opacity: .9; }
+.modal .btn-close:hover{ opacity: 1; }
+
+.btn-primary{ background-color: var(--accent); border-color: var(--accent); color: var(--accent-contrast); }
+.btn-outline-primary{ border-color: var(--accent); color: var(--accent); }
+.btn-outline-primary:hover{ background-color: var(--accent); color: var(--accent-contrast); }
+.btn-secondary{ background-color: #3a4661; border-color: #3a4661; color: var(--text-primary); }
+.btn-danger{ background-color: #e55353; border-color: #e55353; }
+
+.component-action{ color: #5f5f5fff; line-height: 1; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; padding: 4px; }
+.component-action i{ color: inherit; font-size: 1.2rem; }
+.component-action:hover, .component-action:focus{ color: #9a9a9a; text-decoration: none; outline: none; }
+.component-action:visited{ color: inherit; text-decoration: none; }
+
+.form-label{ color: var(--text-secondary); }
+.card .form-control, .card .form-select, .form-control, .form-select, input[type="search"], input[type="text"], input[type="password"]{
+    background-color: var(--input-bg);
+    border-color: var(--card-border);
+    color: var(--text-primary);
+    min-height: 2.7rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-image: none;
+    filter: none;
+}
+.form-select, select, .form-select option, select option{ color: var(--text-primary); }
+.form-select option, select option, .form-select optgroup, select optgroup{ background-color: var(--dropdown-component); color: var(--text-primary); }
+.form-select option:checked, select option:checked, .form-select option:hover, select option:hover{ background-color: var(--highlight-bluegray); color: #fff; }
+.select2-selection__rendered{ color: var(--text-primary); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.select2-selection{ background-color: var(--input-bg); border-color: var(--card-border); }
+.input-group-text{ background-color: var(--input-bg); border-color: var(--card-border); color: var(--text-primary); }
+.form-control::placeholder{ color: var(--text-secondary); opacity: 0.85; }
+input[type="password"]::placeholder{ color: var(--text-secondary); opacity: 0.85; }
+
+.form-control:-webkit-autofill, .form-control:-webkit-autofill:hover, .form-control:-webkit-autofill:focus, textarea:-webkit-autofill, select:-webkit-autofill{
+    -webkit-box-shadow: 0 0 0px 1000px var(--input-bg) inset;
+    box-shadow: 0 0 0px 1000px var(--input-bg) inset;
+    -webkit-text-fill-color: var(--text-primary);
+    caret-color: var(--text-primary);
+    transition: background-color 9999s ease-in-out 0s; /* prevent flash */
+}
+input:-moz-autofill, input:-moz-autofill:hover, input:-moz-autofill:focus{ box-shadow: 0 0 0px 1000px var(--input-bg) inset; -moz-text-fill-color: var(--text-primary); caret-color: var(--text-primary); }
+.form-control[type="password"], input[type="password"].form-control{ background-color: var(--input-bg); -webkit-text-fill-color: var(--text-primary); color: var(--text-primary); }
+
+input[type="checkbox"]{ width: 1.15rem; height: 1.15rem; -webkit-appearance: none; appearance: none; background-color: var(--input-bg); border: 1px solid var(--card-border); border-radius: 0.25rem; box-shadow: none; position: relative; transition: border-color .15s ease, box-shadow .15s ease; background-repeat: no-repeat; background-position: center; background-size: 88% 88%; }
+input[type="checkbox"]:hover{ border-color: #3b82f6; }
+input[type="checkbox"]:focus{ outline: none; border-color: #2e7cf7; box-shadow: 0 0 0 0.18rem rgba(46,124,247,.60); }
+input[type="checkbox"]:checked{ background-color: var(--input-bg); border-color: var(--accent); box-shadow: 0 0 0 0.18rem rgba(46,124,247,.60); background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M20.285 6.707a1 1 0 0 1 0 1.414l-9.58 9.58a1 1 0 0 1-1.414 0l-5.29-5.29a1 1 0 1 1 1.414-1.414l4.583 4.583 8.873-8.873a1 1 0 0 1 1.414 0z' fill='%23ffffff'/></svg>"); }
+input[type="checkbox"]:disabled{ opacity: 0.7; cursor: not-allowed; }
+
+.dropdown-menu{ background-color: var(--dropdown-standard); border: 1px solid var(--card-border); color: var(--text-primary); }
+.dropdown-menu .dropdown-item{ color: var(--text-primary); }
+.dropdown-menu .dropdown-item:hover, .dropdown-menu .dropdown-item:focus{ background-color: var(--highlight-bluegray); color: #fff; }
+.dropdown-menu .dropdown-item.active, .dropdown-menu .dropdown-item.selected{ background-color: var(--highlight-bluegray); color: #fff; }
+.dropdown-item{ color: var(--text-primary); }
+.dropdown-item:hover, .dropdown-item:focus{ background-color: rgba(255,255,255,0.08); color: var(--text-primary); }
+
+.form-control:focus, .form-select:focus, input[type="search"]:focus, input[type="text"]:focus{ background-color: var(--input-bg); color: var(--text-primary); border-color: #2e7cf7; box-shadow: 0 0 0 0.2rem rgba(46,124,247,.6); }
+
+/* Ensure invalid form controls are visible even when not focused.
+   Some site-specific selectors add extra specificity to .form-select which
+   can prevent Bootstrap's default .is-invalid rules from appearing. Force
+   a clear visual indicator for invalid states across our theme. */
+.form-select.is-invalid, .form-control.is-invalid {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 0.18rem rgba(220,53,69,.18) !important;
+}
+.select2-container.is-invalid .select2-selection, .select2-container .select2-selection.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+.select2-container .select2-selection, .bootstrap-select .dropdown-toggle, .bootstrap-select .bs-searchbox .form-control, .select2-container .select2-search__field, .tt-input{ background-color: var(--input-bg); border-color: var(--card-border); color: var(--text-primary); }
+.select2-dropdown .select2-search--dropdown{ padding: 0; margin: 0; }
+.select2-dropdown .select2-search--dropdown .select2-search__field{ width: 100%; box-sizing: border-box; margin: 0; padding: .5rem .75rem; line-height: 1.5; border-radius: .5rem; }
+.bootstrap-select .dropdown-toggle{ min-height: 2.7rem; height: 2.7rem; border-radius: .5rem; padding-top: .5rem; padding-bottom: .5rem; width: 100%; }
+.select2-dropdown, .bootstrap-select .dropdown-menu{ background-color: var(--dropdown-component); border-color: var(--card-border); color: var(--text-primary); backdrop-filter: none; }
+.select2-dropdown{ max-width: 100vw; box-sizing: border-box; }
+.select2-results__options{ max-width: 100vw; box-sizing: border-box; }
+.select2-container .select2-dropdown, .select2-container .select2-results, .select2-container .select2-results__options{ background-color: var(--dropdown-component); }
+.select2-container .select2-search--dropdown .select2-search__field{ background-color: var(--input-bg); color: var(--text-primary); border-color: var(--card-border); }
+.select2-container .select2-selection{ background-color: var(--input-bg); border: 1px solid var(--card-border); color: var(--text-primary); border-radius: .5rem; min-height: 2.7rem; height: 2.7rem; position: relative; }
+.select2-container .select2-selection__rendered{ color: var(--text-primary); line-height: 2.7rem; padding-left: .75rem; padding-right: .9rem; }
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+    /* Use flex alignment to vertically center the selected value inside
+       the selection box. This targets default single-select instances and
+       avoids changing multi-select or dropdown result items. */
+    display: flex !important;
+    align-items: center !important;
+    height: 100% !important;
+    padding-left: .75rem !important;
+    padding-right: .9rem !important;
+}
+.select2-container .select2-selection__arrow{ height: 2.7rem; width: 1rem; position: absolute; right: .4rem; top: 0; bottom: 0; margin: auto 0; pointer-events: none; }
+.select2-container{ width: 100%; display: block; }
+.select2-container .select2-selection{ contain: layout style; backface-visibility: hidden; will-change: opacity; }
+.bootstrap-select .dropdown-menu .inner{ background-color: var(--dropdown-component); }
+.bootstrap-select .dropdown-menu .inner .dropdown-item{ background-color: transparent; color: var(--text-primary); }
+.bootstrap-select .dropdown-menu .inner .dropdown-item:hover, .bootstrap-select .dropdown-menu .inner .dropdown-item:focus{ background-color: var(--highlight-bluegray); color: #fff; }
+.bootstrap-select .dropdown-menu .inner .dropdown-item.active, .bootstrap-select .dropdown-menu .inner .dropdown-item.selected{ background-color: var(--highlight-bluegray); color: #fff; }
+.bootstrap-select .bs-searchbox .form-control{ background-color: var(--input-bg); color: var(--text-primary); border-color: var(--card-border); }
+.select2-results__option{ color: var(--text-primary); }
+.select2-results__option[aria-disabled="true"], .select2-container--default .select2-results__option[aria-disabled="true"]{ background-color: var(--dropdown-component); color: #8fa0b8; }
+.select2-results__option--highlighted, .select2-container--default .select2-results__option--highlighted{ background-color: var(--highlight-bluegray); color: #fff; }
+.select2-container--default .select2-results__option--highlighted[aria-selected], .select2-container--default .select2-results__option--selectable:hover{ background-color: var(--highlight-bluegray); color: #fff; }
+.select2-results__option[aria-selected="true"], .select2-container--default .select2-results__option[aria-selected="true"], .select2-container--default .select2-results__option--selected{ background-color: var(--highlight-bluegray); color: #fff; }
+.select2-container--default .select2-results>.select2-results__options .select2-results__option[aria-selected="true"]{ background-color: var(--highlight-bluegray); color: #fff; }
+.select2-container .select2-selection, .bootstrap-select .dropdown-toggle{ background-color: var(--card-bg); border-color: var(--card-border); color: var(--text-primary); }
+.select2-dropdown{ background-color: var(--dropdown-component); border-color: var(--card-border); color: var(--text-primary); }
+
+footer.bg-dark{ background-color: rgba(0,0,0,0.45); border-top: 1px solid var(--card-border); }
+.modal { z-index: 2100; }
+.modal-backdrop { z-index: 2000; }
+.modal-open #ai-agent { z-index: 100; }
+
+@keyframes pcbmSlideOut { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-18px); } }
+.page-exit { animation: pcbmSlideOut var(--motion-snap) var(--ease-snap) both; will-change: opacity, transform; }
+/* Page-enter uses transitions (smooth fade + slide up -> into place). Increase distance slightly to emphasize motion. */
+.js #pageMain { opacity: 1; transform: translateY(0); transition: opacity var(--motion-smooth) ease-in, transform var(--motion-smooth) ease-out; }
+.js body:not(.page-ready) #pageMain { opacity: 0; transform: translateY(18px); }
+#pageMain { will-change: opacity, transform; contain: layout paint; backface-visibility: hidden; }
+
+.proposals-card { will-change: opacity; backface-visibility: hidden; contain: layout paint; }
+.proposals-card .fps-res-container { position: relative; }
+.fps-res-container { min-height: 110px; }
+/* Upgrade modal progress bar initial state: width will be animated by JS. */
+#upgradeProgressBar { width: 0%; }
+.proposals-card .fps-block { position: absolute !important; inset: 0 !important; opacity: 0 !important; pointer-events: none !important; }
+.proposals-card .fps-block.active { opacity: 1 !important; pointer-events: auto !important; }
+/* Avoid a global .fps-block rule making all fps blocks visible. Keep the
+    default static behavior only for contexts that explicitly need it. If a
+    template needs a static fps-block, add a more specific class instead. */
+.fps-block { /* fallback for legacy usages - keep minimal */ display: none; }
+.fps-block.active { display: block; }
+
+.select2-container, .select2-dropdown, .select2-results, .select2-results__options, .select2-selection, .select2-search__field { transition: none; animation: none; }
+.select2-container--default .select2-selection--single .select2-selection__rendered, .select2-container--default .select2-results__option, .select2-container--default .select2-results__option--highlighted { transition: none; animation: none; }
+.select2-container{ max-width: 100%; }
+.select2-dropdown{ max-width: 100vw; box-sizing: border-box; }
+.select2-results__option{ white-space: normal; word-break: break-word; overflow-wrap: anywhere; }
+.select2-search__field{ width: 100%; box-sizing: border-box; }
+.dropdown-menu { transition: none; animation: none; }
+
+/* AI chat widget styles (migrated from base.html) */
+#ai-agent{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: min(360px, 92vw);
+    max-width: 360px;
+    z-index: 9999;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+    background: linear-gradient(180deg, rgba(20,24,32,0.78), rgba(20,24,32,0.86));
+    backdrop-filter: blur(10px) saturate(140%);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04) inset;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    transform-origin: bottom right;
+    will-change: transform, width, height, border-radius;
+    transition: transform .35s cubic-bezier(.2,.8,.2,1), width .35s ease, height .28s ease, border-radius .28s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+}
+
+/* Collapsed circular avatar state */
+#ai-agent.collapsed{
+    width: 64px;
+    height: 64px;
+    border: none;
+    background: transparent;
+    box-shadow: 0 8px 20px rgba(0,0,0,.35);
+    overflow: visible;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Stronger collapsed-state header/image rules to ensure a circular avatar
+   and prevent other global image rules from scaling the icon. */
+#ai-agent.collapsed #chat-header{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+#ai-agent.collapsed #chat-header img.chat-icon{
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 50%;
+    transform: translateZ(0);
+}
+
+/* Open/folded out state: translate diagonally up-left from the collapsed origin */
+#ai-agent.open{
+    transform: translate(-18px,-18px);
+    width: min(360px, 92vw);
+    height: auto;
+    border-radius: 14px;
+}
+
+/* Header: behaves like the circular avatar when collapsed, expands to a full-width
+   header when open. The avatar image is placed inside the header and scales. */
+#chat-header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:0;
+    width:64px;
+    height:64px;
+    padding:0;
+    cursor:pointer;
+    position:static;
+    background: linear-gradient(135deg, #0e2a5e 0%, #123d8f 100%);
+    color:#fff;
+    font-weight:700;
+    user-select:none;
+    border-radius:50%;
+    box-shadow: 0 10px 20px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.06) inset;
+    transition: width .28s ease, height .28s ease, border-radius .28s ease, padding .2s ease;
+}
+#chat-header img.chat-icon{ width:48px; height:48px; max-width:none; border-radius:12px; flex:0 0 auto; filter: drop-shadow(0 1px 1px rgba(0,0,0,.25)); margin-right:8px; z-index:2; display:block; object-fit:cover; }
+#chat-header-title{ display:none; }
+#chat-close{ position:absolute; right:10px; top:8px; display:none; font-weight:800; opacity:.9; }
+#chat-body{ max-height:0; opacity:0; transition: max-height .35s ease, opacity .25s ease; overflow:hidden; display:flex; flex-direction:column; background:transparent; }
+#ai-agent.open #chat-body{ max-height:420px; opacity:1; }
+
+/* Ensure header clips overflowing avatar and force avatar size when open */
+#ai-agent.open #chat-header{ overflow:hidden; }
+#ai-agent.open #chat-header img.chat-icon{ width:36px; height:36px; max-width:none; display:block; object-fit:cover; border-radius:8px; }
+#chat-window{ flex:1; overflow-y:auto; padding:12px; font-size:14px; color:var(--text-primary); min-height:280px; }
+.chat-row{ display:flex; gap:8px; align-items:center; padding:10px; border-top:1px solid var(--card-border); background: rgba(255,255,255,0.03); }
+#chat-input{ flex:1; background:var(--input-bg); color:var(--text-primary); border:1px solid var(--card-border); border-radius:10px; padding:10px 12px; outline:none; }
+#chat-input:focus{ border-color:#2e7cf7; box-shadow: 0 0 0 .18rem rgba(46,124,247,.6); }
+#chat-send{ background:#2e7cf7; color:#fff; border:none; border-radius:10px; padding:10px 14px; font-weight:600; }
+#chat-send:hover{ filter: brightness(1.08); }
+.msg{ margin:6px 0; }
+.msg b{ color:#9fb7ff; }
+.msg a{ color:#8ec5ff; text-decoration:underline; }
+.msg a:hover{ color:#cfe3ff; }
+#ai-agent.open #chat-header{ width:100%; height:58px; padding:10px 12px; gap:10px; justify-content:flex-start; position:relative; border-radius:14px 14px 0 0; z-index:3; }
+#ai-agent.open #chat-header-title{ display:block; }
+#ai-agent.open #chat-body{ z-index:1; padding-top:6px; }
+
+/* Ensure avatar scales down inside header when open and doesn't overflow */
+#ai-agent.open #chat-header img.chat-icon{
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Hide chat body when collapsed to avoid layout jank */
+#ai-agent.collapsed #chat-body{ display: none; max-height: 0; opacity: 0; }
+
+/* Page-specific transitions migrated from templates */
+/* Upgrade preview: lightweight fade-out when navigating back */
+#previewContent.content-exit{
+    opacity: 0;
+    transition: opacity 0.32s ease-out;
+}
+
+/* Upgrade preview: force text to be white for visibility */
+#previewContent, #previewContent * { color: #ffffff !important; opacity: 1 !important; }
+#previewContent .list-group-item { background: transparent !important; border-color: rgba(255,255,255,0.06) !important; }
+#previewContent a, #previewContent a * { color: #cfe3ff !important; opacity: 1 !important; }
+
+/* Utility: equalize column heights for rows where cards should match height
+    Usage: add the `equalize` class to a .row and its direct .col-* children will stretch.
+*/
+#previewContent .row.equalize{ align-items: stretch; }
+#previewContent .row.equalize > [class*="col-"]{ display: flex; align-items: stretch; min-height: 0; }
+#previewContent .row.equalize > [class*="col-"] .card{ flex: 1 1 auto; display:flex; flex-direction:column; min-height: 0; }
+#previewContent .row.equalize > [class*="col-"] .card .card-body{ flex:1 1 auto; display:flex; flex-direction:column; justify-content:center; min-height: 0; }
+
+/* Migrated from calculator/templates/calculator/upgrade_calculator.html */
+/* Minimal fade-in to match preview's exit animation: fade + slight upward slide */
+#proposalsSection.content-enter { opacity: 0; transform: translateY(8px); animation: contentFadeSlideIn 0.425s ease-out forwards; }
+@keyframes contentFadeSlideIn { 0% { opacity: 0; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
+
+/* Bang-for-buck info link tone (lightened for dark theme) */
+.b4b-info-link { color: var(--text-secondary); }
+.b4b-info-link:hover { color: var(--text-primary); }
+
+/* Migrated from calculator/templates/calculator/home.html */
+/* subtle card lift when contents change (used on the home build form) */
+.card {
+    transition: box-shadow 520ms ease-in-out, transform 520ms ease-in-out;
+}
+.card.expanding {
+    box-shadow: 0 0.75rem 1.5rem rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+}
+
+/* Advanced filters collapse: fade + slide for a more pronounced reveal */
+#advancedFilters.collapsing {
+    opacity: 0.4;
+    transform: translateY(-6px);
+    transition: opacity 180ms ease-out, transform 180ms ease-out;
+}
+#advancedFilters.collapse.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 180ms ease-out, transform 180ms ease-out;
+}
+
+/* Migrated from calculator/templates/calculator/alternatives.html */
+.placeholder-thumbnail { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+
+/* Make Select2 clear (x) icon white to match text */
+.select2-selection__clear { color: #ffffff !important; }
+.select2-container--default .select2-selection--single .select2-selection__clear { color: #ffffff !important; }
+/* final avatar size when open (override duplicates above for safety) */
+#ai-agent.open #chat-header img.chat-icon{ width:40px; height:40px; border-radius:10px; }
+
+/* Header text: hidden when collapsed, revealed when open */
+#chat-header .chat-header-text{ display: none; flex-direction: column; line-height: 1; }
+#chat-header .chat-title{ font-size: 14px; font-weight: 700; color: #ffffff; margin: 0; }
+#chat-header .chat-sub{ font-size: 11px; color: rgba(255,255,255,0.85); margin: 0; }
+#ai-agent.open #chat-header .chat-header-text{ display: flex; }
+
+/* Make avatar transitions smooth and animatable */
+#chat-header img.chat-icon{ transition: transform .36s cubic-bezier(.2,.8,.2,1), width .28s ease, height .28s ease, border-radius .28s ease; will-change: transform, width, height; }
+
+/* Keyframe: small movement/scale for avatar when opening so it visually settles into the header */
+@keyframes ai-avatar-move {
+    0% { transform: translateY(0) scale(1); }
+    60% { transform: translate(-6px,-8px) scale(.88); }
+ 100% { transform: translate(-8px,-6px) scale(.78); }
+}
+
+/* Keyframe: card pop/translate from the collapsed origin to the open card position */
+@keyframes ai-card-open {
+    0% { transform: translate(0,0) scale(1); opacity: 0.98; }
+ 100% { transform: translate(-18px,-18px) scale(1); opacity: 1; }
+}
+
+/* Apply animations when opening */
+#ai-agent.open { animation: ai-card-open .36s cubic-bezier(.2,.8,.2,1) both; }
+#ai-agent.open #chat-header img.chat-icon{ animation: ai-avatar-move .36s cubic-bezier(.2,.8,.2,1) both; }
+
+/* When collapsed, keep header text hidden and ensure avatar remains circular */
+#ai-agent.collapsed .chat-header-text{ display: none !important; }
+
+/* Small accessibility and visual polish: ensure close button is visible in open state */
+#ai-agent.open #chat-close{ display: block; }
+
+
+

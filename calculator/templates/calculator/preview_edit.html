@@ -63,8 +63,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return v;
   }
 
-  function showTooltip(id,msg){ const el=document.getElementById(id); if(el){ el.textContent=msg; el.style.display="block"; } }
-  function hideTooltip(id){ const el=document.getElementById(id); if(el){ el.style.display="none"; el.textContent = ""; } }
+  // Use class-based show/hide so templates behave consistently when d-none is used
+  function showTooltip(id,msg){ const el=document.getElementById(id); if(el){ el.textContent=msg; el.classList.remove('d-none'); } }
+  function hideTooltip(id){ const el=document.getElementById(id); if(el){ el.classList.add('d-none'); el.textContent = ""; } }
   function markInvalid(sel){ sel.classList.add("is-invalid"); sel.setAttribute("aria-invalid","true"); }
   function clearInvalid(sel){ sel.classList.remove("is-invalid"); sel.removeAttribute("aria-invalid"); }
   function setCpuMoboInvalid(invalid, moboMsg, cpuMsg){
@@ -154,12 +155,20 @@ document.addEventListener("DOMContentLoaded", () => {
    let ok = true;
 
    if (moboFF && caseFF) {
+     // Compatibility rules (per product policy):
+     // - mini/itx motherboards are allowed in any case (they are small and fit larger cases).
+     // - micro motherboards cannot fit inside mini/itx cases (micro -> itx is incompatible).
+     // - atx/tower motherboards are incompatible with cases that are explicitly mini or micro.
+     // - otherwise, fall back to simple contains/equality matching to avoid false positives.
      if (moboFF.includes("mini") || moboFF.includes("itx")) {
+       // mini/itx fit all cases
        ok = true;
      } else if (moboFF.includes("micro")) {
-       ok = caseFF.includes("atx") || caseFF.includes("micro") || caseFF.includes("mini");
+       // micro cannot fit in mini/itx
+       ok = !(caseFF.includes("mini") || caseFF.includes("itx"));
      } else if (moboFF.includes("atx") || moboFF.includes("tower")) {
-       ok = !(caseFF.includes("micro") || caseFF.includes("mini"));
+       // atx/tower cannot go into mini or micro cases
+       ok = !(caseFF.includes("mini") || caseFF.includes("micro") || caseFF.includes("itx"));
      } else {
        ok = caseFF === moboFF || caseFF.includes(moboFF);
      }

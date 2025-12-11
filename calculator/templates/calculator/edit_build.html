@@ -29,7 +29,7 @@
     </div>
 
     <!-- ADVANCED VIEW -->
-    <div id="advancedView" style="display:none;">
+    <div id="advancedView" class="d-none">
 
       {% include "calculator/edit_build_advanced.html" %}
     </div>
@@ -51,8 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const modeField = document.getElementById("mode");
 
   basicBtn.addEventListener("click", () => {
-    basicView.style.display = "block";
-    advancedView.style.display = "none";
+    basicView.classList.remove("d-none");
+    advancedView.classList.add("d-none");
     modeField.value = "basic";
     basicBtn.classList.add("btn-primary");
     basicBtn.classList.remove("btn-outline-secondary");
@@ -61,8 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   advancedBtn.addEventListener("click", () => {
-    basicView.style.display = "none";
-    advancedView.style.display = "block";
+    basicView.classList.add("d-none");
+    advancedView.classList.remove("d-none");
     modeField.value = "advanced";
     advancedBtn.classList.add("btn-primary");
     advancedBtn.classList.remove("btn-outline-secondary");
@@ -117,8 +117,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return v;
   }
 
-  function showTooltip(id,msg){ const el=document.getElementById(id); if(el){ el.textContent=msg; el.style.display="block"; } }
-  function hideTooltip(id){ const el=document.getElementById(id); if(el){ el.style.display="none"; el.textContent = ""; } }
+  // Use class-based show/hide so templates behave consistently when d-none is used
+  function showTooltip(id,msg){ const el=document.getElementById(id); if(el){ el.textContent=msg; el.classList.remove('d-none'); } }
+  function hideTooltip(id){ const el=document.getElementById(id); if(el){ el.classList.add('d-none'); el.textContent = ""; } }
   function markInvalid(sel){ sel.classList.add("is-invalid"); sel.setAttribute("aria-invalid","true"); }
   function clearInvalid(sel){ sel.classList.remove("is-invalid"); sel.removeAttribute("aria-invalid"); }
   // Central helper to set/clear invalid state for CPU and motherboard together
@@ -209,15 +210,23 @@ document.addEventListener("DOMContentLoaded", () => {
   let ok = true;
 
   if (moboFF && caseFF) {
-    if (moboFF.includes("mini") || moboFF.includes("itx")) {
-      ok = true;
-    } else if (moboFF.includes("micro")) {
-      ok = caseFF.includes("atx") || caseFF.includes("micro") || caseFF.includes("mini");
-    } else if (moboFF.includes("atx") || moboFF.includes("tower")) {
-      ok = !(caseFF.includes("micro") || caseFF.includes("mini"));
-    } else {
-      ok = caseFF === moboFF || caseFF.includes(moboFF);
-    }
+      // Compatibility rules (per product policy):
+      // - mini/itx motherboards are allowed in any case (they are small and fit larger cases).
+      // - micro motherboards cannot fit inside mini/itx cases (micro -> itx is incompatible).
+      // - atx/tower motherboards are incompatible with cases that are explicitly mini or micro.
+      // - otherwise, fall back to simple contains/equality matching to avoid false positives.
+      if (moboFF.includes("mini") || moboFF.includes("itx")) {
+        // mini/itx fit all cases
+        ok = true;
+      } else if (moboFF.includes("micro")) {
+        // micro cannot fit in mini/itx
+        ok = !(caseFF.includes("mini") || caseFF.includes("itx"));
+      } else if (moboFF.includes("atx") || moboFF.includes("tower")) {
+        // atx/tower cannot go into mini or micro cases
+        ok = !(caseFF.includes("mini") || caseFF.includes("micro") || caseFF.includes("itx"));
+      } else {
+        ok = caseFF === moboFF || caseFF.includes(moboFF);
+      }
   }
 
   if (!ok) {

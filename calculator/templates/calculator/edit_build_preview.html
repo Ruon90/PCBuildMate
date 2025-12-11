@@ -289,8 +289,9 @@ document.addEventListener('click', function(e){
     // Show the matching fps-block and hide others inside the nearest card body
     const cardBody = btn.closest('.card-body');
     const blocks = cardBody ? cardBody.querySelectorAll('.fps-block') : document.querySelectorAll('.fps-block');
+    // Use class-based toggles so CSS controls visibility and no inline styles conflict
     blocks.forEach(el => {
-        el.style.display = (el.getAttribute('data-res') === res) ? 'block' : 'none';
+        el.classList.toggle('active', el.getAttribute('data-res') === res);
     });
 });
 </script>

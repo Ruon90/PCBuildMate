@@ -1,5 +1,7 @@
 {% load static %}
 {% load socialaccount %}
+{% load static %}
+{% load socialaccount %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,1056 +9,159 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PCBuildMate</title>
-  <script>/* mark JS-enabled early to allow CSS to hide native selects before paint */
-    (function(){ try{ document.documentElement.classList.add('js'); }catch(e){} })();
-  </script>
+  <script>/* mark JS-enabled early to allow CSS to hide native selects before paint */(function(){ try{ document.documentElement.classList.add('js'); }catch(e){} })();</script>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <!-- Select2 for consistent custom dropdown styling -->
- 
-  <!-- Load jQuery + Select2 as early as possible so enhanced selects render before first paint -->
+  <!-- Load jQuery + Select2 early so enhanced selects render before first paint -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <!-- Bootstrap-Select (for searchable native selects on specific pages) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css" />
-  <!-- Early Select2 init: initialize once when DOM is ready (no observers/retries) -->
-  <script>
-    (function(){
-      document.addEventListener('DOMContentLoaded', function(){
-        try{
-          if (window.jQuery && window.jQuery.fn && typeof window.jQuery.fn.select2 === 'function') {
-            var $ = window.jQuery;
-            // Initialize Select2 only for .searchable selects that are NOT marked for Bootstrap-Select
-            var $sels = $('.searchable').filter(function(){
-              return !$(this).is('.selectpicker, [data-live-search], [data-use-bs], [data-bs-select]');
-            });
-            if($sels && $sels.length){
-              $sels.each(function(){
-                var $sel = $(this);
-                if($sel.data('select2')) return;
-                $sel.select2({ width: '100%', placeholder: 'Start typing to search', allowClear: true });
-              });
-              
-            }
-          }
-        }catch(e){ /* no-op */ }
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom site stylesheet loaded after vendor CSS so it can override component defaults -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-        // Removed global Bootstrap-Select init to avoid conflicts; page-level scripts will handle any needed enhancements.
-      });
-    })();
-  </script>
-  <script src="https://kit.fontawesome.com/0a349cffc6.js" crossorigin="anonymous"></script>
-  <style>
-   /* Avoid global viewport max-width to prevent cards/containers from stretching oddly.
-     Constrain only dropdown panels themselves to the viewport width. */
-   html, body { overflow-x: hidden; }
-   /* Hide native searchable selects on JS-enabled pages to avoid native->Select2 flash */
-   .js .form-select.searchable { visibility: hidden; }
-    /* Remove Bootstrap-Select-specific overrides now that we use Select2 for search where needed */
-    /* Removed visibility-hiding rules that caused Select2 selections to be invisible */
-    /* Global theme tied to hero background */
-    :root{
-      --bg-overlay: rgba(14,18,28,0.65);
-      --card-bg: rgba(255,255,255,0.08);
-      --card-border: rgba(255,255,255,0.12);
-      --text-primary: #e8eefc;
-      --text-secondary: #b8c3d9;
-      --accent: #2e7cf7;
-      --accent-contrast: #ffffff;
-  /* Motion tokens */
-  --motion-snap: 300ms;           /* unified duration */
-  --motion-smooth: 300ms;         /* unified duration */
-  --ease-snap: ease-in-out;       /* unified easing */
-  --ease-smooth: ease-in-out;     /* unified easing */
-  /* Inputs & dropdowns should visually match the card */
-  --input-bg: var(--card-bg);
-  /* Standard dropdowns (mode, currency, budget, etc.) match card */
-  --dropdown-standard: var(--card-bg);
-  /* Component pickers (Select2/Bootstrap-Select) fully opaque charcoal */
-  --dropdown-component: rgb(20,24,32);
-  /* Darker, more blue-ish gray for selection highlights */
-  --highlight-bluegray: #223b5b; /* was #1e2a3d */
-  /* Optional semi-transparent white highlight (unused now) */
-  --highlight-white: rgba(255,255,255,0.18);
-    }
-    body.site-hero{
-      /* Use the hero image as a fixed background */
-  background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('{% static 'images/hero2.webp' %}');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-position: center center;
-      color: var(--text-primary);
-    }
-  /* Ensure text renders in white for readability */
-  p, .lead { color: var(--text-primary) !important; }
-  h1, h2, h3, h4, h5, h6 { color: var(--text-primary) !important; }
-  .text-muted { color: var(--text-primary) !important; }
-  .card p { color: var(--text-secondary); } /* optional softer text inside cards */
-    /* Navbar polishing to sit on hero */
-    .navbar{
-      backdrop-filter: saturate(150%) blur(8px);
-      background-color: rgba(0,0,0,0.35) !important;
-      border-bottom: 1px solid var(--card-border);
-    }
-    .navbar .nav-link{ color: var(--text-secondary) !important; }
-    .navbar .nav-link.active, .navbar .nav-link:hover{ color: var(--text-primary) !important; }
-
-    /* Cards unified across pages */
-    .card{
-      background-color: var(--card-bg);
-      border: 1px solid var(--card-border);
-      color: var(--text-primary);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-      border-radius: 12px;
-    }
-    .card .card-title, .card .card-header{ color: var(--text-primary); }
-    .card .list-group-item{
-      background-color: transparent;
-      color: var(--text-secondary);
-      border-color: var(--card-border);
-    }
-
-  /* Alerts, badges, modals */
-  .alert{ color: #000 !important; }
-  .alert .btn-close{ filter: none; }
-    /* Darker, less transparent modals */
-    .modal-backdrop{ background-color:#000; }
-    .modal-backdrop.show{ opacity: 0.7; }
-    .modal-content{
-      background-color: rgba(20,24,32,0.92);
-      color: var(--text-primary);
-      border: 1px solid var(--card-border);
-      backdrop-filter: blur(6px) saturate(130%);
-    }
-    .modal-header{ border-bottom-color: var(--card-border); }
-    .modal-footer{ border-top-color: var(--card-border); }
-    /* Improve close button visibility on dark modal */
-    .modal .btn-close{ filter: invert(1) brightness(1.2); opacity: .9; }
-    .modal .btn-close:hover{ opacity: 1; }
-
-    /* Buttons tuned to accent */
-    .btn-primary{ background-color: var(--accent); border-color: var(--accent); color: var(--accent-contrast); }
-    .btn-outline-primary{ border-color: var(--accent); color: var(--accent); }
-    .btn-outline-primary:hover{ background-color: var(--accent); color: var(--accent-contrast); }
-    .btn-secondary{ background-color: #3a4661; border-color: #3a4661; color: var(--text-primary); }
-    .btn-danger{ background-color: #e55353; border-color: #e55353; }
-
-    /* Component action icons: lighter charcoal, bigger, no underline */
-    .component-action{
-      color: #5f5f5fff !important;
-      line-height: 1;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none !important;
-      padding: 4px;
-    }
-    .component-action i{
-      color: inherit !important;
-      font-size: 1.2rem; /* slightly smaller */
-    }
-    .component-action:hover,
-    .component-action:focus{
-      color: #9a9a9a !important;
-      text-decoration: none !important;
-      outline: none;
-    }
-    .component-action:visited{ color: inherit; text-decoration: none !important; }
-
-    /* Forms on dark */
-    .form-label{ color: var(--text-secondary); }
-    /* Force dark inputs/selects to match card background */
-    .card .form-control,
-    .card .form-select,
-    .form-control,
-    .form-select,
-    input[type="search"],
-    input[type="text"],
-    input[type="password"]{
-      background-color: var(--input-bg) !important;
-      border-color: var(--card-border) !important;
-      color: var(--text-primary) !important;
-      min-height: 2.7rem; /* increase height ~20% */
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-      background-image: none !important; /* prevent user-agent gradients */
-      filter: none !important;
-    }
-    /* Ensure select text and options render in white and dropdown panel is dark */
-    .form-select,
-    select,
-    .form-select option,
-    select option{ color: var(--text-primary) !important; }
-    /* Native select dropdown list background (best-effort across browsers) */
-    .form-select option,
-    select option,
-    .form-select optgroup,
-    select optgroup{
-      background-color: var(--dropdown-component) !important;
-      color: var(--text-primary) !important;
-    }
-    /* Highlight selected/hovered options in native dropdowns */
-    .form-select option:checked,
-    select option:checked,
-    .form-select option:hover,
-    select option:hover{
-      background-color: var(--highlight-bluegray) !important;
-      color: #fff !important;
-    }
-    /* Select2 selected label text */
-    .select2-selection__rendered{
-      color: var(--text-primary) !important;
-      display: block;               /* ensure stable box model */
-      white-space: nowrap;          /* single line to avoid height changes */
-      overflow: hidden;             /* clip long labels */
-      text-overflow: ellipsis;      /* show ellipsis instead of resizing */
-    }
-    .select2-selection{ background-color: var(--input-bg) !important; border-color: var(--card-border) !important; }
-  .input-group-text{ background-color: var(--input-bg) !important; border-color: var(--card-border) !important; color: var(--text-primary) !important; }
-  .form-control::placeholder{ color: var(--text-secondary); opacity: 0.85; }
-  input[type="password"]::placeholder{ color: var(--text-secondary); opacity: 0.85; }
-    /* Ensure autofill doesn't lighten password fields compared to username */
-    .form-control:-webkit-autofill,
-    .form-control:-webkit-autofill:hover,
-    .form-control:-webkit-autofill:focus,
-    textarea:-webkit-autofill,
-    select:-webkit-autofill{
-      -webkit-box-shadow: 0 0 0px 1000px var(--input-bg) inset !important;
-      box-shadow: 0 0 0px 1000px var(--input-bg) inset !important;
-      -webkit-text-fill-color: var(--text-primary) !important;
-      caret-color: var(--text-primary) !important;
-      transition: background-color 9999s ease-in-out 0s !important; /* prevent flash */
-    }
-    /* Firefox autofill */
-    input:-moz-autofill,
-    input:-moz-autofill:hover,
-    input:-moz-autofill:focus{
-      box-shadow: 0 0 0px 1000px var(--input-bg) inset !important;
-      -moz-text-fill-color: var(--text-primary) !important;
-      caret-color: var(--text-primary) !important;
-    }
-    /* Extra specificity for password field to ensure parity with username */
-    .form-control[type="password"],
-    input[type="password"].form-control{
-      background-color: var(--input-bg) !important;
-      -webkit-text-fill-color: var(--text-primary) !important;
-      color: var(--text-primary) !important;
-    }
-    /* Dark themed checkbox (Remember Me) */
-    input[type="checkbox"]{
-      width: 1.15rem;
-      height: 1.15rem;
-      -webkit-appearance: none;
-      appearance: none;
-      background-color: var(--input-bg) !important; /* match username/password */
-      border: 1px solid var(--card-border) !important;
-      border-radius: 0.25rem;
-      box-shadow: none !important;
-      position: relative;
-      transition: border-color .15s ease, box-shadow .15s ease;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 88% 88%;
-    }
-    input[type="checkbox"]:hover{
-      border-color: #3b82f6 !important; /* subtle hover cue */
-    }
-    input[type="checkbox"]:focus{
-      outline: none;
-      border-color: #2e7cf7 !important;
-      box-shadow: 0 0 0 0.18rem rgba(46,124,247,.60) !important; /* subtle blue glow @ ~0.6 opacity */
-    }
-    /* Keep box dark when checked; show a crisp SVG checkmark */
-    input[type="checkbox"]:checked{
-      background-color: var(--input-bg) !important;
-      border-color: var(--accent) !important;
-      box-shadow: 0 0 0 0.18rem rgba(46,124,247,.60) !important; /* glow when checked */
-      /* inline SVG for pixel-perfect checkmark */
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
-        <path d='M20.285 6.707a1 1 0 0 1 0 1.414l-9.58 9.58a1 1 0 0 1-1.414 0l-5.29-5.29a1 1 0 1 1 1.414-1.414l4.583 4.583 8.873-8.873a1 1 0 0 1 1.414 0z' fill='%23ffffff'/>\
-      </svg>");
-    }
-    /* Disabled state harmony */
-    input[type="checkbox"]:disabled{
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
-    /* Dropdown menus (e.g., selects with Bootstrap dropdowns) */
-    /* Default dropdown menus (mode/currency/budget etc.) */
-    .dropdown-menu{
-      background-color: var(--dropdown-standard) !important;
-      border: 1px solid var(--card-border) !important;
-      color: var(--text-primary) !important;
-    }
-    .dropdown-menu .dropdown-item{
-      color: var(--text-primary) !important;
-    }
-    .dropdown-menu .dropdown-item:hover,
-    .dropdown-menu .dropdown-item:focus{
-      background-color: var(--highlight-bluegray) !important;
-      color: #fff !important; /* highlighted text should be white */
-    }
-    .dropdown-menu .dropdown-item.active,
-    .dropdown-menu .dropdown-item.selected{
-      background-color: var(--highlight-bluegray) !important; /* blue-ish gray for selected */
-      color: #fff !important; /* selected text white */
-    }
-    .dropdown-item{ color: var(--text-primary) !important; }
-    .dropdown-item:hover, .dropdown-item:focus{
-      background-color: rgba(255,255,255,0.08) !important;
-      color: var(--text-primary) !important;
-    }
-    /* Improve focus states on dark */
-    .form-control:focus, .form-select:focus, input[type="search"]:focus, input[type="text"]:focus{
-      background-color: var(--input-bg) !important;
-      color: var(--text-primary) !important;
-      border-color: #2e7cf7 !important;
-      box-shadow: 0 0 0 0.2rem rgba(46,124,247,.6) !important;
-    }
-    /* Enhanced select/search inputs (Select2 / Bootstrap-Select / Typeahead) */
-    .select2-container .select2-selection,
-    .bootstrap-select .dropdown-toggle,
-    .bootstrap-select .bs-searchbox .form-control,
-    .select2-container .select2-search__field,
-    .tt-input{
-      background-color: var(--input-bg) !important;
-      border-color: var(--card-border) !important;
-      color: var(--text-primary) !important;
-    }
-    /* Tighten Select2 dropdown search box spacing to avoid extra visual gap */
-    .select2-dropdown .select2-search--dropdown{ padding: 0 !important; margin: 0 !important; }
-    .select2-dropdown .select2-search--dropdown .select2-search__field{
-      width: 100% !important;
-      box-sizing: border-box !important;
-      margin: 0 !important;
-      padding: .5rem .75rem !important; /* match input padding */
-      line-height: 1.5 !important;
-      border-radius: .5rem !important;
-    }
-    /* Normalize Bootstrap-Select closed control height/shape */
-    .bootstrap-select .dropdown-toggle{
-      min-height: 2.7rem;
-      height: 2.7rem;
-      border-radius: .5rem;
-      padding-top: .5rem;
-      padding-bottom: .5rem;
-      width: 100%;
-    }
-    /* Component dropdowns (Select2 & Bootstrap-Select) should match card */
-    .select2-dropdown,
-    .bootstrap-select .dropdown-menu{
-      background-color: var(--dropdown-component) !important;
-      border-color: var(--card-border) !important;
-      color: var(--text-primary) !important;
-      backdrop-filter: none !important;
-    }
-    /* Prevent dropdowns from exceeding viewport width */
-    .select2-dropdown{ max-width: 100vw !important; box-sizing: border-box !important; }
-    .select2-results__options{ max-width: 100vw !important; box-sizing: border-box !important; }
-    .bootstrap-select .dropdown-menu{ max-width: 100vw !important; box-sizing: border-box !important; }
-    /* Ensure Select2 inner panels are opaque */
-    .select2-container .select2-dropdown,
-    .select2-container .select2-results,
-    .select2-container .select2-results__options{
-      background-color: var(--dropdown-component) !important;
-    }
-    .select2-container .select2-search--dropdown .select2-search__field{
-      background-color: var(--input-bg) !important;
-      color: var(--text-primary) !important;
-      border-color: var(--card-border) !important;
-    }
-      /* Select2 selection (closed state) to match card and inputs */
-      .select2-container .select2-selection{
-        background-color: var(--input-bg) !important;
-        border: 1px solid var(--card-border) !important;
-        color: var(--text-primary) !important;
-        border-radius: .5rem !important;
-        min-height: 2.7rem !important; /* fixed height prevents reflow */
-        height: 2.7rem !important;     /* lock height to avoid repaint jank */
-        position: relative !important; /* anchor arrow without reserving padding */
-      }
-      .select2-container .select2-selection__rendered{
-        color: var(--text-primary) !important;
-        line-height: 2.7rem !important; /* keep vertical alignment stable */
-        padding-left: .75rem !important;
-        padding-right: .9rem !important; /* smaller reserve; arrow is absolutely positioned */
-      }
-      .select2-container .select2-selection__arrow{
-        height: 2.7rem !important; /* match increased height */
-        width: 1rem !important;    /* narrow arrow width */
-        position: absolute !important;
-        right: .4rem !important;
-        top: 0 !important; bottom: 0 !important; margin: auto 0 !important;
-        pointer-events: none; /* avoid click target affecting layout */
-      }
-    /* Ensure container width is always 100% to prevent relayout on init */
-  .select2-container{ width: 100% !important; display: block !important; }
-    /* Prevent surrounding layout from reacting to internal text changes */
-    .select2-container .select2-selection{ contain: layout style; backface-visibility: hidden; will-change: opacity; }
-    /* Component dropdowns (Bootstrap-Select specifics) */
-    .bootstrap-select .dropdown-menu .inner{
-      background-color: var(--dropdown-component) !important;
-    }
-    .bootstrap-select .dropdown-menu .inner .dropdown-item{
-      background-color: transparent !important;
-      color: var(--text-primary) !important;
-    }
-    .bootstrap-select .dropdown-menu .inner .dropdown-item:hover,
-    .bootstrap-select .dropdown-menu .inner .dropdown-item:focus{
-      background-color: var(--highlight-bluegray) !important;
-      color: #fff !important;
-    }
-    .bootstrap-select .dropdown-menu .inner .dropdown-item.active,
-    .bootstrap-select .dropdown-menu .inner .dropdown-item.selected{
-      background-color: var(--highlight-bluegray) !important; /* blue-ish gray */
-      color: #fff !important;
-    }
-    /* Live search field inside component dropdown */
-    .bootstrap-select .bs-searchbox .form-control{
-      background-color: var(--input-bg) !important;
-      color: var(--text-primary) !important;
-      border-color: var(--card-border) !important;
-    }
-    /* Select2 result list items */
-    .select2-results__option{
-      color: var(--text-primary) !important;
-    }
-    /* Disabled options (placeholders) should be dark, not light */
-    .select2-results__option[aria-disabled="true"],
-    .select2-container--default .select2-results__option[aria-disabled="true"]{
-      background-color: var(--dropdown-component) !important;
-      color: #8fa0b8 !important; /* softer text for disabled */
-    }
-    /* Hover/focus highlight inside dropdown */
-    .select2-results__option--highlighted,
-    .select2-container--default .select2-results__option--highlighted{
-      background-color: var(--highlight-bluegray) !important; /* blue-ish gray */
-      color: #fff !important; /* highlighted text white */
-    }
-    .select2-container--default .select2-results__option--highlighted[aria-selected],
-    .select2-container--default .select2-results__option--selectable:hover{
-      background-color: var(--highlight-bluegray) !important;
-      color: #fff !important;
-    }
-    /* Currently selected item in dropdown list */
-    .select2-results__option[aria-selected="true"],
-    .select2-container--default .select2-results__option[aria-selected="true"],
-    .select2-container--default .select2-results__option--selected{
-      background-color: var(--highlight-bluegray) !important; /* blue-ish gray */
-      color: #fff !important; /* selected text white */
-    }
-    .select2-container--default .select2-results>.select2-results__options .select2-results__option[aria-selected="true"]{
-      background-color: var(--highlight-bluegray) !important;
-      color: #fff !important;
-    }
-    /* If enhanced selects are used (Select2/Bootstrap-Select), ensure dark theme */
-    .select2-container .select2-selection,
-    .bootstrap-select .dropdown-toggle{
-      background-color: var(--card-bg) !important;
-      border-color: var(--card-border) !important;
-      color: var(--text-primary) !important;
-    }
-    .select2-dropdown{
-      background-color: var(--dropdown-component) !important;
-      border-color: var(--card-border) !important;
-      color: var(--text-primary) !important;
-    }
-
-    /* Footer harmonized */
-    footer.bg-dark{ background-color: rgba(0,0,0,0.45) !important; border-top: 1px solid var(--card-border); }
-
-    /* Ensure Bootstrap modals/backdrop sit above any page overlays/widgets */
-  /* Raise modal layers above any page overlays/gradients */
-  .modal { z-index: 2100 !important; }
-  .modal-backdrop { z-index: 2000 !important; }
-    /* Keep floating widgets below modals while open (AI agent uses high z-index) */
-  .modal-open #ai-agent { z-index: 100 !important; }
-
-    /* Basic page slide animations */
-    @keyframes pcbmSlideOut {
-      0% { opacity: 1; transform: translateY(0); }
-      100% { opacity: 0; transform: translateY(-10px); }
-    }
-    .page-exit {
-      /* Slide up slightly and fade out on navigation */
-      animation: pcbmSlideOut var(--motion-snap) var(--ease-snap) both;
-      will-change: opacity, transform;
-    }
-    /* CSS-only soft page enter: start transparent and slightly lowered until JS marks page-ready */
-    .js #pageMain { opacity: 1; transform: translateY(0); transition: opacity var(--motion-smooth, 240ms) ease-in, transform var(--motion-smooth, 240ms) ease-out; }
-    .js body:not(.page-ready) #pageMain { opacity: 0; transform: translateY(10px); }
-    /* Promote and contain main content to reduce stutter */
-  #pageMain { will-change: opacity, transform; contain: layout paint; backface-visibility: hidden; }
-
-  /* (removed old list-enter animation stubs; not used) */
-
-  /* Proposals performance contains and promotes animated cards */
-  .proposals-card { will-change: opacity; backface-visibility: hidden; contain: layout paint; }
-  /* Scope absolute/opacity swapping to proposal cards only to avoid hiding FPS elsewhere */
-  .proposals-card .fps-res-container { position: relative; }
-  .proposals-card .fps-block { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
-  .proposals-card .fps-block.active { opacity: 1; pointer-events: auto; }
-  /* Default FPS blocks in other templates render normally */
-  .fps-block { position: static; opacity: 1; pointer-events: auto; }
-
-    /* Disable Select2 internal animations so page animates as one */
-    .select2-container,
-    .select2-dropdown,
-    .select2-results,
-    .select2-results__options,
-    .select2-selection,
-    .select2-search__field {
-      transition: none !important;
-      animation: none !important;
-    }
-    .select2-container--default .select2-selection--single .select2-selection__rendered,
-    .select2-container--default .select2-results__option,
-    .select2-container--default .select2-results__option--highlighted {
-      transition: none !important;
-      animation: none !important;
-    }
-    /* Prevent Select2 dropdowns from expanding page width */
-    .select2-container{ max-width: 100% !important; }
-  /* Constrain dropdown width; do not force hidden overflow globally */
-  .select2-dropdown{ max-width: 100vw; box-sizing: border-box; }
-  .select2-results__options{ max-width: 100vw; box-sizing: border-box; }
-    .select2-results__option{ white-space: normal !important; word-break: break-word; overflow-wrap: anywhere; }
-    .select2-search__field{ width: 100% !important; box-sizing: border-box; }
-  /* Removed page-scoped Select2 overrides; reverting to baseline to diagnose root cause */
-    /* Disable Bootstrap dropdown/collapse animations for unified page fade */
-    .dropdown-menu,
-    .collapse,
-    .collapsing {
-      transition: none !important;
-      animation: none !important;
-    }
-
-    /* Simple always-on animations */
-  </style>
   {% block extra_head %}{% endblock %}
 </head>
 <body class="d-flex flex-column min-vh-100 site-hero">
-<header class="sticky-top">
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-  <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/PCBM-header.webp' %}" alt="PCBuildMate"></a>
-    <!-- Mobile navbar toggler (hamburger) -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-  {% if request.session.preview_build %}
-  <li class="nav-item"><a class="nav-link" href="{% url 'build_preview' %}">Build Calculator</a></li>
-  {% endif %}
-  <li class="nav-item"><a class="nav-link" href="{% url 'upgrade_calculator' %}">Upgrade Calculator</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'saved_builds' %}">Saved Builds</a></li>
-        {% if user.is_authenticated %}
-          {% if user.is_superuser or user.is_staff %}
-          <li class="nav-item"><a class="nav-link" href="/admin/">Admin</a></li>
-          {% endif %}
-        {% endif %}
-        <li class="nav-item">
-          <div class="d-flex">
-            {% if user.is_authenticated %}
-              <form method="post" action="{% url 'account_logout' %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-sm btn-outline-danger align-self-center align-middle mt-2">Sign out</button>
-              </form>
-            {% else %}
-              <button class="btn btn-outline-primary mt-2" data-bs-toggle="modal" data-bs-target="#authModal">
-                Register / Login
-              </button>
+  <header class="sticky-top">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/PCBM-header.webp' %}" alt="PCBuildMate"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+            {% if request.session.preview_build %}
+              <li class="nav-item"><a class="nav-link" href="{% url 'build_preview' %}">Build Calculator</a></li>
             {% endif %}
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-</header>
-{% if messages %}
-  <div id="flashMessages" class="container">
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-      {{ message }}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+            <li class="nav-item"><a class="nav-link" href="{% url 'upgrade_calculator' %}">Upgrade Calculator</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'saved_builds' %}">Saved Builds</a></li>
+            {% if user.is_authenticated %}
+              {% if user.is_superuser or user.is_staff %}
+                <li class="nav-item"><a class="nav-link" href="/admin/">Admin</a></li>
+              {% endif %}
+            {% endif %}
+            <li class="nav-item">
+              <div class="d-flex">
+                {% if user.is_authenticated %}
+                  <form method="post" action="{% url 'account_logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-outline-danger align-self-center align-middle mt-2">Sign out</button>
+                  </form>
+                {% else %}
+                  <button class="btn btn-outline-primary mt-2" data-bs-toggle="modal" data-bs-target="#authModal">Register / Login</button>
+                {% endif %}
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  {% if messages %}
+    <div id="flashMessages" class="container">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
       {% endfor %}
     </div>
   {% endif %}
-<main class="flex-grow-1 container my-5" id="pageMain">
-  {% block content %}{% endblock %}
-  
-</main>
-<footer class="bg-dark text-white text-center py-3 mt-auto">
-  <p>&copy; 2025 PCBuildMate. All rights reserved.</p>
-</footer>
-<!-- Ai Agent -->
-<style>
-  /* AI chat widget styles */
-  #ai-agent{
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: min(360px, 92vw);
-    z-index: 9999;
-    border-radius: 14px;
-    overflow: hidden;
-    border: 1px solid var(--card-border);
-    background: linear-gradient(180deg, rgba(20,24,32,0.78), rgba(20,24,32,0.86));
-    backdrop-filter: blur(10px) saturate(140%);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04) inset;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    transform: translate(0,0);
-    transform-origin: bottom right;
-    will-change: transform;
-    transition: width .35s ease, transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .2s ease, background .2s ease, border-color .2s ease;
-  }
-  /* Collapsed state: show only the circular header button */
-  #ai-agent.collapsed{
-    width: 64px;
-    height: 64px;
-    border: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    overflow: visible;
-    border-radius: 50% !important;
-    padding: 0;
-  }
-  /* Open state: subtle diagonal lift */
-  #ai-agent.open{
-    transform: translate(-18px,-18px);
-  }
-  #chat-header{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-  width: 64px;
-  height: 64px;
-    padding: 0;
-    cursor: pointer;
-    position: static; /* allow close button to position relative to #ai-agent */
-    /* Darker blue gradient */
-    background: linear-gradient(135deg, #0e2a5e 0%, #123d8f 100%);
-    color: #fff;
-    font-weight: 700;
-    user-select: none;
-    border-radius: 50%;
-    box-shadow: 0 10px 20px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.06) inset;
-  }
-  #chat-header img.chat-icon{
-    width: 48px; height: 48px; border-radius: 12px; flex: 0 0 auto;
-    filter: drop-shadow(0 1px 1px rgba(0,0,0,.25));
-  }
-  /* No title text; icon-only button */
-  #chat-header-title{ display: none !important; }
-  #chat-close{
-    position: absolute; right: 10px; top: 8px; display: none;
-    font-weight: 800; opacity: .9;
-  }
-  #chat-close:hover{ opacity: 1; }
-  #chat-body{
-    max-height: 0;
-    opacity: 0;
-    transition: max-height .35s ease, opacity .25s ease;
-    overflow: hidden;
-    display: flex; flex-direction: column;
-    background: transparent;
-  }
-  /* Smoothly reveal body when open */
-  #ai-agent.open #chat-body{
-    max-height: 420px;
-    opacity: 1;
-  }
-  #chat-window{
-    flex: 1;
-    overflow-y: auto;
-    padding: 12px;
-    font-size: 14px;
-    color: var(--text-primary);
-    min-height: 280px;
-  }
-  .chat-row{ display:flex; gap:8px; align-items:center; padding:10px; border-top:1px solid var(--card-border); background: rgba(255,255,255,0.03); }
-  #chat-input{
-    flex: 1; background: var(--input-bg); color: var(--text-primary);
-    border: 1px solid var(--card-border); border-radius: 10px; padding: 10px 12px; outline: none;
-  }
-  #chat-input:focus{ border-color:#2e7cf7; box-shadow: 0 0 0 .18rem rgba(46,124,247,.6); }
-  #chat-send{
-    background: #2e7cf7; color: #fff; border: none; border-radius: 10px; padding: 10px 14px; font-weight:600;
-  }
-  #chat-send:hover{ filter: brightness(1.08); }
-  /* message styling */
-  .msg{ margin: 6px 0; }
-  .msg b{ color: #9fb7ff; }
-  .msg a{ color: #8ec5ff; text-decoration: underline; }
-  .msg a:hover{ color: #cfe3ff; }
 
-  /* Expand header to full width when open */
-  #ai-agent.open #chat-header{
-    width: 100%;
-    height: 58px;
-    padding: 10px 12px;
-    gap: 10px;
-    justify-content: flex-start;
-    position: relative;
-    border-radius: 14px 14px 0 0; /* match container corners */
-  }
-  #ai-agent.open #chat-header img.chat-icon{
-    width: 40px; height: 40px; border-radius: 10px;
-  }
+  <main class="flex-grow-1 container my-5" id="pageMain">
+    {% block content %}{% endblock %}
+  </main>
 
-  /* Responsive tweaks: container width already responsive */
-</style>
+  <footer class="bg-dark text-white text-center py-3 mt-auto">
+    <p>&copy; 2025 PCBuildMate. All rights reserved.</p>
+  </footer>
 
-<div id="ai-agent">
-  <div id="chat-header">
-    <img class="chat-icon" src="{% static 'images/chat-icon.webp' %}" alt="AI" />
-    <span id="chat-close">✕</span>
-  </div>
-  <div id="chat-body">
-    <div id="chat-window"></div>
-    <div class="chat-row">
-      <input id="chat-input" type="text" placeholder="Ask about PC builds..." />
-      <button id="chat-send" type="button">Send</button>
+  <!-- Ai Agent -->
+  <div id="ai-agent" aria-live="polite">
+    <div id="chat-header" role="button" aria-expanded="false">
+      <img class="chat-icon" src="{% static 'images/chat-icon.webp' %}" alt="AI" />
+      <div class="chat-header-text" aria-hidden="true">
+        <span class="chat-title">PCBuildMate AI</span>
+        <span class="chat-sub">Ask about PC builds</span>
+      </div>
+      <span id="chat-close" aria-hidden="true">✕</span>
+    </div>
+    <div id="chat-body">
+      <div id="chat-window"></div>
+      <div class="chat-row">
+        <input id="chat-input" type="text" placeholder="Ask about PC builds..." />
+        <button id="chat-send" type="button">Send</button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Auth Modal -->
-<div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <h5 class="modal-title">Register / Login</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <div class="modal-body">
-        <div class="d-grid gap-2 mb-2">
-          <a href="{% url 'account_signup' %}" class="btn btn-outline-primary w-100">Sign up</a>
-          <a href="{% url 'account_login' %}" class="btn btn-outline-secondary w-100">Log in</a>
-          <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger w-100">Sign in with Google</a>
+  <!-- Auth Modal -->
+  <div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Register / Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Load Bootstrap-Select JS after Bootstrap bundle to satisfy dependency -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
-<!-- Component Details Modal -->
-<div class="modal fade" id="componentDetailsModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="componentDetailsTitle">Component details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <div id="componentDetailsLoading" class="text-center text-muted">Loading…</div>
-        <div id="componentDetailsTableWrap" class="table-responsive d-none">
-          <table class="table table-sm align-middle mb-0 table-dark" id="componentDetailsTable">
-            <tbody></tbody>
-          </table>
+        <div class="modal-body">
+          <div class="d-grid gap-2 mb-2">
+            <a href="{% url 'account_signup' %}" class="btn btn-outline-primary w-100">Sign up</a>
+            <a href="{% url 'account_login' %}" class="btn btn-outline-secondary w-100">Log in</a>
+            <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger w-100">Sign in with Google</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
- </div>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const alerts = document.querySelectorAll('#flashMessages .alert');
-    alerts.forEach(alert => {
-      setTimeout(() => {
-        const bsAlert = new bootstrap.Alert(alert);
-        bsAlert.close();
-      }, 4000); // auto-dismiss after 4 seconds
-    });
 
-    // Mark page ready to trigger a soft CSS opacity transition-in
-    try {
-      // Use rAF to ensure initial state (opacity:0) is committed before switching to ready
-      requestAnimationFrame(() => { requestAnimationFrame(() => { document.body.classList.add('page-ready'); }); });
-    } catch (e) { document.body.classList.add('page-ready'); }
-  });
-</script>
-<!-- Removed reduced-motion overrides and dev toggle; animations are always enabled -->
-<script>
-// Smooth page-exit animation on internal navigation
-(function(){
-  function isInternalLink(a){
-    try{
-      const url = new URL(a.href, window.location.origin);
-      return url.origin === window.location.origin && !a.target && !a.hasAttribute('download');
-    }catch{ return false; }
-  }
-  document.addEventListener('click', function(ev){
-    const a = ev.target.closest('a');
-    if(!a) return;
-    if(!isInternalLink(a)) return;
-    // ignore anchors and JS pseudo-links
-    const href = a.getAttribute('href') || '';
-    if(href.startsWith('#') || href.startsWith('javascript:')) return;
-    ev.preventDefault();
-    const main = document.getElementById('pageMain');
-    // Prevent double-trigger during rapid clicks
-    if(document.body.dataset.animating === '1') return;
-    if(main){
-      document.body.dataset.animating = '1';
-  // animate main only to avoid multiple animationend events
-      main.classList.add('page-exit');
-      // Navigate after animation completes or fallback timeout
-      const navigate = () => { window.location.href = a.href; };
-      let handled = false;
-      const onEnd = () => { if(!handled){ handled = true; navigate(); } };
-      main.addEventListener('animationend', onEnd, { once: true });
-         setTimeout(onEnd, 1000); // safety timeout slightly > exit duration (400ms)
-    } else {
-      window.location.href = a.href;
-    }
-  });
-})();
-</script>
-<script>
-// Back/forward: clear any exit class; do NOT apply an enter animation
-(function(){
-  function clearExitOnly(){
-    try{
-      const main = document.getElementById('pageMain');
-      if(!main) return;
-      delete document.body.dataset.animating;
-      main.classList.remove('page-exit');
-      // Ensure page is revealed when returning via bfcache/history
-      document.body.classList.add('page-ready');
-    }catch(e){ /* no-op */ }
-  }
-  window.addEventListener('pageshow', clearExitOnly);
-  window.addEventListener('popstate', clearExitOnly);
-})();
-</script>
-<script>
-// Component details fetcher
-(function(){
-  function titleCaseType(t){ return (t||'').replace(/_/g,' ').replace(/\b\w/g, s=>s.toUpperCase()); }
-  function buildRow(label, value){
-    const tr = document.createElement('tr');
-    const th = document.createElement('th'); th.className = 'w-50'; th.textContent = label;
-    const td = document.createElement('td'); td.textContent = value;
-    tr.appendChild(th); tr.appendChild(td); return tr;
-  }
-  async function openDetails(type, id){
-    const modalEl = document.getElementById('componentDetailsModal');
-    const titleEl = document.getElementById('componentDetailsTitle');
-    const loadingEl = document.getElementById('componentDetailsLoading');
-    const wrapEl = document.getElementById('componentDetailsTableWrap');
-    const tbody = document.querySelector('#componentDetailsTable tbody');
-    if(!modalEl||!titleEl||!loadingEl||!wrapEl||!tbody) return;
-    // reset
-    titleEl.textContent = titleCaseType(type) + ' details';
-    loadingEl.classList.remove('d-none');
-    wrapEl.classList.add('d-none');
-    tbody.innerHTML = '';
-    try{
-      const resp = await fetch(`/component-details/?type=${encodeURIComponent(type)}&id=${encodeURIComponent(id)}`);
-      if(!resp.ok) throw new Error('Failed to load details');
-      const data = await resp.json();
-      titleEl.textContent = `${titleCaseType(data.type)} — ${data.title}`;
-      data.rows.forEach(r=>{ tbody.appendChild(buildRow(r.label, r.value)); });
-      loadingEl.classList.add('d-none');
-      wrapEl.classList.remove('d-none');
-    }catch(e){
-      loadingEl.textContent = 'Unable to load details.';
-    }
-    try{
-      const bs = window.bootstrap && window.bootstrap.Modal ? new window.bootstrap.Modal(modalEl) : null;
-      if(bs) bs.show(); else { modalEl.classList.add('show'); modalEl.style.display='block'; }
-    }catch{ /* no-op */ }
-  }
-  document.addEventListener('click', function(ev){
-    const a = ev.target.closest('.component-details');
-    if(!a) return;
-    ev.preventDefault();
-    const type = a.getAttribute('data-type');
-    const id = a.getAttribute('data-id');
-    if(type && id){ openDetails(type, id); }
-  });
-})();
-</script>
-<!-- YouTube Reviews Modal -->
-<div class="modal fade" id="youtubeReviewsModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="youtubeReviewsTitle">Reviews</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <div id="youtubeReviewsLoading" class="text-center text-muted">Searching YouTube…</div>
-        <div id="youtubeReviewsGrid" class="row g-3 d-none"></div>
+  <!-- Component Details Modal -->
+  <div class="modal fade" id="componentDetailsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="componentDetailsTitle">Component details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div id="componentDetailsLoading" class="text-center text-muted">Loading…</div>
+          <div id="componentDetailsTableWrap" class="table-responsive d-none">
+            <table class="table table-sm align-middle mb-0 table-dark" id="componentDetailsTable"><tbody></tbody></table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<script>
-// YouTube reviews search
-(function(){
-  function openYTModal(q){
-    const modalEl = document.getElementById('youtubeReviewsModal');
-    const titleEl = document.getElementById('youtubeReviewsTitle');
-    const loadingEl = document.getElementById('youtubeReviewsLoading');
-    const gridEl = document.getElementById('youtubeReviewsGrid');
-    if(!modalEl||!titleEl||!loadingEl||!gridEl) return;
-    titleEl.textContent = `Reviews — ${q}`;
-    loadingEl.classList.remove('d-none');
-    gridEl.classList.add('d-none');
-    gridEl.innerHTML = '';
-    fetch(`/youtube-reviews/?q=${encodeURIComponent(q + ' review')}`)
-      .then(r=>r.json())
-      .then(data=>{
-        const vids = Array.isArray(data.videos) ? data.videos : [];
-        vids.slice(0,6).forEach(v=>{
-          const col = document.createElement('div'); col.className = 'col-md-4';
-          col.innerHTML = `
-            <div class="card h-100">
-              <img class="card-img-top" src="${v.thumb || ''}" alt="thumbnail">
-              <div class="card-body">
-                <a href="${v.url}" target="_blank" rel="noopener" class="stretched-link">${v.title}</a>
-              </div>
-            </div>`;
-          gridEl.appendChild(col);
-        });
-        loadingEl.classList.add('d-none');
-        gridEl.classList.remove('d-none');
-      })
-      .catch(()=>{
-        loadingEl.textContent = 'Unable to load videos.';
-      });
-    try{
-      const bs = window.bootstrap && window.bootstrap.Modal ? new window.bootstrap.Modal(modalEl) : null;
-      if(bs) bs.show(); else { modalEl.classList.add('show'); modalEl.style.display='block'; }
-    }catch{}
-  }
-  document.addEventListener('click', function(ev){
-    const btn = ev.target.closest('.component-youtube');
-    if(!btn) return;
-    ev.preventDefault();
-    const q = btn.getAttribute('data-query');
-    if(q) openYTModal(q);
-  });
-})();
-</script>
-<script>
-const chatHeader = document.getElementById("chat-header");
-const aiAgent = document.getElementById("ai-agent");
-const chatBody = document.getElementById("chat-body");
-const chatWindow = document.getElementById("chat-window");
-const chatInput = document.getElementById("chat-input");
-const chatClose = document.getElementById("chat-close");
-const chatSend = document.getElementById("chat-send");
 
-let hasOpened = false;
+  <!-- YouTube Reviews Modal -->
+  <div class="modal fade" id="youtubeReviewsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="youtubeReviewsTitle">Reviews</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div id="youtubeReviewsLoading" class="text-center text-muted">Searching YouTube…</div>
+          <div id="youtubeReviewsGrid" class="row g-3 d-none"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-// Start collapsed (icon-only)
-aiAgent.classList.add('collapsed');
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  {% block extra_scripts %}{% endblock %}
 
-// Toggle open/close with smoother sequencing
-chatHeader.addEventListener("click", (e) => {
-  if (e.target.id === "chat-close") return; // ignore clicks on X
-
-  const isOpen = aiAgent.classList.contains('open');
-  if (!isOpen) {
-    // Opening: expand container first, then body fades/expands via CSS
-    aiAgent.classList.remove('collapsed');
-    aiAgent.classList.add('open');
-    chatClose.style.display = "block";
-    if (!hasOpened) {
-      chatWindow.innerHTML += "<p class=\"msg\"><b>AI:</b> Welcome! 👋<br>Ask me anything about PC builds and compatibility.</p>";
-      hasOpened = true;
-    }
-  } else {
-    // Closing: collapse body first (CSS handles it), then shrink to icon after transition
-    chatClose.style.display = "none";
-    aiAgent.classList.remove('open');
-    const onTransitionEnd = (evt) => {
-      if (evt.propertyName === 'max-height') {
-        aiAgent.classList.add('collapsed');
-        chatBody.removeEventListener('transitionend', onTransitionEnd);
-      }
-    };
-    chatBody.addEventListener('transitionend', onTransitionEnd);
-  }
-});
-
-// Close button uses the same smooth close sequence
-chatClose.addEventListener("click", () => {
-  chatClose.style.display = "none";
-  aiAgent.classList.remove('open');
-  const onTransitionEnd = (evt) => {
-    if (evt.propertyName === 'max-height') {
-      aiAgent.classList.add('collapsed');
-      chatBody.removeEventListener('transitionend', onTransitionEnd);
-    }
-  };
-  chatBody.addEventListener('transitionend', onTransitionEnd);
-});
-
-// Thinking feedback
-function showThinking() {
-  const thinking = document.createElement("p");
-  thinking.id = "thinking";
-  thinking.innerHTML = "<i>AI is thinking...</i>";
-  chatWindow.appendChild(thinking);
-  chatWindow.scrollTop = chatWindow.scrollHeight;
-}
-
-function hideThinking() {
-  const thinking = document.getElementById("thinking");
-  if (thinking) thinking.remove();
-}
-
-function sendChat(){
-  const msg = chatInput.value.trim();
-  if(!msg) return;
-  chatInput.value = "";
-  chatWindow.innerHTML += `<p class="msg"><b>You:</b> ${msg}</p>`;
-  showThinking();
-  fetch("/ai-chat/", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({message: msg})
-  })
-  .then(res => res.json())
-  .then(data => {
-    hideThinking();
-    chatWindow.innerHTML += `<p class="msg"><b>AI:</b><br>${data.reply}</p>`;
-    if(data.videos){
-      chatWindow.innerHTML += "<p class=\"msg\"><b>Videos:</b></p>";
-      data.videos.slice(0,4).forEach(v => {
-        chatWindow.innerHTML += `<p class="msg"><a href="${v.url}" target="_blank">${v.title}</a></p>`;
-      });
-    }
-    chatWindow.scrollTop = chatWindow.scrollHeight;
-  })
-  .catch(err => {
-    hideThinking();
-    chatWindow.innerHTML += `<p class="msg"><b>AI:</b> Sorry, something went wrong.</p>`;
-  });
-}
-
-// Chat input handler and send button
-chatInput.addEventListener("keypress", function(e){ if(e.key === "Enter") sendChat(); });
-chatSend.addEventListener("click", sendChat);
-</script>
-{% block extra_scripts %}{% endblock %}
 </body>
 </html>
+
+

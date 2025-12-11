@@ -54,28 +54,7 @@
     </div>
 </div>
 
-<style>
-/* Animate card height subtly when content expands */
-.card {
-    transition: box-shadow 520ms ease-in-out, transform 520ms ease-in-out;
-}
-.card.expanding {
-    box-shadow: 0 0.75rem 1.5rem rgba(0,0,0,0.2);
-    transform: translateY(-2px);
-}
-
-/* Make the collapse animation more pronounced: fade + slide */
-#advancedFilters.collapsing {
-    opacity: 0.4;
-    transform: translateY(-6px);
-    transition: opacity 180ms ease-out, transform 180ms ease-out;
-}
-#advancedFilters.collapse.show {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 180ms ease-out, transform 180ms ease-out;
-}
-</style>
+<!-- styles for the home page were migrated into `buildmate/static/css/style.css` -->
 <script>
 document.getElementById("buildForm").addEventListener("submit", function(e) {
         e.preventDefault();
@@ -194,7 +173,7 @@ document.getElementById("buildForm").addEventListener("submit", function(e) {
               percent = 100;
               progressBar.style.width = '100%';
               progressBar.textContent = '100%';
-              try { if (bsModal) bsModal.hide(); else manualHideModal(); } catch(e) { manualHideModal(); }
+              try { if (bsModal) bsModal.hide(); } catch(e) {} finally { manualHideModal(); }
               window.location.href = data.redirect;
             }, 800);
         } else if (data.error) {
@@ -202,7 +181,7 @@ document.getElementById("buildForm").addEventListener("submit", function(e) {
             progressBar.classList.add("bg-danger");
             progressBar.textContent = "Error";
             progressArea.innerHTML = "<div class='alert alert-danger'>" + data.error + "</div>";
-            setTimeout(() => { try { if (bsModal) bsModal.hide(); else manualHideModal(); } catch(e) { manualHideModal(); } }, 1200);
+            setTimeout(() => { try { if (bsModal) bsModal.hide(); } catch(e) {} finally { manualHideModal(); } }, 1200);
         }
     });
 });

@@ -4,6 +4,47 @@
 
 {% block content %}
 <div id="upgradeCalculatorRoot">
+  <script>
+    // Fallback robust handler to ensure Find upgrades always works even if
+    // other handlers fail to attach (bfcache, jQuery not initialised, etc.)
+    (function(){
+      try {
+        if (window.jQuery) {
+          var $ = window.jQuery;
+          $(document).ready(function(){
+            $('#findUpgradesBtn').off('click._pcbm').on('click._pcbm', function(ev){
+              ev.preventDefault();
+              var form = $(this).closest('form')[0];
+              if (!form) return;
+              try {
+                if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
+                  if (typeof form.reportValidity === 'function') form.reportValidity();
+                  $(form).addClass('was-validated');
+                  // show Select2 invalid visuals for searchable selects so users see feedback
+                  try { if (window.pcbmEnsureSelect2InvalidVisuals) window.pcbmEnsureSelect2InvalidVisuals(form); } catch(e){}
+                  var firstInvalid = form.querySelector(':invalid'); if (firstInvalid && firstInvalid.focus) firstInvalid.focus();
+                  return;
+                }
+              } catch(e) {}
+              // show modal fallback
+              try {
+                var modalEl = document.getElementById('upgradeProgressModal');
+                if (modalEl) {
+                  if (window.bootstrap && window.bootstrap.Modal) {
+                    try { new window.bootstrap.Modal(modalEl, { backdrop: 'static', keyboard: false }).show(); } catch(e) { modalEl.classList.add('show'); modalEl.style.display='block'; }
+                  } else { modalEl.classList.add('show'); modalEl.style.display='block'; }
+                }
+              } catch(e) {}
+              // Submit the form with best-effort fallbacks
+              try { if (typeof form.requestSubmit === 'function') { form.requestSubmit(); return; } } catch(e) {}
+              try { form.dispatchEvent(new Event('submit', { cancelable: true })); return; } catch(e) {}
+              try { form.submit(); } catch(e) {}
+            });
+          });
+        }
+      } catch(e) {}
+    })();
+  </script>
   <div class="card">
     <div class="container mt-4">
     <h2>Upgrade calculator</h2>
@@ -122,11 +163,11 @@
         <div class="invalid-feedback">Please enter a valid budget.</div>
       </div>
 
-      <div class="col-md-3 align-self-end">
-        <div class="mt-2">
-              <button class="btn btn-outline-primary" id="findUpgradesBtn">Find upgrades</button>
-        </div>
-      </div>
+  <div class="col-md-3 align-self-end">
+    <div class="mt-2">
+      <button type="submit" class="btn btn-outline-primary" id="findUpgradesBtn">Find upgrades</button>
+    </div>
+  </div>
     </div>
   </form>
 
@@ -141,7 +182,7 @@
             <div class="modal-body">
               <p id="upgradeProgressMsg">Please wait while we evaluate upgrade options...</p>
               <div class="progress mt-2">
-                <div id="upgradeProgressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 0%">0%</div>
+                <div id="upgradeProgressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar">0%</div>
               </div>
             </div>
           </div>
@@ -234,7 +275,7 @@
               </div>
             </div>
             <strong>Estimated FPS:</strong>
-            <div class="fps-res-container mt-1 position-relative" style="min-height: 110px;">
+            <div class="fps-res-container mt-1 position-relative">
               {% for entry in pb.fps_res_list %}
                 <div class="fps-block{% if entry.res == resolution %} active{% endif %}" data-res="{{ entry.res }}">
                   <ul class="mb-0 small">
@@ -297,7 +338,7 @@
           <div class="d-flex gap-2 mt-2 align-items-center">
             <a href="{% url 'upgrade_preview' %}?index={{ forloop.counter0 }}" class="btn btn-outline-primary btn-sm">Preview upgrade</a>
             <!-- Save upgrade snapshot directly to account -->
-            <form method="post" action="{% url 'save_build' %}" style="display:inline;">
+              <form method="post" action="{% url 'save_build' %}" class="d-inline">
               {% csrf_token %}
               <input type="hidden" name="is_upgrade" value="1">
               <!-- Use the same param name the view already expects -->
@@ -335,19 +376,29 @@
       // Initialize Select2 as early as possible on DOM ready to ensure placeholders are set before any visual transitions
       $(document).ready(function(){
         try{ if($.fn.select2){ $('.searchable').filter(function(){ return !$(this).data('select2'); }).select2({ width: '100%', placeholder: 'Start typing to search', allowClear: true }); } }catch(e){}
-        // If returning from preview, fade-in the proposals section to match exit
-        try {
-          if (sessionStorage.getItem('returningFromPreview') === '1') {
-            var el = document.getElementById('proposalsSection');
-            if (el) {
-              el.classList.add('content-enter');
-              // Remove the flag so subsequent loads are normal
-              sessionStorage.removeItem('returningFromPreview');
-              // After the animation completes, clean up the class
-              setTimeout(function(){ el.classList.remove('content-enter'); }, 240);
-            }
+        // If returning from preview, fade-in the proposals section to match exit.
+        // Use a pageshow handler as well so the animation runs when the page is
+        // restored from back-forward cache (bfcache) instead of a full reload.
+        (function(){
+          function handleReturnFromPreview(){
+            try {
+              if (sessionStorage.getItem('returningFromPreview') === '1') {
+                var el = document.getElementById('proposalsSection');
+                if (el) {
+                  el.classList.add('content-enter');
+                  // Remove the flag so subsequent loads are normal
+                  sessionStorage.removeItem('returningFromPreview');
+                  // After the animation completes, clean up the class
+                  setTimeout(function(){ el.classList.remove('content-enter'); }, 240);
+                }
+              }
+            } catch (err) {}
           }
-        } catch (err) {}
+          // run on initial ready
+          handleReturnFromPreview();
+          // also run on pageshow to handle bfcache/back navigation
+          window.addEventListener('pageshow', function(e){ handleReturnFromPreview(); });
+        })();
         // Per-card resolution toggles: switch FPS blocks only inside the same card
         $(document).on('click', '.res-toggle-card-btn', function(){
           var res = $(this).data('res');
@@ -375,6 +426,51 @@
   try { if (modalEl && modalEl.parentNode !== document.body) { document.body.appendChild(modalEl); } } catch(e) {}
 
   if (!modalEl) return;
+
+    // Helper: ensure Select2-enhanced selects show invalid visuals when native select is invalid.
+    // Adds .is-invalid to the Select2 container and reveals the .invalid-feedback text.
+    // Exposed on window so other small inline handlers can call it.
+    window.pcbmEnsureSelect2InvalidVisuals = function(form) {
+      if (!form) return;
+      try {
+        var searchable = Array.from(form.querySelectorAll('select.searchable'));
+        searchable.forEach(function(sel){
+          try {
+            var invalid = typeof sel.checkValidity === 'function' ? !sel.checkValidity() : false;
+            var container = null;
+            // If Select2 is present try to obtain its container via jQuery data
+            if (window.jQuery) {
+              try {
+                var $sel = window.jQuery(sel);
+                var s2 = $sel.data && $sel.data('select2');
+                if (s2 && s2.$container) container = s2.$container[0];
+              } catch(e){}
+            }
+            // fallback: look for adjacent select2 container
+            if (!container) {
+              if (sel.nextElementSibling && sel.nextElementSibling.classList && sel.nextElementSibling.classList.contains('select2-container')) container = sel.nextElementSibling;
+              else if (sel.parentNode) container = sel.parentNode.querySelector('.select2-container');
+            }
+            if (invalid) {
+              if (container && container.classList) container.classList.add('is-invalid');
+              // reveal the invalid-feedback element
+              var fb = sel.parentNode ? sel.parentNode.querySelector('.invalid-feedback') : null;
+              if (fb && fb.classList) fb.classList.add('d-block');
+            } else {
+              if (container && container.classList) container.classList.remove('is-invalid');
+              var fb = sel.parentNode ? sel.parentNode.querySelector('.invalid-feedback') : null;
+              if (fb && fb.classList) fb.classList.remove('d-block');
+            }
+          } catch(e){}
+        });
+        // Ensure regular selects also get .is-invalid for consistent styling
+        Array.from(form.querySelectorAll('select')).forEach(function(sel){
+          if (!sel.classList.contains('searchable')) {
+            try { if (typeof sel.checkValidity === 'function' && !sel.checkValidity()) sel.classList.add('is-invalid'); else sel.classList.remove('is-invalid'); } catch(e){}
+          }
+        });
+      } catch(e){}
+    };
 
       // Lightweight DOM patch helper to avoid destroying the container element.
       // This updates only the children that changed, preventing animation restarts
@@ -441,6 +537,8 @@
           modalEl.style.display = 'block';
           modalEl.removeAttribute('aria-hidden');
           modalEl.setAttribute('aria-modal', 'true');
+          // mirror bootstrap behaviour so any CSS relying on modal-open works
+          try { document.body.classList.add('modal-open'); } catch(e){}
         } catch (e) {
           // ignore
         }
@@ -448,12 +546,17 @@
 
       function manualHideModal() {
         try {
-          // remove backdrop(s) we created
-          document.querySelectorAll('div.modal-backdrop[data-manual="1"]').forEach(el => el.remove());
-          modalEl.classList.remove('show');
-          modalEl.style.display = 'none';
-          modalEl.setAttribute('aria-hidden', 'true');
-          modalEl.removeAttribute('aria-modal');
+          // remove any modal backdrops (manual or created by bootstrap) to avoid a lingering overlay
+          document.querySelectorAll('div.modal-backdrop').forEach(el => el.remove());
+          // hide modal element and clear modal aria/state
+          if (modalEl) {
+            modalEl.classList.remove('show');
+            modalEl.style.display = 'none';
+            modalEl.setAttribute('aria-hidden', 'true');
+            modalEl.removeAttribute('aria-modal');
+          }
+          // ensure body scroll state is restored
+          try { document.body.classList.remove('modal-open'); } catch(e){}
         } catch (e) {
           // ignore
         }
@@ -473,6 +576,8 @@
             // Trigger native validation UI and add Bootstrap feedback class
             if (typeof form.reportValidity === 'function') form.reportValidity();
             form.classList.add('was-validated');
+            // Ensure Select2-enhanced selects show invalid visuals too
+            try { if (window.pcbmEnsureSelect2InvalidVisuals) window.pcbmEnsureSelect2InvalidVisuals(form); } catch(e){}
             // Focus the first invalid field
             const firstInvalid = form.querySelector(':invalid');
             if (firstInvalid && typeof firstInvalid.focus === 'function') firstInvalid.focus();
@@ -507,6 +612,7 @@
           e.preventDefault();
           if (typeof form.reportValidity === 'function') form.reportValidity();
           form.classList.add('was-validated');
+          try { if (window.pcbmEnsureSelect2InvalidVisuals) window.pcbmEnsureSelect2InvalidVisuals(form); } catch(e){}
           const firstInvalid = form.querySelector(':invalid');
           if (firstInvalid && typeof firstInvalid.focus === 'function') firstInvalid.focus();
           return;
@@ -609,7 +715,8 @@
                         if (!card) return;
                         card.querySelectorAll('.res-toggle-card-btn').forEach(x => x.classList.remove('active'));
                         b.classList.add('active');
-                        card.querySelectorAll('.fps-block').forEach(function(el){ el.style.display = (el.getAttribute('data-res') === res) ? 'block' : 'none'; });
+                        // Use class-based toggles instead of inline styles so CSS controls visibility
+                        card.querySelectorAll('.fps-block').forEach(function(el){ el.classList.toggle('active', el.getAttribute('data-res') === res); });
                       };
                       document.querySelectorAll('.res-toggle-card-btn').forEach(btn => btn.addEventListener('click', window._resToggleHandler));
                     } catch(e) {}
@@ -624,7 +731,7 @@
                   } else {
                     window.location.reload();
                   }
-                  try { if (bsModal) bsModal.hide(); else manualHideModal(); } catch(e) { manualHideModal(); }
+                  try { if (bsModal) bsModal.hide(); } catch(e) {} finally { manualHideModal(); }
                 }, 1200);
               } else {
                 progressMsg.textContent = `Found ${count} upgrade path${count === 1 ? '' : 's'}`;
@@ -674,7 +781,7 @@
                             if (!card) return;
                             card.querySelectorAll('.res-toggle-card-btn').forEach(x => x.classList.remove('active'));
                             b.classList.add('active');
-                            card.querySelectorAll('.fps-block').forEach(function(el){ el.style.display = (el.getAttribute('data-res') === res) ? 'block' : 'none'; });
+                            card.querySelectorAll('.fps-block').forEach(function(el){ el.classList.toggle('active', el.getAttribute('data-res') === res); });
                           };
                         }
                         document.querySelectorAll('.res-toggle-card-btn').forEach(btn => btn.addEventListener('click', window._resToggleHandler));
@@ -691,13 +798,13 @@
                       }
                     }
                   } finally {
-                    try { if (bsModal) bsModal.hide(); else manualHideModal(); } catch(e) { manualHideModal(); }
+                    try { if (bsModal) bsModal.hide(); } catch(e) {} finally { manualHideModal(); }
                   }
                 }, 700);
               }
             } catch (err) {
               // on parse error just reload to show server-rendered page
-              try { if (bsModal) bsModal.hide(); else manualHideModal(); } catch(e) { manualHideModal(); }
+              try { if (bsModal) bsModal.hide(); } catch(e) {} finally { manualHideModal(); }
               window.location.reload();
             }
           }).catch(err => {
@@ -706,30 +813,12 @@
             progressBar.classList.add('bg-danger');
             progressBar.style.width = '100%';
             progressMsg.textContent = 'Error finding upgrades';
-              setTimeout(() => { try { if (bsModal) bsModal.hide(); else manualHideModal(); } catch(e) { manualHideModal(); } }, 1200);
+              setTimeout(() => { try { if (bsModal) bsModal.hide(); } catch(e) {} finally { manualHideModal(); } }, 1200);
           });
       });
     })();
   </script>
-  <style>
-    /* Minimal fade-in to match preview's exit animation */
-    /* Mirror existing slide-in transitions: fade + slight upward slide */
-    #proposalsSection.content-enter {
-      opacity: 0;
-      transform: translateY(8px);
-      animation: contentFadeSlideIn 0.425s ease-out forwards;
-    }
-    @keyframes contentFadeSlideIn {
-      0% { opacity: 0; transform: translateY(8px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-    /* B4B info icon tone and hover */
-    .b4b-info-link { color: #4a4a4a; }
-    .b4b-info-link:hover { color: #6a6a6a; }
-    /* Make Select2 clear (x) icon white to match text */
-    .select2-selection__clear { color: #ffffff !important; }
-    .select2-container--default .select2-selection--single .select2-selection__clear { color: #ffffff !important; }
-  </style>
+  
   <!-- Global B4B Info Modal (outside cards to ensure availability) -->
   <div class="modal fade" id="b4bInfoModal" tabindex="-1" aria-labelledby="b4bInfoModalLabel" aria-hidden="true">
     <div class="modal-dialog">

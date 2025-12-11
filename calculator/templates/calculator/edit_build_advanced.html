@@ -6,7 +6,7 @@
       <div class="card-body text-center w-100">
         <div class="mb-3">
           <label for="cpu" class="form-label">CPU</label>
-          <select name="cpu" id="cpu" class="form-select no-select2 bg-dark text-white" required>
+          <select name="cpu" id="cpu" class="form-select no-select2" required>
             {% for cpu in cpus %}
               <option value="{{ cpu.pk }}"
                       data-socket="{{ cpu.socket }}"
@@ -14,11 +14,11 @@
                       data-brand="{{ cpu.brand|lower }}"
                       {% if cpu.pk == build.cpu.pk %}selected{% endif %}>
                 {{ cpu.name }} — {{ cpu.core_count }} cores @ {{ cpu.boost_clock }}GHz
-                {{ build.currency|currency_symbol }}{{ cpu.price|convert_from_usd:build.currency|floatformat:2 }}, Score: {{ cpu.userbenchmark_score }}
+                {{ build.currency|currency_symbol }}{{ cpu.price|convert_from_usd:build.currency|floatformat:2 }}, Score: {% if cpu.userbenchmark_score is not None %}{{ cpu.userbenchmark_score }}{% else %}N/A{% endif %}
               </option>
             {% endfor %}
           </select>
-          <div id="cpuMessage" class="alert alert-warning mt-2" style="display:none"></div>
+          <div id="cpuMessage" class="alert alert-warning mt-2 d-none"></div>
         </div>
         <div class="mb-3">
           <label class="form-label">CPU brand</label>
@@ -38,18 +38,18 @@
       <div class="card-body text-center w-100">
         <div class="mb-3">
           <label for="gpu" class="form-label">GPU</label>
-          <select name="gpu" id="gpu" class="form-select no-select2 bg-dark text-white" required>
+          <select name="gpu" id="gpu" class="form-select no-select2" required>
             {% for gpu in gpus %}
               <option value="{{ gpu.pk }}"
                       data-tdp="{{ gpu.tdp }}"
                       data-brand="{{ gpu.brand|lower }}"
                       {% if gpu.pk == build.gpu.pk %}selected{% endif %}>
                 {{ gpu.gpu_name }} — {{ gpu.vram_size }}GB VRAM, {{ gpu.tdp }}W TDP
-                {{ build.currency|currency_symbol }}{{ gpu.price|convert_from_usd:build.currency|floatformat:2 }}, Score: {{ gpu.userbenchmark_score }}
+                {{ build.currency|currency_symbol }}{{ gpu.price|convert_from_usd:build.currency|floatformat:2 }}, Score: {% if gpu.userbenchmark_score is not None %}{{ gpu.userbenchmark_score }}{% else %}N/A{% endif %}
               </option>
             {% endfor %}
           </select>
-          <div id="gpuMessage" class="alert alert-warning mt-2" style="display:none"></div>
+          <div id="gpuMessage" class="alert alert-warning mt-2 d-none"></div>
         </div>
         <div class="mb-3">
           <label class="form-label">GPU brand</label>
@@ -70,18 +70,18 @@
       <div class="card-body text-center w-100">
         <div class="mb-3">
           <label for="ram" class="form-label">RAM</label>
-          <select name="ram" id="ram" class="form-select no-select2 bg-dark text-white" required>
+          <select name="ram" id="ram" class="form-select no-select2" required>
             {% for ram in rams %}
               <option value="{{ ram.pk }}"
                       data-ddr="{{ ram.ddr_generation|upper }}"
                       data-speed="{{ ram.frequency_mhz }}"
                       {% if ram.pk == build.ram.pk %}selected{% endif %}>
                 {{ ram.name }} — {{ ram.ddr_generation }} {{ ram.frequency_mhz }}MHz
-                {{ build.currency|currency_symbol }}{{ ram.price|convert_from_usd:build.currency|floatformat:2 }}, Score: {{ ram.userbenchmark_score }}
+                {{ build.currency|currency_symbol }}{{ ram.price|convert_from_usd:build.currency|floatformat:2 }}, Score: {% if ram.userbenchmark_score is not None %}{{ ram.userbenchmark_score }}{% else %}N/A{% endif %}
               </option>
             {% endfor %}
           </select>
-          <div id="ramMessage" class="alert alert-warning mt-2" style="display:none"></div>
+          <div id="ramMessage" class="alert alert-warning mt-2 d-none"></div>
         </div>
         <div class="mb-3">
           <label class="form-label">RAM DDR</label>
@@ -102,7 +102,7 @@
       <div class="card-body text-center w-100">
         <div class="mb-3">
           <label for="motherboard" class="form-label">Motherboard</label>
-          <select name="motherboard" id="motherboard" class="form-select no-select2 bg-dark text-white" required>
+          <select name="motherboard" id="motherboard" class="form-select no-select2" required>
             {% for mobo in mobos %}
               <option value="{{ mobo.pk }}"
                       data-socket="{{ mobo.socket }}"
@@ -114,7 +114,7 @@
               </option>
             {% endfor %}
           </select>
-          <div id="moboMessage" class="alert alert-warning mt-2" style="display:none"></div>
+          <div id="moboMessage" class="alert alert-warning mt-2 d-none"></div>
         </div>
         <div class="mb-3">
           <label class="form-label">Motherboard socket</label>
@@ -135,7 +135,7 @@
       <div class="card-body text-center w-100">
         <div class="mb-3">
           <label for="storage" class="form-label">Storage</label>
-          <select name="storage" id="storage" class="form-select no-select2 bg-dark text-white" required>
+          <select name="storage" id="storage" class="form-select no-select2" required>
             {% for storage in storages %}
               <option value="{{ storage.pk }}"
                       data-interface="{{ storage.interface|lower }}"
@@ -145,7 +145,7 @@
               </option>
             {% endfor %}
           </select>
-          <div id="storageMessage" class="alert alert-warning mt-2" style="display:none"></div>
+          <div id="storageMessage" class="alert alert-warning mt-2 d-none"></div>
         </div>
         <div class="mb-3">
           <label class="form-label">Storage interface</label>
@@ -166,7 +166,7 @@
       <div class="card-body text-center w-100">
         <div class="mb-3">
           <label for="psu" class="form-label">PSU</label>
-          <select name="psu" id="psu" class="form-select no-select2 bg-dark text-white" required>
+          <select name="psu" id="psu" class="form-select no-select2" required>
             {% for psu in psus %}
               <option value="{{ psu.pk }}"
                       data-wattage="{{ psu.wattage }}"
@@ -175,7 +175,7 @@
                 {{ build.currency|currency_symbol }}{{ psu.price|convert_from_usd:build.currency|floatformat:2 }}
             {% endfor %}
           </select>
-          <div id="psuMessage" class="alert alert-warning mt-2" style="display:none"></div>
+          <div id="psuMessage" class="alert alert-warning mt-2 d-none"></div>
         </div>
         <div class="mb-3">
           <label class="form-label">PSU minimum wattage</label>
@@ -197,7 +197,7 @@
       <div class="card-body text-center w-100">
         <div class="mb-3">
           <label for="cooler" class="form-label">Cooler</label>
-          <select name="cooler" id="cooler" class="form-select no-select2 bg-dark text-white" required>
+          <select name="cooler" id="cooler" class="form-select no-select2" required>
             {% for cooler in coolers %}
               <option value="{{ cooler.pk }}"
                       data-throughput="{{ cooler.power_throughput }}"
@@ -207,7 +207,7 @@
               </option>
             {% endfor %}
           </select>
-          <div id="coolerMessage" class="alert alert-warning mt-2" style="display:none"></div>
+          <div id="coolerMessage" class="alert alert-warning mt-2 d-none"></div>
         </div>
         <div class="mb-3">
           <label class="form-label">Cooler throughput</label>
@@ -228,7 +228,7 @@
       <div class="card-body text-center w-100">
         <div class="mb-3">
           <label for="case" class="form-label">Case</label>
-          <select name="case" id="case" class="form-select no-select2 bg-dark text-white" required>
+          <select name="case" id="case" class="form-select no-select2" required>
             {% for case in cases %}
               <option value="{{ case.pk }}"
                       data-formfactor="{{ case.case_type }}"
@@ -237,7 +237,7 @@
               </option>
             {% endfor %}
           </select>
-          <div id="caseMessage" class="alert alert-warning mt-2" style="display:none"></div>
+          <div id="caseMessage" class="alert alert-warning mt-2 d-none"></div>
         </div>
         <div class="mb-3">
           <label class="form-label">Case form factor</label>

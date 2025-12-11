@@ -6,7 +6,7 @@
     <div class="col-md-12">
       <h2>Upgrade Preview</h2>
       <p class="text-muted">This page shows the components that will change if you apply the selected upgrade. You can save the upgrade snapshot to your account.</p>
-      <div class="row">
+  <div class="row equalize justify-content-center">
         <div class="col-md-6">
           <div class="card mb-3">
             <div class="card-header">Current build</div>
@@ -73,7 +73,7 @@
                   {% if workstation_estimate is not None %}
                     {{ workstation_estimate|floatformat:2 }} seconds
                     {% if workstation_delta is not None %}
-                      <span class="ms-2 {% if workstation_delta > 0 %}text-success{% elif workstation_delta < 0 %}text-danger{% endif %}">
+                      <span id="workstation-delta" class="ms-2 {% if workstation_delta > 0 %}text-success fps-delta-positive{% elif workstation_delta < 0 %}text-danger fps-delta-negative{% endif %}">
                         {% if workstation_delta < 0 %}-{% elif workstation_delta > 0 %}+{% endif %}{{ workstation_delta|floatformat:2 }}
                       </span>
                     {% endif %}
@@ -112,7 +112,7 @@
                           {% if vals.estimated %}
                             {{ vals.estimated }} FPS
                             {% if vals.delta %}
-                              <span class="ms-2 {% if vals.delta > 0 %}text-success{% elif vals.delta < 0 %}text-danger{% endif %}">
+                              <span id="fps-delta-{{ res_entry.res }}-{{ forloop.counter }}" class="ms-2 {% if vals.delta > 0 %}text-success fps-delta-positive{% elif vals.delta < 0 %}text-danger fps-delta-negative{% endif %}">
                                 {% if vals.delta > 0 %}+{% endif %}{{ vals.delta }}
                               </span>
                             {% endif %}
@@ -159,7 +159,7 @@
   </div>
 
   <!-- Primary components row: CPU, GPU, RAM -->
-  <div class="row">
+  <div class="row equalize justify-content-center">
     <!-- CPU card -->
     <div class="col-md-4">
       <div class="card mb-3">
@@ -241,7 +241,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row equalize justify-content-center">
     {# Second row: all other changed parts #}
     {% for part, data in changed_items.items %}
       {% if part != 'cpu' and part != 'gpu' and part != 'ram' %}
@@ -327,7 +327,9 @@
       {% endif %}
     </form>
   {% else %}
-    <p class="mt-3">Register to save upgrades to your account.</p>
+    <div class="mt-3">
+      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#authModal">Register / Sign in to save</button>
+    </div>
   {% endif %}
 
 </div>
@@ -350,11 +352,27 @@
     }
   }
 </script>
-<style>
-  /* Minimal fade-out exit animation; keeps it self-contained to this page. */
-  #previewContent.content-exit{
-    opacity: 0;
-    transition: opacity 0.32s ease-out;
+<script>
+// Equalize card heights within preview rows (fallback for CSS flex inconsistencies)
+(function(){
+  function equalizePreviewRows(){
+    document.querySelectorAll('#previewContent .row.equalize').forEach(function(row){
+      const cols = Array.from(row.querySelectorAll(':scope > [class*="col-"]'));
+      if(cols.length === 0) return;
+      // reset explicit heights
+      cols.forEach(c=>{ const card = c.querySelector('.card'); if(card){ card.style.height = ''; } });
+      // compute max height of .card in this row
+      let max = 0;
+      cols.forEach(c=>{ const card = c.querySelector('.card'); if(card){ const h = card.getBoundingClientRect().height; if(h > max) max = h; } });
+      if(max > 0){ cols.forEach(c=>{ const card = c.querySelector('.card'); if(card) card.style.height = max + 'px'; }); }
+    });
   }
-</style>
+  // run on load and resize, debounce resize
+  window.addEventListener('load', equalizePreviewRows);
+  var __eqT;
+  window.addEventListener('resize', function(){ clearTimeout(__eqT); __eqT = setTimeout(equalizePreviewRows, 120); });
+  // also run after fonts load (if supported)
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(equalizePreviewRows).catch(()=>{});
+})();
+</script>
 {% endblock %}
