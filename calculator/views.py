@@ -882,6 +882,9 @@ def upgrade_preview(request):
     # Avoid recomputing here to prevent empty lists due to undefined vars
     # and keep template behavior consistent.
 
+    # Determine if this preview was initiated from a saved upgrade view
+    came_from_saved_upgrade = bool(request.session.pop('from_saved_upgrade', False))
+
     return render(request, 'calculator/upgrade_preview.html', {
         'changed_items': changed,
         'percent': percent,
@@ -904,7 +907,8 @@ def upgrade_preview(request):
         'mode': mode,
         'default_resolution': default_resolution,
         'fps_compare_list': fps_compare_list,
-        'currency': currency,
+    'currency': currency,
+    'came_from_saved_upgrade': came_from_saved_upgrade,
     # Include budget for save form.
     # Prefer preview session budget, else base_ids budget,
     # else any recorded last_upgrade_base.
@@ -1512,6 +1516,39 @@ def upgrade_calculator(request):
             # best-effort; don't fail upgrade flow if session write fails
             pass
 
+        # Compute DB averages for mode-aware score and typical prices to ground B4B
+        try:
+            import math
+            score_field = 'blender_score' if mode == 'workstation' else 'userbenchmark_score'
+            from django.db.models import Avg
+
+            def trimmed_avg(model_qs, field_name):
+                qs = model_qs.exclude(**{field_name: None}).exclude(**{field_name + '__lte': 0})
+                n = qs.count()
+                if n == 0:
+                    return 0.0
+                # compute 20th and 80th percentile cut points via sorted indexing
+                lower_idx = int(math.floor(n * 0.2))
+                upper_idx = max(lower_idx, int(math.floor(n * 0.8)) - 1)
+                vals = qs.values_list(field_name, flat=True).order_by(field_name)
+                try:
+                    lower_val = vals[lower_idx]
+                    upper_val = vals[upper_idx]
+                except Exception:
+                    # fallback to simple average
+                    avg = qs.aggregate(avg=Avg(field_name)).get('avg') or 0.0
+                    return float(avg)
+                trimmed = qs.filter(**{f"{field_name}__gte": lower_val, f"{field_name}__lte": upper_val})
+                avg = trimmed.aggregate(avg=Avg(field_name)).get('avg') or 0.0
+                return float(avg)
+
+            cpu_avg_score = trimmed_avg(CPU.objects.all(), score_field)
+            gpu_avg_score = trimmed_avg(GPU.objects.all(), score_field)
+            cpu_avg_price = trimmed_avg(CPU.objects.all(), 'price')
+            gpu_avg_price = trimmed_avg(GPU.objects.all(), 'price')
+        except Exception:
+            cpu_avg_score = gpu_avg_score = cpu_avg_price = gpu_avg_price = 0.0
+
         # convert proposals into structure the template expects
         proposed_builds = []
         for p in proposals:
@@ -1591,6 +1628,71 @@ def upgrade_calculator(request):
             except Exception:
                 workstation_estimate = None
 
+            # Compute B4B using averages and upgrade deltas:
+            # - perf_vs_avg: proposal CPU+GPU performance vs catalog trimmed-average
+            # - cost_vs_avg: proposal CPU+GPU price vs catalog trimmed-average
+            # - b4b_percent: ratio of upgrade performance increase (%) to upgrade cost increase (% of avg price)
+            #   so small perf gains only score well if the added cost is also small
+            b4b = {'perf_vs_avg': None, 'cost_vs_avg': None, 'b4b_percent': None, 'grade': None}
+            try:
+                # Performance (CPU+GPU) vs averages
+                p_cpu_s = cpu_score(p.get('cpu'), mode) if p.get('cpu') else 0.0
+                p_gpu_s = gpu_score(p.get('gpu'), mode) if p.get('gpu') else 0.0
+                cpu_perf_pct = (p_cpu_s / cpu_avg_score * 100.0) if cpu_avg_score else None
+                gpu_perf_pct = (p_gpu_s / gpu_avg_score * 100.0) if gpu_avg_score else None
+                if cpu_perf_pct is not None and gpu_perf_pct is not None:
+                    combined_perf_pct = (cpu_perf_pct + gpu_perf_pct) / 2.0
+                else:
+                    combined_perf_pct = None
+
+                # Cost (CPU+GPU) vs averages (include PSU/mobo/ram only if changed for clarity)
+                p_cpu_price = price_of(p.get('cpu'))
+                p_gpu_price = price_of(p.get('gpu'))
+                cpu_cost_pct = (p_cpu_price / cpu_avg_price * 100.0) if cpu_avg_price else None
+                gpu_cost_pct = (p_gpu_price / gpu_avg_price * 100.0) if gpu_avg_price else None
+                if cpu_cost_pct is not None and gpu_cost_pct is not None:
+                    combined_cost_pct = (cpu_cost_pct + gpu_cost_pct) / 2.0
+                else:
+                    combined_cost_pct = None
+
+                b4b['perf_vs_avg'] = combined_perf_pct
+                b4b['cost_vs_avg'] = combined_cost_pct
+                # Upgrade-aware B4B: use delta performance (%) over current build divided by
+                # delta cost (%) normalized by average CPU+GPU prices.
+                # This penalizes proposals with small performance gains but large added cost.
+                perf_delta_pct = p.get('percent')  # already computed as combined gain vs current
+                # Normalize cost delta against average of CPU+GPU typical prices to get a percentage-scale
+                avg_cpu_gpu_price = None
+                try:
+                    if cpu_avg_price and gpu_avg_price:
+                        avg_cpu_gpu_price = (cpu_avg_price + gpu_avg_price) / 2.0
+                except Exception:
+                    avg_cpu_gpu_price = None
+
+                cost_delta_pct = None
+                try:
+                    if avg_cpu_gpu_price and p.get('price_delta') is not None:
+                        cost_delta_pct = (p.get('price_delta') / max(avg_cpu_gpu_price, 1e-6)) * 100.0
+                except Exception:
+                    cost_delta_pct = None
+
+                if perf_delta_pct is not None and cost_delta_pct is not None:
+                    b4b_val = (perf_delta_pct / max(cost_delta_pct, 1e-6)) * 100.0
+                    # Upgrade-aware grade thresholds (delta-based):
+                    # A: > 30, B: >= 20 (else C/D lower)
+                    if b4b_val > 30.0:
+                        grade = 'A'
+                    elif b4b_val >= 20.0:
+                        grade = 'B'
+                    elif b4b_val >= 10.0:
+                        grade = 'C'
+                    else:
+                        grade = 'D'
+                    b4b['b4b_percent'] = b4b_val
+                    b4b['grade'] = grade
+            except Exception:
+                pass
+
             proposed_builds.append({
                 'slot': p.get('slot'),
                 'build': p,
@@ -1603,6 +1705,8 @@ def upgrade_calculator(request):
                 'workstation_estimate_current': workstation_estimate_current,
                 'workstation_delta': workstation_delta,
                 'show_fps': (mode != 'workstation'),
+                'b4b': b4b,
+                'b4b_mode': ('workstation' if mode == 'workstation' else 'gaming'),
             })
 
         remaining = budget
@@ -2423,6 +2527,9 @@ def view_saved_upgrade(request, pk):
     # Persist the single proposal and the chosen base into session and redirect to preview
     request.session['last_upgrade_proposals'] = [sel]
     request.session['last_upgrade_base'] = base
+    # Indicate the preview came from a saved upgrade so the UI can offer
+    # a back link to the saved builds page.
+    request.session['from_saved_upgrade'] = True
 
     return redirect(f"{reverse('upgrade_preview')}?index=0")
 

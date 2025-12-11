@@ -191,6 +191,9 @@
         <div class="card-body">
           <h5 class="card-title d-flex align-items-center">{% if pb.slot == 'cpu_gpu' %}CPU &amp; GPU{% else %}{{ pb.slot|upper }}{% endif %} upgrade build
             <span class="ms-2">
+              {% if pb.b4b and pb.b4b.grade %}
+              <span class="badge {% if pb.b4b.grade in 'AB' %}bg-success{% elif pb.b4b.grade == 'C' %}bg-warning text-dark{% else %}bg-danger{% endif %}" title="Bang for buck rating">{{ pb.b4b.grade }}</span>
+              {% endif %}
               {% if pb.build.motherboard.id != current.motherboard.id %}
                 <span class="badge bg-warning text-dark me-1">Mobo swap</span>
               {% endif %}
@@ -230,7 +233,6 @@
                 <button type="button" class="btn btn-outline-secondary res-toggle-card-btn {% if resolution == '4k' %}active{% endif %}" data-res="4k">4k</button>
               </div>
             </div>
-            <p class="mt-2"><strong>Estimated gain:</strong> {{ pb.percent|floatformat:2 }}%</p>
             <strong>Estimated FPS:</strong>
             <div class="fps-res-container mt-1 position-relative" style="min-height: 110px;">
               {% for entry in pb.fps_res_list %}
@@ -246,17 +248,53 @@
                 </div>
               {% endfor %}
             </div>
+  <!-- Estimated gain moved down to second from last (above Price) for consistency -->
+  <p class="mt-1"><strong>Estimated gain:</strong> {{ pb.percent|floatformat:2 }}%</p>
   <p class="mt-1"><strong>Price (new parts):</strong> {{ currency|currency_symbol }}{{ pb.price_delta|convert_from_usd:currency|floatformat:2 }}</p>
+  {% if pb.b4b and pb.b4b.grade %}
+    <p class="mb-1 small"><strong>Bang for buck rating:</strong> {{ pb.b4b.grade }}
+      <a href="#" data-bs-toggle="modal" data-bs-target="#b4bInfoModal" title="How is this calculated?" class="ms-1 b4b-info-link">
+        <i class="fa-solid fa-circle-info"></i>
+      </a>
+    </p><br>
+    {% if pb.b4b.grade == 'A' %}
+      <p class="mb-1 small text-muted">This upgrade has a bang for buck rating of A and represents excellent value for money based on the performance improvement versus the added cost.</p>
+    {% elif pb.b4b.grade == 'B' %}
+      <p class="mb-1 small text-muted">This upgrade has a bang for buck rating of B and offers good value for money with a solid performance improvement relative to its cost.</p>
+    {% elif pb.b4b.grade == 'C' %}
+      <p class="mb-1 small text-muted">This upgrade has a bang for buck rating of C and provides fair value. Consider whether the performance gain justifies the added cost for your needs.</p>
+    {% else %}
+      <p class="mb-1 small text-muted">This upgrade has a bang for buck rating of D and may not be cost-effective. The performance gain is relatively small compared to the additional cost.</p>
+    {% endif %}
+  {% endif %}
           </div>
           {% else %}
           <div class="mt-2">
-            <p class="mt-2"><strong>Estimated gain:</strong> {{ pb.percent|floatformat:2 }}%</p>
-            <strong>Estimated render time:</strong>
+              <strong>Estimated render time:</strong>
             <p class="mb-0 small">{% if pb.workstation_estimate %}{{ pb.workstation_estimate }} seconds{% else %}N/A{% endif %}</p>
-            <p class="mt-1"><strong>Price (new parts):</strong> {{ currency|currency_symbol }}{{ pb.price_delta|convert_from_usd:currency|floatformat:2 }}</p>
+              <p class="mt-1"><strong>Price (new parts):</strong> {{ currency|currency_symbol }}{{ pb.price_delta|convert_from_usd:currency|floatformat:2 }}</p>
+            {% if pb.b4b and pb.b4b.grade %}
+                <p class="mb-1 small"><strong>Bang for buck rating:</strong> {{ pb.b4b.grade }}
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#b4bInfoModal" title="How is this calculated?" class="ms-1 b4b-info-link"><i class="fa-solid fa-circle-info"></i></a>
+                </p>
+                <br>
+              {% if pb.b4b.grade == 'A' %}
+                <p class="mb-1 small text-muted">This upgrade has a bang for buck rating of A and represents excellent value for money based on the performance improvement versus the added cost.</p>
+              {% elif pb.b4b.grade == 'B' %}
+                <p class="mb-1 small text-muted">This upgrade has a bang for buck rating of B and offers good value for money with a solid performance improvement relative to its cost.</p>
+              {% elif pb.b4b.grade == 'C' %}
+                <p class="mb-1 small text-muted">This upgrade has a bang for buck rating of C and provides fair value. Consider whether the performance gain justifies the added cost for your needs.</p>
+              {% else %}
+                <p class="mb-1 small text-muted">This upgrade has a bang for buck rating of D and may not be cost-effective. The performance gain is relatively small compared to the additional cost.</p>
+              {% endif %}
+            {% endif %}
+            <!-- Estimated gain moved down to second from last (above Price) for consistency -->
+            <p class="mt-1"><strong>Estimated gain:</strong> {{ pb.percent|floatformat:2 }}%</p>
           </div>
           {% endif %}
-          <div class="d-flex gap-2">
+          <!-- Price should be on its own line, with action buttons below -->
+          <p class="mt-1"><strong>Price (new parts):</strong> {{ currency|currency_symbol }}{{ pb.price_delta|convert_from_usd:currency|floatformat:2 }}</p>
+          <div class="d-flex gap-2 mt-2 align-items-center">
             <a href="{% url 'upgrade_preview' %}?index={{ forloop.counter0 }}" class="btn btn-outline-primary btn-sm">Preview upgrade</a>
             <!-- Save upgrade snapshot directly to account -->
             <form method="post" action="{% url 'save_build' %}" style="display:inline;">
@@ -297,6 +335,19 @@
       // Initialize Select2 as early as possible on DOM ready to ensure placeholders are set before any visual transitions
       $(document).ready(function(){
         try{ if($.fn.select2){ $('.searchable').filter(function(){ return !$(this).data('select2'); }).select2({ width: '100%', placeholder: 'Start typing to search', allowClear: true }); } }catch(e){}
+        // If returning from preview, fade-in the proposals section to match exit
+        try {
+          if (sessionStorage.getItem('returningFromPreview') === '1') {
+            var el = document.getElementById('proposalsSection');
+            if (el) {
+              el.classList.add('content-enter');
+              // Remove the flag so subsequent loads are normal
+              sessionStorage.removeItem('returningFromPreview');
+              // After the animation completes, clean up the class
+              setTimeout(function(){ el.classList.remove('content-enter'); }, 240);
+            }
+          }
+        } catch (err) {}
         // Per-card resolution toggles: switch FPS blocks only inside the same card
         $(document).on('click', '.res-toggle-card-btn', function(){
           var res = $(this).data('res');
@@ -660,4 +711,45 @@
       });
     })();
   </script>
+  <style>
+    /* Minimal fade-in to match preview's exit animation */
+    /* Mirror existing slide-in transitions: fade + slight upward slide */
+    #proposalsSection.content-enter {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: contentFadeSlideIn 0.425s ease-out forwards;
+    }
+    @keyframes contentFadeSlideIn {
+      0% { opacity: 0; transform: translateY(8px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    /* B4B info icon tone and hover */
+    .b4b-info-link { color: #4a4a4a; }
+    .b4b-info-link:hover { color: #6a6a6a; }
+    /* Make Select2 clear (x) icon white to match text */
+    .select2-selection__clear { color: #ffffff !important; }
+    .select2-container--default .select2-selection--single .select2-selection__clear { color: #ffffff !important; }
+  </style>
+  <!-- Global B4B Info Modal (outside cards to ensure availability) -->
+  <div class="modal fade" id="b4bInfoModal" tabindex="-1" aria-labelledby="b4bInfoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="b4bInfoModalLabel">Bang for buck explained</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>We rate upgrade proposals by comparing the percentage performance gain versus the percentage of added cost. The ratio is expressed as a percent and graded A–D.</p>
+          <ul>
+            <li>Performance gain is based on your build’s CPU+GPU improvement.</li>
+            <li>Added cost is normalized by typical CPU+GPU prices using catalog averages (middle 60% to reduce outlier skew).</li>
+            <li>A and B indicate strong value, C is fair value, and D means the gain likely isn’t worth the cost.</li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

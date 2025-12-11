@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load currency_tags %}
 {% block content %}
-<div class="container">
+<div class="container" id="previewContent">
   <div class="row mb-3">
     <div class="col-md-12">
       <h2>Upgrade Preview</h2>
@@ -61,58 +61,85 @@
       <div class="card mb-3">
         <div class="card-body">
           <p><strong>Estimated gain:</strong> {{ percent|floatformat:2 }}%</p>
-          <div class="d-flex align-items-center mb-2">
-            <div><strong>Resolution</strong></div>
-            <div class="btn-group ms-3" role="group" aria-label="Resolutions">
-              {% for res_entry in fps_res_list %}
-                <button type="button" class="btn btn-sm btn-outline-primary res-toggle {% if res_entry.res == default_resolution %}active{% endif %}" data-res="{{ res_entry.res }}">{{ res_entry.res }}</button>
-              {% endfor %}
-            </div>
-          </div>
-
-          {% for res_entry in fps_compare_list %}
-            <div class="fps-compare-pane" data-res-pane="{{ res_entry.res }}" style="display: {% if res_entry.res == default_resolution %}block{% else %}none{% endif %};">
-              <div class="row">
-                <div class="col-6">
-                  <div class="mb-2"><strong>Current Estimated FPS</strong></div>
-                  <ul class="list-unstyled small">
-                    {% for game, vals in res_entry.games.items %}
-                      <li>{{ game }}: {% if vals.current %}{{ vals.current }} FPS{% else %}N/A{% endif %}</li>
-                    {% endfor %}
-                  </ul>
-                  <p class="small text-muted">Bottleneck: {{ res_entry.bottleneck_current.type }} ({{ res_entry.bottleneck_current.bottleneck|floatformat:1 }}%)</p>
-                </div>
-                <div class="col-6">
-                  <div class="mb-2"><strong>Estimated FPS</strong></div>
-                  <ul class="list-unstyled small">
-                    {% for game, vals in res_entry.games.items %}
-                      <li>
-                        {{ game }}:
-                        {% if vals.estimated %}
-                          {{ vals.estimated }} FPS
-                          {% if vals.delta %}
-                            <span class="ms-2 {% if vals.delta > 0 %}text-success{% elif vals.delta < 0 %}text-danger{% endif %}">
-                              {% if vals.delta > 0 %}+{% endif %}{{ vals.delta }}
-                            </span>
-                          {% endif %}
-                        {% else %}N/A{% endif %}
-                      </li>
-                    {% endfor %}
-                  </ul>
-                  <p class="small text-muted">Bottleneck: {{ res_entry.bottleneck_estimated.type }} ({{ res_entry.bottleneck_estimated.bottleneck|floatformat:1 }}%)</p>
-                </div>
+          {% if mode == 'workstation' %}
+            <div class="row mb-2">
+              <div class="col-6">
+                <div class="mb-2"><strong>Current estimated render time</strong></div>
+                <p class="mb-0 small">{% if workstation_estimate_current is not None %}{{ workstation_estimate_current|floatformat:2 }} seconds{% else %}N/A{% endif %}</p>
+              </div>
+              <div class="col-6">
+                <div class="mb-2"><strong>Estimated render time</strong></div>
+                <p class="mb-0 small">
+                  {% if workstation_estimate is not None %}
+                    {{ workstation_estimate|floatformat:2 }} seconds
+                    {% if workstation_delta is not None %}
+                      <span class="ms-2 {% if workstation_delta > 0 %}text-success{% elif workstation_delta < 0 %}text-danger{% endif %}">
+                        {% if workstation_delta < 0 %}-{% elif workstation_delta > 0 %}+{% endif %}{{ workstation_delta|floatformat:2 }}
+                      </span>
+                    {% endif %}
+                  {% else %}N/A{% endif %}
+                </p>
               </div>
             </div>
-          {% endfor %}
-
-          {% if fps_compare_list|length == 0 %}
-            <div class="alert alert-info mt-2 mb-0 small">
-              No FPS comparison available for this proposal. Try generating upgrade proposals first, then open this preview.
+          {% else %}
+            <div class="d-flex align-items-center mb-2">
+              <div><strong>Resolution</strong></div>
+              <div class="btn-group ms-3" role="group" aria-label="Resolutions">
+                {% for res_entry in fps_res_list %}
+                  <button type="button" class="btn btn-sm btn-outline-primary res-toggle {% if res_entry.res == default_resolution %}active{% endif %}" data-res="{{ res_entry.res }}">{{ res_entry.res }}</button>
+                {% endfor %}
+              </div>
             </div>
+
+            {% for res_entry in fps_compare_list %}
+              <div class="fps-compare-pane" data-res-pane="{{ res_entry.res }}" style="display: {% if res_entry.res == default_resolution %}block{% else %}none{% endif %};">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="mb-2"><strong>Current Estimated FPS</strong></div>
+                    <ul class="list-unstyled small">
+                      {% for game, vals in res_entry.games.items %}
+                        <li>{{ game }}: {% if vals.current %}{{ vals.current }} FPS{% else %}N/A{% endif %}</li>
+                      {% endfor %}
+                    </ul>
+                    <p class="small text-muted">Bottleneck: {{ res_entry.bottleneck_current.type }} ({{ res_entry.bottleneck_current.bottleneck|floatformat:1 }}%)</p>
+                  </div>
+                  <div class="col-6">
+                    <div class="mb-2"><strong>Estimated FPS</strong></div>
+                    <ul class="list-unstyled small">
+                      {% for game, vals in res_entry.games.items %}
+                        <li>
+                          {{ game }}:
+                          {% if vals.estimated %}
+                            {{ vals.estimated }} FPS
+                            {% if vals.delta %}
+                              <span class="ms-2 {% if vals.delta > 0 %}text-success{% elif vals.delta < 0 %}text-danger{% endif %}">
+                                {% if vals.delta > 0 %}+{% endif %}{{ vals.delta }}
+                              </span>
+                            {% endif %}
+                          {% else %}N/A{% endif %}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                    <p class="small text-muted">Bottleneck: {{ res_entry.bottleneck_estimated.type }} ({{ res_entry.bottleneck_estimated.bottleneck|floatformat:1 }}%)</p>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+
+            {% if fps_compare_list|length == 0 %}
+              <div class="alert alert-info mt-2 mb-0 small">
+                No FPS comparison available for this proposal. Try generating upgrade proposals first, then open this preview.
+              </div>
+            {% endif %}
           {% endif %}
 
             <script>
             document.addEventListener('DOMContentLoaded', function () {
+              // Only wire up resolution toggles for gaming mode
+              try{
+                const modeEl = '{{ mode }}';
+                if(modeEl === 'workstation') return;
+              }catch(e){}
               const buttons = document.querySelectorAll('.res-toggle');
               const panesCmp = document.querySelectorAll('.fps-compare-pane');
               buttons.forEach(btn => btn.addEventListener('click', function () {
@@ -293,11 +320,41 @@
       <input type="hidden" name="currency" value="{{ currency }}">
       {% endif %}
   <button type="submit" class="btn btn-outline-success">Save upgrade to account</button>
-      <a href="{% url 'saved_builds' %}" class="btn btn-outline-secondary ms-2">Back to builds</a>
+      {% if came_from_saved_upgrade %}
+        <a href="{% url 'saved_builds' %}" class="btn btn-outline-secondary ms-2">Back to builds</a>
+      {% else %}
+        <button type="button" class="btn btn-outline-secondary ms-2" onclick="goBackWithExit()">Back to upgrade calculator</button>
+      {% endif %}
     </form>
   {% else %}
     <p class="mt-3">Register to save upgrades to your account.</p>
   {% endif %}
 
 </div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  // Trigger a lightweight exit animation before navigating back,
+  // so the transition feels consistent.
+  function goBackWithExit(){
+    try{
+      // Fade only the preview content, not the base layout
+      var el = document.getElementById('previewContent');
+      if(el){ el.classList.add('content-exit'); }
+      // Set a return flag so the calculator can play a matching fade-in
+      try { sessionStorage.setItem('returningFromPreview', '1'); } catch(e){}
+  setTimeout(function(){ history.back(); }, 310);
+    }catch(e){
+      history.back();
+    }
+  }
+</script>
+<style>
+  /* Minimal fade-out exit animation; keeps it self-contained to this page. */
+  #previewContent.content-exit{
+    opacity: 0;
+    transition: opacity 0.32s ease-out;
+  }
+</style>
 {% endblock %}
