@@ -36,11 +36,17 @@ ACCOUNT_LOGIN_METHODS = {"username", "email"}
 
 # Define required fields at signup
 ACCOUNT_SIGNUP_FIELDS = [
-    "email", 
+    # remove email from the default signup fields if you don't want to collect it
+    # (Custom signup form below also removes the field explicitly.)
     "username*",   # * means required
     "password1*", 
     "password2*",
 ]
+
+# Use a custom signup form that omits the email field
+ACCOUNT_FORMS = {
+    'signup': 'buildmate.forms.CustomSignupForm'
+}
 
 ACCOUNT_EMAIL_VERIFICATION = 'optional'  # or 'mandatory'
 
