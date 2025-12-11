@@ -96,23 +96,88 @@ Project board -  https://github.com/users/Ruon90/projects/13
 </details>
 
 ### Color scheme
+please generate color scheme from the used colours
+
 
 ### Fonts
+ibm plex sans for headers
+
+inter for body
+
+chosen by co pilot as a tech orientated professional font
+### Mockups
+
 
 ## Features
 
+### data -
+- slugify to match benchmarks
+- ai enriched for determining factors (msrp etc)
+- userbenchmark for gaming benchmarks, blender for workstation
+- tech power up for item details
+
+### calculator -
+
+- build calculator logic (compatibility price etc)
+- fps logic
+- render time logic
+- save builds
+- edit builds
+
+### Upgrade calculator -
+
+- upgrade logic
+- improvement % logic
+- fps delta logic
+- render time delta logic
+
+### build preview -
+- build preview logic
+- save
+- edit
+
+### Saved builds -
+- saved build logic
+- preivew logic
+- edit logic
+- delete logic 
+- CRUD functionality
+
+
 ## Database
+database explanation, using postgres psycopg2 etc
+
+### ERD
+<image>
+
+### Data import
+- cover utils to import cleaned and enriched data
 
 ## Deployment
-
+- quick guide on how to deploy to heroku from git clone to ide to pushing / deploying
 ## Testing and validation
 
 ## AI implementation
 
 ## Improvements
+Images for cards
+
+Amazon API
+
+Adsense
+
+improve UX
 
 ## References
 
 ## Tech used
+HTML
+CSS
+JavaScript
+Bootstrap
+Python
+Django
+co-pilot
+chat gpt
 
 ## Learning points

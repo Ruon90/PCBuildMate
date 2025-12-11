@@ -99,6 +99,7 @@
       <div class="col-md-3">
         <label class="form-label">Mode</label>
         <select name="mode" class="form-select" required>
+          <option value="" disabled {% if not request.POST.mode %}selected{% endif %}>Choose mode</option>
           <option value="gaming" {% if request.POST.mode == 'gaming' %}selected{% endif %}>Gaming</option>
           <option value="workstation" {% if request.POST.mode == 'workstation' %}selected{% endif %}>Workstation</option>
         </select>
@@ -108,6 +109,7 @@
       <div class="col-md-3">
         <label class="form-label">Currency</label>
         <select name="currency" class="form-select" required>
+          <option value="" disabled {% if not currency %}selected{% endif %}>Choose currency</option>
           <option value="GBP" {% if currency == 'GBP' %}selected{% endif %}>£ Pounds (GBP)</option>
           <option value="USD" {% if currency == 'USD' %}selected{% endif %}>$ Dollars (USD)</option>
           <option value="EUR" {% if currency == 'EUR' %}selected{% endif %}>€ Euros (EUR)</option>
@@ -334,7 +336,7 @@
   
   
   <!-- Global B4B Info Modal (outside cards to ensure availability) -->
-  <div class="modal fade" id="b4bInfoModal" tabindex="-1" aria-labelledby="b4bInfoModalLabel" aria-hidden="true">
+  <div class="modal fade" id="b4bInfoModal" tabindex="-1" role="dialog" aria-labelledby="b4bInfoModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

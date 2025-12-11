@@ -7,6 +7,7 @@
         <div class="mb-3">
           <label for="cpu" class="form-label">CPU</label>
           <select name="cpu" id="cpu" class="form-select no-select2" required>
+            <option value="" disabled>Choose CPU</option>
             {% for cpu in cpus %}
               <option value="{{ cpu.pk }}"
                       data-socket="{{ cpu.socket }}"
@@ -39,6 +40,7 @@
         <div class="mb-3">
           <label for="gpu" class="form-label">GPU</label>
           <select name="gpu" id="gpu" class="form-select no-select2" required>
+            <option value="" disabled>Choose GPU</option>
             {% for gpu in gpus %}
               <option value="{{ gpu.pk }}"
                       data-tdp="{{ gpu.tdp }}"
@@ -71,6 +73,7 @@
         <div class="mb-3">
           <label for="ram" class="form-label">RAM</label>
           <select name="ram" id="ram" class="form-select no-select2" required>
+            <option value="" disabled>Choose RAM</option>
             {% for ram in rams %}
               <option value="{{ ram.pk }}"
                       data-ddr="{{ ram.ddr_generation|upper }}"
@@ -103,6 +106,7 @@
         <div class="mb-3">
           <label for="motherboard" class="form-label">Motherboard</label>
           <select name="motherboard" id="motherboard" class="form-select no-select2" required>
+            <option value="" disabled>Choose motherboard</option>
             {% for mobo in mobos %}
               <option value="{{ mobo.pk }}"
                       data-socket="{{ mobo.socket }}"
@@ -136,6 +140,7 @@
         <div class="mb-3">
           <label for="storage" class="form-label">Storage</label>
           <select name="storage" id="storage" class="form-select no-select2" required>
+            <option value="" disabled>Choose storage</option>
             {% for storage in storages %}
               <option value="{{ storage.pk }}"
                       data-interface="{{ storage.interface|lower }}"
@@ -167,12 +172,14 @@
         <div class="mb-3">
           <label for="psu" class="form-label">PSU</label>
           <select name="psu" id="psu" class="form-select no-select2" required>
+            <option value="" disabled>Choose PSU</option>
             {% for psu in psus %}
               <option value="{{ psu.pk }}"
                       data-wattage="{{ psu.wattage }}"
                       {% if psu.pk == build.psu.pk %}selected{% endif %}>
                 {{ psu.name }} — {{ psu.wattage }}W
                 {{ build.currency|currency_symbol }}{{ psu.price|convert_from_usd:build.currency|floatformat:2 }}
+              </option>
             {% endfor %}
           </select>
           <div id="psuMessage" class="alert alert-warning mt-2 d-none"></div>
@@ -198,6 +205,7 @@
         <div class="mb-3">
           <label for="cooler" class="form-label">Cooler</label>
           <select name="cooler" id="cooler" class="form-select no-select2" required>
+            <option value="" disabled>Choose cooler</option>
             {% for cooler in coolers %}
               <option value="{{ cooler.pk }}"
                       data-throughput="{{ cooler.power_throughput }}"
@@ -229,6 +237,7 @@
         <div class="mb-3">
           <label for="case" class="form-label">Case</label>
           <select name="case" id="case" class="form-select no-select2" required>
+            <option value="" disabled>Choose case</option>
             {% for case in cases %}
               <option value="{{ case.pk }}"
                       data-formfactor="{{ case.case_type }}"
@@ -250,4 +259,6 @@
         </div>
       </div>
     </div>
-  
+  </div>
+</div>
+
