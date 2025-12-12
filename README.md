@@ -8,24 +8,31 @@ Project board: https://github.com/users/Ruon90/projects/13
 ![Website landing page](/documentation/images/splash.png)
 
 ## Index 📑
-1. [Overview](#overview🎯)
+1. [Overview](#overview)
 2. [Agile Working](#agile-working)
 3. [UX Design Process](#ux-design-process)
    - [User Stories](#user-stories)
    - [Wireframes](#wireframes)
+   - [Mockup](#mockup)
    - [Color Scheme](#color-scheme)
    - [Fonts](#fonts)
 4. [Features](#features)
+   - [Data & Enrichment](#data-&-enrichment)
+   - [Calculator / Core](#core)
+   - [Calculator services / Build algorithm](#calculator)
    - [Upgrade Calculator](#upgrade-calculator)
-   - [Build Calculator Algorithm](#build-calculator-algorithm)
+   - [CRUD for saved upgrades](#crud)
+   - [Preview builds](#preview)
+   - [Edit builds](#edit-builds)
+   - [API usage](#api-usage)
 5. [Database](#database)
-6. [Deployment (Git → IDE → Heroku)](#deployment-git--ide--heroku)
+6. [Deployment (Git → IDE → Heroku)](#deployment)
 7. [Testing and Validation](#testing-and-validation)
-   - [Python tests](python-tests)
-   - [HTML Validation](html-validation)
-   - [CSS Validation](css-validation)
-   - [JavaScript Validation](javascript-validation)
-   - [PEP8 Validation](pep8-validation)
+   - [HTML Validation](#html-validation)
+   - [CSS Validation](#css-validation)
+   - [JavaScript Validation](#javascript-validation)
+   - [PEP8 / Python Validation](#pep8-validation)
+   - [Lighthouse / Audits](#lighthouse)
 8. [AI integration](#ai-integration)
 9. [Tech used](#tech-used)
 10. [Improvements & Future Work](#improvements--future-work)
@@ -34,6 +41,9 @@ Project board: https://github.com/users/Ruon90/projects/13
 
 ---
 
+<a id="learning-points"></a>
+
+<a id="overview"></a>
 ## Overview 🎯
 PCBuildMate is a Django web app that recommends PC builds based on a user's budget and target use case (gaming or workstation). The app ingests and enriches hardware datasets, applies deterministic compatibility rules, and ranks candidate builds using a weighted scoring model. Users can preview, edit, save builds, and explore targeted upgrades.
 
@@ -43,14 +53,29 @@ Key features
 - UX: budget entry, preview, basic & advanced edit, upgrade calculator, saved builds
 - Authentication and persistence (django-allauth + `UserBuild` model)
 
-## Agile Working
+<a id="agile-working"></a>
+
+## Agile Working 🔁
+This project used agile development. User stories were created using a MoSCoW system and then split into smaller, bite-sized tasks to make progress incrementally.
+
+User stories were categorised as Must-haves, Should-haves, Could-haves, and Won't-haves and moved through the workflow as tasks were started.
+
+The main benefit of agile working is prioritising the MVP; during development an AI agent was implementable within scope and was added to the project.
+
+Project board: https://github.com/users/Ruon90/projects/13
+
+<a id="ux-design-process"></a>
 
 ## UX Design Process 🎨
+
+<a id="user-stories"></a>
 
 ### User stories 👥
 - Must-haves: budget-based build recommendations; visible benchmark and price/performance data; ability to save builds; regional pricing support.
 - Should-haves: compare multiple saved builds; compatibility warnings (PSU, clearance, socket); a light/dark theme toggle.
 - Could-haves: price-drop alerts, a "Build of the Month" showcase, and contextual tooltips for technical terms.
+
+<a id="wireframes"></a>
 
 ### Wireframes 🖼️
 <details>
@@ -69,13 +94,17 @@ Login
 
 </details>
 
-### Mockup
+<a id="mockup"></a>
+
+### Mockup 🖼️
 
 <details>
 
 ![Mockup](/documentation/images/mockup.png)
 
 </details>
+
+<a id="color-scheme"></a>
 
 ### Color Scheme 🎨
 The canonical color palette is taken from `buildmate/static/css/style.css`. A visual swatch is included for reference.
@@ -94,6 +123,8 @@ The canonical color palette is taken from `buildmate/static/css/style.css`. A vi
 Accessibility
 - When producing submission screenshots, verify contrast where text overlays images. The accent color (`#2e7cf7`) is paired with white (`#ffffff`) for good button contrast.
 
+<a id="fonts"></a>
+
 ### Fonts 🔤
 - Body: Inter (loaded via Google Fonts in `base.html`)
 - Headings: IBM Plex Sans (loaded via Google Fonts in `base.html`)
@@ -108,10 +139,16 @@ Fonts are loaded in `buildmate/templates/base.html` with:
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 ```
 
+<a id="features"></a>
+
 ## Features 🔧
+
+<a id="data-&-enrichment"></a>
 
 ### Data & Enrichment 🔎
 - Slug-based matching across datasets, optional AI-assisted name normalization, benchmark CSV merging (Blender, UserBenchmark).
+
+<a id="core"></a>
 
 ### Calculator / Core 🧮
 - Compatibility checks (socket, DDR generation, power supply requirements, case/form factor)
@@ -119,6 +156,9 @@ Fonts are loaded in `buildmate/templates/base.html` with:
 - FPS and render time estimates
 - Preview and save flows (session-based preview for anonymous users, `UserBuild` model for persistent saves)
 
+<a id="calculator"></a>
+
+<a id="build-calculator-algorithm"></a>
 ### Build Calculator Algorithm 📈
 This section summarizes the algorithm implemented in `calculator/services/build_calculator.py`.
 
@@ -163,6 +203,8 @@ Edge cases
 - Hard incompatibilities: exclude candidates and surface clear reasons.
 - Multi-part upgrades: consider only top-N candidates per slot to keep combinatorics tractable.
 
+<a id="upgrade-calculator"></a>
+
 ### Upgrade Calculator ⚙️
 
 The Upgrade Calculator compares a base build to proposed upgrades and helps users decide whether an upgrade is worth the cost.
@@ -176,7 +218,7 @@ High-level flow (form → calculation → recommendation)
 
 2. Preprocessing / Presorting
 
-   - Compatibility pruning: remove coponents that are out of budget and / or worse benchmarked performance than current build, then prune incompatible components for iterative loop (DDR generation differences, case size issues).
+   - Compatibility pruning: remove components that are out of budget and/or worse benchmarked performance than the current build, then prune incompatible components for the iterative loop (DDR generation differences, case size issues).
    - Price / performance deltas: for each candidate replacement compute `Δprice = price_new - price_old` and `Δperf = perf_new - perf_old` (where `perf` is Blender score for workstation or UserBenchmark scores for gaming).
    - Presort by `Δperf` descending.
 
@@ -203,7 +245,9 @@ High-level flow (form → calculation → recommendation)
 4. Output & UI
    - The UI shows base vs upgraded parts, absolute and percent FPS/render improvement, price delta, and a short explanation (for example: "Bottleneck: CPU 25% consider replacement CPU for future upgrades").
 
-### CRUD for saved upgrades
+<a id="crud"></a>
+
+### CRUD for saved upgrades 💾
 
 - Create: when a user clicks "Save upgrade" a record is created attached to the `UserBuild` (the app preserves the base build snapshot in JSON so comparisons remain reproducible).
 - Read: users can view saved upgrades in their profile; the view reconstructs both the base and upgraded snapshots and renders deltas.
@@ -212,6 +256,7 @@ High-level flow (form → calculation → recommendation)
 
 Notes: the repo currently stores saved upgrade snapshots as metadata on `UserBuild`. If desired, a dedicated `Upgrade` model with an FK to `UserBuild` can be added to simplify queries but is currently unnecessary.
 
+<a id="preview"></a>
 
 ### Preview builds 👁️
 
@@ -223,6 +268,10 @@ Notes: the repo currently stores saved upgrade snapshots as metadata on `UserBui
 
 - There are icons at the bottom of each component, an icon for further information displaying all held information in the model, an icon for a hook to the Youtube API to return review results for the component and an amazon link for purchase, as I was unable to get Amazon API access this is just a search form using python template literal.
 
+ - There are icons at the bottom of each component: an info icon that displays model details, an icon that hooks to the YouTube API to return review results, and an Amazon search link for purchase (direct Amazon API access was not obtained; the link performs a search).
+
+<a id="edit-builds"></a>
+
 ### Edit builds ✏️
 
 - Two edit modes exist:
@@ -231,6 +280,17 @@ Notes: the repo currently stores saved upgrade snapshots as metadata on `UserBui
   - Advanced edit: a per-part editor (template fragment `edit_build_advanced.html`) allowing manual swap-in of parts with compatibility checks shown while choosing components, any mismatched builds will not be allowed to save..
 
 - Workflow: the edit view loads the saved `UserBuild` snapshot, populates form fields with the current part slugs, and validates compatibility server-side on submit. If incompatible selections are submitted, the server returns structured errors to the advanced editor and the UI highlights offending fields.
+
+<a id="api-usage"></a>
+
+### API usage 🔌
+Multiple APIs have been used in this project.
+- YouTube API - used for fetching YouTube videos and details.
+- Exchange Rate API - used for fetching up-to-date exchange rates for price calculations; this is configured on Heroku to refresh automatically.
+- GitHub-hosted models - used for AI interaction; two models are configured (gpt-4.1-mini and gpt-4.1).
+- Google OAuth for google signin.
+
+<a id="database"></a>
 
 ## Database 🗄️
  PostgreSQL database is used to store the models, The app reads `DATABASE_URL` from the environment (Heroku Config Vars when deployed).
@@ -245,6 +305,8 @@ Schema overview (high level)
 
 <details>
 <summary>ERD</summary>
+
+![ERD](/documentation/images/PCBMERD.png)
 
 </details>
 
@@ -268,6 +330,8 @@ Data import flow (quick)
 1. Prepare CSVs in `data/` and ensure consistent column names.
 2. Run enrichment/clean scripts if needed.
 3. Run the import management command to populate part tables and generate slugs.
+
+<a id="deployment"></a>
 
 ## Deployment  🚀
 This simplified flow focuses on deploying the app quickly using a fork → IDE → Heroku approach.
@@ -312,12 +376,14 @@ Notes
 - Ensure OAuth redirect URIs configured for Google/Apple match your Heroku domain.
 - Use `Procfile` with `web: gunicorn buildmate.wsgi --log-file -` for production (already present in repo).
 
-## Testing and Validation ✅
-Testing and validation has been done in multiple ways, with python files running checks, online validators and the code insittutes PEP8 validation form.
+<a id="testing-and-validation"></a>
 
-<details>
-<summary>HTML Validation</summary>
-</details>
+## Testing and Validation ✅
+Manual testing was carried out to verify that users can login and signup, as well as create, read update and delete items from the database, as well as receive notifications when logging in and signing out.
+
+Testing and validation have been carried out in multiple ways: Python tests and linters, online validators, and CI/PEP8 checks.
+
+<a id="html-validation"></a>
 
 <details>
 <summary>HTML — Testing & validation images</summary>
@@ -335,15 +401,19 @@ The following screenshots show HTML-related pages and validation snapshots used 
 ![Upgrade calculator HTML](/documentation/images/html/upgrade-calculator-html.png)
 
 </details>
-</details>
+
+<a id="css-validation"></a>
 
 <details>
-<summary>CSS Validation<summary>
+<summary>CSS Validation</summary>
+
+Style.css
+
+![CSS](/documentation/images/css-validation.png)
+
 </details>
 
-<details>
-<summary>JavaScript Validation</summary>
-</details>
+<a id="javascript-validation"></a>
 
 <details>
 <summary>JavaScript — Testing & validation images</summary>
@@ -372,12 +442,11 @@ The following images show UI states and JavaScript-driven behaviors captured dur
 
 </details>
 
-<details>
-<summary>PEP8 and Python Validation</summary>
-</details>
 
+<a id="pep8-validation"></a>
 <details>
-<summary>Python — Testing & validation images</summary>
+
+<summary>PEP8 and Python Validation</summary>
 
 Python-related test runs and CI snapshots used during development.
 
@@ -395,6 +464,22 @@ Python-related test runs and CI snapshots used during development.
 
 </details>
 
+<a id="lighthouse"></a>
+
+<details>
+
+<summary>Lighthouse and Wave</summary>
+
+![Lighthouse desktop](/documentation/images/lighthouse-home.png)
+
+![Lighthouse mobile](/documentation/images/lighthouse-homem.png)
+
+![Wave](/documentation/images/wave.png)
+
+</details>
+
+<a id="ai-integration"></a>
+
 ## AI integration 🤖
 AI has been used throughout the creation of this project, it is the only reason I was able to achieve a large scoped project in only three weeks.
 
@@ -402,7 +487,7 @@ AI has added code, debugged code, helped with design choices and helped to plan 
 
 AI has also been implemented into the core site itself.
 
-- AI agent added to site to answer queries relating to computer building, the AI agent is also connected to the youtube API and will suggest videos relating to the prompt.
+- An AI agent was added to the site to answer queries relating to computer building; the agent is also connected to the YouTube API and can suggest videos related to the user's prompt.
 
 - Optional AI services can enrich part metadata and surface supplementary content (examples: name normalization and fetching review videos). These integrations are optional and not required for the core calculator.
 
@@ -410,8 +495,12 @@ Notes:
 - If configured, AI enrichment runs during data import/enrichment or on-demand during preview generation; keep API keys private and set them via environment variables.
 
 
+<a id="tech-used"></a>
+
 ## Tech used 🛠️
 - HTML, CSS, JavaScript, Python, Django, Bootstrap, Select2, Postgres, Gunicorn, Whitenoise, Numpy, Pandas
+
+<a id="improvements--future-work"></a>
 
 ## Improvements & Future Work 🔭
 - Live price API integration and alerts.
@@ -420,6 +509,8 @@ Notes:
 - Improve FPS accuracy.
 - Add extra sets of benchmarks for normalisation.
 - Create benchmarking software.
+
+<a id="references"></a>
 
 ## References 📚
 - Blender Open Data, UserBenchmarks, TechPowerUp, Django docs, Bootstrap docs.
