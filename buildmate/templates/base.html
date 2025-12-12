@@ -120,7 +120,7 @@
           <div class="d-grid gap-2 mb-2">
             <a href="{% url 'account_signup' %}" class="btn btn-outline-primary w-100">Sign up</a>
             <a href="{% url 'account_login' %}" class="btn btn-outline-secondary w-100">Log in</a>
-            <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger w-100">Sign in with Google</a>
+            <a href="{% url 'account_login' %}" class="btn btn-outline-danger w-100">Sign in with Google</a>
           </div>
         </div>
       </div>

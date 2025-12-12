@@ -12,13 +12,12 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 from pathlib import Path
-import env
 import dj_database_url
 
 if os.path.isfile("env.py"):
     # load local environment overrides (env.py sets os.environ keys)
     # e.g. DATABASE_URL, SECRET_KEY, API keys for local development
-    import env
+    import env  # noqa: F401
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 

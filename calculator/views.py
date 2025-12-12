@@ -2464,7 +2464,11 @@ def preview_edit(request):
                 # try swapping CPU to match motherboard
                 candidates = CPU.objects.order_by("-price")[:200]
                 candidate = next(
-                    (c for c in candidates if compatible_cpu_mobo(c, new_mobo)),
+                    (
+                        c
+                        for c in candidates
+                        if compatible_cpu_mobo(c, new_mobo)
+                    ),
                     None,
                 )
                 if candidate:
@@ -2689,12 +2693,12 @@ def build_preview_pk(request, pk):
         return render(
             request,
             "calculator/build_preview.html",
-                {
-                    "error": (
-                        "Saved build is missing one or more components. "
-                        "Please edit or delete this build."
-                    ),
-                },
+            {
+                "error": (
+                    "Saved build is missing one or more components. "
+                    "Please edit or delete this build."
+                ),
+            },
         )
 
     signup_form = SignupForm()
@@ -3657,7 +3661,7 @@ def edit_build(request, pk):
     return render(request, "calculator/edit_build.html", context)
 
 
-## Tokens and endpoints
+# Tokens and endpoints
 GITHUB_TOKEN_MINI = os.getenv("GITHUB_TOKEN_MINI") or os.getenv("GITHUB_TOKEN")
 GITHUB_TOKEN_FULL = os.getenv("GITHUB_TOKEN_FULL") or os.getenv("GITHUB_TOKEN")
 

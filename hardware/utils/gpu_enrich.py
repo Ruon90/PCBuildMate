@@ -191,7 +191,8 @@ def add_gpu_benchmarks(output_file: Path, debug=False):
     if debug:
         # break into multiple args to keep the source line short
         print(
-            "[DEBUG] Pruned GPUs without benchmarks:", before - after, "removed,",
+            "[DEBUG] Pruned GPUs without benchmarks:",
+            before - after, "removed,",
             after, "remain",
         )
 

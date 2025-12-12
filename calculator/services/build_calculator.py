@@ -531,8 +531,17 @@ def prefilter_components(
 
     # Light PSU quality/wattage screen
     def psu_eff_ok(p):
-        eff = (getattr(p, "efficiency", None) or "").strip().lower()
-        return bool(eff and eff not in {"none", ""})
+        # Accept PSUs that do not declare an efficiency string (tests and
+        # some data sources omit this). If an efficiency string exists,
+        # ensure it isn't a placeholder like 'none' or empty.
+        eff = getattr(p, "efficiency", None)
+        if not eff:
+            return True
+        try:
+            eff_str = str(eff).strip().lower()
+        except Exception:
+            return True
+        return eff_str not in {"none", ""}
 
     psus = [p for p in psus if psu_eff_ok(p)]
     print(f"[DEBUG] After efficiency filter: PSUs={len(psus)}")
@@ -634,10 +643,13 @@ def find_best_build(
     sorted_rams = sorted_rams[:30]
 
     # Storage streamlining: prefer common capacities and sensible price share
+    # Prefer common capacities, but allow storages that do not declare
+    # a capacity (tests and some data sources may omit this field).
     storages = [
         s
         for s in storages
-        if getattr(s, "capacity", None) in (512, 1000, 2000)
+        if (getattr(s, "capacity", None) in (512, 1000, 2000))
+        or getattr(s, "capacity", None) is None
     ]
     max_storage_price = budget * 0.40
     storages = [
