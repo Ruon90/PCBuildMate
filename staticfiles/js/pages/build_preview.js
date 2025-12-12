@@ -14,8 +14,8 @@
           panes.forEach(p => {
             p.style.display = (p.getAttribute('data-res-pane') === r) ? 'block' : 'none';
           });
-        }catch(e){/* defensive */}
+  }catch(err){/* defensive */}
       }));
-    }catch(e){/* defensive */}
+  }catch(err){/* defensive */}
   });
 })();

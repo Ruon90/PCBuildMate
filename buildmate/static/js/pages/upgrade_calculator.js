@@ -16,28 +16,28 @@
               if (typeof form.reportValidity === 'function') form.reportValidity();
               $(form).addClass('was-validated');
               // show Select2 invalid visuals for searchable selects so users see feedback
-              try { if (window.pcbmEnsureSelect2InvalidVisuals) window.pcbmEnsureSelect2InvalidVisuals(form); } catch(e){}
+              try { if (window.pcbmEnsureSelect2InvalidVisuals) window.pcbmEnsureSelect2InvalidVisuals(form); } catch(err){}
               var firstInvalid = form.querySelector(':invalid'); if (firstInvalid && firstInvalid.focus) firstInvalid.focus();
               return;
             }
-          } catch(e) {}
+          } catch(err) {}
           // show modal fallback
           try {
             var modalEl = document.getElementById('upgradeProgressModal');
             if (modalEl) {
               if (window.bootstrap && window.bootstrap.Modal) {
-                try { new window.bootstrap.Modal(modalEl, { backdrop: 'static', keyboard: false }).show(); } catch(e) { modalEl.classList.add('show'); modalEl.style.display='block'; }
+                try { new window.bootstrap.Modal(modalEl, { backdrop: 'static', keyboard: false }).show(); } catch(err) { modalEl.classList.add('show'); modalEl.style.display='block'; }
               } else { modalEl.classList.add('show'); modalEl.style.display='block'; }
             }
-          } catch(e) {}
+          } catch(err) {}
           // Submit the form with best-effort fallbacks
-          try { if (typeof form.requestSubmit === 'function') { form.requestSubmit(); return; } } catch(e) {}
-          try { form.dispatchEvent(new Event('submit', { cancelable: true })); return; } catch(e) {}
-          try { form.submit(); } catch(e) {}
+          try { if (typeof form.requestSubmit === 'function') { form.requestSubmit(); return; } } catch(err) {}
+          try { form.dispatchEvent(new Event('submit', { cancelable: true })); return; } catch(err) {}
+          try { form.submit(); } catch(err) {}
         });
       });
     }
-  } catch(e) {}
+  } catch(err) {}
 })();
 
 
@@ -46,7 +46,7 @@
   (function($){
     // Initialize Select2 as early as possible on DOM ready to ensure placeholders are set before any visual transitions
     $(document).ready(function(){
-      try{ if($.fn.select2){ $('.searchable').filter(function(){ return !$(this).data('select2'); }).select2({ width: '100%', placeholder: 'Start typing to search', allowClear: true }); } }catch(e){}
+      try{ if($.fn.select2){ $('.searchable').filter(function(){ return !$(this).data('select2'); }).select2({ width: '100%', placeholder: 'Start typing to search', allowClear: true }); } }catch(err){}
         
         // Clear invalid visuals when users interact with inputs/selects after an invalid state
         try{
@@ -65,18 +65,18 @@
                     else if (el.parentNode) container = el.parentNode.querySelector('.select2-container');
                   }
                   if (container && container.classList) container.classList.remove('is-invalid');
-                  var fb = el.parentNode ? el.parentNode.querySelector('.invalid-feedback') : null;
+                  let fb = el.parentNode ? el.parentNode.querySelector('.invalid-feedback') : null;
                   if (fb && fb.classList) fb.classList.remove('d-block');
-                }catch(e){}
+                }catch(err){}
               }
               // If the whole form is now valid, remove was-validated so bootstrap visuals reset
               var form = $(el).closest('form')[0];
               if (form && typeof form.checkValidity === 'function' && form.checkValidity()){
                 $(form).removeClass('was-validated');
               }
-            }catch(e){}
+            }catch(err){}
           });
-        }catch(e){}
+        }catch(err){}
       // If returning from preview, fade-in the proposals section to match exit.
       (function(){
         function handleReturnFromPreview(){
@@ -107,14 +107,14 @@
         });
       });
     });
-  })(jQuery);
+  })(window.jQuery);
 
   // Intercept the upgrade form submit and show a modal with a progress bar.
   (function(){
     const modalEl = document.getElementById('upgradeProgressModal');
     const progressBar = document.getElementById('upgradeProgressBar');
     const progressMsg = document.getElementById('upgradeProgressMsg');
-    try { if (modalEl && modalEl.parentNode !== document.body) { document.body.appendChild(modalEl); } } catch(e) {}
+    try { if (modalEl && modalEl.parentNode !== document.body) { document.body.appendChild(modalEl); } } catch(err) {}
     if (!modalEl) return;
 
     // Helper: ensure Select2-enhanced selects show invalid visuals when native select is invalid.
@@ -131,7 +131,7 @@
                 var $sel = window.jQuery(sel);
                 var s2 = $sel.data && $sel.data('select2');
                 if (s2 && s2.$container) container = s2.$container[0];
-              } catch(e){}
+              } catch(err){}
             }
             if (!container) {
               if (sel.nextElementSibling && sel.nextElementSibling.classList && sel.nextElementSibling.classList.contains('select2-container')) container = sel.nextElementSibling;
@@ -139,21 +139,21 @@
             }
             if (invalid) {
               if (container && container.classList) container.classList.add('is-invalid');
-              var fb = sel.parentNode ? sel.parentNode.querySelector('.invalid-feedback') : null;
+              let fb = sel.parentNode ? sel.parentNode.querySelector('.invalid-feedback') : null;
               if (fb && fb.classList) fb.classList.add('d-block');
             } else {
               if (container && container.classList) container.classList.remove('is-invalid');
-              var fb = sel.parentNode ? sel.parentNode.querySelector('.invalid-feedback') : null;
+              let fb = sel.parentNode ? sel.parentNode.querySelector('.invalid-feedback') : null;
               if (fb && fb.classList) fb.classList.remove('d-block');
             }
-          } catch(e){}
+          } catch(err){}
         });
         Array.from(form.querySelectorAll('select')).forEach(function(sel){
           if (!sel.classList.contains('searchable')) {
-            try { if (typeof sel.checkValidity === 'function' && !sel.checkValidity()) sel.classList.add('is-invalid'); else sel.classList.remove('is-invalid'); } catch(e){}
+            try { if (typeof sel.checkValidity === 'function' && !sel.checkValidity()) sel.classList.add('is-invalid'); else sel.classList.remove('is-invalid'); } catch(err){}
           }
         });
-      } catch(e){}
+      } catch(err){}
     };
 
     function patchInnerHTML(target, newHTML) {
@@ -177,7 +177,7 @@
 
     let bsModal = null;
     if (typeof window.bootstrap !== 'undefined' && window.bootstrap.Modal) {
-      try { bsModal = new window.bootstrap.Modal(modalEl, { backdrop: 'static', keyboard: false }); } catch (e) { bsModal = null; }
+      try { bsModal = new window.bootstrap.Modal(modalEl, { backdrop: 'static', keyboard: false }); } catch (err) { bsModal = null; }
     }
 
     function manualShowModal() {
@@ -190,8 +190,8 @@
         modalEl.style.display = 'block';
         modalEl.removeAttribute('aria-hidden');
         modalEl.setAttribute('aria-modal', 'true');
-        try { document.body.classList.add('modal-open'); } catch(e){}
-      } catch (e) {}
+        try { document.body.classList.add('modal-open'); } catch(err){}
+      } catch (err) {}
     }
 
     function manualHideModal() {
@@ -203,8 +203,8 @@
           modalEl.setAttribute('aria-hidden', 'true');
           modalEl.removeAttribute('aria-modal');
         }
-        try { document.body.classList.remove('modal-open'); } catch(e){}
-      } catch (e) {}
+        try { document.body.classList.remove('modal-open'); } catch(err){}
+      } catch (err) {}
     }
 
     // delegated click handler for the Find upgrades button
@@ -218,13 +218,13 @@
         if (!valid) {
           if (typeof form.reportValidity === 'function') form.reportValidity();
           form.classList.add('was-validated');
-          try { if (window.pcbmEnsureSelect2InvalidVisuals) window.pcbmEnsureSelect2InvalidVisuals(form); } catch(e){}
+          try { if (window.pcbmEnsureSelect2InvalidVisuals) window.pcbmEnsureSelect2InvalidVisuals(form); } catch(err){}
           const firstInvalid = form.querySelector(':invalid');
           if (firstInvalid && typeof firstInvalid.focus === 'function') firstInvalid.focus();
           return;
         }
       }
-      try { if (bsModal) bsModal.show(); else manualShowModal(); } catch(e) { manualShowModal(); }
+      try { if (bsModal) bsModal.show(); else manualShowModal(); } catch(err) { manualShowModal(); }
       progressBar.classList.remove('bg-danger');
       progressBar.classList.add('bg-primary');
       progressBar.classList.add('progress-bar-animated');
@@ -243,7 +243,7 @@
         e.preventDefault();
         if (typeof form.reportValidity === 'function') form.reportValidity();
         form.classList.add('was-validated');
-        try { if (window.pcbmEnsureSelect2InvalidVisuals) window.pcbmEnsureSelect2InvalidVisuals(form); } catch(e){}
+        try { if (window.pcbmEnsureSelect2InvalidVisuals) window.pcbmEnsureSelect2InvalidVisuals(form); } catch(err){}
         const firstInvalid = form.querySelector(':invalid');
         if (firstInvalid && typeof firstInvalid.focus === 'function') firstInvalid.focus();
         return;
@@ -268,27 +268,27 @@
               const curRoot = document.getElementById('upgradeCalculatorRoot') || document.querySelector('div.card');
               if (newRoot && curRoot) {
                 patchInnerHTML(curRoot, newRoot.innerHTML);
-                try { if (window.PCBM && typeof window.PCBM.updateB4BBadges === 'function') window.PCBM.updateB4BBadges(document.getElementById('upgradeCalculatorRoot') || document); } catch(e){}
-                try { if (window.jQuery && window.jQuery.fn && window.jQuery.fn.selectpicker){ var $ = window.jQuery; $('.selectpicker').each(function(){ var $el = $(this); if (!$el.data('selectpicker')) { $el.selectpicker(); } else { $el.selectpicker('refresh'); } }); $('.selectpicker').each(function(){ var $el = $(this); var hasRendered = !!$el.parent().find('.bootstrap-select').length; if(!hasRendered){ $el.removeClass('bs-select-hidden').css({display:'block'}); } }); } } catch(e){}
-                try { document.querySelectorAll('.res-toggle-card-btn').forEach(btn => { btn.removeEventListener('click', window._resToggleHandler || function(){}); }); window._resToggleHandler = function(ev){ var b = ev.currentTarget; var res = b.getAttribute('data-res'); var card = b.closest('.card'); if (!card) return; card.querySelectorAll('.res-toggle-card-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); card.querySelectorAll('.fps-block').forEach(function(el){ el.classList.toggle('active', el.getAttribute('data-res') === res); }); }; document.querySelectorAll('.res-toggle-card-btn').forEach(btn => btn.addEventListener('click', window._resToggleHandler)); } catch(e){}
-                try { const alertEl = document.getElementById('noUpgradesAlert'); if (alertEl){ alertEl.classList.remove('d-none'); alertEl.removeAttribute('aria-hidden'); } }catch(e){}
+                try { if (window.PCBM && typeof window.PCBM.updateB4BBadges === 'function') window.PCBM.updateB4BBadges(document.getElementById('upgradeCalculatorRoot') || document); } catch(err){}
+                try { if (window.jQuery && window.jQuery.fn && window.jQuery.fn.selectpicker){ var $ = window.jQuery; $('.selectpicker').each(function(){ var $el = $(this); if (!$el.data('selectpicker')) { $el.selectpicker(); } else { $el.selectpicker('refresh'); } }); $('.selectpicker').each(function(){ var $el = $(this); var hasRendered = !!$el.parent().find('.bootstrap-select').length; if(!hasRendered){ $el.removeClass('bs-select-hidden').css({display:'block'}); } }); } } catch(err){}
+                try { document.querySelectorAll('.res-toggle-card-btn').forEach(btn => { btn.removeEventListener('click', window._resToggleHandler || function(){}); }); window._resToggleHandler = function(ev){ var b = ev.currentTarget; var res = b.getAttribute('data-res'); var card = b.closest('.card'); if (!card) return; card.querySelectorAll('.res-toggle-card-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); card.querySelectorAll('.fps-block').forEach(function(el){ el.classList.toggle('active', el.getAttribute('data-res') === res); }); }; document.querySelectorAll('.res-toggle-card-btn').forEach(btn => btn.addEventListener('click', window._resToggleHandler)); } catch(err){}
+                try { const alertEl = document.getElementById('noUpgradesAlert'); if (alertEl){ alertEl.classList.remove('d-none'); alertEl.removeAttribute('aria-hidden'); } }catch(err){}
               } else { window.location.reload(); }
-              try{ if (bsModal) bsModal.hide(); } catch(e){} finally { manualHideModal(); }
+              try{ if (bsModal) bsModal.hide(); } catch(err){} finally { manualHideModal(); }
             }, 1200);
           } else {
             progressMsg.textContent = `Found ${count} upgrade path${count === 1 ? '' : 's'}`;
             setTimeout(()=>{
               try{
                 const newDocProposals = doc.getElementById('proposalsSection'); const curProposals = document.getElementById('proposalsSection'); const newDocCurrent = doc.getElementById('currentBuildSummary'); const curCurrent = document.getElementById('currentBuildSummary');
-                if (newDocProposals && curProposals){ patchInnerHTML(curProposals, newDocProposals.innerHTML); if (newDocCurrent && curCurrent) patchInnerHTML(curCurrent, newDocCurrent.innerHTML); try { if (window.PCBM && typeof window.PCBM.updateB4BBadges === 'function') window.PCBM.updateB4BBadges(document.getElementById('proposalsSection') || document); } catch(e){} const alertEl = document.getElementById('noUpgradesAlert'); if (alertEl){ alertEl.classList.add('d-none'); alertEl.setAttribute('aria-hidden','true'); }
-                  try{ if (window.jQuery && window.jQuery.fn && window.jQuery.fn.selectpicker){ var $ = window.jQuery; $('.selectpicker').each(function(){ var $el = $(this); if (!$el.data('selectpicker')) { $el.selectpicker(); } else { $el.selectpicker('refresh'); } }); $('.selectpicker').each(function(){ var $el = $(this); var hasRendered = !!$el.parent().find('.bootstrap-select').length; if(!hasRendered){ $el.removeClass('bs-select-hidden').css({display:'block'}); } }); } }catch(e){}
-                  try{ if (!window._resToggleHandler){ window._resToggleHandler = function(ev){ var b = ev.currentTarget; var res = b.getAttribute('data-res'); var card = b.closest('.card'); if (!card) return; card.querySelectorAll('.res-toggle-card-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); card.querySelectorAll('.fps-block').forEach(function(el){ el.classList.toggle('active', el.getAttribute('data-res') === res); }); }; } document.querySelectorAll('.res-toggle-card-btn').forEach(btn => btn.addEventListener('click', window._resToggleHandler)); }catch(e){}
+                if (newDocProposals && curProposals){ patchInnerHTML(curProposals, newDocProposals.innerHTML); if (newDocCurrent && curCurrent) patchInnerHTML(curCurrent, newDocCurrent.innerHTML); try { if (window.PCBM && typeof window.PCBM.updateB4BBadges === 'function') window.PCBM.updateB4BBadges(document.getElementById('proposalsSection') || document); } catch(err){} const alertEl = document.getElementById('noUpgradesAlert'); if (alertEl){ alertEl.classList.add('d-none'); alertEl.setAttribute('aria-hidden','true'); }
+                  try{ if (window.jQuery && window.jQuery.fn && window.jQuery.fn.selectpicker){ var $ = window.jQuery; $('.selectpicker').each(function(){ var $el = $(this); if (!$el.data('selectpicker')) { $el.selectpicker(); } else { $el.selectpicker('refresh'); } }); $('.selectpicker').each(function(){ var $el = $(this); var hasRendered = !!$el.parent().find('.bootstrap-select').length; if(!hasRendered){ $el.removeClass('bs-select-hidden').css({display:'block'}); } }); } }catch(err){}
+                  try{ if (!window._resToggleHandler){ window._resToggleHandler = function(ev){ var b = ev.currentTarget; var res = b.getAttribute('data-res'); var card = b.closest('.card'); if (!card) return; card.querySelectorAll('.res-toggle-card-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); card.querySelectorAll('.fps-block').forEach(function(el){ el.classList.toggle('active', el.getAttribute('data-res') === res); }); }; } document.querySelectorAll('.res-toggle-card-btn').forEach(btn => btn.addEventListener('click', window._resToggleHandler)); }catch(err){}
                 } else { const newRoot = doc.getElementById('upgradeCalculatorRoot') || doc.querySelector('div.card'); const curRoot = document.getElementById('upgradeCalculatorRoot') || document.querySelector('div.card'); if (newRoot && curRoot){ patchInnerHTML(curRoot, newRoot.innerHTML); } else { window.location.reload(); } }
-              } finally { try{ if (bsModal) bsModal.hide(); } catch(e){} finally { manualHideModal(); } }
+              } finally { try{ if (bsModal) bsModal.hide(); } catch(err){} finally { manualHideModal(); } }
             }, 700);
           }
-        } catch(err){ try{ if (bsModal) bsModal.hide(); } catch(e){} finally { manualHideModal(); } window.location.reload(); }
-      }).catch(err => { clearInterval(anim); progressBar.classList.remove('progress-bar-animated'); progressBar.classList.add('bg-danger'); progressBar.style.width = '100%'; progressMsg.textContent = 'Error finding upgrades'; setTimeout(()=>{ try{ if (bsModal) bsModal.hide(); } catch(e){} finally { manualHideModal(); } }, 1200); });
+        } catch(err){ try{ if (bsModal) bsModal.hide(); } catch(err){} finally { manualHideModal(); } window.location.reload(); }
+      }).catch(err => { clearInterval(anim); progressBar.classList.remove('progress-bar-animated'); progressBar.classList.add('bg-danger'); progressBar.style.width = '100%'; progressMsg.textContent = 'Error finding upgrades'; setTimeout(()=>{ try{ if (bsModal) bsModal.hide(); } catch(err){} finally { manualHideModal(); } }, 1200); });
     });
   })();
 

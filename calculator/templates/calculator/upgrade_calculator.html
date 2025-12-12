@@ -249,15 +249,10 @@
               {% endfor %}
             </div>
 
-            {# Bottleneck for the currently selected resolution (keeps content consistent) #}
-            {% for entry in pb.fps_res_list %}
-              {% if entry.res == resolution and entry.bottleneck %}
-                <p class="mt-1"><strong>Bottleneck:</strong></p>
-                <p class="mb-0">
-                  <span class="bottleneck-badge" data-type="{{ entry.bottleneck.type|default:'unknown' }}" data-pct="{{ entry.bottleneck.bottleneck|default:0.0 }}">{{ entry.bottleneck.type|default:'unknown' }} {{ entry.bottleneck.bottleneck|default:0.0 }}%</span>
-                </p>
-              {% endif %}
-            {% endfor %}
+            {# Bottleneck output moved below the Bang-for-buck block so the card
+               presents B4B information first, then bottleneck details. The
+               renderer will still populate the suggestion note under the main
+               badge at runtime. #}
 
   {% if pb.b4b and pb.b4b.grade %}
     <p class="mb-1 small"><strong>Bang for buck rating:</strong> {{ pb.b4b.grade }}
@@ -274,6 +269,17 @@
     {% else %}
       <p class="mb-1 small text-muted">This upgrade has a bang for buck rating of D and may not be cost-effective. The performance gain is relatively small compared to the additional cost.</p>
     {% endif %}
+  {% endif %}
+  <!-- Insert bottleneck badge after the Bang-for-buck block so the card shows
+       B4B info first, then the bottleneck badge and suggestion note. -->
+  {% if pb.fps_res_list %}
+    {% for entry in pb.fps_res_list %}
+      {% if entry.res == resolution and entry.bottleneck %}
+        <p class="mt-1 mb-0">
+          <span class="bottleneck-badge" data-type="{{ entry.bottleneck.type|default:'unknown' }}" data-pct="{{ entry.bottleneck.bottleneck|default:0.0 }}">Bottleneck: {{ entry.bottleneck.type|default:'unknown' }} {{ entry.bottleneck.bottleneck|default:0.0 }}%</span>
+        </p>
+      {% endif %}
+    {% endfor %}
   {% endif %}
 
   <!-- Estimated gain moved down to second from last (above Price) for consistency -->
@@ -298,8 +304,19 @@
                 <p class="mb-1 small text-muted">This upgrade has a bang for buck rating of D and may not be cost-effective. The performance gain is relatively small compared to the additional cost.</p>
               {% endif %}
             {% endif %}
-            <!-- Estimated gain moved down to second from last (above Price) for consistency -->
-            <p class="mt-1"><strong>Estimated gain:</strong> {{ pb.percent|floatformat:2 }}%</p>
+              <!-- Insert bottleneck badge after the Bang-for-buck block for consistency -->
+              {% if pb.fps_res_list %}
+                {% for entry in pb.fps_res_list %}
+                  {% if entry.res == resolution and entry.bottleneck %}
+                    <p class="mt-1 mb-0">
+                      <span class="bottleneck-badge" data-type="{{ entry.bottleneck.type|default:'unknown' }}" data-pct="{{ entry.bottleneck.bottleneck|default:0.0 }}">Bottleneck: {{ entry.bottleneck.type|default:'unknown' }} {{ entry.bottleneck.bottleneck|default:0.0 }}%</span>
+                    </p>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+
+              <!-- Estimated gain moved down to second from last (above Price) for consistency -->
+              <p class="mt-1"><strong>Estimated gain:</strong> {{ pb.percent|floatformat:2 }}%</p>
           </div>
           {% endif %}
           <!-- Price should be on its own line, with action buttons below -->

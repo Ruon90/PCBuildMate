@@ -9,7 +9,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PCBuildMate</title>
-  <script>/* mark JS-enabled early to allow CSS to hide native selects before paint */(function(){ try{ document.documentElement.classList.add('js'); }catch(e){} })();</script>
+  <script>/* mark JS-enabled early to allow CSS to hide native selects before paint */(function(){ try{ document.documentElement.classList.add('js'); }catch(err){} })();</script>
 
   <!-- Google Fonts: IBM Plex Sans (headings) + Inter (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,10 +57,10 @@
                 {% if user.is_authenticated %}
                   <form method="post" action="{% url 'account_logout' %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-sm btn-outline-danger align-self-center align-middle mt-2">Sign out</button>
+                    <button type="submit" class="btn btn-sm btn-outline-danger align-self-center align-middle mt-1">Sign out</button>
                   </form>
                 {% else %}
-                  <button class="btn btn-sm btn-outline-primary align-self-center align-middle mt-2" data-bs-toggle="modal" data-bs-target="#authModal">Register / Login</button>
+                  <button class="btn btn-sm btn-outline-primary align-self-center align-middle mt-1" data-bs-toggle="modal" data-bs-target="#authModal">Register / Login</button>
                 {% endif %}
               </div>
             </li>

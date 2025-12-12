@@ -18,7 +18,7 @@
 })();
 
 // Back/forward: clear any exit class
-(function(){ function clearExitOnly(){ try{ const main = document.getElementById('pageMain'); if(!main) return; delete document.body.dataset.animating; main.classList.remove('page-exit'); document.body.classList.add('page-ready'); }catch(e){} }
+(function(){ function clearExitOnly(){ try{ const main = document.getElementById('pageMain'); if(!main) return; delete document.body.dataset.animating; main.classList.remove('page-exit'); document.body.classList.add('page-ready'); }catch(err){} }
   window.addEventListener('pageshow', clearExitOnly); window.addEventListener('popstate', clearExitOnly);
 })();
 
@@ -26,7 +26,7 @@
 (function(){
   function titleCaseType(t){ return (t||'').replace(/_/g,' ').replace(/\b\w/g, s=>s.toUpperCase()); }
   function buildRow(label, value){ const tr = document.createElement('tr'); const th = document.createElement('th'); th.className = 'w-50'; th.textContent = label; const td = document.createElement('td'); td.textContent = value; tr.appendChild(th); tr.appendChild(td); return tr; }
-  async function openDetails(type, id){ const modalEl = document.getElementById('componentDetailsModal'); const titleEl = document.getElementById('componentDetailsTitle'); const loadingEl = document.getElementById('componentDetailsLoading'); const wrapEl = document.getElementById('componentDetailsTableWrap'); const tbody = document.querySelector('#componentDetailsTable tbody'); if(!modalEl||!titleEl||!loadingEl||!wrapEl||!tbody) return; titleEl.textContent = titleCaseType(type) + ' details'; loadingEl.classList.remove('d-none'); wrapEl.classList.add('d-none'); tbody.innerHTML = ''; try{ const resp = await fetch(`/component-details/?type=${encodeURIComponent(type)}&id=${encodeURIComponent(id)}`); if(!resp.ok) throw new Error('Failed to load details'); const data = await resp.json(); titleEl.textContent = `${titleCaseType(data.type)} — ${data.title}`; data.rows.forEach(r=>{ tbody.appendChild(buildRow(r.label, r.value)); }); loadingEl.classList.add('d-none'); wrapEl.classList.remove('d-none'); }catch(e){ loadingEl.textContent = 'Unable to load details.'; } try{ const bs = window.bootstrap && window.bootstrap.Modal ? new window.bootstrap.Modal(modalEl) : null; if(bs) bs.show(); else { modalEl.classList.add('show'); modalEl.style.display='block'; } }catch{} }
+  async function openDetails(type, id){ const modalEl = document.getElementById('componentDetailsModal'); const titleEl = document.getElementById('componentDetailsTitle'); const loadingEl = document.getElementById('componentDetailsLoading'); const wrapEl = document.getElementById('componentDetailsTableWrap'); const tbody = document.querySelector('#componentDetailsTable tbody'); if(!modalEl||!titleEl||!loadingEl||!wrapEl||!tbody) return; titleEl.textContent = titleCaseType(type) + ' details'; loadingEl.classList.remove('d-none'); wrapEl.classList.add('d-none'); tbody.innerHTML = ''; try{ const resp = await fetch(`/component-details/?type=${encodeURIComponent(type)}&id=${encodeURIComponent(id)}`); if(!resp.ok) throw new Error('Failed to load details'); const data = await resp.json(); titleEl.textContent = `${titleCaseType(data.type)} — ${data.title}`; data.rows.forEach(r=>{ tbody.appendChild(buildRow(r.label, r.value)); }); loadingEl.classList.add('d-none'); wrapEl.classList.remove('d-none'); }catch(err){ loadingEl.textContent = 'Unable to load details.'; } try{ const bs = window.bootstrap && window.bootstrap.Modal ? new window.bootstrap.Modal(modalEl) : null; if(bs) bs.show(); else { modalEl.classList.add('show'); modalEl.style.display='block'; } }catch{} }
   document.addEventListener('click', function(ev){ const a = ev.target.closest('.component-details'); if(!a) return; ev.preventDefault(); const type = a.getAttribute('data-type'); const id = a.getAttribute('data-id'); if(type && id){ openDetails(type, id); } });
 })();
 
@@ -53,7 +53,14 @@
 
   function openChat(){
     if(aiAgent.classList.contains('open')) return;
-    try{ prevFocus = document.activeElement; }catch(e){ prevFocus = null; }
+  try{ prevFocus = document.activeElement; }catch(err){ prevFocus = null; }
+    // Add an explicit 'animate' marker so the CSS animation only runs when
+    // the user triggers openChat. This prevents animations playing on page
+    // load or when the browser restores DOM from bfcache.
+    aiAgent.classList.add('animate');
+    // Force reflow to ensure the animate class is applied before we open
+    // (helps in some browsers so animation plays reliably when requested).
+    void aiAgent.offsetWidth;
     aiAgent.classList.remove('collapsed');
     aiAgent.classList.add('open');
     chatHeader.setAttribute('aria-expanded','true');
@@ -62,7 +69,15 @@
       chatWindow.innerHTML += "<p class=\"msg\"><b>AI:</b> Welcome! 👋<br>Ask me anything about PC builds and compatibility.</p>";
       hasOpened = true;
     }
-    setTimeout(function(){ try{ if(chatInput) chatInput.focus(); }catch(e){} }, 220);
+    setTimeout(function(){ try{ if(chatInput) chatInput.focus(); }catch(err){} }, 220);
+    // Remove the temporary animate marker after the open animation finishes
+    try{
+      var onAnimEnd = function(evt){
+        try{ aiAgent.removeEventListener('animationend', onAnimEnd); }catch(e){}
+        try{ aiAgent.classList.remove('animate'); }catch(e){}
+      };
+      aiAgent.addEventListener('animationend', onAnimEnd);
+    }catch(err){}
   }
 
   function closeChat(){
@@ -72,12 +87,14 @@
     chatHeader.setAttribute('aria-expanded','false');
     const onTransitionEnd = function(evt){
       if(evt.propertyName === 'max-height' || evt.propertyName === 'height'){
-        aiAgent.classList.add('collapsed');
-        try{ chatBody.removeEventListener('transitionend', onTransitionEnd); }catch(e){}
-        try{ if(prevFocus && typeof prevFocus.focus === 'function') prevFocus.focus(); }catch(e){}
+    aiAgent.classList.add('collapsed');
+    // Ensure any animate marker is removed when fully collapsed
+    try{ aiAgent.classList.remove('animate'); }catch(e){}
+  try{ chatBody.removeEventListener('transitionend', onTransitionEnd); }catch(err){}
+  try{ if(prevFocus && typeof prevFocus.focus === 'function') prevFocus.focus(); }catch(err){}
       }
     };
-    try{ chatBody.addEventListener('transitionend', onTransitionEnd); }catch(e){}
+  try{ chatBody.addEventListener('transitionend', onTransitionEnd); }catch(err){}
   }
 
   chatHeader.addEventListener('click', function(e){ if(e.target && e.target.id === 'chat-close') return; if(aiAgent.classList.contains('open')) closeChat(); else openChat(); });
@@ -108,7 +125,7 @@
     setOffset();
     window.addEventListener('resize', setOffset);
     window.addEventListener('load', setOffset);
-  }catch(e){ }
+  }catch(err){ }
 })();
 
 // B4B-style bottleneck badges (moved here so it's loaded via base.html -> script.js)
@@ -130,11 +147,18 @@
         el.classList.remove('bottleneck-balanced','bottleneck-suggest');
 
         // Build content: keep inline text size consistent with surrounding card text
-        var main = document.createElement('span'); main.className = 'bottleneck-main'; main.style.fontSize = 'inherit'; main.style.lineHeight = '1.2';
-        var label = document.createElement('strong'); label.className = 'bottleneck-type'; label.textContent = type;
-        var spacer = document.createTextNode(' ');
-        var num = document.createElement('span'); num.className = 'bottleneck-pct'; num.textContent = pct.toFixed(1) + '%';
-        main.appendChild(label); main.appendChild(spacer); main.appendChild(num);
+  var main = document.createElement('span'); main.className = 'bottleneck-main'; main.style.fontSize = 'inherit'; main.style.lineHeight = '1.2';
+  // Add an explicit 'Bottleneck:' label inside the badge so the card
+  // doesn't need a separate text node. The renderer will produce:
+  // "Bottleneck: CPU 12%" inside the badge.
+  var prefix = document.createElement('span'); prefix.className = 'bottleneck-label'; prefix.textContent = 'Bottleneck: ';
+  var label = document.createElement('strong'); label.className = 'bottleneck-type'; label.textContent = type;
+  var spacer = document.createTextNode(' ');
+  var num = document.createElement('span'); num.className = 'bottleneck-pct'; num.textContent = pct.toFixed(1) + '%';
+  main.appendChild(prefix);
+  main.appendChild(label);
+  main.appendChild(spacer);
+  main.appendChild(num);
 
         var note = document.createElement('div'); note.className = 'bottleneck-note';
 
@@ -157,7 +181,7 @@
         el.appendChild(main);
         el.appendChild(note);
       });
-    }catch(e){}
+    }catch(err){}
   };
-  document.addEventListener('DOMContentLoaded', function(){ try{ window.PCBM.updateB4BBadges(); }catch(e){} });
+  document.addEventListener('DOMContentLoaded', function(){ try{ window.PCBM.updateB4BBadges(); }catch(err){} });
 })();

@@ -11,12 +11,12 @@
           // Add a scoped exit class that fades and slides the preview content
           el.classList.add('content-exit');
           // hint for the browser to optimize the upcoming animation
-          try{ el.style.willChange = 'opacity, transform'; }catch(e){}
+          try{ el.style.willChange = 'opacity, transform'; }catch(err){}
         }
-        try { sessionStorage.setItem('returningFromPreview', '1'); } catch(e){}
+  try { sessionStorage.setItem('returningFromPreview', '1'); } catch(err){}
         // Wait slightly longer than the motion variable to ensure animation completes
         setTimeout(function(){ history.back(); }, 420);
-      }catch(e){ history.back(); }
+  }catch(err){ history.back(); }
     };
 
     // Resolution toggles (gaming mode). If a global init exists prefer it.
@@ -30,9 +30,9 @@
             document.querySelectorAll('.fps-compare-pane').forEach(p=>{
               p.style.display = (p.getAttribute('data-res-pane') === r) ? 'block' : 'none';
             });
-          }catch(e){}
+          }catch(err){}
         }));
-      }catch(e){}
+  }catch(err){}
 
       // Equalize card heights within preview rows (fallback for CSS flex inconsistencies)
       (function(){
@@ -58,7 +58,7 @@
     }
 
     // If the global initializer exists, call it (ensures single source of truth)
-    try{ if (window.PCBM && typeof window.PCBM.initUpgradePreview === 'function') window.PCBM.initUpgradePreview(); }catch(e){}
+  try{ if (window.PCBM && typeof window.PCBM.initUpgradePreview === 'function') window.PCBM.initUpgradePreview(); }catch(err){}
 
   });
 })();

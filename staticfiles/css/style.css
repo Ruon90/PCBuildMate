@@ -408,17 +408,25 @@ footer.bg-dark{ background-color: rgba(0,0,0,0.45); border-top: 1px solid var(--
     transition: transform .35s cubic-bezier(.2,.8,.2,1), width .35s ease, height .28s ease, border-radius .28s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
 }
 
-/* Keep Bootstrap .badge labels (like "Mobo swap") with black text for legibility */
-.badge, .badge * { color: #000 !important; }
+/* Keep Bootstrap .badge labels (like "Mobo swap") with black text for legibility.
+    Defensive: ensure only the bottleneck badge uses white text so other
+    Bootstrap badges (Mobo swap, PSU swap, Bang for buck, etc) remain
+    legible on light backgrounds even if other rules try to override them. */
+.badge:not(.bottleneck-badge), .badge:not(.bottleneck-badge) * { color: #000 !important; }
+
+/* Ensure bottleneck badge and its children are explicitly white. This is
+    intentionally specific so other badge variants keep black text by default. */
+.bottleneck-badge, .bottleneck-badge * { color: #fff !important; }
 
 /* B4B badge styling: render the B4B inline label + percent + note as white text
    so it stands out on card dark backgrounds. Keep font-size consistent with
    surrounding card text and show a small muted note on the next line. */
-.bottleneck-badge { display: inline-block; font-size: inherit; color: #fff !important; }
-.bottleneck-badge .bottleneck-main { display: inline; color: #fff !important; }
-.bottleneck-badge .bottleneck-type { margin-right: .25rem; color: #fff !important; }
-.bottleneck-badge .bottleneck-pct { color: #fff !important; font-weight: 600; }
-.bottleneck-badge .bottleneck-note { color: #fff !important; font-size: .85em; margin-top: .25rem; }
+.bottleneck-badge { display: inline-block; font-size: inherit; }
+.bottleneck-badge .bottleneck-main { display: inline; }
+.bottleneck-badge .bottleneck-label { margin-right: .25rem; font-weight:600; }
+.bottleneck-badge .bottleneck-type { margin-right: .25rem; }
+.bottleneck-badge .bottleneck-pct { font-weight: 600; }
+.bottleneck-badge .bottleneck-note { font-size: .85em; margin-top: .25rem; }
 
 /* Ensure hero pages don't override the bottleneck badge text color */
 body.site-hero .bottleneck-badge, .proposals-card .bottleneck-badge { color: #fff !important; }
@@ -605,8 +613,8 @@ body.site-hero .bottleneck-badge, .proposals-card .bottleneck-badge { color: #ff
 }
 
 /* Apply animations when opening (slower for a smoother feel) */
-#ai-agent.open { animation: ai-card-open .42s cubic-bezier(.22,.9,.28,1) both; }
-#ai-agent.open #chat-header img.chat-icon{ animation: ai-avatar-move .42s cubic-bezier(.22,.9,.28,1) both; }
+#ai-agent.open.animate { animation: ai-card-open .42s cubic-bezier(.22,.9,.28,1) both; }
+#ai-agent.open.animate #chat-header img.chat-icon{ animation: ai-avatar-move .42s cubic-bezier(.22,.9,.28,1) both; }
 
 /* When collapsed, keep header text hidden and ensure avatar remains circular */
 #ai-agent.collapsed .chat-header-text{ display: none !important; }
