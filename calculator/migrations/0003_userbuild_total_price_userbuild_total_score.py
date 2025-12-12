@@ -6,18 +6,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('calculator', '0002_currencyrate_userbuild_updated_at'),
+        ("calculator", "0002_currencyrate_userbuild_updated_at"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='userbuild',
-            name='total_price',
-            field=models.DecimalField(decimal_places=2, default=0, max_digits=10),
+            model_name="userbuild",
+            name="total_price",
+            field=models.DecimalField(
+                decimal_places=2, default=0, max_digits=10
+            ),
         ),
         migrations.AddField(
-            model_name='userbuild',
-            name='total_score',
+            model_name="userbuild",
+            name="total_score",
             field=models.IntegerField(default=0),
         ),
     ]

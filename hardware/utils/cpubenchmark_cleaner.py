@@ -1,6 +1,8 @@
 import re
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
+
 
 # Slug builder for CPUs (drop family prefixes like i5/i7, Ryzen 7/9)
 def build_cpu_slug(name: str) -> str:
@@ -25,6 +27,7 @@ def build_cpu_slug(name: str) -> str:
     # Fallback: compact alphanumerics
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
+
 def clean_userbenchmark_cpu(root: Path):
     ub_file = root / "data/benchmark/CPU_UserBenchmarks.csv"
     df = pd.read_csv(ub_file, encoding="utf-8-sig")
@@ -32,11 +35,14 @@ def clean_userbenchmark_cpu(root: Path):
     col_model = cols.get("model") or "Model"
     col_bench = cols.get("benchmark") or "Benchmark"
     if col_model not in df.columns or col_bench not in df.columns:
-        raise ValueError("CPU_UserBenchmarks.csv must contain 'Model' and 'Benchmark' columns.")
+        raise ValueError(
+            "CPU_UserBenchmarks.csv must contain 'Model' and 'Benchmark' columns."
+        )
     df["Slug"] = df[col_model].astype(str).map(build_cpu_slug)
     out_file = root / "data/benchmark/CPU_UserBenchmarks_clean.csv"
     df.to_csv(out_file, index=False)
     print(f"[OK] Cleaned UserBenchmark -> {out_file}")
+
 
 def clean_blender_cpu(root: Path):
     blender_file = root / "data/benchmark/Blender - Open Data - CPU.csv"
@@ -45,16 +51,20 @@ def clean_blender_cpu(root: Path):
     col_device = cols.get("device name") or "Device Name"
     col_score = cols.get("median score") or "Median Score"
     if col_device not in df.columns or col_score not in df.columns:
-        raise ValueError("Blender CPU file must contain 'Device Name' and 'Median Score' columns.")
+        raise ValueError(
+            "Blender CPU file must contain 'Device Name' and 'Median Score' columns."
+        )
     df["Slug"] = df[col_device].astype(str).map(build_cpu_slug)
     out_file = root / "data/benchmark/Blender_CPU_clean.csv"
     df.to_csv(out_file, index=False)
     print(f"[OK] Cleaned Blender -> {out_file}")
 
+
 def main():
     root = Path(__file__).resolve().parent.parent.parent
     clean_userbenchmark_cpu(root)
     clean_blender_cpu(root)
+
 
 if __name__ == "__main__":
     main()

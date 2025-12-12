@@ -6,43 +6,57 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hardware', '0001_initial'),
+        ("hardware", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='gpu',
-            name='base_clock',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=8, null=True),
+            model_name="gpu",
+            name="base_clock",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=8, null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='gpu',
-            name='blender_score',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=12, null=True),
+            model_name="gpu",
+            name="blender_score",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=12, null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='gpu',
-            name='boost_clock',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=8, null=True),
+            model_name="gpu",
+            name="boost_clock",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=8, null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='gpu',
-            name='l2_cache_mb',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=8, null=True),
+            model_name="gpu",
+            name="l2_cache_mb",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=8, null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='gpu',
-            name='price',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=12, null=True),
+            model_name="gpu",
+            name="price",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=12, null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='gpu',
-            name='slot_width',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=6, null=True),
+            model_name="gpu",
+            name="slot_width",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=6, null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='gpu',
-            name='userbenchmark_score',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=12, null=True),
+            model_name="gpu",
+            name="userbenchmark_score",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=12, null=True
+            ),
         ),
     ]

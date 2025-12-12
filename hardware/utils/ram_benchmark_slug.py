@@ -1,15 +1,20 @@
-import pandas as pd
 import re
+
+import pandas as pd
+
 
 def slugify(text: str) -> str:
     """Lowercase and replace non-alphanumeric with dashes."""
     return re.sub(r"[^a-z0-9]+", "-", str(text).lower()).strip("-")
 
+
 def normalize_capacity(model: str) -> str:
     """
     Normalize capacity tokens like '2x16GB' or '32 GB' into '32-gb'.
     """
-    match_combo = re.search(r"(\d+)\s*[xX]\s*(\d+)\s*GB", model, flags=re.IGNORECASE)
+    match_combo = re.search(
+        r"(\d+)\s*[xX]\s*(\d+)\s*GB", model, flags=re.IGNORECASE
+    )
     if match_combo:
         sticks = int(match_combo.group(1))
         size = int(match_combo.group(2))
@@ -18,6 +23,7 @@ def normalize_capacity(model: str) -> str:
     if match_single:
         return f"{int(match_single.group(1))}-gb"
     return ""
+
 
 def strip_noise_for_tokens(model: str) -> str:
     """
@@ -32,8 +38,10 @@ def strip_noise_for_tokens(model: str) -> str:
     s = re.sub(r"\bcl?\s*\d+\b", "", s, flags=re.IGNORECASE)
 
     # Remove capacity patterns (but we'll compute capacity separately)
-    s = re.sub(r"\b\d+\s*[xX]\s*\d+\s*GB\b", "", s, flags=re.IGNORECASE)  # 2x16GB
-    s = re.sub(r"\b\d+\s*GB\b", "", s, flags=re.IGNORECASE)               # 32 GB
+    s = re.sub(
+        r"\b\d+\s*[xX]\s*\d+\s*GB\b", "", s, flags=re.IGNORECASE
+    )  # 2x16GB
+    s = re.sub(r"\b\d+\s*GB\b", "", s, flags=re.IGNORECASE)  # 32 GB
 
     # Also remove raw 'GB' leftovers without numbers
     s = re.sub(r"\bGB\b", "", s, flags=re.IGNORECASE)
@@ -41,6 +49,7 @@ def strip_noise_for_tokens(model: str) -> str:
     # Collapse spaces after removals
     s = re.sub(r"\s+", " ", s).strip()
     return s
+
 
 def add_slugs_to_benchmarks(input_file, output_file):
     df = pd.read_csv(input_file)
@@ -65,9 +74,12 @@ def add_slugs_to_benchmarks(input_file, output_file):
         freq = freq_match.group(1) if freq_match else ""
 
         # Remove DDR/freq from core tokens so they appear only once at the tail
-        tokens = [t for t in model_slug.split("-") if t and t not in (ddr, freq)]
+        tokens = [
+            t for t in model_slug.split("-") if t and t not in (ddr, freq)
+        ]
 
-        # Build slug parts in the same structure as memory: brand-model-capacity-ddrX-frequency
+        # Build slug parts in the same structure as memory.
+        # Order: brand-model-capacity-ddrX-frequency
         slug_parts = [brand] + tokens[:3]
         if cap:
             slug_parts.append(cap)
@@ -83,8 +95,9 @@ def add_slugs_to_benchmarks(input_file, output_file):
     df.to_csv(output_file, index=False)
     print(f"Benchmark file with slugs written to {output_file}")
 
+
 if __name__ == "__main__":
     add_slugs_to_benchmarks(
         "data/benchmark/RAM_UserBenchmarks.csv",
-        "data/benchmark/RAM_UserBenchmarks_slugs.csv"
+        "data/benchmark/RAM_UserBenchmarks_slugs.csv",
     )

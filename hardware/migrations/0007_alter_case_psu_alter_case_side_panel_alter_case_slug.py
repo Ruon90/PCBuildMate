@@ -6,23 +6,25 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hardware', '0006_alter_case_case_type_alter_case_color_and_more'),
+        ("hardware", "0006_alter_case_case_type_alter_case_color_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='case',
-            name='psu',
+            model_name="case",
+            name="psu",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
         migrations.AlterField(
-            model_name='case',
-            name='side_panel',
+            model_name="case",
+            name="side_panel",
             field=models.CharField(blank=True, max_length=200, null=True),
         ),
         migrations.AlterField(
-            model_name='case',
-            name='slug',
-            field=models.SlugField(blank=True, max_length=200, null=True, unique=True),
+            model_name="case",
+            name="slug",
+            field=models.SlugField(
+                blank=True, max_length=200, null=True, unique=True
+            ),
         ),
     ]

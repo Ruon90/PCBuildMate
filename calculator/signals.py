@@ -1,6 +1,18 @@
-from django.dispatch import receiver
 from allauth.account.signals import user_signed_up
-from .models import UserBuild, CPU, GPU, Motherboard, RAM, Storage, PSU, CPUCooler, Case
+from django.dispatch import receiver
+
+from .models import (
+    CPU,
+    GPU,
+    PSU,
+    RAM,
+    Case,
+    CPUCooler,
+    Motherboard,
+    Storage,
+    UserBuild,
+)
+
 
 @receiver(user_signed_up)
 def migrate_session_build(sender, request, user, **kwargs):

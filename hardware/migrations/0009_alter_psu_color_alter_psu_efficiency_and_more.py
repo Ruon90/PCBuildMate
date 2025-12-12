@@ -6,38 +6,43 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hardware', '0008_alter_cpucooler_color_alter_cpucooler_name_and_more'),
+        (
+            "hardware",
+            "0008_alter_cpucooler_color_alter_cpucooler_name_and_more",
+        ),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='psu',
-            name='color',
+            model_name="psu",
+            name="color",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
         migrations.AlterField(
-            model_name='psu',
-            name='efficiency',
+            model_name="psu",
+            name="efficiency",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
         migrations.AlterField(
-            model_name='psu',
-            name='modular',
+            model_name="psu",
+            name="modular",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
         migrations.AlterField(
-            model_name='psu',
-            name='name',
+            model_name="psu",
+            name="name",
             field=models.CharField(blank=True, max_length=200, null=True),
         ),
         migrations.AlterField(
-            model_name='psu',
-            name='psu_type',
+            model_name="psu",
+            name="psu_type",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
         migrations.AlterField(
-            model_name='psu',
-            name='slug',
-            field=models.SlugField(blank=True, max_length=200, null=True, unique=True),
+            model_name="psu",
+            name="slug",
+            field=models.SlugField(
+                blank=True, max_length=200, null=True, unique=True
+            ),
         ),
     ]

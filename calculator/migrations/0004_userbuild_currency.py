@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('calculator', '0003_userbuild_total_price_userbuild_total_score'),
+        ("calculator", "0003_userbuild_total_price_userbuild_total_score"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='userbuild',
-            name='currency',
-            field=models.CharField(default='GBP', max_length=3),
+            model_name="userbuild",
+            name="currency",
+            field=models.CharField(default="GBP", max_length=3),
         ),
     ]

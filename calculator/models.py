@@ -1,29 +1,51 @@
-from django.db import models
-from django.contrib.auth.models import User
 from decimal import Decimal
+
+from django.contrib.auth.models import User
+from django.db import models
+
 # Import the hardware models from the app where you defined them
-from hardware.models import CPU, GPU, Motherboard, RAM, Storage, PSU, CPUCooler, Case, ThermalPaste
+from hardware.models import (
+    CPU,
+    GPU,
+    PSU,
+    RAM,
+    Case,
+    CPUCooler,
+    Motherboard,
+    Storage,
+    ThermalPaste,
+)
 
 
 class UserBuild(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True
+    )
     cpu = models.ForeignKey(CPU, on_delete=models.SET_NULL, null=True)
     gpu = models.ForeignKey(GPU, on_delete=models.SET_NULL, null=True)
-    motherboard = models.ForeignKey(Motherboard, on_delete=models.SET_NULL, null=True)
+    motherboard = models.ForeignKey(
+        Motherboard, on_delete=models.SET_NULL, null=True
+    )
     ram = models.ForeignKey(RAM, on_delete=models.SET_NULL, null=True)
     storage = models.ForeignKey(Storage, on_delete=models.SET_NULL, null=True)
     psu = models.ForeignKey(PSU, on_delete=models.SET_NULL, null=True)
-    cooler = models.ForeignKey(CPUCooler, on_delete=models.SET_NULL, null=True)  # fixed
+    cooler = models.ForeignKey(
+        CPUCooler, on_delete=models.SET_NULL, null=True
+    )  # fixed
     case = models.ForeignKey(Case, on_delete=models.SET_NULL, null=True)
     budget = models.DecimalField(max_digits=10, decimal_places=2)
     mode = models.CharField(
         max_length=20,
-        choices=[('gaming','Gaming'),('workstation','Workstation')]
+        choices=[("gaming", "Gaming"), ("workstation", "Workstation")],
     )
-    thermal_paste = models.ForeignKey(ThermalPaste, on_delete=models.SET_NULL, null=True, blank=True)
+    thermal_paste = models.ForeignKey(
+        ThermalPaste, on_delete=models.SET_NULL, null=True, blank=True
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    total_price = models.DecimalField(
+        max_digits=10, decimal_places=2, default=0
+    )
     total_score = models.IntegerField(default=0)
     currency = models.CharField(max_length=3, default="USD")
     bottleneck_pct = models.FloatField(default=0.0)
@@ -59,8 +81,8 @@ class UserBuild(models.Model):
         blender_score = float(self.cpu.blender_score or 0)
 
         score = int(
-            ub_score * weights["userbenchmark"] +
-            blender_score * weights["blender"]
+            ub_score * weights["userbenchmark"]
+            + blender_score * weights["blender"]
         )
 
         return price, score
@@ -86,7 +108,6 @@ class UserBuild(models.Model):
 
         super().save(*args, **kwargs)
 
-
     @property
     def live_total_price(self):
         """Always fresh calculation (ignores cached field)."""
@@ -96,6 +117,7 @@ class UserBuild(models.Model):
     def live_total_score(self):
         """Always fresh calculation (ignores cached field)."""
         return self.calculate_totals()[1]
+
 
 class CurrencyRate(models.Model):
     currency = models.CharField(max_length=3, unique=True)

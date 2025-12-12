@@ -1,12 +1,13 @@
-import os
 import argparse
-import requests
 import json
-import time
+import os
 import re
+import time
 from pathlib import Path
+
 import pandas as pd
-import env
+import requests
+
 
 # Tokens and endpoints
 GITHUB_TOKEN_MINI = os.getenv("GITHUB_TOKEN_MINI") or os.getenv("GITHUB_TOKEN")
@@ -14,11 +15,13 @@ GITHUB_TOKEN_FULL = os.getenv("GITHUB_TOKEN_FULL") or os.getenv("GITHUB_TOKEN")
 
 ENDPOINTS = {
     "gpt-4.1-mini": "https://models.inference.ai.azure.com/openai/deployments/gpt-4.1-mini/chat/completions",
-    "gpt-4.1": "https://models.inference.ai.azure.com/openai/deployments/gpt-4.1/chat/completions"
+    "gpt-4.1": "https://models.inference.ai.azure.com/openai/deployments/gpt-4.1/chat/completions",
 }
+
 
 def select_token(model: str) -> str:
     return GITHUB_TOKEN_MINI if model == "gpt-4.1-mini" else GITHUB_TOKEN_FULL
+
 
 TARGET_FIELDS = [
     "name",
@@ -31,8 +34,9 @@ TARGET_FIELDS = [
     "ddr_version",
     "ddr_max_speed",
     "nvme_support",
-    "bios_update_required"
+    "bios_update_required",
 ]
+
 
 # -----------------------------
 # Normalisation (slug builder)
@@ -45,6 +49,7 @@ def build_slug(name: str) -> str:
     s = re.sub(r"\s+", " ", s).strip()
     tokens = re.findall(r"[A-Z0-9\-]+", s)
     return "-".join(tok.lower() for tok in tokens)
+
 
 # -----------------------------
 # AI enrichment
@@ -70,17 +75,19 @@ List:
 
     headers = {
         "Authorization": f"Bearer {token}",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
     }
     payload = {
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
-        "temperature": 0
+        "temperature": 0,
     }
 
     for attempt in range(3):
         try:
-            resp = requests.post(endpoint, headers=headers, json=payload, timeout=(10, 90))
+            resp = requests.post(
+                endpoint, headers=headers, json=payload, timeout=(10, 90)
+            )
             if debug:
                 print(f"[AI] {model} -> Status {resp.status_code}")
         except Exception as e:
@@ -103,7 +110,9 @@ List:
             return []
 
         content = data["choices"][0]["message"]["content"].strip()
-        cleaned = re.sub(r"^```[a-zA-Z]*\s*|\s*```$", "", content, flags=re.MULTILINE).strip()
+        cleaned = re.sub(
+            r"^```[a-zA-Z]*\s*|\s*```$", "", content, flags=re.MULTILINE
+        ).strip()
 
         try:
             parsed = json.loads(cleaned)
@@ -113,6 +122,7 @@ List:
                 print(f"[AI] Parse error ({model}); preview: {content[:300]}")
             return []
     return []
+
 
 # -----------------------------
 # Two-pass enrichment
@@ -125,8 +135,10 @@ def enrich_boards(input_file, output_file, debug=False, batch_size=25):
 
     # Pass 1: gpt-4.1-mini
     for i in range(0, len(names), batch_size):
-        batch = names[i:i+batch_size]
-        results = call_ai_batch("motherboard", batch, debug=debug, model="gpt-4.1-mini")
+        batch = names[i : i + batch_size]
+        results = call_ai_batch(
+            "motherboard", batch, debug=debug, model="gpt-4.1-mini"
+        )
         for r in results or []:
             enriched_data[r["model_name"]] = r
 
@@ -136,16 +148,26 @@ def enrich_boards(input_file, output_file, debug=False, batch_size=25):
         print(f"[DEBUG] Missing after pass 1: {len(missing)} boards")
 
     for i in range(0, len(missing), batch_size):
-        batch = missing[i:i+batch_size]
-        results = call_ai_batch("motherboard", batch, debug=debug, model="gpt-4.1")
+        batch = missing[i : i + batch_size]
+        results = call_ai_batch(
+            "motherboard", batch, debug=debug, model="gpt-4.1"
+        )
         for r in results or []:
             enriched_data[r["model_name"]] = r
 
     # Merge back into dataframe
-    df["ddr_version"] = df["name"].map(lambda n: enriched_data.get(n, {}).get("ddr_version"))
-    df["ddr_max_speed"] = df["name"].map(lambda n: enriched_data.get(n, {}).get("ddr_max_speed"))
-    df["nvme_support"] = df["name"].map(lambda n: enriched_data.get(n, {}).get("nvme_support"))
-    df["bios_update_required"] = df["name"].map(lambda n: enriched_data.get(n, {}).get("bios_update_required"))
+    df["ddr_version"] = df["name"].map(
+        lambda n: enriched_data.get(n, {}).get("ddr_version")
+    )
+    df["ddr_max_speed"] = df["name"].map(
+        lambda n: enriched_data.get(n, {}).get("ddr_max_speed")
+    )
+    df["nvme_support"] = df["name"].map(
+        lambda n: enriched_data.get(n, {}).get("nvme_support")
+    )
+    df["bios_update_required"] = df["name"].map(
+        lambda n: enriched_data.get(n, {}).get("bios_update_required")
+    )
 
     # Ensure field order
     for f in TARGET_FIELDS:
@@ -156,19 +178,27 @@ def enrich_boards(input_file, output_file, debug=False, batch_size=25):
     df.to_csv(output_file, index=False)
     print(f"Motherboard enrichment complete -> {output_file}")
 
+
 # -----------------------------
 # CLI
 # -----------------------------
 def main():
-    parser = argparse.ArgumentParser(description="Motherboard enrichment: add DDR/NVMe/BIOS fields via AI")
-    parser.add_argument("--file", required=True, help="Path to motherboard CSV")
-    parser.add_argument("--debug", action="store_true", help="Enable debug logging")
+    parser = argparse.ArgumentParser(
+        description="Motherboard enrichment: add DDR/NVMe/BIOS fields via AI"
+    )
+    parser.add_argument(
+        "--file", required=True, help="Path to motherboard CSV"
+    )
+    parser.add_argument(
+        "--debug", action="store_true", help="Enable debug logging"
+    )
     args = parser.parse_args()
 
     input_path = Path(args.file)
     output_path = input_path.with_name(input_path.stem + "_enriched.csv")
 
     enrich_boards(str(input_path), str(output_path), debug=args.debug)
+
 
 if __name__ == "__main__":
     main()

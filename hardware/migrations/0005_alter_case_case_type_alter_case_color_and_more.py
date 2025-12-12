@@ -6,43 +6,47 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hardware', '0004_alter_case_case_type'),
+        ("hardware", "0004_alter_case_case_type"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='case',
-            name='case_type',
+            model_name="case",
+            name="case_type",
             field=models.CharField(blank=True, max_length=5000, null=True),
         ),
         migrations.AlterField(
-            model_name='case',
-            name='color',
+            model_name="case",
+            name="color",
             field=models.CharField(blank=True, max_length=500, null=True),
         ),
         migrations.AlterField(
-            model_name='case',
-            name='external_volume',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=80, null=True),
+            model_name="case",
+            name="external_volume",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=80, null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='case',
-            name='name',
+            model_name="case",
+            name="name",
             field=models.CharField(blank=True, max_length=1000, null=True),
         ),
         migrations.AlterField(
-            model_name='case',
-            name='price',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=120, null=True),
+            model_name="case",
+            name="price",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=120, null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='case',
-            name='psu',
+            model_name="case",
+            name="psu",
             field=models.CharField(blank=True, max_length=500, null=True),
         ),
         migrations.AlterField(
-            model_name='case',
-            name='side_panel',
+            model_name="case",
+            name="side_panel",
             field=models.CharField(blank=True, max_length=500, null=True),
         ),
     ]

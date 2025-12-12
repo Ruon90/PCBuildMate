@@ -1,6 +1,8 @@
 import argparse
-import pandas as pd
 import re
+
+import pandas as pd
+
 
 # -----------------------------
 # Slug helpers
@@ -8,7 +10,10 @@ import re
 def slugify(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", str(text).lower()).strip("-")
 
-def build_psu_slug(brand: str, model: str, wattage: str, efficiency: str) -> str:
+
+def build_psu_slug(
+    brand: str, model: str, wattage: str, efficiency: str
+) -> str:
     """
     Build slug from PSU brand, model, wattage, and efficiency.
     """
@@ -17,6 +22,8 @@ def build_psu_slug(brand: str, model: str, wattage: str, efficiency: str) -> str
     eff = slugify(str(efficiency)) if efficiency else ""
     parts = [p for p in [base, watt, eff] if p]
     return "-".join(parts)
+
+
 # -----------------------------
 # Normalization helpers
 # -----------------------------
@@ -58,12 +65,19 @@ def run_pipeline(psu_file: str, output_file: str, debug=False):
             return tokens[0], ""
         return tokens[0], tokens[1]
 
-    df[["brand", "name"]] = df["name"].apply(lambda x: pd.Series(split_name(x)))
+    df[["brand", "name"]] = df["name"].apply(
+        lambda x: pd.Series(split_name(x))
+    )
 
     # Add slug column
     df["slug"] = df.apply(
-        lambda r: build_psu_slug(r["brand"], r["name"], r.get("wattage", ""), r.get("efficiency", "")),
-        axis=1
+        lambda r: build_psu_slug(
+            r["brand"],
+            r["name"],
+            r.get("wattage", ""),
+            r.get("efficiency", ""),
+        ),
+        axis=1,
     )
 
     # Save cleaned file
@@ -78,18 +92,24 @@ def run_pipeline(psu_file: str, output_file: str, debug=False):
     if debug:
         print("Sample cleaned rows:\n", df.head(5))
 
+
 # -----------------------------
 # CLI
 # -----------------------------
 def main():
-    parser = argparse.ArgumentParser(description="PSU pipeline: filter by price, split brand/name, add slug")
+    parser = argparse.ArgumentParser(
+        description="PSU pipeline: filter by price, split brand/name, add slug"
+    )
     parser.add_argument("--psu", required=True, help="Path to psu.csv")
     parser.add_argument("--output", required=False, help="Path to output CSV")
-    parser.add_argument("--debug", action="store_true", help="Enable debug logging")
+    parser.add_argument(
+        "--debug", action="store_true", help="Enable debug logging"
+    )
     args = parser.parse_args()
 
     output_file = args.output or args.psu.replace(".csv", "_cleaned.csv")
     run_pipeline(args.psu, output_file, debug=args.debug)
+
 
 if __name__ == "__main__":
     main()

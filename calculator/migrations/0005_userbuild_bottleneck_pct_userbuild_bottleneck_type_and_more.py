@@ -6,33 +6,33 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('calculator', '0004_userbuild_currency'),
+        ("calculator", "0004_userbuild_currency"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='userbuild',
-            name='bottleneck_pct',
+            model_name="userbuild",
+            name="bottleneck_pct",
             field=models.FloatField(default=0.0),
         ),
         migrations.AddField(
-            model_name='userbuild',
-            name='bottleneck_type',
-            field=models.CharField(blank=True, default='', max_length=50),
+            model_name="userbuild",
+            name="bottleneck_type",
+            field=models.CharField(blank=True, default="", max_length=50),
         ),
         migrations.AddField(
-            model_name='userbuild',
-            name='fps_estimates',
+            model_name="userbuild",
+            name="fps_estimates",
             field=models.JSONField(blank=True, default=dict),
         ),
         migrations.AddField(
-            model_name='userbuild',
-            name='workstation_estimates',
+            model_name="userbuild",
+            name="workstation_estimates",
             field=models.JSONField(blank=True, default=dict),
         ),
         migrations.AlterField(
-            model_name='userbuild',
-            name='currency',
-            field=models.CharField(default='USD', max_length=3),
+            model_name="userbuild",
+            name="currency",
+            field=models.CharField(default="USD", max_length=3),
         ),
     ]

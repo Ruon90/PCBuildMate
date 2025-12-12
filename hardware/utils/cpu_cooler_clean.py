@@ -1,8 +1,9 @@
 import argparse
 import re
-import pandas as pd
 from pathlib import Path
-import env
+
+import pandas as pd
+
 
 TARGET_FIELDS = [
     "name",
@@ -11,8 +12,9 @@ TARGET_FIELDS = [
     "noise_level",
     "color",
     "size",
-    "slug"
+    "slug",
 ]
+
 
 # -----------------------------
 # Slug builder
@@ -22,11 +24,16 @@ def build_slug(name: str) -> str:
         return ""
     s = name.upper()
     # Remove common vendor prefixes
-    s = re.sub(r"\b(CORSAIR|NOCTUA|BEQUIET|DEEPCOOL|NZXT|ARCTIC|COOLERMASTER)\b", "", s)
+    s = re.sub(
+        r"\b(CORSAIR|NOCTUA|BEQUIET|DEEPCOOL|NZXT|ARCTIC|COOLERMASTER)\b",
+        "",
+        s,
+    )
     s = re.sub(r"\s+", " ", s).strip()
     # Capture alphanumeric tokens
     tokens = re.findall(r"[A-Z0-9\-]+", s)
     return "-".join(tok.lower() for tok in tokens)
+
 
 # -----------------------------
 # Cleaning function
@@ -35,7 +42,9 @@ def clean_coolers(input_file, output_file, debug=False):
     df = pd.read_csv(input_file)
 
     # Drop rows with missing or empty price
-    df = df[df["price"].notna() & (df["price"].astype(str).str.strip() != "")].copy()
+    df = df[
+        df["price"].notna() & (df["price"].astype(str).str.strip() != "")
+    ].copy()
 
     # Add slug column
     df["slug"] = df["name"].apply(build_slug)
@@ -58,19 +67,25 @@ def clean_coolers(input_file, output_file, debug=False):
         print("\n[DEBUG] Sample rows after filtering:")
         print(df.head(10))
 
+
 # -----------------------------
 # CLI
 # -----------------------------
 def main():
-    parser = argparse.ArgumentParser(description="Clean CPU cooler dataset: drop rows with empty price and add slug")
+    parser = argparse.ArgumentParser(
+        description="Clean CPU cooler dataset: drop rows with empty price and add slug"
+    )
     parser.add_argument("--file", required=True, help="Path to raw cooler CSV")
-    parser.add_argument("--debug", action="store_true", help="Enable debug logging")
+    parser.add_argument(
+        "--debug", action="store_true", help="Enable debug logging"
+    )
     args = parser.parse_args()
 
     input_path = Path(args.file)
     output_path = input_path.with_name(input_path.stem + "_clean.csv")
 
     clean_coolers(str(input_path), str(output_path), debug=args.debug)
+
 
 if __name__ == "__main__":
     main()

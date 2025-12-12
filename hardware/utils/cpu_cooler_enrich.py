@@ -1,24 +1,29 @@
-import os
 import argparse
-import requests
 import json
-import time
+import os
 import re
-import pandas as pd
+import time
 from pathlib import Path
-import env
+
+import pandas as pd
+import requests
+
 
 # Tokens and endpoints
 GITHUB_TOKEN_MINI = os.getenv("GITHUB_TOKEN_MINI") or os.getenv("GITHUB_TOKEN")
 GITHUB_TOKEN_FULL = os.getenv("GITHUB_TOKEN_FULL") or os.getenv("GITHUB_TOKEN")
 
+AI_BASE = "https://models.inference.ai.azure.com/openai/deployments/"
+
 ENDPOINTS = {
-    "gpt-4.1-mini": "https://models.inference.ai.azure.com/openai/deployments/gpt-4.1-mini/chat/completions",
-    "gpt-4.1": "https://models.inference.ai.azure.com/openai/deployments/gpt-4.1/chat/completions"
+    "gpt-4.1-mini": AI_BASE + "gpt-4.1-mini/chat/completions",
+    "gpt-4.1": AI_BASE + "gpt-4.1/chat/completions",
 }
+
 
 def select_token(model: str) -> str:
     return GITHUB_TOKEN_MINI if model == "gpt-4.1-mini" else GITHUB_TOKEN_FULL
+
 
 TARGET_FIELDS = [
     "name",
@@ -28,8 +33,9 @@ TARGET_FIELDS = [
     "color",
     "size",
     "liquid",
-    "power_throughput"
+    "power_throughput",
 ]
+
 
 # -----------------------------
 # AI enrichment
@@ -51,17 +57,19 @@ List:
 
     headers = {
         "Authorization": f"Bearer {token}",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
     }
     payload = {
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
-        "temperature": 0
+        "temperature": 0,
     }
 
     for attempt in range(3):
         try:
-            resp = requests.post(endpoint, headers=headers, json=payload, timeout=(10, 90))
+            resp = requests.post(
+                endpoint, headers=headers, json=payload, timeout=(10, 90)
+            )
             if debug:
                 print(f"[AI] {model} -> Status {resp.status_code}")
         except Exception as e:
@@ -84,7 +92,9 @@ List:
             return []
 
         content = data["choices"][0]["message"]["content"].strip()
-        cleaned = re.sub(r"^```[a-zA-Z]*\s*|\s*```$", "", content, flags=re.MULTILINE).strip()
+        cleaned = re.sub(
+            r"^```[a-zA-Z]*\s*|\s*```$", "", content, flags=re.MULTILINE
+        ).strip()
 
         try:
             parsed = json.loads(cleaned)
@@ -94,6 +104,7 @@ List:
                 print(f"[AI] Parse error ({model}); preview: {content[:300]}")
             return []
     return []
+
 
 # -----------------------------
 # Fallback throughput rules
@@ -105,15 +116,24 @@ def fallback_throughput(size: str, liquid: bool) -> int:
         return None
 
     if liquid:
-        if s <= 120: return 180
-        elif s <= 240: return 250
-        elif s <= 360: return 300
-        else: return 350
+        if s <= 120:
+            return 180
+        elif s <= 240:
+            return 250
+        elif s <= 360:
+            return 300
+        else:
+            return 350
     else:
-        if s <= 92: return 95
-        elif s <= 120: return 150
-        elif s <= 140: return 180
-        else: return 200
+        if s <= 92:
+            return 95
+        elif s <= 120:
+            return 150
+        elif s <= 140:
+            return 180
+        else:
+            return 200
+
 
 # -----------------------------
 # Enrichment pipeline
@@ -134,7 +154,7 @@ def enrich_coolers(input_file, output_file, debug=False, batch_size=25):
     # Pass 2: gpt-4.1 for missing
     missing = [n for n in names if n not in enriched_data]
     if debug:
-        print(f"[DEBUG] Missing after pass 1: {len(missing)} coolers")
+        print("[DEBUG] Missing after pass 1:", len(missing), "coolers")
 
     for i in range(0, len(missing), batch_size):
         batch = missing[i:i+batch_size]
@@ -143,11 +163,13 @@ def enrich_coolers(input_file, output_file, debug=False, batch_size=25):
             enriched_data[r["model_name"]] = r
 
     # Merge back into dataframe
-    df["liquid"] = df["name"].map(lambda n: enriched_data.get(n, {}).get("liquid"))
+    df["liquid"] = df["name"].map(
+        lambda n: enriched_data.get(n, {}).get("liquid")
+    )
     df["power_throughput"] = df.apply(
         lambda row: enriched_data.get(row["name"], {}).get("power_throughput")
-                    or fallback_throughput(row["size"], row["liquid"]),
-        axis=1
+        or fallback_throughput(row["size"], row["liquid"]),
+        axis=1,
     )
 
     # Ensure field order
@@ -167,7 +189,8 @@ def enrich_coolers(input_file, output_file, debug=False, batch_size=25):
 
     print("\n=== Cooler Coverage Summary ===")
     print(f"Total coolers: {total}")
-    print(f"Liquid: {liquid_count} ({(liquid_count/total*100 if total else 0):.1f}%)")
+    # Shorter, split output for line-length
+    print("Liquid:", liquid_count, f"({(liquid_count/total*100 if total else 0):.1f}%)")
     print(f"Air: {air_count} ({(air_count/total*100 if total else 0):.1f}%)")
     print(f"Average throughput: {avg_throughput:.1f} W")
 
@@ -175,19 +198,25 @@ def enrich_coolers(input_file, output_file, debug=False, batch_size=25):
         print("\n[DEBUG] Sample rows after enrichment:")
         print(df.head(10))
 
+
 # -----------------------------
 # CLI
 # -----------------------------
 def main():
-    parser = argparse.ArgumentParser(description="CPU cooler enrichment: classify liquid/air and add throughput")
+    parser = argparse.ArgumentParser(
+        description="CPU cooler enrichment: classify and add throughput"
+    )
     parser.add_argument("--file", required=True, help="Path to cooler CSV")
-    parser.add_argument("--debug", action="store_true", help="Enable debug logging")
+    parser.add_argument(
+        "--debug", action="store_true", help="Enable debug logging"
+    )
     args = parser.parse_args()
 
     input_path = Path(args.file)
     output_path = input_path.with_name(input_path.stem + "_enriched.csv")
 
     enrich_coolers(str(input_path), str(output_path), debug=args.debug)
+
 
 if __name__ == "__main__":
     main()

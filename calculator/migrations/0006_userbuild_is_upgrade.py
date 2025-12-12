@@ -6,13 +6,16 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('calculator', '0005_userbuild_bottleneck_pct_userbuild_bottleneck_type_and_more'),
+        (
+            "calculator",
+            "0005_userbuild_bottleneck_pct_userbuild_bottleneck_type_and_more",
+        ),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='userbuild',
-            name='is_upgrade',
+            model_name="userbuild",
+            name="is_upgrade",
             field=models.BooleanField(default=False),
         ),
     ]

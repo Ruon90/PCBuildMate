@@ -1,6 +1,7 @@
-import pandas as pd
-from pathlib import Path
 import re
+from pathlib import Path
+
+import pandas as pd
 
 field_map = {
     "manufacturer": "brand",
@@ -32,6 +33,7 @@ field_map = {
     "display_connectors": "DisplayConnectors",
 }
 
+
 def simplify_model(name: str) -> str:
     if not name:
         return ""
@@ -48,6 +50,7 @@ def simplify_model(name: str) -> str:
     s = re.sub(r"^(rtx|gtx)\s*", "", s)
     return s.upper()
 
+
 def clean_gpu(file_path: Path, output_path: Path, filter_recent: bool = True):
     df = pd.read_csv(file_path)
     df.columns = df.columns.str.strip()
@@ -59,7 +62,9 @@ def clean_gpu(file_path: Path, output_path: Path, filter_recent: bool = True):
     # Apply simplification directly to GpuName
     df["model"] = df["GpuName"].apply(simplify_model)
 
-    cols = ["brand", "model"] + [c for c in df.columns if c not in ["brand", "model"]]
+    cols = ["brand", "model"] + [
+        c for c in df.columns if c not in ["brand", "model"]
+    ]
     df = df[cols]
 
     # Normalize ReleaseDate
@@ -72,7 +77,10 @@ def clean_gpu(file_path: Path, output_path: Path, filter_recent: bool = True):
 
     df = df.dropna(how="all").dropna(axis=1, how="all")
     df.to_csv(output_path, index=False)
-    print(f"GPU cleaned dataset saved to {output_path} (filter_recent={filter_recent})")
+    print(
+        f"GPU cleaned dataset saved to {output_path} (filter_recent={filter_recent})"
+    )
+
 
 def main():
     data_dir = Path(__file__).resolve().parent.parent.parent / "data/gpu"
@@ -81,6 +89,7 @@ def main():
 
     # Toggle filter_recent here
     clean_gpu(gpu_file, output_file, filter_recent=True)
+
 
 if __name__ == "__main__":
     main()

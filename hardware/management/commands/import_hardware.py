@@ -1,8 +1,9 @@
 import csv
-import re
 import datetime
-from django.core.management.base import BaseCommand
+import re
+
 from django.apps import apps
+from django.core.management.base import BaseCommand
 from django.utils.text import slugify
 
 MODEL_ALIASES = {
@@ -84,12 +85,14 @@ LOOKUP_FIELDS = {
     "ThermalPaste": "slug",
 }
 
+
 def clean_number(value: str) -> str:
     if value is None:
         return ""
     s = str(value).strip().replace(",", "")
     m = re.search(r"[-+]?\d*\.?\d+", s)
     return m.group(0) if m else ""
+
 
 def cast_number(field: str, value: str):
     if value in ("", None):
@@ -102,6 +105,7 @@ def cast_number(field: str, value: str):
         return caster(float(raw)) if caster is int else caster(raw)
     except Exception:
         return None
+
 
 def normalize_value(field, value):
     if value in ("", None, "N/A"):
@@ -117,6 +121,7 @@ def normalize_value(field, value):
         return None
     return value
 
+
 def ensure_slug(model_name: str, data: dict) -> None:
     if "slug" in data and data["slug"]:
         return
@@ -129,12 +134,14 @@ def ensure_slug(model_name: str, data: dict) -> None:
     if base:
         data["slug"] = slugify(base)
 
+
 def has_price(data: dict) -> bool:
     price = data.get("price")
     try:
         return price is not None and float(price) > 0
     except Exception:
         return False
+
 
 class Command(BaseCommand):
     help = "Generic CSV importer for hardware models"
@@ -154,7 +161,9 @@ class Command(BaseCommand):
         try:
             Model = apps.get_model("hardware", model_name)
         except LookupError:
-            self.stderr.write(self.style.ERROR(f"Model {model_name} not found"))
+            self.stderr.write(
+                self.style.ERROR(f"Model {model_name} not found")
+            )
             return
 
         aliases = MODEL_ALIASES.get(model_name, {})
@@ -178,12 +187,16 @@ class Command(BaseCommand):
 
                 if require_price and not has_price(data):
                     skipped += 1
-                    self.stdout.write(f"Row {row_idx} skipped: missing/zero price")
+                    self.stdout.write(
+                        f"Row {row_idx} skipped: missing/zero price"
+                    )
                     continue
 
                 if not data:
                     skipped += 1
-                    self.stdout.write(f"Row {row_idx} skipped: no valid fields")
+                    self.stdout.write(
+                        f"Row {row_idx} skipped: no valid fields"
+                    )
                     continue
 
                 lookup = {}
@@ -193,20 +206,29 @@ class Command(BaseCommand):
                     lookup = {"slug": data["slug"]}
                 else:
                     skipped += 1
-                    self.stdout.write(f"Row {row_idx} skipped: missing lookup field")
+                    self.stdout.write(
+                        f"Row {row_idx} skipped: missing lookup field"
+                    )
                     continue
 
                 if dry_run:
-                    self.stdout.write(f"[DRY-RUN] Row {row_idx} normalized: {data}")
+                    self.stdout.write(
+                        f"[DRY-RUN] Row {row_idx} normalized: {data}"
+                    )
                 else:
-                    obj, created_flag = Model.objects.update_or_create(defaults=data, **lookup)
+                    obj, created_flag = Model.objects.update_or_create(
+                        defaults=data, **lookup
+                    )
                     if created_flag:
                         created += 1
                     else:
                         updated += 1
                 count += 1
 
-        summary = f"Processed {count} rows for {model_name}: {created} created, {updated} updated, {skipped} skipped"
+        summary = (
+            "Processed {} rows for {}: {} created, {} updated, {} skipped"
+            .format(count, model_name, created, updated, skipped)
+        )
         if dry_run:
             self.stdout.write(self.style.WARNING("[DRY-RUN] " + summary))
         else:

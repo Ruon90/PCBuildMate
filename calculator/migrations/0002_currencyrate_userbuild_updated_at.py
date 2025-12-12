@@ -6,22 +6,33 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('calculator', '0001_initial'),
+        ("calculator", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='CurrencyRate',
+            name="CurrencyRate",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('currency', models.CharField(max_length=3, unique=True)),
-                ('rate_to_usd', models.DecimalField(decimal_places=6, max_digits=12)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("currency", models.CharField(max_length=3, unique=True)),
+                (
+                    "rate_to_usd",
+                    models.DecimalField(decimal_places=6, max_digits=12),
+                ),
+                ("updated_at", models.DateTimeField(auto_now=True)),
             ],
         ),
         migrations.AddField(
-            model_name='userbuild',
-            name='updated_at',
+            model_name="userbuild",
+            name="updated_at",
             field=models.DateTimeField(auto_now=True),
         ),
     ]

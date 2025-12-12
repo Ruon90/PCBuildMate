@@ -1,8 +1,8 @@
-import os
 import argparse
 import re
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
 
 # Target sockets we care about
 VALID_SOCKETS = {"LGA1851", "LGA1700", "AM5", "AM4"}
@@ -15,8 +15,9 @@ TARGET_FIELDS = [
     "max_memory",
     "memory_slots",
     "color",
-    "slug"
+    "slug",
 ]
+
 
 # -----------------------------
 # Slug builder for normalisation
@@ -32,6 +33,7 @@ def build_slug(name: str) -> str:
     tokens = re.findall(r"[A-Z0-9\-]+", s)
     return "-".join(tok.lower() for tok in tokens)
 
+
 # -----------------------------
 # Cleaning function
 # -----------------------------
@@ -42,7 +44,9 @@ def clean_boards(input_file, output_file, debug=False):
     df = df[df["socket"].isin(VALID_SOCKETS)].copy()
 
     # Drop rows with missing or empty price
-    df = df[df["price"].notna() & (df["price"].astype(str).str.strip() != "")].copy()
+    df = df[
+        df["price"].notna() & (df["price"].astype(str).str.strip() != "")
+    ].copy()
 
     # Normalise names into slugs
     df["slug"] = df["name"].apply(build_slug)
@@ -68,19 +72,30 @@ def clean_boards(input_file, output_file, debug=False):
         print("\n[DEBUG] Sample rows after filtering:")
         print(df.head(10))
 
+
 # -----------------------------
 # CLI
 # -----------------------------
 def main():
-    parser = argparse.ArgumentParser(description="Clean motherboard dataset: filter sockets, drop missing prices, and normalise names")
-    parser.add_argument("--file", required=True, help="Path to raw motherboard CSV")
-    parser.add_argument("--debug", action="store_true", help="Enable debug logging")
+    parser = argparse.ArgumentParser(
+        description=(
+            "Clean motherboard dataset: filter sockets, drop missing prices, "
+            "and normalise names"
+        )
+    )
+    parser.add_argument(
+        "--file", required=True, help="Path to raw motherboard CSV"
+    )
+    parser.add_argument(
+        "--debug", action="store_true", help="Enable debug logging"
+    )
     args = parser.parse_args()
 
     input_path = Path(args.file)
     output_path = input_path.with_name(input_path.stem + "_clean.csv")
 
     clean_boards(str(input_path), str(output_path), debug=args.debug)
+
 
 if __name__ == "__main__":
     main()

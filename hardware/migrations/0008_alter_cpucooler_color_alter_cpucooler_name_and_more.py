@@ -6,43 +6,52 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hardware', '0007_alter_case_psu_alter_case_side_panel_alter_case_slug'),
+        (
+            "hardware",
+            "0007_alter_case_psu_alter_case_side_panel_alter_case_slug",
+        ),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='cpucooler',
-            name='color',
+            model_name="cpucooler",
+            name="color",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
         migrations.AlterField(
-            model_name='cpucooler',
-            name='name',
+            model_name="cpucooler",
+            name="name",
             field=models.CharField(blank=True, max_length=200, null=True),
         ),
         migrations.AlterField(
-            model_name='cpucooler',
-            name='noise_level',
+            model_name="cpucooler",
+            name="noise_level",
             field=models.CharField(blank=True, max_length=50, null=True),
         ),
         migrations.AlterField(
-            model_name='cpucooler',
-            name='power_throughput',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=8, null=True),
+            model_name="cpucooler",
+            name="power_throughput",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=8, null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='cpucooler',
-            name='rpm',
+            model_name="cpucooler",
+            name="rpm",
             field=models.CharField(blank=True, max_length=50, null=True),
         ),
         migrations.AlterField(
-            model_name='cpucooler',
-            name='size',
-            field=models.DecimalField(blank=True, decimal_places=1, max_digits=6, null=True),
+            model_name="cpucooler",
+            name="size",
+            field=models.DecimalField(
+                blank=True, decimal_places=1, max_digits=6, null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='cpucooler',
-            name='slug',
-            field=models.SlugField(blank=True, max_length=200, null=True, unique=True),
+            model_name="cpucooler",
+            name="slug",
+            field=models.SlugField(
+                blank=True, max_length=200, null=True, unique=True
+            ),
         ),
     ]

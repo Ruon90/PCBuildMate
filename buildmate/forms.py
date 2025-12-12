@@ -11,4 +11,4 @@ class CustomSignupForm(SignupForm):
         super().__init__(*args, **kwargs)
         # Remove email field if present so templates rendering the form
         # (e.g. modal or page) won't show it.
-        self.fields.pop('email', None)
+        self.fields.pop("email", None)

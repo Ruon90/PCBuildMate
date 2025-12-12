@@ -1,11 +1,12 @@
 import argparse
-import pandas as pd
-import re
-import requests
 import json
-import time
 import os
-import env
+import re
+import time
+
+import pandas as pd
+import requests
+
 
 # -----------------------------
 # Case type normalization
@@ -31,15 +32,18 @@ def normalize_case_type(raw: str) -> str:
         return "SFF"
     return raw.strip().title()
 
+
 # -----------------------------
 # Slug helpers
 # -----------------------------
 def slugify(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", str(text).lower()).strip("-")
 
+
 def slugify_case(name: str, case_type: str) -> str:
     norm_type = normalize_case_type(case_type)
     return f"{slugify(name)}-{slugify(norm_type)}"
+
 
 # -----------------------------
 # Fallback convention mapping
@@ -63,40 +67,51 @@ def fallback_psu_form(case_type: str, volume: float) -> str:
         return "SFX-L" if vol and vol < 25 else "ATX"
     return "ATX"
 
+
 # -----------------------------
 # AI batch enrichment
 # -----------------------------
+AI_BASE = "https://models.inference.ai.azure.com/openai/deployments/"
+
 ENDPOINTS = {
-    "gpt-4.1-mini": "https://models.inference.ai.azure.com/openai/deployments/gpt-4.1-mini/chat/completions",
-    "gpt-4.1": "https://models.inference.ai.azure.com/openai/deployments/gpt-4.1/chat/completions"
+    "gpt-4.1-mini": AI_BASE + "gpt-4.1-mini/chat/completions",
+    "gpt-4.1": AI_BASE + "gpt-4.1/chat/completions",
 }
 TOKENS = {
-    "gpt-4.1-mini": os.getenv("GITHUB_TOKEN_MINI") or os.getenv("GITHUB_TOKEN"),
-    "gpt-4.1": os.getenv("GITHUB_TOKEN_FULL") or os.getenv("GITHUB_TOKEN")
+    "gpt-4.1-mini": os.getenv("GITHUB_TOKEN_MINI")
+    or os.getenv("GITHUB_TOKEN"),
+    "gpt-4.1": os.getenv("GITHUB_TOKEN_FULL") or os.getenv("GITHUB_TOKEN"),
 }
+
 
 def call_ai_batch(slugs_with_context, model="gpt-4.1-mini", debug=False):
     lines = []
     for item in slugs_with_context:
-        line = f'{item["slug"]} | type={item.get("type","")}'
+        line = f'{item["slug"]} | type={item.get("type", "")}'
         if item.get("external_volume"):
             line += f' | vol={item["external_volume"]}'
         lines.append(line)
 
-    prompt = f"""
-You enrich PC case specs. For each line, infer the PSU form factor that fits the case.
-Return ONLY valid JSON array. Each element:
-- slug (string; match input)
-- psu_form_factor (ATX, SFX, SFX-L, TFX, Flex, None if unknown)
-
-Cases:
-{chr(10).join(lines)}
-""".strip()
+    prompt = (
+        "You enrich PC case specs. For each line, infer the PSU form factor.\n"
+        "Return ONLY valid JSON array. Each element must include:\n"
+        "- slug (string; match input)\n"
+        "- psu_form_factor (ATX, SFX, SFX-L, TFX, Flex, None)\n\n"
+        "Cases:\n"
+        + chr(10).join(lines)
+    )
 
     url = ENDPOINTS[model]
     token = TOKENS[model]
-    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-    payload = {"model": model, "messages": [{"role": "user", "content": prompt}], "temperature": 0}
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0,
+    }
 
     try:
         r = requests.post(url, headers=headers, json=payload, timeout=(10, 90))
@@ -105,13 +120,20 @@ Cases:
                 print(f"[{model}] Non-200: {r.status_code} -> {r.text[:300]}")
             return {}
         content = r.json()["choices"][0]["message"]["content"].strip()
-        cleaned = re.sub(r"^```[a-zA-Z]*\s*|\s*```$", "", content, flags=re.MULTILINE).strip()
+        cleaned = re.sub(
+            r"^```[a-zA-Z]*\s*|\s*```$", "", content, flags=re.MULTILINE
+        ).strip()
         data = json.loads(cleaned)
-        return {d["slug"]: d.get("psu_form_factor") for d in data if isinstance(d, dict)}
+        return {
+            d["slug"]: d.get("psu_form_factor")
+            for d in data
+            if isinstance(d, dict)
+        }
     except Exception as e:
         if debug:
             print(f"[{model}] error: {e}")
         return {}
+
 
 # -----------------------------
 # Pipeline
@@ -141,17 +163,23 @@ def run_pipeline(case_file: str, output_file: str, debug=False):
         block = needs_psu.iloc[i:i+batch_size].copy()
         ctx = []
         for _, row in block.iterrows():
-            ctx.append({
-                "slug": row["slug"],
-                "type": row.get("type", ""),
-                "external_volume": str(row.get("external_volume", "")).strip()
-            })
+            ctx.append(
+                {
+                    "slug": row["slug"],
+                    "type": row.get("type", ""),
+                    "external_volume": str(
+                        row.get("external_volume", "")
+                    ).strip(),
+                }
+            )
 
         res_mini = call_ai_batch(ctx, model="gpt-4.1-mini", debug=debug)
         unresolved = [c["slug"] for c in ctx if not res_mini.get(c["slug"])]
         if unresolved:
             ctx_unresolved = [c for c in ctx if c["slug"] in unresolved]
-            res_full = call_ai_batch(ctx_unresolved, model="gpt-4.1", debug=debug)
+            res_full = call_ai_batch(
+                ctx_unresolved, model="gpt-4.1", debug=debug
+            )
             for k, v in res_full.items():
                 res_mini[k] = v
 
@@ -164,7 +192,9 @@ def run_pipeline(case_file: str, output_file: str, debug=False):
 
     still_missing = df[(df["psu"].str.strip() == "")]
     for _, row in still_missing.iterrows():
-        fallback = fallback_psu_form(row.get("type", ""), row.get("external_volume", ""))
+        fallback = fallback_psu_form(
+            row.get("type", ""), row.get("external_volume", "")
+        )
         df.loc[df["slug"] == row["slug"], "psu"] = fallback
         fallback_filled += 1
 
@@ -172,7 +202,9 @@ def run_pipeline(case_file: str, output_file: str, debug=False):
 
     print("\n=== Case Enrichment Summary ===")
     print(f"Rows in input: {before}")
-    print(f"Rows after price filter: {after_price_filter} (dropped {before - after_price_filter})")
+    # Keep print lines short
+    print("Rows after price filter:", after_price_filter, "(dropped",
+          before - after_price_filter, ")")
     print(f"PSU form factor filled by AI: {ai_filled}")
     print(f"PSU form factor filled by fallback: {fallback_filled}")
     unresolved_after = len(df[(df["psu"].str.strip() == "")])
@@ -182,20 +214,27 @@ def run_pipeline(case_file: str, output_file: str, debug=False):
     if debug:
         print("Sample enriched rows:\n", df.head(5))
 
+
 # -----------------------------
 # CLI
 # -----------------------------
 def main():
     parser = argparse.ArgumentParser(
-        description="Case pipeline: filter by price, infer PSU form factor via AI + volume-aware fallback, slug output"
+        description=(
+            "Case pipeline: filter by price, infer PSU form factor via AI "
+            "+ volume-aware fallback, slug output"
+        )
     )
     parser.add_argument("--cases", required=True, help="Path to cases.csv")
     parser.add_argument("--output", required=False, help="Path to output CSV")
-    parser.add_argument("--debug", action="store_true", help="Enable debug logging")
+    parser.add_argument(
+        "--debug", action="store_true", help="Enable debug logging"
+    )
     args = parser.parse_args()
 
     output_file = args.output or args.cases.replace(".csv", "_enriched.csv")
     run_pipeline(args.cases, output_file, debug=args.debug)
+
 
 if __name__ == "__main__":
     main()

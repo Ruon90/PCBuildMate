@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('calculator', '0006_userbuild_is_upgrade'),
+        ("calculator", "0006_userbuild_is_upgrade"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='userbuild',
-            name='upgrade_base',
+            model_name="userbuild",
+            name="upgrade_base",
             field=models.JSONField(blank=True, default=dict),
         ),
     ]

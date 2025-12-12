@@ -1,6 +1,8 @@
 import re
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
+
 
 # Slug builder
 def build_slug(name: str) -> str:
@@ -15,13 +17,17 @@ def build_slug(name: str) -> str:
     tokens = re.findall(r"(RTX|RX|\d{3,4}|TI|SUPER|XT|XTX)", s)
     return "-".join(tok.lower() for tok in tokens)
 
+
 def clean_userbenchmark(root: Path):
     ub_file = root / "data/benchmark/GPU_UserBenchmarks.csv"
     df = pd.read_csv(ub_file, encoding="utf-8-sig")
-    df["Slug"] = df.apply(lambda row: build_slug(str(row.get("Model", ""))), axis=1)
+    df["Slug"] = df.apply(
+        lambda row: build_slug(str(row.get("Model", ""))), axis=1
+    )
     out_file = root / "data/benchmark/GPU_UserBenchmarks_clean.csv"
     df.to_csv(out_file, index=False)
     print(f"[OK] Cleaned UserBenchmark -> {out_file}")
+
 
 def clean_blender(root: Path):
     blender_file = root / "data/benchmark/Blender - Open Data - GPU.csv"
@@ -31,10 +37,12 @@ def clean_blender(root: Path):
     df.to_csv(out_file, index=False)
     print(f"[OK] Cleaned Blender -> {out_file}")
 
+
 def main():
     root = Path(__file__).resolve().parent.parent.parent
     clean_userbenchmark(root)
     clean_blender(root)
+
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,8 @@
 import argparse
-import pandas as pd
 import re
+
+import pandas as pd
+
 
 # -----------------------------
 # Slug helpers
@@ -8,7 +10,10 @@ import re
 def slugify(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", str(text).lower()).strip("-")
 
-def build_storage_slug(brand: str, model: str, capacity: str, interface: str) -> str:
+
+def build_storage_slug(
+    brand: str, model: str, capacity: str, interface: str
+) -> str:
     """
     Build slug from storage brand, model, capacity, and interface.
     """
@@ -17,6 +22,7 @@ def build_storage_slug(brand: str, model: str, capacity: str, interface: str) ->
     inter = slugify(str(interface)) if interface else ""
     parts = [p for p in [base, cap, inter] if p]
     return "-".join(parts)
+
 
 # -----------------------------
 # Name splitting
@@ -32,6 +38,7 @@ def split_name(full_name: str):
     if len(tokens) == 1:
         return tokens[0], ""
     return tokens[0], tokens[1]
+
 
 # -----------------------------
 # Interface normalization
@@ -60,6 +67,7 @@ def normalize_interface(interface: str) -> str:
 
     return interface  # fallback
 
+
 # -----------------------------
 # Pipeline
 # -----------------------------
@@ -76,12 +84,19 @@ def run_pipeline(storage_file: str, output_file: str, debug=False):
     df["interface"] = df["interface"].apply(normalize_interface)
 
     # Split name into brand + model
-    df[["brand", "model"]] = df["name"].apply(lambda x: pd.Series(split_name(x)))
+    df[["brand", "model"]] = df["name"].apply(
+        lambda x: pd.Series(split_name(x))
+    )
 
     # Add slug column
     df["slug"] = df.apply(
-        lambda r: build_storage_slug(r["brand"], r["model"], r.get("capacity", ""), r.get("interface", "")),
-        axis=1
+        lambda r: build_storage_slug(
+            r["brand"],
+            r["model"],
+            r.get("capacity", ""),
+            r.get("interface", ""),
+        ),
+        axis=1,
     )
 
     # Save cleaned file
@@ -90,24 +105,35 @@ def run_pipeline(storage_file: str, output_file: str, debug=False):
     # Summary
     print("\n=== Storage Cleaning Summary ===")
     print(f"Rows in input: {before}")
-    print(f"Rows after price filter: {after_price_filter} (dropped {before - after_price_filter})")
+    # Shorter print to satisfy line-length checks
+    print("Rows after price filter:", after_price_filter, "(dropped",
+          before - after_price_filter, ")")
     print(f"Enriched storage CSV written to {output_file}")
 
     if debug:
         print("Sample cleaned rows:\n", df.head(5))
 
+
 # -----------------------------
 # CLI
 # -----------------------------
 def main():
-    parser = argparse.ArgumentParser(description="Storage pipeline: filter by price, normalize interface, split brand/model, add slug")
+    parser = argparse.ArgumentParser(
+        description=(
+            "Storage pipeline: filter by price, normalize interface, "
+            "split brand/model, add slug"
+        )
+    )
     parser.add_argument("--storage", required=True, help="Path to storage.csv")
     parser.add_argument("--output", required=False, help="Path to output CSV")
-    parser.add_argument("--debug", action="store_true", help="Enable debug logging")
+    parser.add_argument(
+        "--debug", action="store_true", help="Enable debug logging"
+    )
     args = parser.parse_args()
 
     output_file = args.output or args.storage.replace(".csv", "_cleaned.csv")
     run_pipeline(args.storage, output_file, debug=args.debug)
+
 
 if __name__ == "__main__":
     main()

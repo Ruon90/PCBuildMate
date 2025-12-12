@@ -10,28 +10,120 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('hardware', '0001_initial'),
+        ("hardware", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='UserBuild',
+            name="UserBuild",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('budget', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('mode', models.CharField(choices=[('gaming', 'Gaming'), ('workstation', 'Workstation')], max_length=20)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('case', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='hardware.case')),
-                ('cooler', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='hardware.cpucooler')),
-                ('cpu', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='hardware.cpu')),
-                ('gpu', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='hardware.gpu')),
-                ('motherboard', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='hardware.motherboard')),
-                ('psu', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='hardware.psu')),
-                ('ram', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='hardware.ram')),
-                ('storage', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='hardware.storage')),
-                ('thermal_paste', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='hardware.thermalpaste')),
-                ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "budget",
+                    models.DecimalField(decimal_places=2, max_digits=10),
+                ),
+                (
+                    "mode",
+                    models.CharField(
+                        choices=[
+                            ("gaming", "Gaming"),
+                            ("workstation", "Workstation"),
+                        ],
+                        max_length=20,
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                (
+                    "case",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="hardware.case",
+                    ),
+                ),
+                (
+                    "cooler",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="hardware.cpucooler",
+                    ),
+                ),
+                (
+                    "cpu",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="hardware.cpu",
+                    ),
+                ),
+                (
+                    "gpu",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="hardware.gpu",
+                    ),
+                ),
+                (
+                    "motherboard",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="hardware.motherboard",
+                    ),
+                ),
+                (
+                    "psu",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="hardware.psu",
+                    ),
+                ),
+                (
+                    "ram",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="hardware.ram",
+                    ),
+                ),
+                (
+                    "storage",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="hardware.storage",
+                    ),
+                ),
+                (
+                    "thermal_paste",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="hardware.thermalpaste",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

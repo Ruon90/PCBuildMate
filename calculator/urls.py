@@ -1,26 +1,43 @@
 from django.urls import path
+
 from . import views
 from .views import ai_chat
+
 urlpatterns = [
     # Landing page with budget form
     path("", views.index, name="home"),
-
     # AJAX endpoint for calculation
     path("calculate/", views.calculate_build, name="calculate_build"),
-
     # Build preview page (redirect target after calculation)
     path("build/preview/", views.build_preview, name="build_preview"),
     # Preview a specific saved UserBuild
-    path("build/preview/<int:pk>/", views.build_preview_pk, name="build_preview_pk"),
-    path("build/upgrade_preview/", views.upgrade_preview, name="upgrade_preview"),
+    path(
+        "build/preview/<int:pk>/",
+        views.build_preview_pk,
+        name="build_preview_pk",
+    ),
+    path(
+        "build/upgrade_preview/", views.upgrade_preview, name="upgrade_preview"
+    ),
     # View a saved upgrade in the upgrade-preview UI
-    path("build/view_upgrade/<int:pk>/", views.view_saved_upgrade, name="view_saved_upgrade"),
+    path(
+        "build/view_upgrade/<int:pk>/",
+        views.view_saved_upgrade,
+        name="view_saved_upgrade",
+    ),
     # Alternatives for the last calculated build
-    path("build/preview/alternatives/", views.alternatives, name="alternatives"),
-    path("build/preview/alternatives/select/", views.select_alternative, name="select_alternative"),
+    path(
+        "build/preview/alternatives/", views.alternatives, name="alternatives"
+    ),
+    path(
+        "build/preview/alternatives/select/",
+        views.select_alternative,
+        name="select_alternative",
+    ),
     # Upgrade calculator for an existing preview or saved build
-    path("build/upgrade/", views.upgrade_calculator, name="upgrade_calculator"),
-
+    path(
+        "build/upgrade/", views.upgrade_calculator, name="upgrade_calculator"
+    ),
     # Save build (requires login)
     path("build/save/", views.save_build, name="save_build"),
     # Clear current preview build

@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hardware', '0003_thermalpaste_slug_alter_case_price_and_more'),
+        ("hardware", "0003_thermalpaste_slug_alter_case_price_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='case',
-            name='case_type',
+            model_name="case",
+            name="case_type",
             field=models.CharField(blank=True, max_length=500, null=True),
         ),
     ]
