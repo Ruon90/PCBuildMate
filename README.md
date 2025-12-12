@@ -37,7 +37,6 @@ Project board: https://github.com/users/Ruon90/projects/13
 9. [Tech used](#tech-used)
 10. [Improvements & Future Work](#improvements--future-work)
 11. [References](#references)
-12. [Learning points](#learning-points)
 
 ---
 
