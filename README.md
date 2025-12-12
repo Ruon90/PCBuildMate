@@ -1,30 +1,31 @@
 # PCBuildMate 🚀
 
-Live site (demo): https://w########.herokuapp.com/
+
+Live demo: https://pcbuildmate-a48f3a1d143f.herokuapp.com/
 
 Project board: https://github.com/users/Ruon90/projects/13
 
-## PCBuildMate 🚀
-
-Live demo: https://w########.herokuapp.com/
-
-Project board: https://github.com/users/Ruon90/projects/13
-
-![Website landing page](/documentation/images/home.png)
+![Website landing page](/documentation/images/splash.png)
 
 ## Index 📑
-1. [Overview](#overview)
-2. [UX Design Process](#ux-design-process)
+1. [Overview](#overview🎯)
+2. [Agile Working](#agile-working)
+3. [UX Design Process](#ux-design-process)
    - [User Stories](#user-stories)
    - [Wireframes](#wireframes)
    - [Color Scheme](#color-scheme)
    - [Fonts](#fonts)
-3. [Features](#features)
+4. [Features](#features)
    - [Upgrade Calculator](#upgrade-calculator)
-4. [Build Calculator Algorithm](#build-calculator-algorithm)
+   - [Build Calculator Algorithm](#build-calculator-algorithm)
 5. [Database](#database)
 6. [Deployment (Git → IDE → Heroku)](#deployment-git--ide--heroku)
 7. [Testing and Validation](#testing-and-validation)
+   - [Python tests](python-tests)
+   - [HTML Validation](html-validation)
+   - [CSS Validation](css-validation)
+   - [JavaScript Validation](javascript-validation)
+   - [PEP8 Validation](pep8-validation)
 8. [AI integration](#ai-integration)
 9. [Tech used](#tech-used)
 10. [Improvements & Future Work](#improvements--future-work)
@@ -42,8 +43,9 @@ Key features
 - UX: budget entry, preview, basic & advanced edit, upgrade calculator, saved builds
 - Authentication and persistence (django-allauth + `UserBuild` model)
 
+## Agile Working
+
 ## UX Design Process 🎨
-See `documentation/` for full wireframes and mockups.
 
 ### User stories 👥
 - Must-haves: budget-based build recommendations; visible benchmark and price/performance data; ability to save builds; regional pricing support.
@@ -53,16 +55,27 @@ See `documentation/` for full wireframes and mockups.
 ### Wireframes 🖼️
 <details>
 <summary>Open wireframe images</summary>
+Home
 
 ![Home wireframe](/documentation/wireframes/homeWF.png)
 
+Results
+
 ![Results wireframe](/documentation/wireframes/resultsWF.png)
+
+Login
 
 ![Login wireframe](/documentation/wireframes/loginWF.png)
 
 </details>
 
-Mockups are in `documentation/wireframes/`.
+### Mockup
+
+<details>
+
+![Mockup](/documentation/images/mockup.png)
+
+</details>
 
 ### Color Scheme 🎨
 The canonical color palette is taken from `buildmate/static/css/style.css`. A visual swatch is included for reference.
@@ -101,12 +114,12 @@ Fonts are loaded in `buildmate/templates/base.html` with:
 - Slug-based matching across datasets, optional AI-assisted name normalization, benchmark CSV merging (Blender, UserBenchmark).
 
 ### Calculator / Core 🧮
-- Compatibility checks (socket, DDR generation, NVMe vs SATA, case/form factor)
+- Compatibility checks (socket, DDR generation, power supply requirements, case/form factor)
 - Scoring and ranking of builds by weighted component contributions
 - FPS and render time estimates
 - Preview and save flows (session-based preview for anonymous users, `UserBuild` model for persistent saves)
 
-## Build Calculator Algorithm 📈
+### Build Calculator Algorithm 📈
 This section summarizes the algorithm implemented in `calculator/services/build_calculator.py`.
 
 Contract (short)
@@ -119,26 +132,26 @@ Pipeline
    - Exclude items missing critical metadata (socket, TDP, form-factor) unless enrichment provides fallbacks.
 
 2) Compatibility filtering
-   - Deterministic checks: CPU ⇄ motherboard (socket), motherboard ⇄ RAM (DDR generation), case ⇄ motherboard form factor and GPU length, PSU ⇄ total wattage and connector requirements.
+   - Deterministic checks: CPU ⇄ motherboard (socket), motherboard ⇄ RAM (DDR generation), case ⇄ motherboard form factor and GPU length, PSU ⇄ total wattage and connector requirements, Z series motherboards required for k series intel.
 
 3) Scoring
-   - Per-part scores are derived from benchmark sources (UserBenchmark, Blender) and normalized for cross-part comparison.
+   - Per-part scores are derived from benchmark sources (UserBenchmark, Blender) depending on application (gaming or workstation).
    - Example component weighting:
-     - CPU: multi-core and single-core metrics depending on workload
+     - CPU: 1080p CPU is weighted higher as it will impact performance more than at higher resolutions
      - GPU: benchmark-derived FPS potential, weighted by resolution
-     - RAM/storage: capacity and generation bonuses
+     - RAM/storage: raw benchmark data collected from UserBenchmark
    - Combined build score:
 
      $S_{build} = w_{cpu} \cdot S_{cpu} + w_{gpu} \cdot S_{gpu} + w_{ram} \cdot S_{ram} + w_{storage} \cdot S_{storage} - w_{price} \cdot \frac{price}{100}$
 
-   - Weights change by use-case (e.g., gaming increases $w_{gpu}$ for higher resolutions).
+   - Weights change by use-case (e.g. gaming increases $w_{gpu}$ for higher resolutions).
 
 4) Ranking & selection
-   - Rank by `S_build` and apply heuristics to avoid pathological combinations (very expensive GPU + weak CPU).
+   - Rank by `S_build` and apply heuristics to avoid pathological combinations (very expensive GPU + weak CPU) and prefilters to reduce the size of the iterative loop.
    - Present top-k alternatives when useful.
 
 5) Estimation (simplified)
-   - FPS estimate (prioritization-level):
+   - FPS estimate:
 
      $FPS_{est} = baseFPS \cdot \left(\alpha \cdot \frac{S_{gpu}}{S_{gpu}^{ref}} + (1-\alpha) \cdot \frac{S_{cpu}}{S_{cpu}^{ref}}\right)$
 
@@ -158,12 +171,12 @@ High-level flow (form → calculation → recommendation)
 
 1. Inputs
 
-   - Base build identifier or snapshot
+   - Base build component choices.
    - Context: target resolution (1080p / 1440p / 4K), use-case (gaming / workstation), and budget
 
 2. Preprocessing / Presorting
 
-   - Compatibility pruning: remove candidate upgrade parts that are incompatible with the base (socket mismatches, DDR generation differences, case size issues).
+   - Compatibility pruning: remove coponents that are out of budget and / or worse benchmarked performance than current build, then prune incompatible components for iterative loop (DDR generation differences, case size issues).
    - Price / performance deltas: for each candidate replacement compute `Δprice = price_new - price_old` and `Δperf = perf_new - perf_old` (where `perf` is Blender score for workstation or UserBenchmark scores for gaming).
    - Presort by `Δperf` descending.
 
@@ -181,11 +194,14 @@ High-level flow (form → calculation → recommendation)
 
    - Selection examples:
      - Budget cap: choose the highest-scoring candidate under the cap.
-     - Best value: choose the candidate maximizing `Δperf/Δprice`.
-     - Best absolute: choose the candidate with the largest `Δperf`.
+     - Choose the highest scoring compatible ram and CPU / GPU.
+
+     - Check compatible components within budget.
+
+     - Offer multiple proposals with the option to view or save upgrade suggestions.
 
 4. Output & UI
-   - The UI shows base vs upgraded parts, absolute and percent FPS/render improvement, price delta, and a short explanation (for example: "GPU upgrade yields +31% FPS at 1440p; CPU remains the bottleneck — consider CPU upgrade for further gains").
+   - The UI shows base vs upgraded parts, absolute and percent FPS/render improvement, price delta, and a short explanation (for example: "Bottleneck: CPU 25% consider replacement CPU for future upgrades").
 
 ### CRUD for saved upgrades
 
@@ -194,35 +210,46 @@ High-level flow (form → calculation → recommendation)
 - Update: editing a saved upgrade recomputes deltas and updates the snapshot on save.
 - Delete: users can remove an upgrade snapshot; the base `UserBuild` remains unaffected.
 
-Notes: the repo currently stores saved upgrade snapshots as metadata on `UserBuild`. If desired, a dedicated `Upgrade` model with an FK to `UserBuild` can be added to simplify queries.
+Notes: the repo currently stores saved upgrade snapshots as metadata on `UserBuild`. If desired, a dedicated `Upgrade` model with an FK to `UserBuild` can be added to simplify queries but is currently unnecessary.
+
 
 ### Preview builds 👁️
 
 - Anonymous users: a session-backed preview is created when a user requests a build. The preview JSON contains the parts selected, total price, and performance estimates. This preview isn't persisted to the DB until the user clicks "Save".
+
 - Authenticated users: previews can be promoted to persistent `UserBuild` entries on save. The preview serializer includes canonical `slug` fields so the save process maps parts cleanly to model records.
+
 - Implementation notes: previews are stored in `request.session['preview_build']` and rendered by `calculator.views.build_preview`. To make a preview permanent the view copies the snapshot into a `UserBuild` instance and triggers `save()` with `created_by=request.user`.
+
+- There are icons at the bottom of each component, an icon for further information displaying all held information in the model, an icon for a hook to the Youtube API to return review results for the component and an amazon link for purchase, as I was unable to get Amazon API access this is just a search form using python template literal.
 
 ### Edit builds ✏️
 
 - Two edit modes exist:
   - Basic edit: a budget or quick-tune editor that re-runs the calculator with adjusted constraints and suggests replacements.
-  - Advanced edit: a per-part editor (template fragment `edit_build_advanced.html`) allowing manual swap-in of parts with compatibility checks applied on save.
+
+  - Advanced edit: a per-part editor (template fragment `edit_build_advanced.html`) allowing manual swap-in of parts with compatibility checks shown while choosing components, any mismatched builds will not be allowed to save..
+
 - Workflow: the edit view loads the saved `UserBuild` snapshot, populates form fields with the current part slugs, and validates compatibility server-side on submit. If incompatible selections are submitted, the server returns structured errors to the advanced editor and the UI highlights offending fields.
 
 ## Database 🗄️
-Primary DB expectations:
-- Dev: SQLite (fast, zero-config for local development)
-- Prod: PostgreSQL (recommended). The app reads `DATABASE_URL` from the environment; `psycopg2` is listed in `requirements.txt`.
+ PostgreSQL database is used to store the models, The app reads `DATABASE_URL` from the environment (Heroku Config Vars when deployed).
 
 Schema overview (high level)
 - `UserBuild` (saved builds)
   - id (PK), user (FK nullable for anonymous saves), parts_json (JSON snapshot of all parts and slugs), total_price (decimal), total_score (float), estimates_json (JSON: fps/render estimates), created_at, updated_at
 - Parts tables (CPU, GPU, RAM, Motherboard, Storage, PSU, Cooler, Case)
   - id, slug (unique), manufacturer, model, price, bench_score, socket/tdp/vram/length/form_factor, metadata_json
-- `CurrencyRate` / pricing helpers
-  - currency, rate, updated_at
+- `CurrencyRate`
+  - Currency API call, used for budget calculations and stored within `CurrencyRate` to then be used within the `UserBuild` calculations.
+
+<details>
+<summary>ERD</summary>
+
+</details>
 
 Indexes & ops
+
 - Index `slug` columns (unique) on part tables for fast lookup.
 - Index numeric columns used for range queries: `price`, `bench_score`.
 - Add FK indices (default in Django) for joins (e.g., `UserBuild.user_id`).
@@ -232,7 +259,7 @@ Data lifecycle & maintenance
 - Migrations: use Django migrations; keep migration history small and readable. Squash historic migrations only when safe.
 - Backups: for production Postgres, schedule regular pg_dump backups or use the managed provider's automated backups.
 
-Best practices & tips
+Best practices
 - Prefer storing canonical `slug` + minimal metadata in `UserBuild` snapshots so imports/renames won't break old saved builds.
 - Keep enrichment separate (benchmarks) so you can re-run enrichment jobs without changing original imported records.
 - If you expect large datasets, consider partitioning heavy tables (historical price points) and caching common lookups.
@@ -286,36 +313,114 @@ Notes
 - Use `Procfile` with `web: gunicorn buildmate.wsgi --log-file -` for production (already present in repo).
 
 ## Testing and Validation ✅
-- Run unit tests:
+Testing and validation has been done in multiple ways, with python files running checks, online validators and the code insittutes PEP8 validation form.
 
-```bash
-python manage.py test
-```
+<details>
+<summary>HTML Validation</summary>
+</details>
 
-- HTML validation: ensure templates add placeholder first <option value=""> entries for required selects and avoid inline style/script where possible.
-- Smoke tests: run the devserver and click through main flows (build preview, edit, upgrade); watch the browser console for JS errors.
+<details>
+<summary>HTML — Testing & validation images</summary>
+
+The following screenshots show HTML-related pages and validation snapshots used during testing.
+
+![Home HTML](/documentation/images/html/home-html.png)
+
+![Builds HTML](/documentation/images/html/builds-html.png)
+
+![Edit build HTML](/documentation/images/html/editbuild-html.png)
+
+![Build preview HTML](/documentation/images/html/build-preview-html.png)
+
+![Upgrade calculator HTML](/documentation/images/html/upgrade-calculator-html.png)
+
+</details>
+</details>
+
+<details>
+<summary>CSS Validation<summary>
+</details>
+
+<details>
+<summary>JavaScript Validation</summary>
+</details>
+
+<details>
+<summary>JavaScript — Testing & validation images</summary>
+
+The following images show UI states and JavaScript-driven behaviors captured during testing. Filenames are labelled for clarity.
+
+- `home_java.png` — Home (JavaScript-driven interactions)
+
+![Home JS](/documentation/images/javascript/home_java.png)
+
+- `editbuild_java.png` — Edit build (JavaScript interactions)
+
+![Edit build JS](/documentation/images/javascript/editbuild_java.png)
+
+- `editbuildpreview_java.png` — Edit build preview
+
+![Edit build preview JS](/documentation/images/javascript/editbuildpreview_java.png)
+
+- `upgrade_preview_java.png` — Upgrade preview
+
+![Upgrade preview JS](/documentation/images/javascript/upgrade_preview_java.png)
+
+- `upgrade_calculator_java.png` — Upgrade calculator
+
+![Upgrade calculator JS](/documentation/images/javascript/upgrade_calculator_java.png)
+
+</details>
+
+<details>
+<summary>PEP8 and Python Validation</summary>
+</details>
+
+<details>
+<summary>Python — Testing & validation images</summary>
+
+Python-related test runs and CI snapshots used during development.
+
+- `views-pep8.png` — Views PEP8 / linting snapshot
+
+![Views PEP8](/documentation/images/python/views-pep8.png)
+
+- `calculator-tests.png` — Calculator test run
+
+![Calculator tests](/documentation/images/python/calculator-tests.png)
+
+- `buildcalculator-ci.png` — Build calculator CI / run
+
+![Build calculator CI](/documentation/images/python/buildcalculator-ci.png)
+
+</details>
 
 ## AI integration 🤖
+AI has been used throughout the creation of this project, it is the only reason I was able to achieve a large scoped project in only three weeks.
+
+AI has added code, debugged code, helped with design choices and helped to plan workflow. 
+
+AI has also been implemented into the core site itself.
+
+- AI agent added to site to answer queries relating to computer building, the AI agent is also connected to the youtube API and will suggest videos relating to the prompt.
+
 - Optional AI services can enrich part metadata and surface supplementary content (examples: name normalization and fetching review videos). These integrations are optional and not required for the core calculator.
 
 Notes:
 - If configured, AI enrichment runs during data import/enrichment or on-demand during preview generation; keep API keys private and set them via environment variables.
 
+
 ## Tech used 🛠️
-- Python, Django, Bootstrap, Select2, SQLite/Postgres, Gunicorn, Whitenoise
+- HTML, CSS, JavaScript, Python, Django, Bootstrap, Select2, Postgres, Gunicorn, Whitenoise, Numpy, Pandas
 
 ## Improvements & Future Work 🔭
-- Add CI (GitHub Actions) with linters (ruff/black) and tests
-- Dockerfile + docker-compose for reproducible dev env
-- Live price API integration and alerts
-- Separate Upgrade model for cleaner queries and UI workflows
+- Live price API integration and alerts.
+- Separate Upgrade model for cleaner queries and UI workflows.
+- Forum.
+- Improve FPS accuracy.
+- Add extra sets of benchmarks for normalisation.
+- Create benchmarking software.
 
 ## References 📚
 - Blender Open Data, UserBenchmarks, TechPowerUp, Django docs, Bootstrap docs.
-
-## Learning points 💡
-- Compatibility engines require conservative fallbacks and good logging.
-- Moving inline assets to static files improves caching and maintainability.
-- Session previews provide low-friction UX for anonymous experimentation.
-```
 

@@ -44,7 +44,7 @@
   const chatInput = document.getElementById("chat-input");
   const chatClose = document.getElementById("chat-close");
   const chatSend = document.getElementById("chat-send");
-  if(!chatHeader || !aiAgent) return;
+    if (!chatHeader || !aiAgent) return;
   let hasOpened = false;
   let prevFocus = null;
   aiAgent.classList.add('collapsed');
@@ -54,10 +54,13 @@
   function openChat(){
     if(aiAgent.classList.contains('open')) return;
   try{ prevFocus = document.activeElement; }catch(err){ prevFocus = null; }
-    // Add an explicit 'animate' marker so the CSS animation only runs when
-    // the user triggers openChat. This prevents animations playing on page
-    // load or when the browser restores DOM from bfcache.
-    aiAgent.classList.add('animate');
+          // Clear any inline collapse styles (leftover from a programmatic close)
+          // so the CSS-controlled open animation can run. Then add an explicit
+          // 'animate' marker so the CSS animation only runs when the user
+          // triggers openChat. This prevents animations playing on page load
+          // or when the browser restores DOM from bfcache.
+          try{ if(chatBody){ chatBody.style.transition = ''; chatBody.style.transform = ''; chatBody.style.opacity = ''; } }catch(e){}
+      aiAgent.classList.add('animate');
     // Force reflow to ensure the animate class is applied before we open
     // (helps in some browsers so animation plays reliably when requested).
     void aiAgent.offsetWidth;
@@ -81,20 +84,81 @@
   }
 
   function closeChat(){
-    if(!aiAgent.classList.contains('open')) return;
-    if(chatClose) chatClose.style.display = "none";
-    aiAgent.classList.remove('open');
-    chatHeader.setAttribute('aria-expanded','false');
-    const onTransitionEnd = function(evt){
-      if(evt.propertyName === 'max-height' || evt.propertyName === 'height'){
-    aiAgent.classList.add('collapsed');
-    // Ensure any animate marker is removed when fully collapsed
-    try{ aiAgent.classList.remove('animate'); }catch(e){}
-  try{ chatBody.removeEventListener('transitionend', onTransitionEnd); }catch(err){}
-  try{ if(prevFocus && typeof prevFocus.focus === 'function') prevFocus.focus(); }catch(err){}
+    if (!aiAgent.classList.contains('open')) return;
+    if (chatClose) chatClose.style.display = 'none';
+    chatHeader.setAttribute('aria-expanded', 'false');
+
+    // JS-driven two-step close to ensure precise sequencing and avoid
+    // content sliding: 1) slide header down while morphing avatar; 2)
+    // scale the container horizontally toward the avatar using a
+    // computed transform-origin so it collapses exactly onto the avatar.
+    try {
+      const avatar = chatHeader.querySelector('img.chat-icon');
+      // Compute header target: slide header to the bottom of chatBody
+      const bodyHeight = chatBody ? chatBody.getBoundingClientRect().height : 48;
+      const headerHeight = chatHeader.getBoundingClientRect().height || 40;
+      // target so header moves visually to bottom edge of chat body
+      const headerTargetY = Math.max(8, Math.round(bodyHeight - headerHeight / 2));
+
+      // Prepare transitions. Hide the chat body as header moves so the
+      // header visually "closes" the window. Let the avatar stay inside
+      // the header (do not translate it separately) but morph its
+      // border-radius so it becomes circular while sliding with header.
+      chatHeader.style.transition = 'transform .22s cubic-bezier(.22,.9,.28,1)';
+      if (avatar) avatar.style.transition = 'border-radius .22s ease';
+      if (chatBody) {
+        chatBody.style.transition = 'transform .18s ease, opacity .18s ease';
+        chatBody.style.transform = 'scaleY(0)';
+        chatBody.style.opacity = '0';
+        chatBody.style.pointerEvents = 'none';
       }
-    };
-  try{ chatBody.addEventListener('transitionend', onTransitionEnd); }catch(err){}
+
+  // apply header transform; avatar will move with header (no separate translate)
+  chatHeader.style.transform = `translateY(${headerTargetY}px)`;
+  // move the entire panel down with the header so the dark chat box
+  // follows the header as it slides (prepares for the horizontal collapse)
+  aiAgent.style.transition = 'transform .22s cubic-bezier(.22,.9,.28,1)';
+  aiAgent.style.transform = `translateY(${headerTargetY}px)`;
+      if (avatar) {
+        avatar.style.borderRadius = '50%';
+      }
+
+      // after header transition completes, collapse the container toward avatar
+      const onHeaderEnd = function (evt) {
+        try { chatHeader.removeEventListener('transitionend', onHeaderEnd); } catch (e) {}
+
+        try {
+          // compute avatar center relative to aiAgent for transform-origin
+          const aiRect = aiAgent.getBoundingClientRect();
+          const avRect = avatar ? avatar.getBoundingClientRect() : null;
+          const avatarCenterX = avRect ? Math.round(avRect.left - aiRect.left + avRect.width / 2) : Math.round(aiRect.width / 2);
+
+          aiAgent.style.transformOrigin = `${avatarCenterX}px center`;
+          aiAgent.style.transition = 'transform .36s cubic-bezier(.22,.9,.28,1)';
+          // shrink horizontally toward the avatar center while preserving
+          // the current translateY so the panel continues to sit where the
+          // header landed on the page.
+          aiAgent.style.transform = `translateY(${headerTargetY}px) scaleX(.18)`;
+
+          const onAgentEnd = function (aevt) {
+            try { aiAgent.removeEventListener('transitionend', onAgentEnd); } catch (e) {}
+            // finalize classes & cleanup inline styles
+            try { aiAgent.classList.remove('open'); } catch (e) {}
+            try { aiAgent.classList.add('collapsed'); } catch (e) {}
+            try { aiAgent.classList.remove('animate'); } catch (e) {}
+            try { if (avatar) { avatar.style.transition = ''; avatar.style.borderRadius = ''; } } catch (e) {}
+            try { if (chatBody) { chatBody.style.transition = ''; chatBody.style.transform = ''; chatBody.style.opacity = ''; chatBody.style.pointerEvents = ''; } } catch (e) {}
+            try { chatHeader.style.transition = ''; chatHeader.style.transform = ''; } catch (e) {}
+            try { aiAgent.style.transition = ''; aiAgent.style.transform = ''; aiAgent.style.transformOrigin = ''; } catch (e) {}
+            try { if (prevFocus && typeof prevFocus.focus === 'function') prevFocus.focus(); } catch (err) {}
+          };
+
+          aiAgent.addEventListener('transitionend', onAgentEnd);
+        } catch (e) { }
+      };
+
+      chatHeader.addEventListener('transitionend', onHeaderEnd);
+    } catch (e) {}
   }
 
   chatHeader.addEventListener('click', function(e){ if(e.target && e.target.id === 'chat-close') return; if(aiAgent.classList.contains('open')) closeChat(); else openChat(); });
@@ -184,4 +248,44 @@
     }catch(err){}
   };
   document.addEventListener('DOMContentLoaded', function(){ try{ window.PCBM.updateB4BBadges(); }catch(err){} });
+})();
+
+// UI guard: prevent anonymous users from attempting to save builds client-side.
+// Templates can opt-in by adding `data-user-authenticated="1"` on the <body>
+// element when the request.user is authenticated. If that dataset is missing
+// we conservatively assume the user is not authenticated and show a prompt
+// when a `.save-build-btn` is clicked.
+(function(){
+  try{
+    var body = document && document.body;
+    var authed = body && body.dataset && body.dataset.userAuthenticated === '1';
+
+    document.addEventListener('click', function(ev){
+      var btn = ev.target.closest && ev.target.closest('.save-build-btn');
+      if(!btn) return;
+      // Allow actual form submits or links for authenticated users
+      if(authed) return;
+
+      ev.preventDefault();
+      // Friendly prompt: link to the login page and preserve next
+      var loginUrl = '/accounts/login/?next=' + encodeURIComponent(window.location.pathname + window.location.search);
+
+      // Small transient banner in the top-center
+      var prompt = document.createElement('div');
+      prompt.setAttribute('role','alert');
+      prompt.style.position = 'fixed';
+      prompt.style.left = '50%';
+      prompt.style.top = '14%';
+      prompt.style.transform = 'translateX(-50%)';
+      prompt.style.background = 'linear-gradient(180deg,#fff,#f7f9fc)';
+      prompt.style.border = '1px solid rgba(0,0,0,0.08)';
+      prompt.style.padding = '12px 16px';
+      prompt.style.zIndex = 99999;
+      prompt.style.borderRadius = '8px';
+      prompt.style.boxShadow = '0 6px 24px rgba(12,20,40,0.12)';
+      prompt.innerHTML = 'You must be signed in to save builds. <a href="' + loginUrl + '">Sign in</a>';
+      document.body.appendChild(prompt);
+      setTimeout(function(){ try{ prompt.remove(); }catch(e){} }, 5000);
+    });
+  }catch(e){}
 })();

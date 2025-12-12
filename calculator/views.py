@@ -2843,8 +2843,14 @@ def build_preview_pk(request, pk):
 
 
 @login_required
+@login_required
 def save_build(request):
-    """Save the current preview build to the logged-in user's account."""
+    """Save the current preview build to the logged-in user's account.
+
+    This view requires authentication. Anonymous callers will be redirected
+    to the login page. Requiring login prevents anonymous saves from being
+    persisted to other users' accounts or orphaned records.
+    """
     # Debug: entry logs
     try:
         print("[save_build] ENTRY method=", request.method)

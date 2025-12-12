@@ -249,10 +249,7 @@
               {% endfor %}
             </div>
 
-            {# Bottleneck output moved below the Bang-for-buck block so the card
-               presents B4B information first, then bottleneck details. The
-               renderer will still populate the suggestion note under the main
-               badge at runtime. #}
+
 
   {% if pb.b4b and pb.b4b.grade %}
     <p class="mb-1 small"><strong>Bang for buck rating:</strong> {{ pb.b4b.grade }}

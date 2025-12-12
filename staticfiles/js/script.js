@@ -44,7 +44,7 @@
   const chatInput = document.getElementById("chat-input");
   const chatClose = document.getElementById("chat-close");
   const chatSend = document.getElementById("chat-send");
-  if(!chatHeader || !aiAgent) return;
+    if (!chatHeader || !aiAgent) return;
   let hasOpened = false;
   let prevFocus = null;
   aiAgent.classList.add('collapsed');
@@ -54,10 +54,13 @@
   function openChat(){
     if(aiAgent.classList.contains('open')) return;
   try{ prevFocus = document.activeElement; }catch(err){ prevFocus = null; }
-    // Add an explicit 'animate' marker so the CSS animation only runs when
-    // the user triggers openChat. This prevents animations playing on page
-    // load or when the browser restores DOM from bfcache.
-    aiAgent.classList.add('animate');
+          // Clear any inline collapse styles (leftover from a programmatic close)
+          // so the CSS-controlled open animation can run. Then add an explicit
+          // 'animate' marker so the CSS animation only runs when the user
+          // triggers openChat. This prevents animations playing on page load
+          // or when the browser restores DOM from bfcache.
+          try{ if(chatBody){ chatBody.style.transition = ''; chatBody.style.transform = ''; chatBody.style.opacity = ''; } }catch(e){}
+      aiAgent.classList.add('animate');
     // Force reflow to ensure the animate class is applied before we open
     // (helps in some browsers so animation plays reliably when requested).
     void aiAgent.offsetWidth;
@@ -83,18 +86,27 @@
   function closeChat(){
     if(!aiAgent.classList.contains('open')) return;
     if(chatClose) chatClose.style.display = "none";
-    aiAgent.classList.remove('open');
     chatHeader.setAttribute('aria-expanded','false');
-    const onTransitionEnd = function(evt){
-      if(evt.propertyName === 'max-height' || evt.propertyName === 'height'){
-    aiAgent.classList.add('collapsed');
-    // Ensure any animate marker is removed when fully collapsed
-    try{ aiAgent.classList.remove('animate'); }catch(e){}
-  try{ chatBody.removeEventListener('transitionend', onTransitionEnd); }catch(err){}
-  try{ if(prevFocus && typeof prevFocus.focus === 'function') prevFocus.focus(); }catch(err){}
-      }
-    };
-  try{ chatBody.addEventListener('transitionend', onTransitionEnd); }catch(err){}
+
+    // Simplified close: animate the entire ai-agent to scale down and
+    // return the avatar to a circular state. This avoids collapsing the
+    // chat body separately which caused the content to slide up first.
+    try{
+      var onAnimEnd = function(aevt){
+        try{ if(aevt.target && aevt.target !== aiAgent) return; }catch(e){}
+        try{ aiAgent.removeEventListener('animationend', onAnimEnd); }catch(e){}
+        try{ aiAgent.classList.remove('closing'); }catch(e){}
+        try{ aiAgent.classList.remove('open'); }catch(e){}
+        try{ aiAgent.classList.add('collapsed'); }catch(e){}
+        try{ aiAgent.classList.remove('animate'); }catch(e){}
+        try{ if(prevFocus && typeof prevFocus.focus === 'function') prevFocus.focus(); }catch(err){}
+        // Ensure chat body inline transforms are cleared so reopening animates cleanly
+        try{ if(chatBody){ chatBody.style.transition = ''; chatBody.style.transform = ''; chatBody.style.opacity = ''; } }catch(e){}
+      };
+      aiAgent.addEventListener('animationend', onAnimEnd);
+      // Kick off the close animation on the container. CSS will scale it down.
+      aiAgent.classList.add('closing');
+    }catch(e){}
   }
 
   chatHeader.addEventListener('click', function(e){ if(e.target && e.target.id === 'chat-close') return; if(aiAgent.classList.contains('open')) closeChat(); else openChat(); });
