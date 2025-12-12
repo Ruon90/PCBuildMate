@@ -11,6 +11,11 @@
   <title>PCBuildMate</title>
   <script>/* mark JS-enabled early to allow CSS to hide native selects before paint */(function(){ try{ document.documentElement.classList.add('js'); }catch(e){} })();</script>
 
+  <!-- Google Fonts: IBM Plex Sans (headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Load jQuery + Select2 early so enhanced selects render before first paint -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
@@ -55,7 +60,7 @@
                     <button type="submit" class="btn btn-sm btn-outline-danger align-self-center align-middle mt-2">Sign out</button>
                   </form>
                 {% else %}
-                  <button class="btn btn-outline-primary mt-2" data-bs-toggle="modal" data-bs-target="#authModal">Register / Login</button>
+                  <button class="btn btn-sm btn-outline-primary align-self-center align-middle mt-2" data-bs-toggle="modal" data-bs-target="#authModal">Register / Login</button>
                 {% endif %}
               </div>
             </li>

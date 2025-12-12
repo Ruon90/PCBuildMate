@@ -47,6 +47,36 @@
     // Initialize Select2 as early as possible on DOM ready to ensure placeholders are set before any visual transitions
     $(document).ready(function(){
       try{ if($.fn.select2){ $('.searchable').filter(function(){ return !$(this).data('select2'); }).select2({ width: '100%', placeholder: 'Start typing to search', allowClear: true }); } }catch(e){}
+        
+        // Clear invalid visuals when users interact with inputs/selects after an invalid state
+        try{
+          $(document).on('change input', '.needs-validation :input', function(e){
+            try{
+              var el = e.target;
+              // native invalid class
+              if (el.classList && el.classList.contains('is-invalid')) el.classList.remove('is-invalid');
+              // for Select2-enhanced selects, remove the is-invalid class from container and hide feedback
+              if (el.tagName && el.tagName.toLowerCase() === 'select' && $(el).hasClass('searchable')){
+                try{
+                  var s2 = $(el).data('select2');
+                  var container = s2 && s2.$container ? s2.$container[0] : null;
+                  if (!container) {
+                    if (el.nextElementSibling && el.nextElementSibling.classList && el.nextElementSibling.classList.contains('select2-container')) container = el.nextElementSibling;
+                    else if (el.parentNode) container = el.parentNode.querySelector('.select2-container');
+                  }
+                  if (container && container.classList) container.classList.remove('is-invalid');
+                  var fb = el.parentNode ? el.parentNode.querySelector('.invalid-feedback') : null;
+                  if (fb && fb.classList) fb.classList.remove('d-block');
+                }catch(e){}
+              }
+              // If the whole form is now valid, remove was-validated so bootstrap visuals reset
+              var form = $(el).closest('form')[0];
+              if (form && typeof form.checkValidity === 'function' && form.checkValidity()){
+                $(form).removeClass('was-validated');
+              }
+            }catch(e){}
+          });
+        }catch(e){}
       // If returning from preview, fade-in the proposals section to match exit.
       (function(){
         function handleReturnFromPreview(){
@@ -238,6 +268,7 @@
               const curRoot = document.getElementById('upgradeCalculatorRoot') || document.querySelector('div.card');
               if (newRoot && curRoot) {
                 patchInnerHTML(curRoot, newRoot.innerHTML);
+                try { if (window.PCBM && typeof window.PCBM.updateB4BBadges === 'function') window.PCBM.updateB4BBadges(document.getElementById('upgradeCalculatorRoot') || document); } catch(e){}
                 try { if (window.jQuery && window.jQuery.fn && window.jQuery.fn.selectpicker){ var $ = window.jQuery; $('.selectpicker').each(function(){ var $el = $(this); if (!$el.data('selectpicker')) { $el.selectpicker(); } else { $el.selectpicker('refresh'); } }); $('.selectpicker').each(function(){ var $el = $(this); var hasRendered = !!$el.parent().find('.bootstrap-select').length; if(!hasRendered){ $el.removeClass('bs-select-hidden').css({display:'block'}); } }); } } catch(e){}
                 try { document.querySelectorAll('.res-toggle-card-btn').forEach(btn => { btn.removeEventListener('click', window._resToggleHandler || function(){}); }); window._resToggleHandler = function(ev){ var b = ev.currentTarget; var res = b.getAttribute('data-res'); var card = b.closest('.card'); if (!card) return; card.querySelectorAll('.res-toggle-card-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); card.querySelectorAll('.fps-block').forEach(function(el){ el.classList.toggle('active', el.getAttribute('data-res') === res); }); }; document.querySelectorAll('.res-toggle-card-btn').forEach(btn => btn.addEventListener('click', window._resToggleHandler)); } catch(e){}
                 try { const alertEl = document.getElementById('noUpgradesAlert'); if (alertEl){ alertEl.classList.remove('d-none'); alertEl.removeAttribute('aria-hidden'); } }catch(e){}
@@ -249,7 +280,7 @@
             setTimeout(()=>{
               try{
                 const newDocProposals = doc.getElementById('proposalsSection'); const curProposals = document.getElementById('proposalsSection'); const newDocCurrent = doc.getElementById('currentBuildSummary'); const curCurrent = document.getElementById('currentBuildSummary');
-                if (newDocProposals && curProposals){ patchInnerHTML(curProposals, newDocProposals.innerHTML); if (newDocCurrent && curCurrent) patchInnerHTML(curCurrent, newDocCurrent.innerHTML); const alertEl = document.getElementById('noUpgradesAlert'); if (alertEl){ alertEl.classList.add('d-none'); alertEl.setAttribute('aria-hidden','true'); }
+                if (newDocProposals && curProposals){ patchInnerHTML(curProposals, newDocProposals.innerHTML); if (newDocCurrent && curCurrent) patchInnerHTML(curCurrent, newDocCurrent.innerHTML); try { if (window.PCBM && typeof window.PCBM.updateB4BBadges === 'function') window.PCBM.updateB4BBadges(document.getElementById('proposalsSection') || document); } catch(e){} const alertEl = document.getElementById('noUpgradesAlert'); if (alertEl){ alertEl.classList.add('d-none'); alertEl.setAttribute('aria-hidden','true'); }
                   try{ if (window.jQuery && window.jQuery.fn && window.jQuery.fn.selectpicker){ var $ = window.jQuery; $('.selectpicker').each(function(){ var $el = $(this); if (!$el.data('selectpicker')) { $el.selectpicker(); } else { $el.selectpicker('refresh'); } }); $('.selectpicker').each(function(){ var $el = $(this); var hasRendered = !!$el.parent().find('.bootstrap-select').length; if(!hasRendered){ $el.removeClass('bs-select-hidden').css({display:'block'}); } }); } }catch(e){}
                   try{ if (!window._resToggleHandler){ window._resToggleHandler = function(ev){ var b = ev.currentTarget; var res = b.getAttribute('data-res'); var card = b.closest('.card'); if (!card) return; card.querySelectorAll('.res-toggle-card-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); card.querySelectorAll('.fps-block').forEach(function(el){ el.classList.toggle('active', el.getAttribute('data-res') === res); }); }; } document.querySelectorAll('.res-toggle-card-btn').forEach(btn => btn.addEventListener('click', window._resToggleHandler)); }catch(e){}
                 } else { const newRoot = doc.getElementById('upgradeCalculatorRoot') || doc.querySelector('div.card'); const curRoot = document.getElementById('upgradeCalculatorRoot') || document.querySelector('div.card'); if (newRoot && curRoot){ patchInnerHTML(curRoot, newRoot.innerHTML); } else { window.location.reload(); } }

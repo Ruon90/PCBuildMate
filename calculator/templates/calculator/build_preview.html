@@ -48,15 +48,15 @@
                         <h4 class="card-title">Performance estimates</h4>
                         {% if mode == 'workstation' %}
                         {# For workstation mode show a single summary (no resolution toggles) #}
-                        {% if workstation_render_time %}
-                          <div class="mt-3">
-                            <p class="mb-2"><strong>Blender BMW Render (seconds):</strong> {{ workstation_render_time }}</p>
-                          </div>
-                        {% endif %}
+                                                {% if workstation_render_time %}
+                                                    <div class="mt-3">
+                                                        <p class="mb-2"><strong>Blender BMW Render (seconds):</strong> {{ workstation_render_time }}</p>
+                                                    </div>
+                                                {% endif %}
                         {% for res, data in perf_map.items %}
-                            {% if res == default_resolution %}
+                                {% if res == default_resolution %}
                                 <div class="mt-3">
-                                    <p class="mb-2"><strong>Bottleneck:</strong> {{ data.bottleneck.type }} — {{ data.bottleneck.bottleneck }}%</p>
+                                    <p class="mb-2"><strong>Bottleneck:</strong> <span class="bottleneck-badge" data-type="{{ data.bottleneck.type }}" data-pct="{{ data.bottleneck.bottleneck }}">{{ data.bottleneck.type }} — {{ data.bottleneck.bottleneck }}%</span></p>
                                     <ul class="list-unstyled mb-1 mt-1">
                                         {% for label, sec in data.workstation.items %}
                                         <li><strong>{{ label }}</strong>: {{ sec }} seconds</li>

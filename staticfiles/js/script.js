@@ -110,3 +110,54 @@
     window.addEventListener('load', setOffset);
   }catch(e){ }
 })();
+
+// B4B-style bottleneck badges (moved here so it's loaded via base.html -> script.js)
+(function(){
+  window.PCBM = window.PCBM || {};
+  window.PCBM.updateB4BBadges = function(root){
+    root = root || document;
+    try{
+      var els = Array.from(root.querySelectorAll('.bottleneck-badge'));
+      els.forEach(function(el){
+        var pct = parseFloat(el.getAttribute('data-pct')) || 0;
+        var rawType = (el.getAttribute('data-type') || 'unknown').toLowerCase();
+        var type = 'UNKNOWN';
+        if (/cpu/.test(rawType)) type = 'CPU';
+        else if (/gpu/.test(rawType)) type = 'GPU';
+        else type = (el.getAttribute('data-type') || 'unknown').toUpperCase();
+
+        // clear previous indicator classes
+        el.classList.remove('bottleneck-balanced','bottleneck-suggest');
+
+        // Build content: keep inline text size consistent with surrounding card text
+        var main = document.createElement('span'); main.className = 'bottleneck-main'; main.style.fontSize = 'inherit'; main.style.lineHeight = '1.2';
+        var label = document.createElement('strong'); label.className = 'bottleneck-type'; label.textContent = type;
+        var spacer = document.createTextNode(' ');
+        var num = document.createElement('span'); num.className = 'bottleneck-pct'; num.textContent = pct.toFixed(1) + '%';
+        main.appendChild(label); main.appendChild(spacer); main.appendChild(num);
+
+        var note = document.createElement('div'); note.className = 'bottleneck-note';
+
+        // New threshold: if bottleneck over 12% suggest upgrade; make suggestion component-specific
+        if (pct > 12){
+          el.classList.add('bottleneck-suggest');
+          // Use CPU/GPU specifically where possible, fallback to 'component'
+          var comp = 'component';
+          if (type === 'CPU') comp = 'CPU';
+          else if (type === 'GPU') comp = 'GPU';
+          else comp = type && type !== 'UNKNOWN' ? type : 'component';
+          note.textContent = 'Consider a stronger ' + comp + ' for future upgrades.';
+        } else {
+          el.classList.add('bottleneck-balanced');
+          note.textContent = 'Balanced';
+        }
+
+        // Replace content
+        el.innerHTML = '';
+        el.appendChild(main);
+        el.appendChild(note);
+      });
+    }catch(e){}
+  };
+  document.addEventListener('DOMContentLoaded', function(){ try{ window.PCBM.updateB4BBadges(); }catch(e){} });
+})();

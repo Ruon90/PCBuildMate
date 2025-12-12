@@ -102,7 +102,7 @@
                         <li>{{ game }}: {% if vals.current %}{{ vals.current }} FPS{% else %}N/A{% endif %}</li>
                       {% endfor %}
                     </ul>
-                    <p class="small text-muted">Bottleneck: {{ res_entry.bottleneck_current.type }} ({{ res_entry.bottleneck_current.bottleneck|floatformat:1 }}%)</p>
+                    <p class="small text-muted">Bottleneck: <span class="bottleneck-badge" data-type="{{ res_entry.bottleneck_current.type }}" data-pct="{{ res_entry.bottleneck_current.bottleneck|floatformat:1 }}">{{ res_entry.bottleneck_current.type }} ({{ res_entry.bottleneck_current.bottleneck|floatformat:1 }}%)</span></p>
                   </div>
                   <div class="col-6">
                     <div class="mb-2"><strong>Estimated FPS</strong></div>
@@ -121,7 +121,7 @@
                         </li>
                       {% endfor %}
                     </ul>
-                    <p class="small text-muted">Bottleneck: {{ res_entry.bottleneck_estimated.type }} ({{ res_entry.bottleneck_estimated.bottleneck|floatformat:1 }}%)</p>
+                    <p class="small text-muted">Bottleneck: <span class="bottleneck-badge" data-type="{{ res_entry.bottleneck_estimated.type }}" data-pct="{{ res_entry.bottleneck_estimated.bottleneck|floatformat:1 }}">{{ res_entry.bottleneck_estimated.type }} ({{ res_entry.bottleneck_estimated.bottleneck|floatformat:1 }}%)</span></p>
                   </div>
                 </div>
               </div>

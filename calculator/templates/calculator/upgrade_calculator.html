@@ -99,8 +99,8 @@
       <div class="col-md-3">
         <label class="form-label">Mode</label>
         <select name="mode" class="form-select" required>
-          <option value="" disabled {% if not request.POST.mode %}selected{% endif %}>Choose mode</option>
-          <option value="gaming" {% if request.POST.mode == 'gaming' %}selected{% endif %}>Gaming</option>
+          <option value="" disabled>Choose mode</option>
+          <option value="gaming" {% if request.POST.mode == 'gaming' or not request.POST.mode %}selected{% endif %}>Gaming</option>
           <option value="workstation" {% if request.POST.mode == 'workstation' %}selected{% endif %}>Workstation</option>
         </select>
         <div class="invalid-feedback">Please select a mode.</div>
@@ -245,21 +245,26 @@
                       <li>{{ g }}: {% if vals.estimated_fps %}{{ vals.estimated_fps }} FPS (CPU: {{ vals.cpu_fps }}, GPU: {{ vals.gpu_fps }}){% else %}N/A{% endif %}</li>
                     {% endfor %}
                   </ul>
-                  {% if entry.bottleneck %}
-                    <p class="mt-1"><strong>Bottleneck:</strong> {{ entry.bottleneck.type|default:'unknown' }} ({{ entry.bottleneck.bottleneck|default:0.0 }}%)</p>
-                  {% endif %}
                 </div>
               {% endfor %}
             </div>
-  <!-- Estimated gain moved down to second from last (above Price) for consistency -->
-  <p class="mt-1"><strong>Estimated gain:</strong> {{ pb.percent|floatformat:2 }}%</p>
-  <p class="mt-1"><strong>Price (new parts):</strong> {{ currency|currency_symbol }}{{ pb.price_delta|convert_from_usd:currency|floatformat:2 }}</p>
+
+            {# Bottleneck for the currently selected resolution (keeps content consistent) #}
+            {% for entry in pb.fps_res_list %}
+              {% if entry.res == resolution and entry.bottleneck %}
+                <p class="mt-1"><strong>Bottleneck:</strong></p>
+                <p class="mb-0">
+                  <span class="bottleneck-badge" data-type="{{ entry.bottleneck.type|default:'unknown' }}" data-pct="{{ entry.bottleneck.bottleneck|default:0.0 }}">{{ entry.bottleneck.type|default:'unknown' }} {{ entry.bottleneck.bottleneck|default:0.0 }}%</span>
+                </p>
+              {% endif %}
+            {% endfor %}
+
   {% if pb.b4b and pb.b4b.grade %}
     <p class="mb-1 small"><strong>Bang for buck rating:</strong> {{ pb.b4b.grade }}
       <a href="#" data-bs-toggle="modal" data-bs-target="#b4bInfoModal" title="How is this calculated?" class="ms-1 b4b-info-link">
         <i class="fa-solid fa-circle-info"></i>
       </a>
-    </p><br>
+    </p>
     {% if pb.b4b.grade == 'A' %}
       <p class="mb-1 small text-muted">This upgrade has a bang for buck rating of A and represents excellent value for money based on the performance improvement versus the added cost.</p>
     {% elif pb.b4b.grade == 'B' %}
@@ -270,12 +275,14 @@
       <p class="mb-1 small text-muted">This upgrade has a bang for buck rating of D and may not be cost-effective. The performance gain is relatively small compared to the additional cost.</p>
     {% endif %}
   {% endif %}
+
+  <!-- Estimated gain moved down to second from last (above Price) for consistency -->
+  <p class="mt-1"><strong>Estimated gain:</strong> {{ pb.percent|floatformat:2 }}%</p>
           </div>
           {% else %}
           <div class="mt-2">
               <strong>Estimated render time:</strong>
             <p class="mb-0 small">{% if pb.workstation_estimate %}{{ pb.workstation_estimate }} seconds{% else %}N/A{% endif %}</p>
-              <p class="mt-1"><strong>Price (new parts):</strong> {{ currency|currency_symbol }}{{ pb.price_delta|convert_from_usd:currency|floatformat:2 }}</p>
             {% if pb.b4b and pb.b4b.grade %}
                 <p class="mb-1 small"><strong>Bang for buck rating:</strong> {{ pb.b4b.grade }}
                   <a href="#" data-bs-toggle="modal" data-bs-target="#b4bInfoModal" title="How is this calculated?" class="ms-1 b4b-info-link"><i class="fa-solid fa-circle-info"></i></a>

@@ -67,7 +67,7 @@
                                             {% endfor %}
                                         </ul>
                                         {% if entry.bottleneck %}
-                                            <p class="mt-1"><strong>Bottleneck:</strong> {{ entry.bottleneck.type|default:'unknown' }} ({{ entry.bottleneck.bottleneck|default:0.0 }}%)</p>
+                                            <p class="mt-1"><strong>Bottleneck:</strong> <span class="bottleneck-badge" data-type="{{ entry.bottleneck.type|default:'unknown' }}" data-pct="{{ entry.bottleneck.bottleneck|default:0.0 }}">{{ entry.bottleneck.type|default:'unknown' }} ({{ entry.bottleneck.bottleneck|default:0.0 }}%)</span></p>
                                         {% endif %}
                                     </div>
                                     {% endfor %}

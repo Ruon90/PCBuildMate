@@ -1,7 +1,8 @@
 /* General reset */
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    /* Use Inter as the primary UI font with system fallbacks */
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     background-color: #ececec; /* light background */
 }
 
@@ -73,8 +74,8 @@ footer {
     --accent: #2e7cf7;
     --accent-contrast: #ffffff;
     /* Slightly longer motion durations to make page transitions feel smoother */
-    --motion-snap: 360ms;
-    --motion-smooth: 420ms;
+    --motion-snap: 420ms;
+    --motion-smooth: 520ms;
     --ease-snap: ease-in-out;
     --ease-smooth: ease-in-out;
     --input-bg: var(--card-bg);
@@ -180,7 +181,8 @@ body.site-hero #workstation-delta.fps-delta-negative, #workstation-delta.fps-del
 
 
 p, .lead { color: var(--text-primary); }
-h1, h2, h3, h4, h5, h6 { color: var(--text-primary); }
+/* Headings use IBM Plex Sans for a clean, technical look */
+h1, h2, h3, h4, h5, h6 { color: var(--text-primary); font-family: 'IBM Plex Sans', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
 .text-muted { color: var(--text-primary); }
 .card p { color: var(--text-secondary); }
 
@@ -276,6 +278,16 @@ input:-moz-autofill, input:-moz-autofill:hover, input:-moz-autofill:focus{ box-s
 .form-control[type="password"], input[type="password"].form-control{ background-color: var(--input-bg); -webkit-text-fill-color: var(--text-primary); color: var(--text-primary); }
 
 input[type="checkbox"]{ width: 1.15rem; height: 1.15rem; -webkit-appearance: none; appearance: none; background-color: var(--input-bg); border: 1px solid var(--card-border); border-radius: 0.25rem; box-shadow: none; position: relative; transition: border-color .15s ease, box-shadow .15s ease; background-repeat: no-repeat; background-position: center; background-size: 88% 88%; }
+
+/* Restore a visible dropdown arrow for selects inside the build form (home page). */
+form#buildForm .form-select, form#buildForm select {
+    /* small inline SVG caret so we don't rely on default UA arrows which may be suppressed */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='%23666' d='M2 4L0 0h4z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 0.65rem;
+    padding-right: 2rem; /* leave space for arrow */
+}
 input[type="checkbox"]:hover{ border-color: #3b82f6; }
 input[type="checkbox"]:focus{ outline: none; border-color: #2e7cf7; box-shadow: 0 0 0 0.18rem rgba(46,124,247,.60); }
 input[type="checkbox"]:checked{ background-color: var(--input-bg); border-color: var(--accent); box-shadow: 0 0 0 0.18rem rgba(46,124,247,.60); background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M20.285 6.707a1 1 0 0 1 0 1.414l-9.58 9.58a1 1 0 0 1-1.414 0l-5.29-5.29a1 1 0 1 1 1.414-1.414l4.583 4.583 8.873-8.873a1 1 0 0 1 1.414 0z' fill='%23ffffff'/></svg>"); }
@@ -345,7 +357,7 @@ footer.bg-dark{ background-color: rgba(0,0,0,0.45); border-top: 1px solid var(--
 .modal-backdrop { z-index: 2000; }
 .modal-open #ai-agent { z-index: 100; }
 
-@keyframes pcbmSlideOut { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-18px); } }
+@keyframes pcbmSlideOut { 0% { opacity: 1; transform: translateZ(0) translateY(0); } 100% { opacity: 0; transform: translateZ(0) translateY(-24px); } }
 .page-exit { animation: pcbmSlideOut var(--motion-snap) var(--ease-snap) both; will-change: opacity, transform; }
 /* Content-level exit for smaller panels (previews). Slide + fade to match page-exit but scoped
     to inner content so the rest of the layout remains stable. */
@@ -395,6 +407,22 @@ footer.bg-dark{ background-color: rgba(0,0,0,0.45); border-top: 1px solid var(--
     will-change: transform, width, height, border-radius;
     transition: transform .35s cubic-bezier(.2,.8,.2,1), width .35s ease, height .28s ease, border-radius .28s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
 }
+
+/* Keep Bootstrap .badge labels (like "Mobo swap") with black text for legibility */
+.badge, .badge * { color: #000 !important; }
+
+/* B4B badge styling: render the B4B inline label + percent + note as white text
+   so it stands out on card dark backgrounds. Keep font-size consistent with
+   surrounding card text and show a small muted note on the next line. */
+.bottleneck-badge { display: inline-block; font-size: inherit; color: #fff !important; }
+.bottleneck-badge .bottleneck-main { display: inline; color: #fff !important; }
+.bottleneck-badge .bottleneck-type { margin-right: .25rem; color: #fff !important; }
+.bottleneck-badge .bottleneck-pct { color: #fff !important; font-weight: 600; }
+.bottleneck-badge .bottleneck-note { color: #fff !important; font-size: .85em; margin-top: .25rem; }
+
+/* Ensure hero pages don't override the bottleneck badge text color */
+body.site-hero .bottleneck-badge, .proposals-card .bottleneck-badge { color: #fff !important; }
+
 
 /* Collapsed circular avatar state */
 #ai-agent.collapsed{
@@ -462,7 +490,7 @@ footer.bg-dark{ background-color: rgba(0,0,0,0.45); border-top: 1px solid var(--
 #chat-header img.chat-icon{ width:48px; height:48px; max-width:none; border-radius:12px; flex:0 0 auto; filter: drop-shadow(0 1px 1px rgba(0,0,0,.25)); margin-right:8px; z-index:2; display:block; object-fit:cover; }
 #chat-header-title{ display:none; }
 #chat-close{ position:absolute; right:10px; top:8px; display:none; font-weight:800; opacity:.9; }
-#chat-body{ max-height:0; opacity:0; transition: max-height .35s ease, opacity .25s ease; overflow:hidden; display:flex; flex-direction:column; background:transparent; }
+#chat-body{ max-height:0; opacity:0; transition: max-height .45s cubic-bezier(.22,.9,.28,1), opacity .32s ease; overflow:hidden; display:flex; flex-direction:column; background:transparent; }
 #ai-agent.open #chat-body{ max-height:420px; opacity:1; }
 
 /* Ensure header clips overflowing avatar and force avatar size when open */
@@ -559,25 +587,26 @@ footer.bg-dark{ background-color: rgba(0,0,0,0.45); border-top: 1px solid var(--
 #chat-header .chat-sub{ font-size: 11px; color: rgba(255,255,255,0.85); margin: 0; }
 #ai-agent.open #chat-header .chat-header-text{ display: flex; }
 
-/* Make avatar transitions smooth and animatable */
-#chat-header img.chat-icon{ transition: transform .36s cubic-bezier(.2,.8,.2,1), width .28s ease, height .28s ease, border-radius .28s ease; will-change: transform, width, height; }
+/* gentler avatar transitions and avoid heavy scaling which can introduce blur */
+#chat-header img.chat-icon{ transition: transform .42s cubic-bezier(.22,.9,.28,1), width .32s ease, height .32s ease, border-radius .32s ease; will-change: transform, width, height; image-rendering:auto; backface-visibility:hidden; }
 
-/* Keyframe: small movement/scale for avatar when opening so it visually settles into the header */
+/* Keyframe: small movement for avatar when opening; reduce scale delta to avoid pixelation */
 @keyframes ai-avatar-move {
-    0% { transform: translateY(0) scale(1); }
-    60% { transform: translate(-6px,-8px) scale(.88); }
- 100% { transform: translate(-8px,-6px) scale(.78); }
+    0% { transform: translateZ(0) translateY(0) scale(1); }
+    60% { transform: translateZ(0) translate(-4px,-6px) scale(.94); }
+   100% { transform: translateZ(0) translate(-6px,-5px) scale(.92); }
 }
 
-/* Keyframe: card pop/translate from the collapsed origin to the open card position */
+/* Keyframe: card pop/translate from the collapsed origin to the open card position (smoother mid-frame) */
 @keyframes ai-card-open {
-    0% { transform: translate(0,0) scale(1); opacity: 0.98; }
- 100% { transform: translate(-18px,-18px) scale(1); opacity: 1; }
+    0% { transform: translateZ(0) translate(0,0) scale(1); opacity: 0.96; }
+   60% { transform: translateZ(0) translate(-10px,-10px) scale(.997); opacity: 0.99; }
+  100% { transform: translateZ(0) translate(-18px,-18px) scale(1); opacity: 1; }
 }
 
-/* Apply animations when opening */
-#ai-agent.open { animation: ai-card-open .36s cubic-bezier(.2,.8,.2,1) both; }
-#ai-agent.open #chat-header img.chat-icon{ animation: ai-avatar-move .36s cubic-bezier(.2,.8,.2,1) both; }
+/* Apply animations when opening (slower for a smoother feel) */
+#ai-agent.open { animation: ai-card-open .42s cubic-bezier(.22,.9,.28,1) both; }
+#ai-agent.open #chat-header img.chat-icon{ animation: ai-avatar-move .42s cubic-bezier(.22,.9,.28,1) both; }
 
 /* When collapsed, keep header text hidden and ensure avatar remains circular */
 #ai-agent.collapsed .chat-header-text{ display: none !important; }

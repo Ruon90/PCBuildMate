@@ -16,10 +16,7 @@
             <p class="mb-0 small text-muted">Price: {{ alt.price|default:"N/A" }}</p>
           </div>
           {% if alt.bottleneck_type or alt.bottleneck_pct is not None %}
-          <p class="mb-1"><strong>Bottleneck:</strong>
-            {{ alt.bottleneck_type|default:"N/A" }} —
-            {% if alt.bottleneck_pct is not None %}{{ alt.bottleneck_pct }}%{% else %}N/A{% endif %}
-          </p>
+          <p class="mb-1"><strong>Bottleneck:</strong> <span class="bottleneck-badge" data-type="{{ alt.bottleneck_type|default:'N/A' }}" data-pct="{{ alt.bottleneck_pct|default:0 }}">{{ alt.bottleneck_type|default:"N/A" }} — {% if alt.bottleneck_pct is not None %}{{ alt.bottleneck_pct }}%{% else %}N/A{% endif %}</span></p>
           {% endif %}
           <ul class="list-unstyled small mb-3">
             <li><strong>CPU:</strong> {{ alt.cpu.name }} — UB {% if alt.cpu.userbenchmark_score is not None %}{{ alt.cpu.userbenchmark_score }}{% else %}N/A{% endif %} / Blender {% if alt.cpu.blender_score is not None %}{{ alt.cpu.blender_score }}{% else %}N/A{% endif %}</li>

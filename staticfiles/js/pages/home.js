@@ -9,10 +9,18 @@
       const modalEl = document.getElementById('buildProgressModal');
       const progressBar = document.getElementById('buildProgressBar');
       const progressMsg = document.getElementById('buildProgressMsg');
-      try { if (modalEl && modalEl.parentNode !== document.body) { document.body.appendChild(modalEl); } } catch(e) {}
+      try {
+        if (modalEl && modalEl.parentNode !== document.body) {
+          document.body.appendChild(modalEl);
+        }
+      } catch (err) {}
       let bsModal = null;
       if (typeof window.bootstrap !== 'undefined' && window.bootstrap.Modal) {
-        try { bsModal = new window.bootstrap.Modal(modalEl, { backdrop: 'static', keyboard: false }); } catch (e) { bsModal = null; }
+        try {
+          bsModal = new window.bootstrap.Modal(modalEl, { backdrop: 'static', keyboard: false });
+        } catch (err) {
+          bsModal = null;
+        }
       }
       function manualShowModal() {
         try {
@@ -35,19 +43,31 @@
           modalEl.removeAttribute('aria-modal');
         } catch {}
       }
-      try { if (bsModal) bsModal.show(); else manualShowModal(); } catch(e) { manualShowModal(); }
+      try {
+        if (bsModal) {
+          bsModal.show();
+        } else {
+          manualShowModal();
+        }
+      } catch (err) {
+        manualShowModal();
+      }
 
       // Reset progress
-      progressBar && progressBar.classList.remove('bg-danger');
-      progressBar && progressBar.classList.add('bg-primary');
-      progressBar && progressBar.classList.add('progress-bar-animated');
+      if (progressBar) {
+        progressBar.classList.remove('bg-danger');
+        progressBar.classList.add('bg-primary');
+        progressBar.classList.add('progress-bar-animated');
+      }
       let percent = 10;
       let anim = null;
       if (progressBar) {
         progressBar.style.width = percent + '%';
         progressBar.textContent = percent + '%';
       }
-      progressMsg && (progressMsg.textContent = 'Crunching numbers and checking compatibility...');
+      if (progressMsg) {
+        progressMsg.textContent = 'Crunching numbers and checking compatibility...';
+      }
       function startProgress(target) {
         if (anim) clearInterval(anim);
         anim = setInterval(() => {
@@ -90,11 +110,11 @@
               const m = msg.match(/out of\s+(\d+)\s+candidates/i);
               if (m && m[1]) candidatesCount = parseInt(m[1], 10);
             }
-            if (!isSummary) {
-              const li = document.createElement("li");
-              li.textContent = msg;
-              ul.appendChild(li);
-            }
+              if (!isSummary) {
+                const li = document.createElement("li");
+                li.textContent = msg;
+                ul.appendChild(li);
+              }
 
             currentPercent += stepPercent;
             percent = Math.min(95, currentPercent);
@@ -103,16 +123,22 @@
               progressBar.textContent = percent + "%";
             }
           });
-          progressArea && progressArea.appendChild(ul);
+          if (progressArea) {
+            progressArea.appendChild(ul);
+          }
         }
 
-        if (data.redirect) {
+  if (data.redirect) {
           // Show summary in modal then redirect
-          if (progressArea) progressArea.innerHTML = "";
+          if (progressArea) {
+            progressArea.innerHTML = "";
+          }
           let summaryText = (data.summary && typeof data.summary === 'string') ? data.summary : null;
           if (!summaryText && candidatesCount !== null) summaryText = `Picked best build of ${candidatesCount} candidates`;
           if (progressMsg) progressMsg.textContent = summaryText || "Picked best build";
-          if (percent < 90) startProgress(90);
+          if (percent < 90) {
+            startProgress(90);
+          }
           setTimeout(() => {
             if (anim) { clearInterval(anim); anim = null; }
             percent = 100;
@@ -120,15 +146,31 @@
               progressBar.style.width = '100%';
               progressBar.textContent = '100%';
             }
-            try { if (bsModal) bsModal.hide(); } catch(e) {} finally { manualHideModal(); }
+            try {
+              if (bsModal) bsModal.hide();
+            } catch (err) {
+            } finally {
+              manualHideModal();
+            }
             window.location.href = data.redirect;
           }, 800);
         } else if (data.error) {
-          progressBar && progressBar.classList.remove("progress-bar-animated");
-          progressBar && progressBar.classList.add("bg-danger");
-          if (progressBar) progressBar.textContent = "Error";
-          if (progressArea) progressArea.innerHTML = "<div class='alert alert-danger'>" + data.error + "</div>";
-          setTimeout(() => { try { if (bsModal) bsModal.hide(); } catch(e) {} finally { manualHideModal(); } }, 1200);
+          if (progressBar) {
+            progressBar.classList.remove("progress-bar-animated");
+            progressBar.classList.add("bg-danger");
+            progressBar.textContent = "Error";
+          }
+          if (progressArea) {
+            progressArea.innerHTML = "<div class='alert alert-danger'>" + data.error + "</div>";
+          }
+          setTimeout(() => {
+            try {
+              if (bsModal) bsModal.hide();
+            } catch (err) {
+            } finally {
+              manualHideModal();
+            }
+          }, 1200);
         }
       })
       .catch(() => {
@@ -148,24 +190,42 @@
   const cardEl = document.querySelector('.card');
   if (toggleBtn && filters) {
     toggleBtn.addEventListener("click", function() {
-      try { new bootstrap.Collapse(filters, { toggle: true }); } catch(e) { }
+      try {
+        if (window.bootstrap && window.bootstrap.Collapse && typeof window.bootstrap.Collapse.getOrCreateInstance === 'function') {
+          const inst = window.bootstrap.Collapse.getOrCreateInstance(filters);
+          inst.toggle();
+        }
+      } catch (err) {
+      }
     });
 
-    filters.addEventListener && filters.addEventListener("show.bs.collapse", () => {
-      toggleBtn.textContent = "Hide advanced filters";
-      cardEl && cardEl.classList.add('expanding');
-    });
-    filters.addEventListener && filters.addEventListener("shown.bs.collapse", () => {
-      try { toggleBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch(e) {}
-      cardEl && cardEl.classList.remove('expanding');
-    });
-    filters.addEventListener && filters.addEventListener("hide.bs.collapse", () => {
-      toggleBtn.textContent = "Show advanced filters";
-      cardEl && cardEl.classList.add('expanding');
-    });
-    filters.addEventListener && filters.addEventListener("hidden.bs.collapse", () => {
-      cardEl && cardEl.classList.remove('expanding');
-    });
+    if (typeof filters.addEventListener === 'function') {
+      filters.addEventListener("show.bs.collapse", () => {
+        toggleBtn.textContent = "Hide advanced filters";
+        if (cardEl) {
+          cardEl.classList.add('expanding');
+        }
+      });
+      filters.addEventListener("shown.bs.collapse", () => {
+        try {
+          if (toggleBtn) toggleBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } catch (err) {}
+        if (cardEl) {
+          cardEl.classList.remove('expanding');
+        }
+      });
+      filters.addEventListener("hide.bs.collapse", () => {
+        toggleBtn.textContent = "Show advanced filters";
+        if (cardEl) {
+          cardEl.classList.add('expanding');
+        }
+      });
+      filters.addEventListener("hidden.bs.collapse", () => {
+        if (cardEl) {
+          cardEl.classList.remove('expanding');
+        }
+      });
+    }
   }
 
 })();
